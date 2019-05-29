@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		211B1E49BC032FD29BF7EA57 /* Pods_dvachTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF848D3DEFEF1DDEC1C29B2 /* Pods_dvachTests.framework */; };
 		41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D2229EFE720028EBFB /* AppDelegate.swift */; };
 		41BEE6D5229EFE720028EBFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D4229EFE720028EBFB /* ViewController.swift */; };
 		41BEE6D8229EFE720028EBFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6D6229EFE720028EBFB /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		41BEE6DD229EFE750028EBFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6DC229EFE750028EBFB /* Assets.xcassets */; };
 		41BEE6E0229EFE750028EBFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6DE229EFE750028EBFB /* LaunchScreen.storyboard */; };
 		41BEE6EB229EFE750028EBFB /* dvachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6EA229EFE750028EBFB /* dvachTests.swift */; };
+		FEB9BA536773581D988B192D /* Pods_dvach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36997A4334605A1D078B3ED4 /* Pods-dvachTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvachTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests.release.xcconfig"; sourceTree = "<group>"; };
 		41BEE6CF229EFE720028EBFB /* dvach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dvach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BEE6D2229EFE720028EBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41BEE6D4229EFE720028EBFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +41,11 @@
 		41BEE6E6229EFE750028EBFB /* dvachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dvachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BEE6EA229EFE750028EBFB /* dvachTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dvachTests.swift; sourceTree = "<group>"; };
 		41BEE6EC229EFE750028EBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4274A55E1D343EF270BE19BF /* Pods-dvach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.debug.xcconfig"; sourceTree = "<group>"; };
+		969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.release.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.release.xcconfig"; sourceTree = "<group>"; };
+		BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C56667501DB5905B423A9582 /* Pods-dvachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EBF848D3DEFEF1DDEC1C29B2 /* Pods_dvachTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvachTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEB9BA536773581D988B192D /* Pods_dvach.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,18 +61,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				211B1E49BC032FD29BF7EA57 /* Pods_dvachTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14B701DAC022A53CB263CCA8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */,
+				EBF848D3DEFEF1DDEC1C29B2 /* Pods_dvachTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		41BEE6C6229EFE720028EBFB = {
 			isa = PBXGroup;
 			children = (
 				41BEE6D1229EFE720028EBFB /* dvach */,
 				41BEE6E9229EFE750028EBFB /* dvachTests */,
 				41BEE6D0229EFE720028EBFB /* Products */,
+				CA89EE3F855E333C81DBA6A2 /* Pods */,
+				14B701DAC022A53CB263CCA8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +120,17 @@
 			path = dvachTests;
 			sourceTree = "<group>";
 		};
+		CA89EE3F855E333C81DBA6A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4274A55E1D343EF270BE19BF /* Pods-dvach.debug.xcconfig */,
+				969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */,
+				C56667501DB5905B423A9582 /* Pods-dvachTests.debug.xcconfig */,
+				36997A4334605A1D078B3ED4 /* Pods-dvachTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +138,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 41BEE6EF229EFE750028EBFB /* Build configuration list for PBXNativeTarget "dvach" */;
 			buildPhases = (
+				37E77C42C635A1EBA1473B86 /* [CP] Check Pods Manifest.lock */,
 				41BEE6CB229EFE720028EBFB /* Sources */,
 				41BEE6CC229EFE720028EBFB /* Frameworks */,
 				41BEE6CD229EFE720028EBFB /* Resources */,
+				8F41E6E7C2CBB23C75C112C7 /* [CP] Embed Pods Frameworks */,
+				434C0471623E9B973CEE7D99 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -123,9 +158,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 41BEE6F2229EFE750028EBFB /* Build configuration list for PBXNativeTarget "dvachTests" */;
 			buildPhases = (
+				A7A2F2DAB59B53BE346D2F22 /* [CP] Check Pods Manifest.lock */,
 				41BEE6E2229EFE750028EBFB /* Sources */,
 				41BEE6E3229EFE750028EBFB /* Frameworks */,
 				41BEE6E4229EFE750028EBFB /* Resources */,
+				12F54EFCC24ECEB6BA9B60EE /* [CP] Embed Pods Frameworks */,
+				60BA943FF9202F80277B08CB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -194,6 +232,105 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		12F54EFCC24ECEB6BA9B60EE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		37E77C42C635A1EBA1473B86 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dvach-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		434C0471623E9B973CEE7D99 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dvach/Pods-dvach-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		60BA943FF9202F80277B08CB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F41E6E7C2CBB23C75C112C7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dvach/Pods-dvach-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7A2F2DAB59B53BE346D2F22 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dvachTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		41BEE6CB229EFE720028EBFB /* Sources */ = {
@@ -362,15 +499,13 @@
 		};
 		41BEE6F0229EFE750028EBFB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4274A55E1D343EF270BE19BF /* Pods-dvach.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZTRS68H53M;
 				INFOPLIST_FILE = dvach/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -380,15 +515,13 @@
 		};
 		41BEE6F1229EFE750028EBFB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZTRS68H53M;
 				INFOPLIST_FILE = dvach/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -398,17 +531,14 @@
 		};
 		41BEE6F3229EFE750028EBFB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C56667501DB5905B423A9582 /* Pods-dvachTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZTRS68H53M;
 				INFOPLIST_FILE = dvachTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvachTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -419,17 +549,14 @@
 		};
 		41BEE6F4229EFE750028EBFB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36997A4334605A1D078B3ED4 /* Pods-dvachTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZTRS68H53M;
 				INFOPLIST_FILE = dvachTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvachTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
