@@ -6,12 +6,12 @@ target 'dvach' do
   use_frameworks!
 
   # Pods for dvach
-  # pod 'PureLayout'
-  # pod 'Firebase/Core'
-  # pod 'Firebase/Database'
-  # pod 'Alamofire'
-  # pod 'SwiftyJSON', '~> 4.0'
-  # pod 'SnapKit', '~> 4.0.0'
+   pod 'PureLayout'
+   pod 'Firebase/Core'
+   pod 'Firebase/Database'
+   pod 'Alamofire'
+   pod 'SwiftyJSON', '~> 4.0'
+   pod 'SnapKit', '~> 4.0.0'
 
   target 'dvachTests' do
     inherit! :search_paths
