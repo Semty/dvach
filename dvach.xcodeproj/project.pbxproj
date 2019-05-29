@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D2229EFE720028EBFB /* AppDelegate.swift */; };
+		41BEE6D5229EFE720028EBFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D4229EFE720028EBFB /* ViewController.swift */; };
+		41BEE6D8229EFE720028EBFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6D6229EFE720028EBFB /* Main.storyboard */; };
+		41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */; };
+		41BEE6DD229EFE750028EBFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6DC229EFE750028EBFB /* Assets.xcassets */; };
+		41BEE6E0229EFE750028EBFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6DE229EFE750028EBFB /* LaunchScreen.storyboard */; };
+		41BEE6EB229EFE750028EBFB /* dvachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6EA229EFE750028EBFB /* dvachTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		41BEE6E7229EFE750028EBFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 41BEE6C7229EFE720028EBFB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 41BEE6CE229EFE720028EBFB;
+			remoteInfo = dvach;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		41BEE6CF229EFE720028EBFB /* dvach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dvach.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		41BEE6D2229EFE720028EBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		41BEE6D4229EFE720028EBFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		41BEE6D7229EFE720028EBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		41BEE6DA229EFE720028EBFB /* dvach.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dvach.xcdatamodel; sourceTree = "<group>"; };
+		41BEE6DC229EFE750028EBFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		41BEE6DF229EFE750028EBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		41BEE6E1229EFE750028EBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41BEE6E6229EFE750028EBFB /* dvachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dvachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		41BEE6EA229EFE750028EBFB /* dvachTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dvachTests.swift; sourceTree = "<group>"; };
+		41BEE6EC229EFE750028EBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		41BEE6CC229EFE720028EBFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41BEE6E3229EFE750028EBFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		41BEE6C6229EFE720028EBFB = {
+			isa = PBXGroup;
+			children = (
+				41BEE6D1229EFE720028EBFB /* dvach */,
+				41BEE6E9229EFE750028EBFB /* dvachTests */,
+				41BEE6D0229EFE720028EBFB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		41BEE6D0229EFE720028EBFB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				41BEE6CF229EFE720028EBFB /* dvach.app */,
+				41BEE6E6229EFE750028EBFB /* dvachTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		41BEE6D1229EFE720028EBFB /* dvach */ = {
+			isa = PBXGroup;
+			children = (
+				41BEE6D2229EFE720028EBFB /* AppDelegate.swift */,
+				41BEE6D4229EFE720028EBFB /* ViewController.swift */,
+				41BEE6D6229EFE720028EBFB /* Main.storyboard */,
+				41BEE6DC229EFE750028EBFB /* Assets.xcassets */,
+				41BEE6DE229EFE750028EBFB /* LaunchScreen.storyboard */,
+				41BEE6E1229EFE750028EBFB /* Info.plist */,
+				41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */,
+			);
+			path = dvach;
+			sourceTree = "<group>";
+		};
+		41BEE6E9229EFE750028EBFB /* dvachTests */ = {
+			isa = PBXGroup;
+			children = (
+				41BEE6EA229EFE750028EBFB /* dvachTests.swift */,
+				41BEE6EC229EFE750028EBFB /* Info.plist */,
+			);
+			path = dvachTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		41BEE6CE229EFE720028EBFB /* dvach */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41BEE6EF229EFE750028EBFB /* Build configuration list for PBXNativeTarget "dvach" */;
+			buildPhases = (
+				41BEE6CB229EFE720028EBFB /* Sources */,
+				41BEE6CC229EFE720028EBFB /* Frameworks */,
+				41BEE6CD229EFE720028EBFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = dvach;
+			productName = dvach;
+			productReference = 41BEE6CF229EFE720028EBFB /* dvach.app */;
+			productType = "com.apple.product-type.application";
+		};
+		41BEE6E5229EFE750028EBFB /* dvachTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41BEE6F2229EFE750028EBFB /* Build configuration list for PBXNativeTarget "dvachTests" */;
+			buildPhases = (
+				41BEE6E2229EFE750028EBFB /* Sources */,
+				41BEE6E3229EFE750028EBFB /* Frameworks */,
+				41BEE6E4229EFE750028EBFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				41BEE6E8229EFE750028EBFB /* PBXTargetDependency */,
+			);
+			name = dvachTests;
+			productName = dvachTests;
+			productReference = 41BEE6E6229EFE750028EBFB /* dvachTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		41BEE6C7229EFE720028EBFB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Kirill Solovyov";
+				TargetAttributes = {
+					41BEE6CE229EFE720028EBFB = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					41BEE6E5229EFE750028EBFB = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 41BEE6CE229EFE720028EBFB;
+					};
+				};
+			};
+			buildConfigurationList = 41BEE6CA229EFE720028EBFB /* Build configuration list for PBXProject "dvach" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 41BEE6C6229EFE720028EBFB;
+			productRefGroup = 41BEE6D0229EFE720028EBFB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				41BEE6CE229EFE720028EBFB /* dvach */,
+				41BEE6E5229EFE750028EBFB /* dvachTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		41BEE6CD229EFE720028EBFB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41BEE6E0229EFE750028EBFB /* LaunchScreen.storyboard in Resources */,
+				41BEE6DD229EFE750028EBFB /* Assets.xcassets in Resources */,
+				41BEE6D8229EFE720028EBFB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41BEE6E4229EFE750028EBFB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		41BEE6CB229EFE720028EBFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41BEE6D5229EFE720028EBFB /* ViewController.swift in Sources */,
+				41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */,
+				41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41BEE6E2229EFE750028EBFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41BEE6EB229EFE750028EBFB /* dvachTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		41BEE6E8229EFE750028EBFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 41BEE6CE229EFE720028EBFB /* dvach */;
+			targetProxy = 41BEE6E7229EFE750028EBFB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		41BEE6D6229EFE720028EBFB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				41BEE6D7229EFE720028EBFB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		41BEE6DE229EFE750028EBFB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				41BEE6DF229EFE750028EBFB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		41BEE6ED229EFE750028EBFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		41BEE6EE229EFE750028EBFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		41BEE6F0229EFE750028EBFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZTRS68H53M;
+				INFOPLIST_FILE = dvach/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		41BEE6F1229EFE750028EBFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZTRS68H53M;
+				INFOPLIST_FILE = dvach/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		41BEE6F3229EFE750028EBFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZTRS68H53M;
+				INFOPLIST_FILE = dvachTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvachTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dvach.app/dvach";
+			};
+			name = Debug;
+		};
+		41BEE6F4229EFE750028EBFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZTRS68H53M;
+				INFOPLIST_FILE = dvachTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvachTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dvach.app/dvach";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		41BEE6CA229EFE720028EBFB /* Build configuration list for PBXProject "dvach" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41BEE6ED229EFE750028EBFB /* Debug */,
+				41BEE6EE229EFE750028EBFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		41BEE6EF229EFE750028EBFB /* Build configuration list for PBXNativeTarget "dvach" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41BEE6F0229EFE750028EBFB /* Debug */,
+				41BEE6F1229EFE750028EBFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		41BEE6F2229EFE750028EBFB /* Build configuration list for PBXNativeTarget "dvachTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41BEE6F3229EFE750028EBFB /* Debug */,
+				41BEE6F4229EFE750028EBFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				41BEE6DA229EFE720028EBFB /* dvach.xcdatamodel */,
+			);
+			currentVersion = 41BEE6DA229EFE720028EBFB /* dvach.xcdatamodel */;
+			path = dvach.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 41BEE6C7229EFE720028EBFB /* Project object */;
+}
