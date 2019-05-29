@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImbaTableView" customModule="FatFood" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="hhZ-bS-DDG" id="lSw-hv-4P5"/>
+                <outlet property="tableViewBottomConstraint" destination="kGg-v4-HqY" id="jOi-u2-Qvm"/>
+                <outlet property="view" destination="6Wn-EE-yof" id="SPL-bz-v57"/>
+                <outlet property="viewHeightConstraint" destination="X38-cS-AMe" id="Yyh-Ge-Xqh"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="6Wn-EE-yof">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="274"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdI-Rj-zSV">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="274"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hhZ-bS-DDG">
+                            <rect key="frame" x="0.0" y="0.0" width="400" height="274"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="hhZ-bS-DDG" firstAttribute="leading" secondItem="CdI-Rj-zSV" secondAttribute="leading" id="0bu-1H-oKW"/>
+                        <constraint firstAttribute="trailing" secondItem="hhZ-bS-DDG" secondAttribute="trailing" id="Ibz-jC-HPb"/>
+                        <constraint firstAttribute="height" priority="900" id="X38-cS-AMe"/>
+                        <constraint firstAttribute="bottom" secondItem="hhZ-bS-DDG" secondAttribute="bottom" id="kGg-v4-HqY"/>
+                        <constraint firstItem="hhZ-bS-DDG" firstAttribute="top" secondItem="CdI-Rj-zSV" secondAttribute="top" id="lmP-nV-6OH"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="CdI-Rj-zSV" secondAttribute="bottom" id="1sd-WS-L6B"/>
+                <constraint firstItem="CdI-Rj-zSV" firstAttribute="leading" secondItem="6Wn-EE-yof" secondAttribute="leading" id="Ayf-2G-exv"/>
+                <constraint firstAttribute="trailing" secondItem="CdI-Rj-zSV" secondAttribute="trailing" id="Pud-no-9Vm"/>
+                <constraint firstItem="CdI-Rj-zSV" firstAttribute="height" secondItem="6Wn-EE-yof" secondAttribute="height" id="eer-Ke-DV5"/>
+                <constraint firstItem="CdI-Rj-zSV" firstAttribute="top" secondItem="6Wn-EE-yof" secondAttribute="top" id="hsO-wi-DJu"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="7f7-1O-rfg"/>
+            <point key="canvasLocation" x="-214" y="-250"/>
+        </view>
+    </objects>
+</document>
