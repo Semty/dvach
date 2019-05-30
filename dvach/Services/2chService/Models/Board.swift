@@ -16,9 +16,9 @@ struct Board {
     let pages: Int
 }
 
-// MARK: - JSONParseable
+// MARK: - JSONParsable
 
-extension Board: JSONParseable {
+extension Board: JSONParsable {
     
     static func from(json: JSON) -> Board? {
         guard let identifier = json["id"].string,
