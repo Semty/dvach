@@ -22,19 +22,19 @@ protocol BaseRequest {
 extension BaseRequest {
     
     var baseURL: String {
-        return "https://api.sportradar.us/nba"
+        return "https://2ch.hk"
     }
     
     var accessLevel: String {
-        return "/trial"
+        return ""
     }
     
     var version: String {
-        return "/v5"
+        return ""
     }
     
     var language: String {
-        return "/en"
+        return ""
     }
     
     var headers: [String: String] {

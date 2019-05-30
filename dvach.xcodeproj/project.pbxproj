@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		211B1E49BC032FD29BF7EA57 /* Pods_dvachTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF848D3DEFEF1DDEC1C29B2 /* Pods_dvachTests.framework */; };
+		4144089F22A04AC400E4E53E /* DvachService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4144089E22A04AC400E4E53E /* DvachService.swift */; };
+		414408A322A04BA200E4E53E /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A222A04BA200E4E53E /* Board.swift */; };
+		414408A522A04BBC00E4E53E /* BoardsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A422A04BBC00E4E53E /* BoardsRequest.swift */; };
+		414408A722A050F600E4E53E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A622A050F600E4E53E /* Category.swift */; };
+		414408A922A052A800E4E53E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A822A052A800E4E53E /* Categories.swift */; };
 		41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D2229EFE720028EBFB /* AppDelegate.swift */; };
 		41BEE6D5229EFE720028EBFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D4229EFE720028EBFB /* ViewController.swift */; };
 		41BEE6D8229EFE720028EBFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6D6229EFE720028EBFB /* Main.storyboard */; };
@@ -76,6 +81,11 @@
 
 /* Begin PBXFileReference section */
 		36997A4334605A1D078B3ED4 /* Pods-dvachTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvachTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests.release.xcconfig"; sourceTree = "<group>"; };
+		4144089E22A04AC400E4E53E /* DvachService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DvachService.swift; sourceTree = "<group>"; };
+		414408A222A04BA200E4E53E /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		414408A422A04BBC00E4E53E /* BoardsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsRequest.swift; sourceTree = "<group>"; };
+		414408A622A050F600E4E53E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		414408A822A052A800E4E53E /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		41BEE6CF229EFE720028EBFB /* dvach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dvach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BEE6D2229EFE720028EBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41BEE6D4229EFE720028EBFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +180,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4144089D22A04AA200E4E53E /* 2chService */ = {
+			isa = PBXGroup;
+			children = (
+				414408A122A04B8A00E4E53E /* Models */,
+				414408A022A04B8100E4E53E /* Requests */,
+				4144089E22A04AC400E4E53E /* DvachService.swift */,
+			);
+			path = 2chService;
+			sourceTree = "<group>";
+		};
+		414408A022A04B8100E4E53E /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				414408A422A04BBC00E4E53E /* BoardsRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		414408A122A04B8A00E4E53E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				414408A222A04BA200E4E53E /* Board.swift */,
+				414408A622A050F600E4E53E /* Category.swift */,
+				414408A822A052A800E4E53E /* Categories.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		41BEE6C6229EFE720028EBFB = {
 			isa = PBXGroup;
 			children = (
@@ -251,7 +289,6 @@
 		41BEE6FC229F043C0028EBFB /* RequestManager */ = {
 			isa = PBXGroup;
 			children = (
-				41BEE6FE229F043C0028EBFB /* Models */,
 				41BEE6FD229F043C0028EBFB /* RequestManager.swift */,
 				41BEE700229F043C0028EBFB /* IRequestManager.swift */,
 				41BEE701229F043C0028EBFB /* Protocols */,
@@ -259,17 +296,10 @@
 			path = RequestManager;
 			sourceTree = "<group>";
 		};
-		41BEE6FE229F043C0028EBFB /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				41BEE6FF229F043C0028EBFB /* BaseRequest.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		41BEE701229F043C0028EBFB /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				41BEE6FF229F043C0028EBFB /* BaseRequest.swift */,
 				41BEE76E229F06970028EBFB /* ModelRequest.swift */,
 			);
 			path = Protocols;
@@ -454,6 +484,7 @@
 		41BEE769229F049A0028EBFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4144089D22A04AA200E4E53E /* 2chService */,
 				41BEE739229F04550028EBFB /* AppSettingsStorage */,
 				41BEE73B229F04550028EBFB /* FirebaseService */,
 			);
@@ -703,14 +734,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				41BEE75A229F04730028EBFB /* ComponentsFactory.swift in Sources */,
+				414408A922A052A800E4E53E /* Categories.swift in Sources */,
 				41BEE728229F043C0028EBFB /* Extension+UITableView.swift in Sources */,
 				41BEE763229F04730028EBFB /* ImbaTableView.swift in Sources */,
 				41BEE723229F043C0028EBFB /* UView+NibAwakable.swift in Sources */,
+				4144089F22A04AC400E4E53E /* DvachService.swift in Sources */,
 				41BEE73D229F04550028EBFB /* Locator.swift in Sources */,
 				41BEE722229F043C0028EBFB /* Extension+UIImage.swift in Sources */,
 				41BEE6D5229EFE720028EBFB /* ViewController.swift in Sources */,
 				41BEE71B229F043C0028EBFB /* IStorage.swift in Sources */,
 				41BEE725229F043C0028EBFB /* UIView+NibLoadable.swift in Sources */,
+				414408A522A04BBC00E4E53E /* BoardsRequest.swift in Sources */,
+				414408A722A050F600E4E53E /* Category.swift in Sources */,
 				41BEE75F229F04730028EBFB /* TapGestureRecognizer.swift in Sources */,
 				41BEE71C229F043C0028EBFB /* Persistable.swift in Sources */,
 				41BEE71D229F043C0028EBFB /* RequestManager.swift in Sources */,
@@ -733,6 +768,7 @@
 				41BEE721229F043C0028EBFB /* Extension+UIViewController.swift in Sources */,
 				41BEE73F229F04550028EBFB /* FireBaseService.swift in Sources */,
 				41BEE76F229F06970028EBFB /* ModelRequest.swift in Sources */,
+				414408A322A04BA200E4E53E /* Board.swift in Sources */,
 				41BEE734229F043C0028EBFB /* Extension+UIStackView.swift in Sources */,
 				41BEE730229F043C0028EBFB /* Extention+UIColor.swift in Sources */,
 				41BEE71A229F043C0028EBFB /* Storage.swift in Sources */,

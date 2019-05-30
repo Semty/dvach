@@ -37,4 +37,9 @@ final class Locator {
     func appSettingsStorage() -> IAppSettingsStorage {
         return AppSettingsStorage()
     }
+    
+    /// сервис 2ch
+    func dvachService() -> IDvachService {
+        return DvachService(requestManager: requestManager())
+    }
 }

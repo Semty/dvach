@@ -14,7 +14,6 @@ final class RequestManager: IRequestManager {
     // MARK: - IRequestManager
     
     func execute(_ request: BaseRequest, completion: @escaping (JSON?, Error?) -> Void) {
-        
         let stringURL = request.baseURL
             + request.accessLevel
             + request.version
@@ -23,7 +22,6 @@ final class RequestManager: IRequestManager {
             + request.action
             + request.format
             + request.parameters.parametersString
-            + "?api_key=nfgj4g9uwyggkp2rrbg44482"
         guard let url = URL(string: stringURL) else { return }
         
         do {
