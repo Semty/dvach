@@ -13,4 +13,8 @@ extension Int {
     var stringValue: String {
         return "\(self)"
     }
+    
+    var boolValue: Bool {
+        return self != 0
+    }
 }
