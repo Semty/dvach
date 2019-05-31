@@ -69,6 +69,8 @@
 		D5B22BBC22A16597001EE4F8 /* ThreadAdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BBB22A16597001EE4F8 /* ThreadAdditionalInfo.swift */; };
 		D5B22BBE22A165AF001EE4F8 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BBD22A165AF001EE4F8 /* File.swift */; };
 		D5B22BC022A165B7001EE4F8 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BBF22A165B7001EE4F8 /* Thread.swift */; };
+		D5B22BC222A187A0001EE4F8 /* BoardWithBumpSortingThreadsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BC122A187A0001EE4F8 /* BoardWithBumpSortingThreadsRequest.swift */; };
+		D5B22BC422A18F31001EE4F8 /* BoardAdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BC322A18F31001EE4F8 /* BoardAdditionalInfo.swift */; };
 		FEB9BA536773581D988B192D /* Pods_dvach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +156,8 @@
 		D5B22BBB22A16597001EE4F8 /* ThreadAdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadAdditionalInfo.swift; sourceTree = "<group>"; };
 		D5B22BBD22A165AF001EE4F8 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		D5B22BBF22A165B7001EE4F8 /* Thread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
+		D5B22BC122A187A0001EE4F8 /* BoardWithBumpSortingThreadsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithBumpSortingThreadsRequest.swift; sourceTree = "<group>"; };
+		D5B22BC322A18F31001EE4F8 /* BoardAdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardAdditionalInfo.swift; sourceTree = "<group>"; };
 		EBF848D3DEFEF1DDEC1C29B2 /* Pods_dvachTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvachTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -200,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				414408A422A04BBC00E4E53E /* BoardsRequest.swift */,
+				D5B22BC122A187A0001EE4F8 /* BoardWithBumpSortingThreadsRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				414408A222A04BA200E4E53E /* Board.swift */,
+				D5B22BC322A18F31001EE4F8 /* BoardAdditionalInfo.swift */,
 				414408A622A050F600E4E53E /* Category.swift */,
 				414408A822A052A800E4E53E /* Categories.swift */,
 				D5B22BBF22A165B7001EE4F8 /* Thread.swift */,
@@ -722,6 +728,7 @@
 				41BEE719229F043C0028EBFB /* GlobalUtils.swift in Sources */,
 				41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */,
 				41BEE72F229F043C0028EBFB /* Extension+TimeInterval.swift in Sources */,
+				D5B22BC422A18F31001EE4F8 /* BoardAdditionalInfo.swift in Sources */,
 				41BEE76D229F05C10028EBFB /* RootTabBarController.swift in Sources */,
 				41BEE71F229F043C0028EBFB /* IRequestManager.swift in Sources */,
 				41BEE73E229F04550028EBFB /* AppSettingsStorage.swift in Sources */,
@@ -742,6 +749,7 @@
 				41BEE720229F043C0028EBFB /* Extension+UIFont.swift in Sources */,
 				D5B22BC022A165B7001EE4F8 /* Thread.swift in Sources */,
 				41BEE762229F04730028EBFB /* StackViewContainer.swift in Sources */,
+				D5B22BC222A187A0001EE4F8 /* BoardWithBumpSortingThreadsRequest.swift in Sources */,
 				D5B22BBE22A165AF001EE4F8 /* File.swift in Sources */,
 				41BEE726229F043C0028EBFB /* RecognizerDeletable.swift in Sources */,
 				41BEE71E229F043C0028EBFB /* BaseRequest.swift in Sources */,
