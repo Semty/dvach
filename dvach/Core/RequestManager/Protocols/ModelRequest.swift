@@ -9,12 +9,12 @@
 import Foundation
 import SwiftyJSON
 
-protocol JSONParseable {
+protocol JSONParsable {
     static func from(json: JSON) -> Self?
 }
 
 protocol ModelRequest {
-    associatedtype Model: JSONParseable
+    associatedtype Model: JSONParsable
 }
 
 protocol IRequest: BaseRequest, ModelRequest {}

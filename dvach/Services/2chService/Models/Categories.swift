@@ -9,10 +9,10 @@
 import Foundation
 import SwiftyJSON
 
-struct Categories: JSONParseable {
+struct Categories: JSONParsable {
     let boards: [Board]
     
-    // MARK: - JSONParseable
+    // MARK: - JSONParsable
     
     static func from(json: JSON) -> Categories? {
         guard let categories = json.dictionary else { return nil }
