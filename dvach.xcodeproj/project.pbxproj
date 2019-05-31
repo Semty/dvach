@@ -210,8 +210,8 @@
 				414408A222A04BA200E4E53E /* Board.swift */,
 				414408A622A050F600E4E53E /* Category.swift */,
 				414408A822A052A800E4E53E /* Categories.swift */,
-				D5B22BBB22A16597001EE4F8 /* ThreadAdditionalInfo.swift */,
 				D5B22BBF22A165B7001EE4F8 /* Thread.swift */,
+				D5B22BBB22A16597001EE4F8 /* ThreadAdditionalInfo.swift */,
 				D5B22BBD22A165AF001EE4F8 /* File.swift */,
 			);
 			path = Models;

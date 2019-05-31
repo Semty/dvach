@@ -24,7 +24,7 @@ struct File {
     let height: Int
     let md5: String
     let name: String
-    let nsfw: Bool // Из того, что я на данный момент видел, откровенный прон не помечен в 99% случаев данным флагом
+    let isNSFW: Bool // Из того, что я на данный момент видел, откровенный прон не помечен в 99% случаев данным флагом
     let path: String
     let size: Int
     let thumbnail: String
@@ -43,7 +43,7 @@ extension File: JSONParsable {
             let height = json["height"].int,
             let md5 = json["md5"].string,
             let name = json["name"].string,
-            let nsfw = json["nsfw"].int,
+            let isNSFW = json["nsfw"].int,
             let path = json["path"].string,
             let size = json["size"].int,
             let thumbnail = json["thumbnail"].string,
@@ -57,7 +57,7 @@ extension File: JSONParsable {
                     height: height,
                     md5: md5,
                     name: name,
-                    nsfw: nsfw.boolValue,
+                    isNSFW: isNSFW.boolValue,
                     path: path,
                     size: size,
                     thumbnail: thumbnail,
