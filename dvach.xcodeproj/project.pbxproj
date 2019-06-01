@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,6 @@
 		414408A722A050F600E4E53E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A622A050F600E4E53E /* Category.swift */; };
 		414408A922A052A800E4E53E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A822A052A800E4E53E /* Categories.swift */; };
 		41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D2229EFE720028EBFB /* AppDelegate.swift */; };
-		41BEE6D5229EFE720028EBFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D4229EFE720028EBFB /* ViewController.swift */; };
 		41BEE6D8229EFE720028EBFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6D6229EFE720028EBFB /* Main.storyboard */; };
 		41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */; };
 		41BEE6DD229EFE750028EBFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6DC229EFE750028EBFB /* Assets.xcassets */; };
@@ -93,7 +92,6 @@
 		414408A822A052A800E4E53E /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		41BEE6CF229EFE720028EBFB /* dvach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dvach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BEE6D2229EFE720028EBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		41BEE6D4229EFE720028EBFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		41BEE6D7229EFE720028EBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41BEE6DA229EFE720028EBFB /* dvach.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dvach.xcdatamodel; sourceTree = "<group>"; };
 		41BEE6DC229EFE750028EBFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -250,7 +248,6 @@
 				41BEE769229F049A0028EBFB /* Services */,
 				41BEE6F5229F043C0028EBFB /* Core */,
 				41BEE6D2229EFE720028EBFB /* AppDelegate.swift */,
-				41BEE6D4229EFE720028EBFB /* ViewController.swift */,
 				41BEE735229F04450028EBFB /* Helpers */,
 				41BEE6D6229EFE720028EBFB /* Main.storyboard */,
 				41BEE6DC229EFE750028EBFB /* Assets.xcassets */,
@@ -695,7 +692,6 @@
 				4144089F22A04AC400E4E53E /* DvachService.swift in Sources */,
 				41BEE73D229F04550028EBFB /* Locator.swift in Sources */,
 				41BEE722229F043C0028EBFB /* Extension+UIImage.swift in Sources */,
-				41BEE6D5229EFE720028EBFB /* ViewController.swift in Sources */,
 				41BEE71B229F043C0028EBFB /* IStorage.swift in Sources */,
 				41BEE725229F043C0028EBFB /* UIView+NibLoadable.swift in Sources */,
 				414408A522A04BBC00E4E53E /* BoardsRequest.swift in Sources */,
