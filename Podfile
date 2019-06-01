@@ -14,6 +14,7 @@ target 'dvach' do
    pod 'SwiftyJSON', '4.2.0'
    pod 'SnapKit', '4.2.0'
    pod 'Kingfisher', '4.10.0'
+   pod 'Nuke', '~> 7.6'
    
   target 'dvachTests' do
     inherit! :search_paths

@@ -13,5 +13,6 @@
 #import <PureLayout/PureLayout.h>
 @import SnapKit;
 @import Alamofire;
+@import Nuke;
 
 #endif /* dvach_Bridging_Header_h */
