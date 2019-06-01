@@ -54,6 +54,11 @@
 			<key>orderHint</key>
 			<integer>9</integer>
 		</dict>
+		<key>Nuke.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
+		</dict>
 		<key>Pods-dvach.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
