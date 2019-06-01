@@ -4,15 +4,17 @@
 target 'dvach' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-
+  inhibit_all_warnings!
+  
   # Pods for dvach
    pod 'PureLayout'
    pod 'Firebase/Core'
    pod 'Firebase/Database'
    pod 'Alamofire'
-   pod 'SwiftyJSON', '~> 4.0'
-   pod 'SnapKit', '~> 4.0.0'
-
+   pod 'SwiftyJSON', '4.2.0'
+   pod 'SnapKit', '4.2.0'
+   pod 'Kingfisher', '4.10.0'
+   
   target 'dvachTests' do
     inherit! :search_paths
     # Pods for testing
