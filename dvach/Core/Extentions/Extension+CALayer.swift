@@ -15,7 +15,7 @@ extension CAShapeLayer {
         
         fillColor = UIColor.clear.cgColor
         shadowColor = UIColor.black.cgColor
-        shadowOpacity = 0.1
+        shadowOpacity = 0.125
         shadowPath = path
         shadowOffset = .zero
         shadowRadius = 5

@@ -17,32 +17,32 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gva-HX-RVs">
-                    <rect key="frame" x="22" y="25" width="331" height="150"/>
+                    <rect key="frame" x="12" y="25" width="351" height="150"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Есть одна тян..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpI-v7-rGQ">
-                            <rect key="frame" x="137" y="12" width="178" height="17"/>
+                            <rect key="frame" x="137" y="12" width="198" height="17"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="17" id="8H0-Qb-r5y"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMV-Mq-wpN">
-                            <rect key="frame" x="137" y="33" width="178" height="94"/>
+                            <rect key="frame" x="137" y="33" width="198" height="94"/>
                             <string key="text">Продолжаем загнивать.Если ты решил начать HRT:
 1. Сдай анализы. ЛГ, ФСГ, тестостерон общий, пролактин, АЛТ, АСТ, ТТГ, ОАК - необходимый минимум.
 2. Препаратов есть 2 вида - инъекционные (омнадрен, сустанон…</string>
-                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02/10/16 Вск 23:28:17" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ro4-tw-QwS">
-                            <rect key="frame" x="137" y="135" width="186" height="11"/>
+                            <rect key="frame" x="137" y="135" width="206" height="11"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="11" id="tMN-Jk-Wbe"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="8"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="10"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -74,9 +74,9 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Gva-HX-RVs" secondAttribute="trailing" constant="22" id="Fy0-Fr-ZJY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Gva-HX-RVs" secondAttribute="trailing" constant="12" id="Fy0-Fr-ZJY"/>
                 <constraint firstAttribute="bottom" secondItem="Gva-HX-RVs" secondAttribute="bottom" constant="10" id="Rhg-TW-vNa"/>
-                <constraint firstItem="Gva-HX-RVs" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="22" id="ZhT-AY-fGy"/>
+                <constraint firstItem="Gva-HX-RVs" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="ZhT-AY-fGy"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

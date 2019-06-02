@@ -22,14 +22,14 @@ final class ThreadsViewModelFactory {
                 let threadWithImageViewModel =
                     ThreadWithImageView.Model(subjectTitle: thread.subject,
                                               commentTitle: thread.comment,
-                                              dateTitle: "DATE",
+                                              dateTitle: thread.lastHit.convertTimestampToStringDate(),
                                               threadImageThumbnail: thumbnailPath)
                 return .withImage(threadWithImageViewModel)
             } else {
                 let threadWithoutImageViewModel =
                     ThreadWithoutImageView.Model(subjectTitle: thread.subject,
                                                  commentTitle: thread.comment,
-                                                 dateTitle: "DATE")
+                                                 dateTitle: thread.lastHit.convertTimestampToStringDate())
                 return .withoutImage(threadWithoutImageViewModel)
             }
         }
