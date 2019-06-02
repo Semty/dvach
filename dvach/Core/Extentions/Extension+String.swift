@@ -10,6 +10,10 @@ import Foundation
 
 extension String {
     
+    var data: Data {
+        return Data(utf8)
+    }
+    
     var removeSpaces: String {
         return self.replacingOccurrences(of: " ", with: "")
     }

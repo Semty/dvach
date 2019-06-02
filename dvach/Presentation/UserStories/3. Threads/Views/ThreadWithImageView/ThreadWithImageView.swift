@@ -66,8 +66,16 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView {
     // MARK: - ConfigurableView
     
     func configure(with model: ThreadWithImageView.Model) {
-        subjectLabel.text = model.subjectTitle
-        commentLabel.text = model.commentTitle
+        let subjectText = model.commentTitle.data.attributedString
+        subjectText?.setFontFace(font: UIFont(name: "AvenirNext-Bold",
+                                              size: 15.0) ?? UIFont.systemFont(ofSize: 15),
+                                 color: .n2Gray)
+        let commentText = model.commentTitle.data.attributedString
+        commentText?.setFontFace(font: UIFont(name: "AvenirNext-DemiBold",
+                                              size: 14.0) ?? UIFont.systemFont(ofSize: 14),
+                                 color: .n2Gray)
+        subjectLabel.attributedText = subjectText
+        commentLabel.attributedText = commentText
         dateLabel.text = model.dateTitle
         downloadImage(withPath: model.threadImageThumbnail)
     }
