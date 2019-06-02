@@ -65,6 +65,14 @@
 		41BEE767229F04730028EBFB /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE759229F04730028EBFB /* CloseButton.swift */; };
 		41BEE76D229F05C10028EBFB /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE76C229F05C10028EBFB /* RootTabBarController.swift */; };
 		41BEE76F229F06970028EBFB /* ModelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE76E229F06970028EBFB /* ModelRequest.swift */; };
+		D5A69D4322A2E69700C46E24 /* BoardWithThreadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */; };
+		D5A69D4522A2E83200C46E24 /* ThreadsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4422A2E83200C46E24 /* ThreadsPresenter.swift */; };
+		D5A69D4A22A2FB3400C46E24 /* ThreadWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4922A2FB3400C46E24 /* ThreadWithImageView.swift */; };
+		D5A69D4C22A2FB4B00C46E24 /* ThreadWithoutImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4B22A2FB4B00C46E24 /* ThreadWithoutImageView.swift */; };
+		D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5A69D4D22A2FD7600C46E24 /* ThreadWithImageView.xib */; };
+		D5A69D5022A2FDA800C46E24 /* ThreadWithoutImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5A69D4F22A2FDA800C46E24 /* ThreadWithoutImageView.xib */; };
+		D5A69D5322A3167700C46E24 /* ThreadsViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D5222A3167700C46E24 /* ThreadsViewModelFactory.swift */; };
+		D5A69D5722A3DCE900C46E24 /* Extension+CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D5622A3DCE900C46E24 /* Extension+CALayer.swift */; };
 		D5B22BBC22A16597001EE4F8 /* ThreadAdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BBB22A16597001EE4F8 /* ThreadAdditionalInfo.swift */; };
 		D5B22BBE22A165AF001EE4F8 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BBD22A165AF001EE4F8 /* File.swift */; };
 		D5B22BC022A165B7001EE4F8 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BBF22A165B7001EE4F8 /* Thread.swift */; };
@@ -151,6 +159,14 @@
 		969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.release.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.release.xcconfig"; sourceTree = "<group>"; };
 		BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56667501DB5905B423A9582 /* Pods-dvachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithThreadsViewController.swift; sourceTree = "<group>"; };
+		D5A69D4422A2E83200C46E24 /* ThreadsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsPresenter.swift; sourceTree = "<group>"; };
+		D5A69D4922A2FB3400C46E24 /* ThreadWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithImageView.swift; sourceTree = "<group>"; };
+		D5A69D4B22A2FB4B00C46E24 /* ThreadWithoutImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithoutImageView.swift; sourceTree = "<group>"; };
+		D5A69D4D22A2FD7600C46E24 /* ThreadWithImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadWithImageView.xib; sourceTree = "<group>"; };
+		D5A69D4F22A2FDA800C46E24 /* ThreadWithoutImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadWithoutImageView.xib; sourceTree = "<group>"; };
+		D5A69D5222A3167700C46E24 /* ThreadsViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsViewModelFactory.swift; sourceTree = "<group>"; };
+		D5A69D5622A3DCE900C46E24 /* Extension+CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+CALayer.swift"; sourceTree = "<group>"; };
 		D5B22BBB22A16597001EE4F8 /* ThreadAdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadAdditionalInfo.swift; sourceTree = "<group>"; };
 		D5B22BBD22A165AF001EE4F8 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		D5B22BBF22A165B7001EE4F8 /* Thread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
@@ -335,6 +351,7 @@
 				41BEE714229F043C0028EBFB /* Extention+UIColor.swift */,
 				41BEE715229F043C0028EBFB /* Extension+Int.swift */,
 				41BEE718229F043C0028EBFB /* Extension+UIStackView.swift */,
+				D5A69D5622A3DCE900C46E24 /* Extension+CALayer.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -489,6 +506,7 @@
 			isa = PBXGroup;
 			children = (
 				41BEE76B229F05C10028EBFB /* Root */,
+				D5A69D1D22A2E5DB00C46E24 /* 3. Threads */,
 			);
 			path = UserStories;
 			sourceTree = "<group>";
@@ -520,6 +538,52 @@
 				36997A4334605A1D078B3ED4 /* Pods-dvachTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D5A69D1D22A2E5DB00C46E24 /* 3. Threads */ = {
+			isa = PBXGroup;
+			children = (
+				D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */,
+				D5A69D4422A2E83200C46E24 /* ThreadsPresenter.swift */,
+				D5A69D5122A3165000C46E24 /* Factories */,
+				D5A69D4622A2FADF00C46E24 /* Views */,
+			);
+			path = "3. Threads";
+			sourceTree = "<group>";
+		};
+		D5A69D4622A2FADF00C46E24 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D5A69D4722A2FAF700C46E24 /* ThreadWithImageView */,
+				D5A69D4822A2FB0B00C46E24 /* ThreadWithoutImageView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D5A69D4722A2FAF700C46E24 /* ThreadWithImageView */ = {
+			isa = PBXGroup;
+			children = (
+				D5A69D4922A2FB3400C46E24 /* ThreadWithImageView.swift */,
+				D5A69D4D22A2FD7600C46E24 /* ThreadWithImageView.xib */,
+			);
+			path = ThreadWithImageView;
+			sourceTree = "<group>";
+		};
+		D5A69D4822A2FB0B00C46E24 /* ThreadWithoutImageView */ = {
+			isa = PBXGroup;
+			children = (
+				D5A69D4B22A2FB4B00C46E24 /* ThreadWithoutImageView.swift */,
+				D5A69D4F22A2FDA800C46E24 /* ThreadWithoutImageView.xib */,
+			);
+			path = ThreadWithoutImageView;
+			sourceTree = "<group>";
+		};
+		D5A69D5122A3165000C46E24 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				D5A69D5222A3167700C46E24 /* ThreadsViewModelFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -606,6 +670,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */,
+				D5A69D5022A2FDA800C46E24 /* ThreadWithoutImageView.xib in Resources */,
 				41BEE764229F04730028EBFB /* ImbaTableView.xib in Resources */,
 				41BEE6E0229EFE750028EBFB /* LaunchScreen.storyboard in Resources */,
 				41BEE6DD229EFE750028EBFB /* Assets.xcassets in Resources */,
@@ -685,6 +751,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41BEE75A229F04730028EBFB /* ComponentsFactory.swift in Sources */,
+				D5A69D5722A3DCE900C46E24 /* Extension+CALayer.swift in Sources */,
 				414408A922A052A800E4E53E /* Categories.swift in Sources */,
 				41BEE728229F043C0028EBFB /* Extension+UITableView.swift in Sources */,
 				41BEE763229F04730028EBFB /* ImbaTableView.swift in Sources */,
@@ -693,6 +760,8 @@
 				41BEE73D229F04550028EBFB /* Locator.swift in Sources */,
 				41BEE722229F043C0028EBFB /* Extension+UIImage.swift in Sources */,
 				41BEE71B229F043C0028EBFB /* IStorage.swift in Sources */,
+				D5A69D4C22A2FB4B00C46E24 /* ThreadWithoutImageView.swift in Sources */,
+				D5A69D4522A2E83200C46E24 /* ThreadsPresenter.swift in Sources */,
 				41BEE725229F043C0028EBFB /* UIView+NibLoadable.swift in Sources */,
 				414408A522A04BBC00E4E53E /* BoardsRequest.swift in Sources */,
 				414408A722A050F600E4E53E /* Category.swift in Sources */,
@@ -703,6 +772,7 @@
 				41BEE767229F04730028EBFB /* CloseButton.swift in Sources */,
 				41BEE72D229F043C0028EBFB /* Extension+String.swift in Sources */,
 				41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */,
+				D5A69D4322A2E69700C46E24 /* BoardWithThreadsViewController.swift in Sources */,
 				41BEE737229F04450028EBFB /* TPKeyboardAvoidingSwift.swift in Sources */,
 				41BEE75B229F04730028EBFB /* IComponentsFactory.swift in Sources */,
 				41BEE727229F043C0028EBFB /* Extension+UIView.swift in Sources */,
@@ -713,6 +783,7 @@
 				41BEE72F229F043C0028EBFB /* Extension+TimeInterval.swift in Sources */,
 				D5B22BC422A18F31001EE4F8 /* BoardAdditionalInfo.swift in Sources */,
 				41BEE76D229F05C10028EBFB /* RootTabBarController.swift in Sources */,
+				D5A69D5322A3167700C46E24 /* ThreadsViewModelFactory.swift in Sources */,
 				41BEE71F229F043C0028EBFB /* IRequestManager.swift in Sources */,
 				41BEE73E229F04550028EBFB /* AppSettingsStorage.swift in Sources */,
 				41BEE731229F043C0028EBFB /* Extension+Int.swift in Sources */,
@@ -739,6 +810,7 @@
 				41BEE766229F04730028EBFB /* ContentContainer.swift in Sources */,
 				41BEE724229F043C0028EBFB /* UIView+Tappable.swift in Sources */,
 				D5B22BBC22A16597001EE4F8 /* ThreadAdditionalInfo.swift in Sources */,
+				D5A69D4A22A2FB3400C46E24 /* ThreadWithImageView.swift in Sources */,
 				41BEE765229F04730028EBFB /* TableViewContainerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

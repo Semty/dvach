@@ -37,6 +37,7 @@ extension UIColor {
     static let n5LightGray = UIColor(hexString: "#DEDEDE")
     static let n6Green = UIColor(hexString: "#417505")
     static let n7Blue = UIColor(hexString: "#4A90E2")
+    static let n8SuperLightBlack = UIColor(hexString: "#000000").withAlphaComponent(0.05)
     
     static func from(text: String) -> UIColor {
         return self.colors[self.codesSum(text: text) % colors.count]
