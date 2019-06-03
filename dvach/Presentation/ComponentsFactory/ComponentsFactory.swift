@@ -38,4 +38,8 @@ public final class ComponentsFactory: IComponentsFactory {
         button.enableTapping(completion)
         return button
     }
+    
+    public func createBlockWithTitle() -> BlockWithTitle {
+        return BlockWithTitle.fromNib()
+    }
 }

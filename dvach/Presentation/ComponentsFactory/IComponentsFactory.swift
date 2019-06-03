@@ -25,6 +25,9 @@ public protocol IComponentsFactory {
     
     /// Кнопка закрыть
     func createCloseButton(completion: @escaping () -> Void) -> CloseButton
+    
+    /// Блок с кнопкой
+    func createBlockWithTitle() -> BlockWithTitle
 }
 
 extension IComponentsFactory {

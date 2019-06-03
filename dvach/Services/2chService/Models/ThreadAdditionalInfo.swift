@@ -29,6 +29,7 @@ struct ThreadAdditionalInfo {
 // MARK: - JSONParsable
 
 extension ThreadAdditionalInfo: JSONParsable {
+    
     static func from(json: JSON) -> ThreadAdditionalInfo? {
         guard let isBanned = json["banned"].int,
             let isClosed = json["closed"].int,

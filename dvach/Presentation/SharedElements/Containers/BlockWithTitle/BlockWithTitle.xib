@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BlockWithTitle" customModule="dvach" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="210"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pr7-76-ijO">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="46"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Японская культура" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDL-Gf-8YX">
+                            <rect key="frame" x="16" y="16" width="306" height="24"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uE-2r-pMX">
+                            <rect key="frame" x="338" y="16" width="46" height="27"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="27" id="dcN-Oc-dxE"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="buttonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="0Pv-tz-Kc6"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="pDL-Gf-8YX" firstAttribute="leading" secondItem="pr7-76-ijO" secondAttribute="leading" constant="16" id="9bN-nh-V5O"/>
+                        <constraint firstItem="pDL-Gf-8YX" firstAttribute="top" secondItem="pr7-76-ijO" secondAttribute="top" constant="16" id="DI7-Mg-HaR"/>
+                        <constraint firstItem="8uE-2r-pMX" firstAttribute="leading" secondItem="pDL-Gf-8YX" secondAttribute="trailing" constant="16" id="I3D-T9-AGH"/>
+                        <constraint firstAttribute="bottom" secondItem="pDL-Gf-8YX" secondAttribute="bottom" constant="6" id="ZJn-hY-kgs"/>
+                        <constraint firstAttribute="trailing" secondItem="8uE-2r-pMX" secondAttribute="trailing" constant="16" id="cxi-i9-FdO"/>
+                        <constraint firstItem="8uE-2r-pMX" firstAttribute="top" secondItem="pr7-76-ijO" secondAttribute="top" constant="16" id="lgv-pJ-tmp"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LV4-EY-sdy">
+                    <rect key="frame" x="0.0" y="46" width="400" height="144"/>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="LV4-EY-sdy" firstAttribute="top" secondItem="pr7-76-ijO" secondAttribute="bottom" id="FD8-ec-SVf"/>
+                <constraint firstAttribute="bottom" secondItem="LV4-EY-sdy" secondAttribute="bottom" constant="20" id="FXl-jd-gzV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="LV4-EY-sdy" secondAttribute="trailing" id="IH0-Mi-V7F"/>
+                <constraint firstItem="pr7-76-ijO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="JkK-d1-mGz"/>
+                <constraint firstItem="pr7-76-ijO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Vca-Gq-Djg"/>
+                <constraint firstItem="LV4-EY-sdy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="czu-1l-4Z6"/>
+                <constraint firstItem="pr7-76-ijO" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ykF-EK-AdT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="button" destination="8uE-2r-pMX" id="OWX-zS-b9W"/>
+                <outlet property="stackView" destination="LV4-EY-sdy" id="9M1-eH-hLi"/>
+                <outlet property="title" destination="pDL-Gf-8YX" id="zM4-SG-hgd"/>
+            </connections>
+            <point key="canvasLocation" x="-155.07246376811597" y="145.98214285714286"/>
+        </view>
+    </objects>
+</document>
