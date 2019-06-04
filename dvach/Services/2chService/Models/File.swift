@@ -15,16 +15,17 @@ enum FileType: Int {
     case gif = 4
     case webm = 6
     case mp4 = 10
+    case sticker = 100
     case unknown = -1 // мало ли что может придти
 }
 
 struct File {
     let displayName: String
-    let fullName: String
+    let fullName: String?
     let height: Int
-    let md5: String
+    let md5: String?
     let name: String
-    let isNSFW: Bool // Из того, что я на данный момент видел, откровенный прон не помечен в 99% случаев данным флагом
+    let isNSFW: Bool? // Из того, что я на данный момент видел, откровенный прон не помечен в 99% случаев данным флагом
     let path: String
     let size: Int
     let thumbnail: String
@@ -39,11 +40,8 @@ struct File {
 extension File: JSONParsable {
     static func from(json: JSON) -> File? {
         guard let displayName = json["displayname"].string,
-            let fullName = json["fullname"].string,
             let height = json["height"].int,
-            let md5 = json["md5"].string,
             let name = json["name"].string,
-            let isNSFW = json["nsfw"].int,
             let path = json["path"].string,
             let size = json["size"].int,
             let thumbnail = json["thumbnail"].string,
@@ -52,12 +50,16 @@ extension File: JSONParsable {
             let type = json["type"].int,
             let width = json["width"].int else { return nil }
         
+        let fullName = json["fullname"].string
+        let md5 = json["md5"].string
+        let isNSFW = json["nsfw"].int
+        
         return File(displayName: displayName,
                     fullName: fullName,
                     height: height,
                     md5: md5,
                     name: name,
-                    isNSFW: isNSFW.boolValue,
+                    isNSFW: isNSFW?.boolValue,
                     path: path,
                     size: size,
                     thumbnail: thumbnail,
