@@ -38,9 +38,9 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xw1-Ci-WPO">
                             <rect key="frame" x="0.0" y="83" width="87" height="26"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHL-8B-bGS">
-                                    <rect key="frame" x="16" y="0.0" width="55" height="26"/>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Радиотехника" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="eHL-8B-bGS">
+                                    <rect key="frame" x="8" y="0.0" width="71" height="26"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -50,8 +50,8 @@
                                 <constraint firstAttribute="bottom" secondItem="eHL-8B-bGS" secondAttribute="bottom" id="YbF-Z7-cVs"/>
                                 <constraint firstItem="eHL-8B-bGS" firstAttribute="top" secondItem="Xw1-Ci-WPO" secondAttribute="top" id="Z9f-8Z-wk6"/>
                                 <constraint firstAttribute="height" constant="26" id="aWM-gB-EhX"/>
-                                <constraint firstAttribute="trailing" secondItem="eHL-8B-bGS" secondAttribute="trailing" constant="16" id="gte-ZT-CRr"/>
-                                <constraint firstItem="eHL-8B-bGS" firstAttribute="leading" secondItem="Xw1-Ci-WPO" secondAttribute="leading" constant="16" id="u4A-cF-iw3"/>
+                                <constraint firstAttribute="trailing" secondItem="eHL-8B-bGS" secondAttribute="trailing" constant="8" id="gte-ZT-CRr"/>
+                                <constraint firstItem="eHL-8B-bGS" firstAttribute="leading" secondItem="Xw1-Ci-WPO" secondAttribute="leading" constant="8" id="u4A-cF-iw3"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IP4-tB-pYc">

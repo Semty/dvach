@@ -43,21 +43,33 @@ final class CategoriesPresenter {
     }
     
     private func createViewModels(boards: [Board]) -> [BlockModel] {
-        var japan = [Board]()
-        var games = [Board]()
+        var japan = ([Board](), Category.japan)
+        var games = ([Board](), Category.games)
+        var politics = ([Board](), Category.politics)
+        var other = ([Board](), Category.other)
+        var art = ([Board](), Category.art)
+        var theme = ([Board](), Category.theme)
+        var technics = ([Board](), Category.technics)
+        var user = ([Board](), Category.user)
         
         boards.forEach {
             switch $0.category {
-            case .japan?: japan.append($0)
-            case .games?: games.append($0)
+            case .japan?: japan.0.append($0)
+            case .games?: games.0.append($0)
+            case .politics?: politics.0.append($0)
+            case .user?: user.0.append($0)
+            case .other?: other.0.append($0)
+            case .art?: art.0.append($0)
+            case .theme?: theme.0.append($0)
+            case .technics?: technics.0.append($0)
+            case nil: break
             default: break
             }
         }
+        // Порядок блоков можно поменять тут
+        let models = [other, user, theme, art, technics, games, politics, japan]
         
-        let japanBlock = viewModelsFactory.createViewModels(category: .japan, boards: japan)
-        let gamesBlock = viewModelsFactory.createViewModels(category: .games, boards: games)
-        
-        return [japanBlock, gamesBlock]
+        return models.map { viewModelsFactory.createViewModels(category: $0.1, boards: $0.0)}
     }
 }
 

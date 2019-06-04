@@ -8,14 +8,20 @@
 
 import Foundation
 
+extension Int {
+    static let maxModelsCount = 10
+}
+
 final class CategoriesViewModelFactory {
     
     // MARK: - Public
     
     func createViewModels(category: Category, boards: [Board]) -> CategoriesPresenter.BlockModel {
-        let blockModel = BlockWithTitle.Model(title: category.rawValue, buttonTitle: "Все") {
-            print("\(category.rawValue) pressed")
+        var action: (() -> Void)?
+        if boards.count > 5 {
+            action = { print("PRINT") }
         }
+        let blockModel = BlockWithTitle.Model(title: category.rawValue, buttonTitle: "Все", action: action)
         let cardsModels = collectionModels(category: category, boards: boards)
         
         return CategoriesPresenter.BlockModel(category: category,
@@ -26,7 +32,7 @@ final class CategoriesViewModelFactory {
     // MARK: - Private
     
     private func collectionModels(category: Category, boards: [Board]) -> [CategoriesCardView.Model] {
-        return boards.map {
+        return boards.prefix(.maxModelsCount).map {
             CategoriesCardView.Model(image: UIImage(), title: $0.name, subtitle: "\\\($0.identifier)\\")
         }
     }

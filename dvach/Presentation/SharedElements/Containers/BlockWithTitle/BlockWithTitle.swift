@@ -8,7 +8,7 @@
 
 import Foundation
 
-final public class BlockWithTitle: UIView, ConfigurableView {
+final public class BlockWithTitle: UIView, ConfigurableView, SeparatorAvailable {
     
     // Nested
     public struct Model {
@@ -31,6 +31,7 @@ final public class BlockWithTitle: UIView, ConfigurableView {
         super.awakeFromNib()
         title.textColor = .n1Gray
         button.tintColor = .n7Blue
+        addBottomSeparator(with: .defaultStyle)
     }
     
     // MARK: - Public
@@ -53,5 +54,6 @@ final public class BlockWithTitle: UIView, ConfigurableView {
         title.text = model.title
         button.setTitle(model.buttonTitle, for: .normal)
         action = model.action
+        button.isHidden = action == nil
     }
 }

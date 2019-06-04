@@ -10,7 +10,7 @@ import Foundation
 
 typealias CategoriesCardCell = CollectionViewContainerCellBase<CategoriesCardView>
 
-final class CategoriesCardView: UIView, ConfigurableView, ReusableView {
+final class CategoriesCardView: UIView, ConfigurableView, ReusableView, PressStateAnimatable {
     
     // Nested
     struct Model {
@@ -28,7 +28,11 @@ final class CategoriesCardView: UIView, ConfigurableView, ReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .n4Red
+        backgroundColor = .white
+        title.textColor = .n1Gray
+        subtitle.textColor = .n2Gray
+        makeRoundedByCornerRadius(10)
+        enablePressStateAnimation()
     }
     
     // MARK: - ConfigurableView

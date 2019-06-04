@@ -49,7 +49,7 @@ final class CategoriesViewController: UIViewController {
         stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
     
-    private func createBlock(model: CategoriesPresenter.BlockModel) -> UIView {
+    private func createBlock(model: CategoriesPresenter.BlockModel) -> BlockWithTitle {
         let block = componentsFactory.createBlockWithTitle()
         block.configure(with: model.blockModel)
         let horizontal = HorizontalList<CategoriesCardCell>()
@@ -66,8 +66,9 @@ extension CategoriesViewController: CategoriesView {
     
     func update(viewModels: [CategoriesPresenter.BlockModel]) {
         stackView.removeAllViews()
-        viewModels.forEach {
-            let block = createBlock(model: $0)
+        viewModels.enumerated().forEach {
+            let block = createBlock(model: $0.element)
+            if viewModels.count == $0.offset + 1 { block.removeBottomSeparator() }
             stackView.addView(block)
         }
     }
