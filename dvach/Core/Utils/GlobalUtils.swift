@@ -8,3 +8,11 @@
 
 import Foundation
 
+public enum GlobalUtils {
+    public static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .medium
+        return dateFormatter
+    }()
+}

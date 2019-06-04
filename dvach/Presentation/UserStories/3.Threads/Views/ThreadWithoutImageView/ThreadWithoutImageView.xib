@@ -13,36 +13,36 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ThreadWithoutImageView" customModule="dvach" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEU-LT-xVv">
-                    <rect key="frame" x="22" y="0.0" width="331" height="105"/>
+                    <rect key="frame" x="12" y="25" width="351" height="105"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Есть одна тян..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9p-Ls-3Ln">
-                            <rect key="frame" x="16" y="12" width="299" height="17"/>
+                            <rect key="frame" x="16" y="12" width="319" height="17"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="17" id="Knn-Yf-nCt"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="12"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02/10/16 Вск 23:28:17" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXE-eC-57I">
-                            <rect key="frame" x="8" y="90" width="315" height="11"/>
+                            <rect key="frame" x="8" y="90" width="335" height="11"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="11" id="Rvn-91-hiN"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="6"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="10"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWe-0q-KjG">
-                            <rect key="frame" x="16" y="33" width="299" height="44"/>
+                            <rect key="frame" x="16" y="33" width="319" height="49"/>
                             <string key="text">Продолжаем загнивать.Если ты решил начать HRT:
 1. Сдай анализы. ЛГ, ФСГ, тестостерон общий, пролактин, АЛТ, АСТ, ТТГ, ОАК - необходимый минимум.
 2. Препаратов есть 2 вида - инъекционные (омнадрен, сустанон…</string>
-                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="8"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -53,6 +53,7 @@
                         <constraint firstItem="K9p-Ls-3Ln" firstAttribute="leading" secondItem="IEU-LT-xVv" secondAttribute="leading" constant="16" id="579-hi-Eju"/>
                         <constraint firstItem="sWe-0q-KjG" firstAttribute="top" secondItem="K9p-Ls-3Ln" secondAttribute="bottom" constant="4" id="9hO-9g-UwI"/>
                         <constraint firstAttribute="trailing" secondItem="ZXE-eC-57I" secondAttribute="trailing" constant="8" id="BTE-jG-RZD"/>
+                        <constraint firstAttribute="height" constant="105" id="DUV-en-arK"/>
                         <constraint firstAttribute="bottom" secondItem="ZXE-eC-57I" secondAttribute="bottom" constant="4" id="LGS-O0-AL5"/>
                         <constraint firstItem="sWe-0q-KjG" firstAttribute="leading" secondItem="IEU-LT-xVv" secondAttribute="leading" constant="16" id="TZ0-Yh-Fw6"/>
                         <constraint firstItem="ZXE-eC-57I" firstAttribute="leading" secondItem="IEU-LT-xVv" secondAttribute="leading" constant="8" id="ec9-Rd-GHx"/>
@@ -64,10 +65,9 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="IEU-LT-xVv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="22" id="8T0-PH-A9y"/>
-                <constraint firstAttribute="bottom" secondItem="IEU-LT-xVv" secondAttribute="bottom" id="AF1-gO-I9X"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="IEU-LT-xVv" secondAttribute="trailing" constant="22" id="XjF-Hd-njd"/>
-                <constraint firstItem="IEU-LT-xVv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="YaX-3n-bn4"/>
+                <constraint firstItem="IEU-LT-xVv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="8T0-PH-A9y"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="IEU-LT-xVv" secondAttribute="trailing" constant="12" id="XjF-Hd-njd"/>
+                <constraint firstAttribute="bottom" secondItem="IEU-LT-xVv" secondAttribute="bottom" constant="10" id="lJf-K6-6ry"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

@@ -102,7 +102,7 @@ extension BoardWithThreadsViewController: UITableViewDelegate {
         guard let model = presenter.dataSource[safeIndex: indexPath.row] else { return .zero }
         switch model {
         case .withImage: return 185
-        case .withoutImage: return 105
+        case .withoutImage: return 140
         }
     }
     
