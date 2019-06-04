@@ -65,6 +65,8 @@
 		41BEE767229F04730028EBFB /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE759229F04730028EBFB /* CloseButton.swift */; };
 		41BEE76D229F05C10028EBFB /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE76C229F05C10028EBFB /* RootTabBarController.swift */; };
 		41BEE76F229F06970028EBFB /* ModelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE76E229F06970028EBFB /* ModelRequest.swift */; };
+		D587B07122A67C4000A86602 /* Nudity.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D587B07022A67C4000A86602 /* Nudity.mlmodel */; };
+		D587B07322A6809400A86602 /* NSFW.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D587B07222A6809300A86602 /* NSFW.mlmodel */; };
 		D5A69D4322A2E69700C46E24 /* BoardWithThreadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */; };
 		D5A69D4522A2E83200C46E24 /* ThreadsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4422A2E83200C46E24 /* ThreadsPresenter.swift */; };
 		D5A69D4A22A2FB3400C46E24 /* ThreadWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4922A2FB3400C46E24 /* ThreadWithImageView.swift */; };
@@ -159,6 +161,8 @@
 		969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.release.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.release.xcconfig"; sourceTree = "<group>"; };
 		BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56667501DB5905B423A9582 /* Pods-dvachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D587B07022A67C4000A86602 /* Nudity.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Nudity.mlmodel; sourceTree = "<group>"; };
+		D587B07222A6809300A86602 /* NSFW.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = NSFW.mlmodel; sourceTree = "<group>"; };
 		D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithThreadsViewController.swift; sourceTree = "<group>"; };
 		D5A69D4422A2E83200C46E24 /* ThreadsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsPresenter.swift; sourceTree = "<group>"; };
 		D5A69D4922A2FB3400C46E24 /* ThreadWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithImageView.swift; sourceTree = "<group>"; };
@@ -336,6 +340,8 @@
 		41BEE702229F043C0028EBFB /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				D587B07222A6809300A86602 /* NSFW.mlmodel */,
+				D587B07022A67C4000A86602 /* Nudity.mlmodel */,
 				41BEE703229F043C0028EBFB /* Extension+UIFont.swift */,
 				41BEE704229F043C0028EBFB /* Extension+UIViewController.swift */,
 				41BEE705229F043C0028EBFB /* Extension+UIImage.swift */,
@@ -784,6 +790,8 @@
 				D5B22BC422A18F31001EE4F8 /* BoardAdditionalInfo.swift in Sources */,
 				41BEE76D229F05C10028EBFB /* RootTabBarController.swift in Sources */,
 				D5A69D5322A3167700C46E24 /* ThreadsViewModelFactory.swift in Sources */,
+				D587B07322A6809400A86602 /* NSFW.mlmodel in Sources */,
+				D587B07122A67C4000A86602 /* Nudity.mlmodel in Sources */,
 				41BEE71F229F043C0028EBFB /* IRequestManager.swift in Sources */,
 				41BEE73E229F04550028EBFB /* AppSettingsStorage.swift in Sources */,
 				41BEE731229F043C0028EBFB /* Extension+Int.swift in Sources */,

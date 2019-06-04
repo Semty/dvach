@@ -71,17 +71,27 @@
                         <constraint firstAttribute="height" constant="150" id="zXP-bB-nE2"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dhf-Xq-Zvr">
+                    <rect key="frame" x="321" y="2" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Gva-HX-RVs" secondAttribute="trailing" constant="12" id="Fy0-Fr-ZJY"/>
+                <constraint firstItem="Dhf-Xq-Zvr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="K5W-YT-IMd"/>
                 <constraint firstAttribute="bottom" secondItem="Gva-HX-RVs" secondAttribute="bottom" constant="10" id="Rhg-TW-vNa"/>
+                <constraint firstAttribute="trailing" secondItem="Dhf-Xq-Zvr" secondAttribute="trailing" constant="12" id="XAs-KF-pEk"/>
                 <constraint firstItem="Gva-HX-RVs" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="ZhT-AY-fGy"/>
+                <constraint firstItem="Gva-HX-RVs" firstAttribute="top" secondItem="Dhf-Xq-Zvr" secondAttribute="bottom" constant="2" id="pRz-qw-OzK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="commentLabel" destination="pMV-Mq-wpN" id="dNH-AG-q6M"/>
+                <outlet property="confidenceLabel" destination="Dhf-Xq-Zvr" id="52E-0R-35u"/>
                 <outlet property="dateLabel" destination="ro4-tw-QwS" id="gmQ-6Y-GfX"/>
                 <outlet property="subjectLabel" destination="bpI-v7-rGQ" id="S7O-iK-oXS"/>
                 <outlet property="threadImageView" destination="uOP-9M-fti" id="Qfm-xN-lfA"/>

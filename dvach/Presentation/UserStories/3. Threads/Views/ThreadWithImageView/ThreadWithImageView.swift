@@ -26,10 +26,14 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView {
     
     // Outlets
     @IBOutlet weak var subjectLabel: UILabel!
+    @IBOutlet weak var confidenceLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var threadImageView: UIImageView!
     @IBOutlet weak var threadView: UIView!
+    
+    // Background Queue
+    let backgroundQueue = DispatchQueue(label: "com.ruslantimchenko.imagensfwbackgroundactivity")
     
     // Layers
     private var viewShadowLayer: CAShapeLayer!
@@ -76,18 +80,28 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView {
     private func downloadImage(withPath path: String) {
         let thumbnailFullPath = "https://2ch.hk\(path)"
         if let url = URL(string: thumbnailFullPath) {
-            Nuke.loadImage(
-                with: url,
-                options: ImageLoadingOptions(
-                    transition: .fadeIn(duration: 0.5),
-                    contentModes: .init(
-                        success: .scaleAspectFill,
-                        failure: .center,
-                        placeholder: .center
-                    )
+            
+            Nuke.loadImage(with: url,
+                           options: ImageLoadingOptions(
+                            transition: .fadeIn(duration: 0.5),
+                            contentModes: .init(
+                                success: .scaleAspectFill,
+                                failure: .center,
+                                placeholder: .center)
                 ),
-                into: threadImageView
-            )
+                           into: threadImageView,
+                           progress: nil) { [weak self] response, _ in
+                            guard let `self` = self else { return }
+                            
+                            self.backgroundQueue.async { [weak self] in
+                                guard let `self` = self else { return }
+                                let confidence =
+                                    String(describing: response?.image.isItNSFW()?.confidence)
+                                DispatchQueue.main.async {
+                                    self.confidenceLabel.text = confidence
+                                }
+                            }
+            }
         }
     }
 }
