@@ -90,7 +90,11 @@ extension CategoriesPresenter: ICategoriesPresenter {
     }
     
     func didSelectCell(indexPath: IndexPath, category: Category) {
-        
+        let boards = models.first(where: { $0.1 == category })?.0 ?? []
+        let board = boards[indexPath.row]
+        let viewController = ThreadsViewController(boardID: board.identifier)
+        viewController.title = board.name
+        view?.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func didTapAllBoards(category: Category) {

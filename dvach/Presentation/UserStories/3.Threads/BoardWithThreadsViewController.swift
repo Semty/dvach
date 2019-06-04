@@ -13,7 +13,7 @@ protocol BoardWithThreadsView: AnyObject {
     func updateTable()
 }
 
-final class BoardWithThreadsViewController: UIViewController {
+final class ThreadsViewController: UIViewController {
     
     // Dependencies
     private let presenter: IThreadsPresenter
@@ -67,7 +67,7 @@ final class BoardWithThreadsViewController: UIViewController {
 
 // MARK: - BoardWithThreadsView
 
-extension BoardWithThreadsViewController: BoardWithThreadsView {
+extension ThreadsViewController: BoardWithThreadsView {
     func updateTable() {
         tableView.reloadData()
     }
@@ -75,7 +75,7 @@ extension BoardWithThreadsViewController: BoardWithThreadsView {
 
 // MARK: - UITableViewDataSource
 
-extension BoardWithThreadsViewController: UITableViewDataSource {
+extension ThreadsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.dataSource.count
     }
@@ -97,7 +97,7 @@ extension BoardWithThreadsViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension BoardWithThreadsViewController: UITableViewDelegate {
+extension ThreadsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let model = presenter.dataSource[safeIndex: indexPath.row] else { return .zero }
         switch model {

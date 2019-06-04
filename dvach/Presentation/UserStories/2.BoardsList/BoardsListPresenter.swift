@@ -11,12 +11,13 @@ import Foundation
 protocol IBoardsListPresenter {
     var dataSource: [BoardView.Model] { get }
     func viewDidLoad()
+    func didSelectBoard(index: Int)
 }
 
 final class BoardsListPresenter {
     
     // Dependencies
-    weak var view: BoardsListView?
+    weak var view: (BoardsListView & UIViewController)?
     
     // Properties
     private let boards: [Board]
@@ -51,5 +52,12 @@ extension BoardsListPresenter: IBoardsListPresenter {
     func viewDidLoad() {
         dataSource = createViewModels()
         view?.updateTable()
+    }
+    
+    func didSelectBoard(index: Int) {
+        let board = boards[index]
+        let viewController = ThreadsViewController(boardID: board.identifier)
+        viewController.title = board.name
+        view?.navigationController?.pushViewController(viewController, animated: true)
     }
 }

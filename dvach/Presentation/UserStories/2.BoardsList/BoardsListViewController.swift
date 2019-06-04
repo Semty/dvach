@@ -25,6 +25,7 @@ final class BoardsListViewController: UIViewController {
         tableView.register(BoardCell.self)
         tableView.rowHeight = .defaultRowHeight
         tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
         
         return tableView
     }()
@@ -91,5 +92,7 @@ extension BoardsListViewController: UITableViewDataSource {
 
 extension BoardsListViewController: UITableViewDelegate {
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.didSelectBoard(index: indexPath.row)
+    }
 }
