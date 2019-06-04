@@ -52,10 +52,16 @@ final class CategoriesViewController: UIViewController {
     private func createBlock(model: CategoriesPresenter.BlockModel) -> BlockWithTitle {
         let block = componentsFactory.createBlockWithTitle()
         block.configure(with: model.blockModel)
-        let horizontal = HorizontalList<CategoriesCardCell>()
-        block.addView(horizontal)
-        horizontal.update(dataSource: model.collectionModels)
-
+        block.action = { [weak self] in
+            self?.presenter.didTapAllBoards(category: model.category)
+        }
+        let horizontalList = HorizontalList<CategoriesCardCell>()
+        block.addView(horizontalList)
+        horizontalList.update(dataSource: model.collectionModels)
+        horizontalList.selectionHandler = { [weak self] indexPath in
+            self?.presenter.didSelectCell(indexPath: indexPath, category: model.category)
+        }
+        
         return block
     }
 }

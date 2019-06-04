@@ -30,7 +30,10 @@ struct HorizontalListConfiguration {
 final class HorizontalList<Cell>: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate
 where Cell: UICollectionViewCell, Cell: ConfigurableView {
     
-    // Properties
+    // Public properties
+    var selectionHandler: ((_ indexPath: IndexPath) -> Void)?
+    
+    // Private properties
     private let configuration: HorizontalListConfiguration
     private var dataSource = [Cell.ConfigurationModel]()
     
@@ -125,7 +128,7 @@ where Cell: UICollectionViewCell, Cell: ConfigurableView {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        selectionHandler?(indexPath)
     }
     
     // MARK: - UIScrollViewDelegate

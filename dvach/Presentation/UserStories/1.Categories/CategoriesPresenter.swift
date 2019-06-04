@@ -10,10 +10,15 @@ import Foundation
 
 protocol ICategoriesPresenter {
     func viewDidLoad()
+    func didSelectCell(indexPath: IndexPath, category: Category)
+    func didTapAllBoards(category: Category)
 }
 
 final class CategoriesPresenter {
     
+    typealias DataSource = ([Board], Category)
+    
+    // Nested
     struct BlockModel {
         let category: Category
         let blockModel: BlockWithTitle.Model
@@ -21,9 +26,12 @@ final class CategoriesPresenter {
     }
     
     // Dependencies
-    weak var view: CategoriesView?
+    weak var view: (CategoriesView & UIViewController)?
     private let dvachService = Locator.shared.dvachService()
     private let viewModelsFactory = CategoriesViewModelFactory()
+    
+    // Properties
+    private var models = [DataSource]()
     
     // MARK: - Private
     
@@ -67,9 +75,9 @@ final class CategoriesPresenter {
             }
         }
         // Порядок блоков можно поменять тут
-        let models = [other, user, theme, art, technics, games, politics, japan]
+        models = [other, user, theme, art, technics, games, politics, japan]
         
-        return models.map { viewModelsFactory.createViewModels(category: $0.1, boards: $0.0)}
+        return models.compactMap { viewModelsFactory.createViewModels(category: $0.1, boards: $0.0)}
     }
 }
 
@@ -79,5 +87,16 @@ extension CategoriesPresenter: ICategoriesPresenter {
     
     func viewDidLoad() {
         loadCategories()
+    }
+    
+    func didSelectCell(indexPath: IndexPath, category: Category) {
+        
+    }
+    
+    func didTapAllBoards(category: Category) {
+        let boards = models.first(where: { $0.1 == category })?.0 ?? []
+        let viewController = BoardsListViewController(boards: boards)
+        viewController.title = category.rawValue
+        view?.navigationController?.pushViewController(viewController, animated: true)
     }
 }

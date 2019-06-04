@@ -13,8 +13,7 @@ final public class BlockWithTitle: UIView, ConfigurableView, SeparatorAvailable 
     // Nested
     public struct Model {
         let title: String
-        let buttonTitle: String
-        let action: (() -> Void)?
+        let buttonTitle: String?
     }
     
     // Outlets
@@ -23,7 +22,7 @@ final public class BlockWithTitle: UIView, ConfigurableView, SeparatorAvailable 
     @IBOutlet private weak var stackView: UIStackView!
     
     // Properties
-    private var action: (() -> Void)?
+    public var action: (() -> Void)?
     
     // MARK: - Lifecycle
     
@@ -53,7 +52,6 @@ final public class BlockWithTitle: UIView, ConfigurableView, SeparatorAvailable 
     public func configure(with model: BlockWithTitle.Model) {
         title.text = model.title
         button.setTitle(model.buttonTitle, for: .normal)
-        action = model.action
-        button.isHidden = action == nil
+        button.isHidden = model.buttonTitle == nil
     }
 }

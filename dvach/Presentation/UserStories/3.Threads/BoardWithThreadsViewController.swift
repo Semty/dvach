@@ -15,12 +15,10 @@ protocol BoardWithThreadsView: AnyObject {
 
 final class BoardWithThreadsViewController: UIViewController {
     
-    // MARK: - Dependencies
-    
+    // Dependencies
     private let presenter: IThreadsPresenter
     
-    // MARK: - UI
-    
+    // UI
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(ThreadWithImageCell.self)

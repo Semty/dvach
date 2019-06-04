@@ -16,12 +16,10 @@ final class CategoriesViewModelFactory {
     
     // MARK: - Public
     
-    func createViewModels(category: Category, boards: [Board]) -> CategoriesPresenter.BlockModel {
-        var action: (() -> Void)?
-        if boards.count > 5 {
-            action = { print("PRINT") }
-        }
-        let blockModel = BlockWithTitle.Model(title: category.rawValue, buttonTitle: "Все", action: action)
+    func createViewModels(category: Category, boards: [Board]) -> CategoriesPresenter.BlockModel? {
+        guard !boards.isEmpty else { return nil }
+        let buttonTitle = boards.count > 5 ? "Все" : nil
+        let blockModel = BlockWithTitle.Model(title: category.rawValue, buttonTitle: buttonTitle)
         let cardsModels = collectionModels(category: category, boards: boards)
         
         return CategoriesPresenter.BlockModel(category: category,
