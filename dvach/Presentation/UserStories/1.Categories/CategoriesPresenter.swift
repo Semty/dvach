@@ -12,6 +12,7 @@ protocol ICategoriesPresenter {
     func viewDidLoad()
     func didSelectCell(indexPath: IndexPath, category: Category)
     func didTapAllBoards(category: Category)
+    func didTap(board: Board)
 }
 
 final class CategoriesPresenter {
@@ -41,6 +42,7 @@ final class CategoriesPresenter {
             case .success(let boards):
                 let models = self?.createViewModels(boards: boards) ?? []
                 DispatchQueue.main.async {
+                    self?.view?.didLoadBoards(boards: boards)
                     self?.view?.update(viewModels: models)
                 }
             case .failure(let error):
@@ -101,6 +103,12 @@ extension CategoriesPresenter: ICategoriesPresenter {
         let boards = models.first(where: { $0.1 == category })?.0 ?? []
         let viewController = BoardsListViewController(boards: boards)
         viewController.title = category.rawValue
+        view?.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func didTap(board: Board) {
+        let viewController = ThreadsViewController(boardID: board.identifier)
+        viewController.title = board.name
         view?.navigationController?.pushViewController(viewController, animated: true)
     }
 }

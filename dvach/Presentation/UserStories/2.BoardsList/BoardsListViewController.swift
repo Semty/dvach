@@ -8,13 +8,19 @@
 
 import Foundation
 
+protocol BoardsListViewControllerDelegate: AnyObject {
+    func didTap(board: Board)
+}
+
 protocol BoardsListView: AnyObject {
     func updateTable()
+    func didSelectBoard(_ board: Board)
 }
 
 final class BoardsListViewController: UIViewController {
     
     // Dependencies
+    weak var delegate: BoardsListViewControllerDelegate?
     private let presenter: IBoardsListPresenter
         
     // UI
@@ -66,6 +72,10 @@ extension BoardsListViewController: BoardsListView {
     func updateTable() {
         tableView.reloadData()
     }
+    
+    func didSelectBoard(_ board: Board) {
+        delegate?.didTap(board: board)
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -94,5 +104,14 @@ extension BoardsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.didSelectBoard(index: indexPath.row)
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension BoardsListViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        presenter.searchBoard(for: searchController.searchBar.text?.lowercased())
     }
 }
