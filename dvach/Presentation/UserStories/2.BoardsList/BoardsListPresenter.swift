@@ -32,14 +32,14 @@ final class BoardsListPresenter {
     // MARK: - Private
     
     private func createViewModels() -> [BoardView.Model] {
-        let icon: UIImage
-        if let assetsIcon = UIImage(named: "anime") {
-            icon = assetsIcon
-        } else {
-            icon = UIImage()
-        }
-        
-        return boards.map { BoardView.Model(title: $0.name,
+        return boards.map {
+            let icon: UIImage
+            if let assetsIcon = UIImage(named: $0.identifier) {
+                icon = assetsIcon
+            } else {
+                icon = UIImage(named: "default") ?? UIImage()
+            }
+            return BoardView.Model(title: $0.name,
                                             subtitle: "\\\($0.identifier)\\",
                                             icon: icon) }
     }

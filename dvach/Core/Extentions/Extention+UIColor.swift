@@ -29,6 +29,8 @@ extension UIColor {
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
+    
+    // MARK: - Main colors
 
     static let n1Gray = UIColor(hexString: "#4A4A4A")
     static let n2Gray = UIColor(hexString: "#8E8E93")
@@ -38,10 +40,14 @@ extension UIColor {
     static let n6Green = UIColor(hexString: "#417505")
     static let n7Blue = UIColor(hexString: "#4A90E2")
     static let n8SuperLightBlack = UIColor(hexString: "#000000").withAlphaComponent(0.05)
+    static let n9LightGreen = UIColor(hexString: "#99C26F")
     
+    /// Получение цвета от текста
     static func from(text: String) -> UIColor {
         return self.colors[self.codesSum(text: text) % colors.count]
     }
+    
+    // MARK: - Secondary colors
     
     static let a1Green = UIColor(hexString: "#7bc043")
     static let a2Yellow = UIColor(hexString: "#edc951")
@@ -49,32 +55,25 @@ extension UIColor {
     static let a4Red = UIColor(hexString: "#ee4035")
     static let a5Purple = UIColor(hexString: "#8874a3")
     static let a6Blue = UIColor(hexString: "#0392cf")
- 
-    static func colorsForPoints(homeTeamPoints: Int,
-                                awayTeamPoints: Int) -> (homeColor: UIColor, awayColor: UIColor) {
-        let homeColor: UIColor
-        let awayColor: UIColor
-        if homeTeamPoints > awayTeamPoints {
-            homeColor = .n6Green
-            awayColor = .n4Red
-        } else if homeTeamPoints == awayTeamPoints {
-            homeColor = .n1Gray
-            awayColor = .n1Gray
-        } else {
-            homeColor = .n4Red
-            awayColor = .n6Green
-        }
-        
-        return (homeColor, awayColor)
-    }
+    static let a7Purple = UIColor(hexString: "#9013FE")
+    static let a8Pink = UIColor(hexString: "#B94AD0")
     
     // MARK: - Private
     
-    private static var colors: [UIColor] = [.a1Green, .a2Yellow, .a3Orange, .a4Red, .a5Purple, .a6Blue]
+    private static var colors: [UIColor] = [.a1Green,
+                                            .a2Yellow,
+                                            .a3Orange,
+                                            .a4Red,
+                                            .a5Purple,
+                                            .n7Blue,
+                                            .n4Red,
+                                            .n9LightGreen,
+                                            .n2Gray,
+                                            .a8Pink]
     
     private static func codesSum(text: String) -> Int {
         var result = 0
-        var count = 4
+        var count = min(text.count, 6)
         text.forEach { character in
             guard count != 0 else { return }
             result += Int(String(character).utf16.first!)

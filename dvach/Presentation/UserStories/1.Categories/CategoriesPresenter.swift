@@ -75,7 +75,7 @@ final class CategoriesPresenter {
             }
         }
         // Порядок блоков можно поменять тут
-        models = [other, user, theme, art, technics, games, politics, japan]
+        models = [other, theme, art, technics, games, politics, japan, user]
         
         return models.compactMap { viewModelsFactory.createViewModels(category: $0.1, boards: $0.0)}
     }
