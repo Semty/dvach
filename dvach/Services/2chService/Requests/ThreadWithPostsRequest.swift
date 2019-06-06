@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum PostNumberLocation {
+    case inThread
+    case onBoard
+}
+
 final class ThreadWithPostsRequest: IRequest {
     
     // Parameters
@@ -15,6 +20,7 @@ final class ThreadWithPostsRequest: IRequest {
     private var board: String
     private var thread: Int
     private var post: Int
+    private var location: PostNumberLocation
     
     // Model
     
@@ -22,10 +28,14 @@ final class ThreadWithPostsRequest: IRequest {
     
     // MARK: - Initialization
     
-    init(board: String, withThreadNum thread: Int, startWithPost post: Int) {
+    init(board: String,
+         withThreadNum thread: Int,
+         startWithPost post: Int,
+         andLocation location: PostNumberLocation) {
         self.board = board
         self.thread = thread
         self.post = post
+        self.location = location
     }
     
     // MARK: - IRequest
@@ -38,9 +48,18 @@ final class ThreadWithPostsRequest: IRequest {
     }
     
     var parameters: [String : String] {
+        let postNumberParameter: String
+        
+        switch location {
+        case .inThread:
+            postNumberParameter = "post"
+        case .onBoard:
+            postNumberParameter = "num"
+        }
+        
         return ["task": "get_thread",
                 "board": board,
                 "thread": "\(thread)",
-                "post": "\(post)"]
+                postNumberParameter: "\(post)"]
     }
 }
