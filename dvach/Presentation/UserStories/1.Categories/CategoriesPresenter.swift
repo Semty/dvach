@@ -61,6 +61,7 @@ final class CategoriesPresenter {
         var theme = ([Board](), Category.theme)
         var technics = ([Board](), Category.technics)
         var user = ([Board](), Category.user)
+        var adults = ([Board](), Category.adults)
         
         boards.forEach {
             switch $0.category {
@@ -72,12 +73,23 @@ final class CategoriesPresenter {
             case .art?: art.0.append($0)
             case .theme?: theme.0.append($0)
             case .technics?: technics.0.append($0)
+            case .adults?: adults.0.append($0)
             case nil: break
-            default: break
             }
         }
-        // Порядок блоков можно поменять тут
-        models = [other, theme, art, technics, games, politics, japan, user]
+        
+        // По сути дефолтный порядок
+        let categories = [other, theme, art, technics, games, politics, japan, user, adults]
+        
+        // Тут выставляется порядок блоков из конфга, если он есть
+        if let order = Config.blocksOrder {
+            models = order.compactMap { category in
+                categories.first(where: { $0.1 == category })
+            }
+        } else {
+            models = categories.dropLast() // кроме "Для взрослых"
+        }
+        
         
         return models.compactMap { viewModelsFactory.createViewModels(category: $0.1, boards: $0.0)}
     }

@@ -11,46 +11,32 @@ import Firebase
 import SwiftyJSON
 
 protocol IFirebaseService {
-    func observeRemoteDatabase(completion: @escaping ([String: Any], Error?) -> Void)
-    func observeRemoteDatabase(for restarauntId: String, completion: @escaping ([String: Any], Error?) -> Void)
+    
+    /// Однократно делает запрос в firebase
+    func observeRemoteDatabase(completion: @escaping (JSON?, Error?) -> Void)
 }
 
-class FireBaseService: IFirebaseService {
-    
-    // Singleton
-    public static let shared = FireBaseService()
+final class FireBaseService: IFirebaseService {
     
     // Models
     private let databaseReference: DatabaseReference
 
     // MARK: - Initialization
     
-    private init() {
+    init() {
         self.databaseReference = Database.database().reference()
     }
     
     // MARK: - IFirebaseService
     
-    func observeRemoteDatabase(completion: @escaping ([String: Any], Error?) -> Void) {
+    func observeRemoteDatabase(completion: @escaping (JSON?, Error?) -> Void) {
         databaseReference.observeSingleEvent(of: DataEventType.value) { snapshot in
             if let result = snapshot.value as? [String: Any] {
-                completion(result, nil)
+                let json = JSON(result)
+                completion(json, nil)
             } else {
-                completion([:], NSError.defaultError(description: "Can't observe remote database"))
+                completion(nil, NSError.defaultError(description: "Can't observe remote database"))
             }
-        }
-    }
-    
-    func observeRemoteDatabase(for restarauntId: String,
-                               completion: @escaping ([String: Any], Error?) -> Void) {
-        databaseReference
-            .child(restarauntId)
-            .observeSingleEvent(of: DataEventType.value) { snapshot in
-                if let result = snapshot.value as? [String: Any] {
-                    completion(result, nil)
-                } else {
-                    completion([:], NSError.defaultError(description: "Can't observe remote database"))
-                }
         }
     }
 }

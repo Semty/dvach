@@ -30,7 +30,7 @@ final class Locator {
     
     /// сервис для работы с Firebase
     func firebaseService() -> IFirebaseService {
-        return FireBaseService.shared
+        return FireBaseService()
     }
     
     /// сервис для работы с User Defaults
@@ -41,5 +41,10 @@ final class Locator {
     /// сервис 2ch
     func dvachService() -> IDvachService {
         return DvachService(requestManager: requestManager())
+    }
+    
+    /// сервис для подгрузки и обновления конфига
+    func configService() -> IConfigService {
+        return ConfigService(firebaseService: firebaseService())
     }
 }

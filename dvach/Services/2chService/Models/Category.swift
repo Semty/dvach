@@ -18,4 +18,8 @@ enum Category: String {
     case theme = "Тематика"
     case technics = "Техника и софт"
     case japan = "Японская культура"
+    
+    static var list: [Category] {
+        return [.adults, .games, .politics, .user, .other, .art, .theme, .technics, .japan]
+    }
 }

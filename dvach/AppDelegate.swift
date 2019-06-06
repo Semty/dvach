@@ -8,16 +8,28 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    // Dependencies
+    private let storage = Locator.shared.storage()
+    private lazy var firebaseService = Locator.shared.configService()
+    
+    // UI
     var window: UIWindow?
-    let storage = Locator.shared.storage()
 
+    // MARK: - UIApplicationDelegate
+    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        setupInitialViewController()
+        FirebaseApp.configure()
+        firebaseService.updateConfig { [weak self] in
+            DispatchQueue.main.async {
+                self?.setupInitialViewController()
+            }
+        }
         
         return true
     }
