@@ -12,7 +12,7 @@ import Nuke
 
 typealias ThreadWithImageCell = TableViewContainerCellBase<ThreadWithImageView>
 
-final class ThreadWithImageView: UIView, ConfigurableView, ReusableView {
+final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, PressStateAnimatable {
 
     typealias ConfigurationModel = Model
     
@@ -41,7 +41,7 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        enablePressStateAnimation()
         subjectLabel.textColor = .n1Gray
         commentLabel.textColor = .n2Gray
         dateLabel.textColor = .n5LightGray

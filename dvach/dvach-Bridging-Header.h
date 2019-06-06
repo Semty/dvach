@@ -14,5 +14,6 @@
 @import SnapKit;
 @import Alamofire;
 @import Nuke;
+@import FirebaseAnalytics;
 
 #endif /* dvach_Bridging_Header_h */

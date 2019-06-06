@@ -91,7 +91,7 @@ final class CategoriesPresenter {
         }
         
         
-        return models.compactMap { viewModelsFactory.createViewModels(category: $0.1, boards: $0.0)}
+        return models.compactMap { viewModelsFactory.createViewModels(category: $0.1, boards: $0.0) }
     }
 }
 
@@ -101,6 +101,7 @@ extension CategoriesPresenter: ICategoriesPresenter {
     
     func viewDidLoad() {
         loadCategories()
+        Analytics.logEvent("CategoriesShown", parameters: [:])
     }
     
     func didSelectCell(indexPath: IndexPath, category: Category) {
