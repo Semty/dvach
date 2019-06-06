@@ -42,8 +42,10 @@ extension UIViewController {
         navigationController.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.n1Gray]
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.n1Gray]
         navigationController.navigationBar.isTranslucent = false
-        navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController.navigationBar.shadowImage = UIImage()
+        
+        // Эти две строки нужны для того, чтобы убрать сепаратор у навбара, но они вызывают неприятный сайдэффект
+//        navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        navigationController.navigationBar.shadowImage = UIImage()
         
         return navigationController
     }

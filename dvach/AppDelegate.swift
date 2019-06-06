@@ -8,17 +8,28 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    // Dependencies
+    private let storage = Locator.shared.storage()
+    private lazy var firebaseService = Locator.shared.configService()
+    
+    // UI
     var window: UIWindow?
-    let storage = Locator.shared.storage()
 
+    // MARK: - UIApplicationDelegate
+    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        firebaseService.updateConfig {
+            // TODO: - тут надо что-то придумать
+            // конфиг грузтся медленее, чем открывается приложение
+        }
         setupInitialViewController()
-        
         return true
     }
     
@@ -31,8 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupInitialViewController() {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: RootTabBarController.className) as! RootTabBarController
+        let initialViewController = RootTabBarController()
         
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()

@@ -42,9 +42,12 @@
 		4190800422A6EA9A003309D9 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190800322A6EA9A003309D9 /* IconView.swift */; };
 		4190800622A6EAF1003309D9 /* IconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4190800522A6EAF1003309D9 /* IconView.xib */; };
 		4190800922A6F47B003309D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4190800822A6F47B003309D9 /* Assets.xcassets */; };
+		4190800D22A86872003309D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4190800C22A86871003309D9 /* GoogleService-Info.plist */; };
+		4190801122A86A6D003309D9 /* ConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190801022A86A6D003309D9 /* ConfigService.swift */; };
+		4190801322A86EE7003309D9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190801222A86EE7003309D9 /* Config.swift */; };
+		4190801D22A8865D003309D9 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 4190801C22A8865D003309D9 /* config.json */; };
 		41B3E2D522A31298000B3F51 /* CategoriesViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */; };
 		41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D2229EFE720028EBFB /* AppDelegate.swift */; };
-		41BEE6D8229EFE720028EBFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6D6229EFE720028EBFB /* Main.storyboard */; };
 		41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */; };
 		41BEE6E0229EFE750028EBFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6DE229EFE750028EBFB /* LaunchScreen.storyboard */; };
 		41BEE6EB229EFE750028EBFB /* dvachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6EA229EFE750028EBFB /* dvachTests.swift */; };
@@ -156,10 +159,13 @@
 		4190800322A6EA9A003309D9 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		4190800522A6EAF1003309D9 /* IconView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconView.xib; sourceTree = "<group>"; };
 		4190800822A6F47B003309D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4190800C22A86871003309D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4190801022A86A6D003309D9 /* ConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigService.swift; sourceTree = "<group>"; };
+		4190801222A86EE7003309D9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		4190801C22A8865D003309D9 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModelFactory.swift; sourceTree = "<group>"; };
 		41BEE6CF229EFE720028EBFB /* dvach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dvach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BEE6D2229EFE720028EBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		41BEE6D7229EFE720028EBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41BEE6DA229EFE720028EBFB /* dvach.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dvach.xcdatamodel; sourceTree = "<group>"; };
 		41BEE6DF229EFE750028EBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41BEE6E1229EFE750028EBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -393,6 +399,15 @@
 			path = IconView;
 			sourceTree = "<group>";
 		};
+		4190800F22A86A61003309D9 /* ConfigService */ = {
+			isa = PBXGroup;
+			children = (
+				4190801022A86A6D003309D9 /* ConfigService.swift */,
+				4190801222A86EE7003309D9 /* Config.swift */,
+			);
+			path = ConfigService;
+			sourceTree = "<group>";
+		};
 		41B3E2D322A3127C000B3F51 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,17 +439,18 @@
 		41BEE6D1229EFE720028EBFB /* dvach */ = {
 			isa = PBXGroup;
 			children = (
+				41BEE6D2229EFE720028EBFB /* AppDelegate.swift */,
 				4190800822A6F47B003309D9 /* Assets.xcassets */,
 				41BEE740229F04670028EBFB /* Presentation */,
 				41BEE769229F049A0028EBFB /* Services */,
 				41BEE6F5229F043C0028EBFB /* Core */,
-				41BEE6D2229EFE720028EBFB /* AppDelegate.swift */,
 				41BEE735229F04450028EBFB /* Helpers */,
-				41BEE6D6229EFE720028EBFB /* Main.storyboard */,
 				41BEE6DE229EFE750028EBFB /* LaunchScreen.storyboard */,
 				41BEE76A229F04C90028EBFB /* dvach-Bridging-Header.h */,
 				41BEE6E1229EFE750028EBFB /* Info.plist */,
 				41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */,
+				4190800C22A86871003309D9 /* GoogleService-Info.plist */,
+				4190801C22A8865D003309D9 /* config.json */,
 			);
 			path = dvach;
 			sourceTree = "<group>";
@@ -451,8 +467,8 @@
 		41BEE6F5229F043C0028EBFB /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				411902BB22A6BE3D008231AC /* Shared models */,
 				41BEE738229F04550028EBFB /* Locator.swift */,
+				411902BB22A6BE3D008231AC /* Shared models */,
 				41BEE6F6229F043C0028EBFB /* Utils */,
 				41BEE6F8229F043C0028EBFB /* Storage */,
 				41BEE6FC229F043C0028EBFB /* RequestManager */,
@@ -697,6 +713,7 @@
 		41BEE769229F049A0028EBFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4190800F22A86A61003309D9 /* ConfigService */,
 				4144089D22A04AA200E4E53E /* 2chService */,
 				41BEE739229F04550028EBFB /* AppSettingsStorage */,
 				41BEE73B229F04550028EBFB /* FirebaseService */,
@@ -853,14 +870,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4190800D22A86872003309D9 /* GoogleService-Info.plist in Resources */,
 				D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */,
 				4190800622A6EAF1003309D9 /* IconView.xib in Resources */,
 				D5A69D5022A2FDA800C46E24 /* ThreadWithoutImageView.xib in Resources */,
 				4190800122A6E66A003309D9 /* BoardView.xib in Resources */,
 				41BEE764229F04730028EBFB /* ImbaTableView.xib in Resources */,
 				41BEE6E0229EFE750028EBFB /* LaunchScreen.storyboard in Resources */,
+				4190801D22A8865D003309D9 /* config.json in Resources */,
 				411902BA22A6BE05008231AC /* ShadowCollectionViewCell.xib in Resources */,
-				41BEE6D8229EFE720028EBFB /* Main.storyboard in Resources */,
 				4117534A22A2E80F008EBD2A /* BlockWithTitle.xib in Resources */,
 				4117535122A2F23B008EBD2A /* CategoriesCardView.xib in Resources */,
 				4190800922A6F47B003309D9 /* Assets.xcassets in Resources */,
@@ -975,6 +993,7 @@
 				411902CF22A6C6F2008231AC /* NonScrollableGestureRecognizer.swift in Sources */,
 				D5A69D4322A2E69700C46E24 /* BoardWithThreadsViewController.swift in Sources */,
 				41BEE737229F04450028EBFB /* TPKeyboardAvoidingSwift.swift in Sources */,
+				4190801322A86EE7003309D9 /* Config.swift in Sources */,
 				41BEE75B229F04730028EBFB /* IComponentsFactory.swift in Sources */,
 				411902CD22A6C6AC008231AC /* HighlightingNonScrollableGestureRecognizer.swift in Sources */,
 				41BEE727229F043C0028EBFB /* Extension+UIView.swift in Sources */,
@@ -1001,6 +1020,7 @@
 				41BEE730229F043C0028EBFB /* Extention+UIColor.swift in Sources */,
 				4117534322A2E4ED008EBD2A /* CategoriesViewController.swift in Sources */,
 				41907FF522A6CF8F003309D9 /* UIView+SeparatorAvailable.swift in Sources */,
+				4190801122A86A6D003309D9 /* ConfigService.swift in Sources */,
 				41BEE71A229F043C0028EBFB /* Storage.swift in Sources */,
 				41BEE72B229F043C0028EBFB /* Extension+Array.swift in Sources */,
 				41BEE760229F04730028EBFB /* ShadowViewContainer.swift in Sources */,
@@ -1046,14 +1066,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		41BEE6D6229EFE720028EBFB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				41BEE6D7229EFE720028EBFB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		41BEE6DE229EFE750028EBFB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1187,7 +1199,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWGY2HKNAY;
+				DEVELOPMENT_TEAM = ZTRS68H53M;
 				INFOPLIST_FILE = dvach/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1207,7 +1219,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWGY2HKNAY;
+				DEVELOPMENT_TEAM = ZTRS68H53M;
 				INFOPLIST_FILE = dvach/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -9,7 +9,12 @@
 import Foundation
 
 protocol CategoriesView: AnyObject {
+    
+    // Обновление вью-моделей
     func update(viewModels: [CategoriesPresenter.BlockModel])
+    
+    // Метод необходимый для поиска
+    func didLoadBoards(boards: [Board])
 }
 
 final class CategoriesViewController: UIViewController {
@@ -20,6 +25,8 @@ final class CategoriesViewController: UIViewController {
     
     // UI
     private lazy var stackView = componentsFactory.createStackViewContainer()
+    private var searchBoardsController: BoardsListViewController?
+    private lazy var searchController = UISearchController(searchResultsController: searchBoardsController)
     
     // MARK: - Initialization
     
@@ -37,11 +44,21 @@ final class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        definesPresentationContext = true
         setupUI()
         presenter.viewDidLoad()
     }
     
     // MARK: - Private
+    
+    private func setupSearch() {
+        searchController.searchResultsUpdater = searchBoardsController
+        searchController.searchBar.placeholder = "Название или идентификатор доски"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
     
     private func setupUI() {
         view.backgroundColor = .white
@@ -77,5 +94,21 @@ extension CategoriesViewController: CategoriesView {
             if viewModels.count == $0.offset + 1 { block.removeBottomSeparator() }
             stackView.addView(block)
         }
+    }
+    
+    func didLoadBoards(boards: [Board]) {
+        let boardsListViewController = BoardsListViewController(boards: boards)
+        boardsListViewController.delegate = self
+        searchBoardsController = boardsListViewController
+        setupSearch()
+    }
+}
+
+// MARK: - BoardsListViewControllerDelegate
+
+extension CategoriesViewController: BoardsListViewControllerDelegate {
+    
+    func didTap(board: Board) {
+        presenter.didTap(board: board)
     }
 }

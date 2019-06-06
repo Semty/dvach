@@ -12,6 +12,7 @@ protocol ICategoriesPresenter {
     func viewDidLoad()
     func didSelectCell(indexPath: IndexPath, category: Category)
     func didTapAllBoards(category: Category)
+    func didTap(board: Board)
 }
 
 final class CategoriesPresenter {
@@ -41,6 +42,7 @@ final class CategoriesPresenter {
             case .success(let boards):
                 let models = self?.createViewModels(boards: boards) ?? []
                 DispatchQueue.main.async {
+                    self?.view?.didLoadBoards(boards: boards)
                     self?.view?.update(viewModels: models)
                 }
             case .failure(let error):
@@ -59,6 +61,7 @@ final class CategoriesPresenter {
         var theme = ([Board](), Category.theme)
         var technics = ([Board](), Category.technics)
         var user = ([Board](), Category.user)
+        var adults = ([Board](), Category.adults)
         
         boards.forEach {
             switch $0.category {
@@ -70,12 +73,23 @@ final class CategoriesPresenter {
             case .art?: art.0.append($0)
             case .theme?: theme.0.append($0)
             case .technics?: technics.0.append($0)
+            case .adults?: adults.0.append($0)
             case nil: break
-            default: break
             }
         }
-        // Порядок блоков можно поменять тут
-        models = [other, user, theme, art, technics, games, politics, japan]
+        
+        // По сути дефолтный порядок
+        let categories = [other, theme, art, technics, games, politics, japan, user, adults]
+        
+        // Тут выставляется порядок блоков из конфга, если он есть
+        if let order = Config.blocksOrder {
+            models = order.compactMap { category in
+                categories.first(where: { $0.1 == category })
+            }
+        } else {
+            models = categories.dropLast() // кроме "Для взрослых"
+        }
+        
         
         return models.compactMap { viewModelsFactory.createViewModels(category: $0.1, boards: $0.0)}
     }
@@ -90,13 +104,23 @@ extension CategoriesPresenter: ICategoriesPresenter {
     }
     
     func didSelectCell(indexPath: IndexPath, category: Category) {
-        
+        let boards = models.first(where: { $0.1 == category })?.0 ?? []
+        let board = boards[indexPath.row]
+        let viewController = ThreadsViewController(boardID: board.identifier)
+        viewController.title = board.name
+        view?.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func didTapAllBoards(category: Category) {
         let boards = models.first(where: { $0.1 == category })?.0 ?? []
         let viewController = BoardsListViewController(boards: boards)
         viewController.title = category.rawValue
+        view?.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func didTap(board: Board) {
+        let viewController = ThreadsViewController(boardID: board.identifier)
+        viewController.title = board.name
         view?.navigationController?.pushViewController(viewController, animated: true)
     }
 }

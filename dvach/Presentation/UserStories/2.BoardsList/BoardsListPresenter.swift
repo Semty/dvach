@@ -11,15 +11,18 @@ import Foundation
 protocol IBoardsListPresenter {
     var dataSource: [BoardView.Model] { get }
     func viewDidLoad()
+    func didSelectBoard(index: Int)
+    func searchBoard(for text: String?)
 }
 
 final class BoardsListPresenter {
     
     // Dependencies
-    weak var view: BoardsListView?
+    weak var view: (BoardsListView & UIViewController)?
     
     // Properties
     private let boards: [Board]
+    private var filteredBoards = [Board]()
     var dataSource = [BoardView.Model]()
     
     // MARK: - Initialization
@@ -30,15 +33,15 @@ final class BoardsListPresenter {
     
     // MARK: - Private
     
-    private func createViewModels() -> [BoardView.Model] {
-        let icon: UIImage
-        if let assetsIcon = UIImage(named: "anime") {
-            icon = assetsIcon
-        } else {
-            icon = UIImage()
-        }
-        
-        return boards.map { BoardView.Model(title: $0.name,
+    private func createViewModels(from boards: [Board]) -> [BoardView.Model] {
+        return boards.map {
+            let icon: UIImage
+            if let assetsIcon = UIImage(named: $0.identifier) {
+                icon = assetsIcon
+            } else {
+                icon = UIImage(named: "default") ?? UIImage()
+            }
+            return BoardView.Model(title: $0.name,
                                             subtitle: "\\\($0.identifier)\\",
                                             icon: icon) }
     }
@@ -49,7 +52,26 @@ final class BoardsListPresenter {
 extension BoardsListPresenter: IBoardsListPresenter {
     
     func viewDidLoad() {
-        dataSource = createViewModels()
+        dataSource = createViewModels(from: boards)
+        view?.updateTable()
+    }
+    
+    func didSelectBoard(index: Int) {
+        let board = filteredBoards.isEmpty ? boards[index] : filteredBoards[index]
+        view?.didSelectBoard(board)
+        
+        let viewController = ThreadsViewController(boardID: board.identifier)
+        viewController.title = board.name
+        view?.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func searchBoard(for text: String?) {
+        guard let text = text, !text.isEmpty else { return }
+        filteredBoards = boards.filter {
+            $0.name.lowercased().contains(text) || $0.identifier.lowercased().contains(text)
+        }
+        let viewModels = createViewModels(from: filteredBoards)
+        dataSource = viewModels
         view?.updateTable()
     }
 }

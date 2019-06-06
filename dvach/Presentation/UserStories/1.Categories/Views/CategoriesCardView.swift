@@ -20,7 +20,7 @@ final class CategoriesCardView: UIView, ConfigurableView, ReusableView, PressSta
     }
     
     // Outlets
-    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var icon: IconView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subtitle: UILabel!
     
@@ -40,7 +40,8 @@ final class CategoriesCardView: UIView, ConfigurableView, ReusableView, PressSta
     typealias ConfigurationModel = Model
 
     func configure(with model: CategoriesCardView.Model) {
-        icon.image = model.image
+        let iconViewModel = IconView.Model(icon: model.image, text: model.title)
+        icon.configure(with: iconViewModel)
         title.text = model.title
         subtitle.text = model.subtitle
     }

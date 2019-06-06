@@ -22,17 +22,18 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvm-Ai-Qc5">
                             <rect key="frame" x="0.0" y="0.0" width="87" height="83"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Bz-O5-Aue">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byi-zE-edg" customClass="IconView" customModule="dvach" customModuleProvider="target">
                                     <rect key="frame" x="16" y="14" width="55" height="55"/>
-                                </imageView>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="5Bz-O5-Aue" firstAttribute="top" secondItem="dvm-Ai-Qc5" secondAttribute="top" constant="14" id="1dC-gL-E7Q"/>
-                                <constraint firstAttribute="bottom" secondItem="5Bz-O5-Aue" secondAttribute="bottom" constant="14" id="Sbk-fB-fC6"/>
+                                <constraint firstItem="byi-zE-edg" firstAttribute="top" secondItem="dvm-Ai-Qc5" secondAttribute="top" constant="14" id="0Pk-7N-wd3"/>
+                                <constraint firstAttribute="bottom" secondItem="byi-zE-edg" secondAttribute="bottom" constant="14" id="GgW-hU-aAV"/>
+                                <constraint firstAttribute="trailing" secondItem="byi-zE-edg" secondAttribute="trailing" constant="16" id="NnY-cL-IrD"/>
+                                <constraint firstItem="byi-zE-edg" firstAttribute="leading" secondItem="dvm-Ai-Qc5" secondAttribute="leading" constant="16" id="PID-HJ-pvZ"/>
                                 <constraint firstAttribute="height" constant="83" id="a9t-gU-Uv8"/>
-                                <constraint firstAttribute="trailing" secondItem="5Bz-O5-Aue" secondAttribute="trailing" constant="16" id="oYG-hI-NHQ"/>
-                                <constraint firstItem="5Bz-O5-Aue" firstAttribute="leading" secondItem="dvm-Ai-Qc5" secondAttribute="leading" constant="16" id="ru1-KZ-PSI"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xw1-Ci-WPO">
@@ -88,11 +89,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="icon" destination="5Bz-O5-Aue" id="atV-mg-8SQ"/>
+                <outlet property="icon" destination="byi-zE-edg" id="Pec-QO-LMp"/>
                 <outlet property="subtitle" destination="2fY-E1-lmy" id="O13-Ns-jW2"/>
                 <outlet property="title" destination="eHL-8B-bGS" id="DQu-9k-tt5"/>
             </connections>
-            <point key="canvasLocation" x="-119.56521739130436" y="135.60267857142856"/>
+            <point key="canvasLocation" x="-119.56521739130436" y="135.26785714285714"/>
         </view>
     </objects>
 </document>

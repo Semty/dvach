@@ -48,7 +48,6 @@ extension NibAwakable where Self: UIView {
                                                         attribute: constraint.secondAttribute,
                                                         multiplier: constraint.multiplier,
                                                         constant: constraint.constant)
-                print(constraint.constant)
                 view.addConstraint(viewConstraint)
             }
             return view
