@@ -48,9 +48,10 @@ final class ThreadWithoutImageView: UIView, ConfigurableView, ReusableView, Pres
         
         if viewShadowLayer == nil {
             viewShadowLayer = CAShapeLayer()
-            viewShadowLayer.addThreadShadow(aroundRoundedRect: threadView.frame)
             layer.insertSublayer(viewShadowLayer, at: 0)
         }
+        
+        viewShadowLayer.addThreadShadow(aroundRoundedRect: threadView.frame)
     }
     
     // MARK: - ConfigurableView
