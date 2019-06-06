@@ -11,7 +11,7 @@ import UIKit
 
 typealias ThreadWithoutImageCell = TableViewContainerCellBase<ThreadWithoutImageView>
 
-final class ThreadWithoutImageView: UIView, ConfigurableView, ReusableView {
+final class ThreadWithoutImageView: UIView, ConfigurableView, ReusableView, PressStateAnimatable {
     
     typealias ConfigurationModel = Model
     
@@ -35,7 +35,7 @@ final class ThreadWithoutImageView: UIView, ConfigurableView, ReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        enablePressStateAnimation()
         subjectLabel.textColor = .n1Gray
         commentLabel.textColor = .n2Gray
         dateLabel.textColor = .n5LightGray
