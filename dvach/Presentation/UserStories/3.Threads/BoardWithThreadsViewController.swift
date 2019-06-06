@@ -16,7 +16,7 @@ protocol BoardWithThreadsView: AnyObject {
 final class ThreadsViewController: UIViewController {
     
     // Dependencies
-    private let presenter: IThreadsPresenter
+    private let presenter: IBoardWithThreadsPresenter
     
     // UI
     private lazy var tableView: UITableView = {
@@ -33,7 +33,7 @@ final class ThreadsViewController: UIViewController {
     // MARK: - Initialization
     
     init(boardID: String) {
-        let presenter = ThreadsPresenter(boardID: boardID)
+        let presenter = BoardWithThreadsPresenter(boardID: boardID)
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
         

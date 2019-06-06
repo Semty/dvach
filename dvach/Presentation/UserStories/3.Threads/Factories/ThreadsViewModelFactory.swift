@@ -12,8 +12,8 @@ final class ThreadsViewModelFactory {
     
     // MARK: - Public Interface
     
-    func createThreadsViewModels(threads: [Thread]) -> [ThreadsPresenter.CellType] {
-        var threadViewModels = [ThreadsPresenter.CellType]()
+    func createThreadsViewModels(threads: [Thread]) -> [BoardWithThreadsPresenter.CellType] {
+        var threadViewModels = [BoardWithThreadsPresenter.CellType]()
         
         threadViewModels = threads.compactMap { [weak self] thread in
             guard let `self` = self else { return nil}

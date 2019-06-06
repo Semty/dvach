@@ -98,7 +98,7 @@
 		41BEE76D229F05C10028EBFB /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE76C229F05C10028EBFB /* RootTabBarController.swift */; };
 		41BEE76F229F06970028EBFB /* ModelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE76E229F06970028EBFB /* ModelRequest.swift */; };
 		D5A69D4322A2E69700C46E24 /* BoardWithThreadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */; };
-		D5A69D4522A2E83200C46E24 /* ThreadsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4422A2E83200C46E24 /* ThreadsPresenter.swift */; };
+		D5A69D4522A2E83200C46E24 /* BoardWithThreadsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4422A2E83200C46E24 /* BoardWithThreadsPresenter.swift */; };
 		D5A69D4A22A2FB3400C46E24 /* ThreadWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4922A2FB3400C46E24 /* ThreadWithImageView.swift */; };
 		D5A69D4C22A2FB4B00C46E24 /* ThreadWithoutImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4B22A2FB4B00C46E24 /* ThreadWithoutImageView.swift */; };
 		D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5A69D4D22A2FD7600C46E24 /* ThreadWithImageView.xib */; };
@@ -224,7 +224,7 @@
 		BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56667501DB5905B423A9582 /* Pods-dvachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithThreadsViewController.swift; sourceTree = "<group>"; };
-		D5A69D4422A2E83200C46E24 /* ThreadsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsPresenter.swift; sourceTree = "<group>"; };
+		D5A69D4422A2E83200C46E24 /* BoardWithThreadsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithThreadsPresenter.swift; sourceTree = "<group>"; };
 		D5A69D4922A2FB3400C46E24 /* ThreadWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithImageView.swift; sourceTree = "<group>"; };
 		D5A69D4B22A2FB4B00C46E24 /* ThreadWithoutImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithoutImageView.swift; sourceTree = "<group>"; };
 		D5A69D4D22A2FD7600C46E24 /* ThreadWithImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadWithImageView.xib; sourceTree = "<group>"; };
@@ -744,7 +744,7 @@
 			isa = PBXGroup;
 			children = (
 				D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */,
-				D5A69D4422A2E83200C46E24 /* ThreadsPresenter.swift */,
+				D5A69D4422A2E83200C46E24 /* BoardWithThreadsPresenter.swift */,
 				D5A69D5122A3165000C46E24 /* Factories */,
 				D5A69D4622A2FADF00C46E24 /* Views */,
 			);
@@ -972,7 +972,7 @@
 				41BEE71B229F043C0028EBFB /* IStorage.swift in Sources */,
 				41B3E2D522A31298000B3F51 /* CategoriesViewModelFactory.swift in Sources */,
 				D5A69D4C22A2FB4B00C46E24 /* ThreadWithoutImageView.swift in Sources */,
-				D5A69D4522A2E83200C46E24 /* ThreadsPresenter.swift in Sources */,
+				D5A69D4522A2E83200C46E24 /* BoardWithThreadsPresenter.swift in Sources */,
 				41BEE725229F043C0028EBFB /* UIView+NibLoadable.swift in Sources */,
 				414408A522A04BBC00E4E53E /* BoardsRequest.swift in Sources */,
 				4190800422A6EA9A003309D9 /* IconView.swift in Sources */,
@@ -1199,7 +1199,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZTRS68H53M;
+				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				INFOPLIST_FILE = dvach/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1219,7 +1219,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZTRS68H53M;
+				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				INFOPLIST_FILE = dvach/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -1,5 +1,5 @@
 //
-//  ThreadsPresenter.swift
+//  BoardWithThreadsPresenter.swift
 //  dvach
 //
 //  Created by Ruslan Timchenko on 01/06/2019.
@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-protocol IThreadsPresenter {
-    var dataSource: [ThreadsPresenter.CellType] { get }
+protocol IBoardWithThreadsPresenter {
+    var dataSource: [BoardWithThreadsPresenter.CellType] { get }
     func viewDidLoad()
 }
 
-final class ThreadsPresenter {
+final class BoardWithThreadsPresenter {
     enum CellType {
         case withImage(ThreadWithImageView.Model)
         case withoutImage(ThreadWithoutImageView.Model)
@@ -27,7 +27,7 @@ final class ThreadsPresenter {
     
     // Properties
     private let boardID: String
-    var dataSource = [ThreadsPresenter.CellType]()
+    var dataSource = [BoardWithThreadsPresenter.CellType]()
     
     // MARK: - Initialization
     
@@ -62,9 +62,9 @@ final class ThreadsPresenter {
     }
 }
 
-// MARK: - IThreadsPresenter
+// MARK: - IBoardWithThreadsPresenter
 
-extension ThreadsPresenter: IThreadsPresenter {
+extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
     func viewDidLoad() {
         loadBoardWithBumpSortingThreads()
     }
