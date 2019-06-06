@@ -13,11 +13,14 @@ extension CAShapeLayer {
         path = UIBezierPath(roundedRect: rect,
                             cornerRadius: 12).cgPath
         
+        let defaultShadow = Shadow.default
+        
         fillColor = UIColor.clear.cgColor
-        shadowColor = UIColor.black.cgColor
-        shadowOpacity = 0.125
+        shadowColor = defaultShadow.color?.cgColor ?? UIColor.black.cgColor
+        shadowOpacity = Float(defaultShadow.opacity)
         shadowPath = path
-        shadowOffset = .zero
-        shadowRadius = 5
+        shadowOffset = CGSize(width: defaultShadow.offsetX, height: defaultShadow.offsetY)
+        shadowRadius = defaultShadow.radius
+        masksToBounds = false
     }
 }

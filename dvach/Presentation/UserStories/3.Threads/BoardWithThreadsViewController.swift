@@ -12,7 +12,7 @@ import UIKit
 private extension CGFloat {
     static let tableViewContentInset: CGFloat = 12
     static let threadWithImageCellHeight: CGFloat = 185
-    static let threadWithoutImageCellHeight: CGFloat = 117
+    static let threadWithoutImageCellHeight: CGFloat = 125
 }
 
 protocol BoardWithThreadsView: AnyObject {
@@ -116,8 +116,6 @@ extension ThreadsViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.layer.zPosition = (CGFloat)(tableView.numberOfRows(inSection: 0) - indexPath.row)
-    }
+
 }
 

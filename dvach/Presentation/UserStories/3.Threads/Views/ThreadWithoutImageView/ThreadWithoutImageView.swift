@@ -35,6 +35,7 @@ final class ThreadWithoutImageView: UIView, ConfigurableView, ReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         subjectLabel.textColor = .n1Gray
         commentLabel.textColor = .n2Gray
         dateLabel.textColor = .n5LightGray

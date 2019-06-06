@@ -15,5 +15,5 @@ public struct Shadow {
     public let color: UIColor?
     public let opacity: CGFloat
     
-    public static let `default` = Shadow(offsetX: 0, offsetY: 0, radius: 10, color: .black, opacity: 0.2)
+    public static let `default` = Shadow(offsetX: 0, offsetY: 0, radius: 5, color: .black, opacity: 0.125)
 }
