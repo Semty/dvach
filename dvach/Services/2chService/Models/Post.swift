@@ -19,7 +19,7 @@ struct Post {
     let files: [File]
     let lastHit: Int
     let name: String
-    let num: String
+    let num: Int
     let isOp: Bool
     let parent: String
     let sticky: Int
@@ -48,7 +48,8 @@ extension Post: JSONParsable {
             let filesArray = json["files"].array,
             let lastHit = json["lasthit"].int,
             let name = json["name"].string,
-            let num = json["num"].string,
+            let numString = json["num"].string,
+            let num = Int(numString),
             let isOp = json["op"].int,
             let parent = json["parent"].string,
             let sticky = json["sticky"].int,

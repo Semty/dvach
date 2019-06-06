@@ -12,7 +12,7 @@ import SwiftyJSON
 struct Thread {
     let comment: String
     let lastHit: Int // Как я понял, это таймстамп последней активности в треде
-    let num: String
+    let num: Int
     let postsCount: Int
     let score: Double?
     let subject: String
@@ -27,7 +27,8 @@ extension Thread: JSONParsable {
     static func from(json: JSON) -> Thread? {
         guard let comment = json["comment"].string,
             let lastHit = json["lasthit"].int,
-            let num = json["num"].string,
+            let numString = json["num"].string,
+            let num = Int(numString),
             let postsCount = json["posts_count"].int,
             let subject = json["subject"].string,
             let timestamp = json["timestamp"].int else { return nil }

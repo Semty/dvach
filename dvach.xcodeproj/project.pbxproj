@@ -111,6 +111,7 @@
 		D5B22BC222A187A0001EE4F8 /* BoardWithBumpSortingThreadsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BC122A187A0001EE4F8 /* BoardWithBumpSortingThreadsRequest.swift */; };
 		D5B22BC422A18F31001EE4F8 /* BoardAdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BC322A18F31001EE4F8 /* BoardAdditionalInfo.swift */; };
 		D5E4733E22A937980055AB92 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E4733D22A937970055AB92 /* Post.swift */; };
+		D5E4734022A941990055AB92 /* ThreadWithPostsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */; };
 		FEB9BA536773581D988B192D /* Pods_dvach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */; };
 /* End PBXBuildFile section */
 
@@ -238,6 +239,7 @@
 		D5B22BC122A187A0001EE4F8 /* BoardWithBumpSortingThreadsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithBumpSortingThreadsRequest.swift; sourceTree = "<group>"; };
 		D5B22BC322A18F31001EE4F8 /* BoardAdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardAdditionalInfo.swift; sourceTree = "<group>"; };
 		D5E4733D22A937970055AB92 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithPostsRequest.swift; sourceTree = "<group>"; };
 		EBF848D3DEFEF1DDEC1C29B2 /* Pods_dvachTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvachTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -355,6 +357,7 @@
 			children = (
 				414408A422A04BBC00E4E53E /* BoardsRequest.swift */,
 				D5B22BC122A187A0001EE4F8 /* BoardWithBumpSortingThreadsRequest.swift */,
+				D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1018,6 +1021,7 @@
 				41BEE721229F043C0028EBFB /* Extension+UIViewController.swift in Sources */,
 				41907FF722A6CFC8003309D9 /* TCSSeparatorAvailable.swift in Sources */,
 				41BEE73F229F04550028EBFB /* FireBaseService.swift in Sources */,
+				D5E4734022A941990055AB92 /* ThreadWithPostsRequest.swift in Sources */,
 				41BEE76F229F06970028EBFB /* ModelRequest.swift in Sources */,
 				414408A322A04BA200E4E53E /* Board.swift in Sources */,
 				41BEE734229F043C0028EBFB /* Extension+UIStackView.swift in Sources */,

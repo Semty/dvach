@@ -17,6 +17,12 @@ protocol IDvachService {
     /// Загрузка конкретной доски (с тредами, отсортированными по последнему сообщению)
     func loadBoardWithBumpSortingThreads(_ board: String,
                                          completion: @escaping (Result<Board>) -> Void)
+    
+    /// Загрузка треда с постами (номер поста начинается с 1)
+    func loadThreadWithPosts(board: String,
+                             withThreadNum thread: Int,
+                             startWithPost post: Int?,
+                             completion: @escaping (Result<[Post]>) -> Void)
 }
 
 final class DvachService {
@@ -43,7 +49,7 @@ extension DvachService: IDvachService {
                 // TODO: тут будет кеширование
                 completion(.success(categories.boards))
             case .failure:
-                completion(.failure(NSError.defaultError(description: "Борды не загрузились")))
+                completion(.failure(NSError.defaultError(description: "Борды не загрузились. Вот так, в самом начале пути. Да, как всегда")))
             }
         }
     }
@@ -54,10 +60,26 @@ extension DvachService: IDvachService {
         requestManager.loadModel(request: request) { result in
             switch result {
             case .success(let board):
-                // TODO: тут будет кеширование
                 completion(.success(board))
             case .failure:
                 completion(.failure(NSError.defaultError(description: "Борда с тредами не загрузилась. Верим, что Абу не изменил API")))
+            }
+        }
+    }
+    
+    func loadThreadWithPosts(board: String,
+                             withThreadNum thread: Int,
+                             startWithPost post: Int?,
+                             completion: @escaping (Result<[Post]>) -> Void) {
+        let request = ThreadWithPostsRequest(board: board,
+                                             withThreadNum: thread,
+                                             startWithPost: post ?? 1)
+        requestManager.loadModels(request: request) { result in
+            switch result {
+            case .success(let posts):
+                completion(.success(posts))
+            case .failure:
+                completion(.failure(NSError.defaultError(description: "Тред с постами не загрузился. Идем плакаться о ЕОТ в другое место (где есть интернет)")))
             }
         }
     }
