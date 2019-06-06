@@ -11,6 +11,8 @@ import UIKit
 
 private extension CGFloat {
     static let tableViewContentInset: CGFloat = 12
+    static let threadWithImageCellHeight: CGFloat = 185
+    static let threadWithoutImageCellHeight: CGFloat = 117
 }
 
 protocol BoardWithThreadsView: AnyObject {
@@ -109,8 +111,8 @@ extension ThreadsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let model = presenter.dataSource[safeIndex: indexPath.row] else { return .zero }
         switch model {
-        case .withImage: return 185
-        case .withoutImage: return 140
+        case .withImage: return .threadWithImageCellHeight
+        case .withoutImage: return .threadWithoutImageCellHeight
         }
     }
     

@@ -54,7 +54,7 @@ final class CategoriesViewController: UIViewController {
     
     private func setupSearch() {
         searchController.searchResultsUpdater = searchBoardsController
-        searchController.searchBar.placeholder = "Название или идентификатор доски"
+        searchController.searchBar.placeholder = "Название или идентификатор"
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
