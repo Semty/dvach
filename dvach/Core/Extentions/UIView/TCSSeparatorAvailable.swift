@@ -15,7 +15,7 @@ public protocol SeparatorAvailable {
     @discardableResult
     func addSeparator(with style: SeparatorStyle, at edge: SeparatorEdge) -> UIView
     
-    /// Удаление сепараоров с одной из сторон
+    /// Удаление сепараторов с одной из сторон
     func removeSeparators(at edge: SeparatorEdge)
 }
 
@@ -39,10 +39,10 @@ public struct SeparatorStyle {
 /// Отступы сепаратора
 public struct SeparatorInsets {
     
-    /// Левый отсуп для горизонтального сепаратора и верхний для вертикального
+    /// Левый отступ для горизонтального сепаратора и верхний для вертикального
     public let first: CGFloat
     
-    /// Правый отсуп для горизонтального сепаратора и нижний для вертикального
+    /// Правый отступ для горизонтального сепаратора и нижний для вертикального
     public let second: CGFloat
     
     /// Инициализация значений
