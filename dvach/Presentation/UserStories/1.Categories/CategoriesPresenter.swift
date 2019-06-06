@@ -89,7 +89,8 @@ final class CategoriesPresenter {
                 categories.first(where: { $0.1 == category })
             }
         } else {
-            models = categories.dropLast() // кроме "Для взрослых"
+            models = categories.dropLast() // кроме "Взрослым"
+            models = categories.dropLast() // кроме "Скрытые"
         }
         
         
