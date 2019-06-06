@@ -25,12 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        firebaseService.updateConfig { [weak self] in
-            DispatchQueue.main.async {
-                self?.setupInitialViewController()
-            }
+        firebaseService.updateConfig {
+            // TODO: - тут надо что-то придумать
+            // конфиг грузтся медленее, чем открывается приложение
         }
-        
+        setupInitialViewController()
         return true
     }
     
@@ -43,8 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupInitialViewController() {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: RootTabBarController.className) as! RootTabBarController
+        let initialViewController = RootTabBarController()
         
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()

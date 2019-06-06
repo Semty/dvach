@@ -48,7 +48,6 @@
 		4190801D22A8865D003309D9 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 4190801C22A8865D003309D9 /* config.json */; };
 		41B3E2D522A31298000B3F51 /* CategoriesViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */; };
 		41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D2229EFE720028EBFB /* AppDelegate.swift */; };
-		41BEE6D8229EFE720028EBFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6D6229EFE720028EBFB /* Main.storyboard */; };
 		41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */; };
 		41BEE6E0229EFE750028EBFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BEE6DE229EFE750028EBFB /* LaunchScreen.storyboard */; };
 		41BEE6EB229EFE750028EBFB /* dvachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6EA229EFE750028EBFB /* dvachTests.swift */; };
@@ -167,7 +166,6 @@
 		41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModelFactory.swift; sourceTree = "<group>"; };
 		41BEE6CF229EFE720028EBFB /* dvach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dvach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BEE6D2229EFE720028EBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		41BEE6D7229EFE720028EBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41BEE6DA229EFE720028EBFB /* dvach.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dvach.xcdatamodel; sourceTree = "<group>"; };
 		41BEE6DF229EFE750028EBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41BEE6E1229EFE750028EBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -447,7 +445,6 @@
 				41BEE769229F049A0028EBFB /* Services */,
 				41BEE6F5229F043C0028EBFB /* Core */,
 				41BEE735229F04450028EBFB /* Helpers */,
-				41BEE6D6229EFE720028EBFB /* Main.storyboard */,
 				41BEE6DE229EFE750028EBFB /* LaunchScreen.storyboard */,
 				41BEE76A229F04C90028EBFB /* dvach-Bridging-Header.h */,
 				41BEE6E1229EFE750028EBFB /* Info.plist */,
@@ -882,7 +879,6 @@
 				41BEE6E0229EFE750028EBFB /* LaunchScreen.storyboard in Resources */,
 				4190801D22A8865D003309D9 /* config.json in Resources */,
 				411902BA22A6BE05008231AC /* ShadowCollectionViewCell.xib in Resources */,
-				41BEE6D8229EFE720028EBFB /* Main.storyboard in Resources */,
 				4117534A22A2E80F008EBD2A /* BlockWithTitle.xib in Resources */,
 				4117535122A2F23B008EBD2A /* CategoriesCardView.xib in Resources */,
 				4190800922A6F47B003309D9 /* Assets.xcassets in Resources */,
@@ -1070,14 +1066,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		41BEE6D6229EFE720028EBFB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				41BEE6D7229EFE720028EBFB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		41BEE6DE229EFE750028EBFB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
