@@ -50,7 +50,7 @@ public protocol PressStateAnimatable: class, RecognizerDeletable {
     /// например, если она лежит под другой UIView, иначе использовать enablePressStateAnimation(minScale:duration:)
     func animatePressStateChange(pressed: Bool, minScale: CGFloat, duration: TimeInterval)
     
-    /// Включение зуммирования при нажатии на UIView с минимальным зумом minScale 0.95 и длительностью 0.1
+    /// Включение зуммирования при нажатии на UIView с минимальным зумом minScale 0.95 и длительностью 0.2
     func enablePressStateAnimation()
     
     /// Включение зуммирования при нажатии на UIView с действием
@@ -67,7 +67,7 @@ extension PressStateAnimatable where Self: UIView {
     
     public func enablePressStateAnimation(actionBlock: (() -> Void)?) {
         enablePressStateAnimation(minScale: .defaultScale,
-                                  duration: 0.1,
+                                  duration: 0.2,
                                   touchesBeganBlock: nil,
                                   touchesEndedBlock: { _ in actionBlock?() })
     }
