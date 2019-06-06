@@ -62,6 +62,7 @@ final class CategoriesPresenter {
         var technics = ([Board](), Category.technics)
         var user = ([Board](), Category.user)
         var adults = ([Board](), Category.adults)
+        var hidden = ([Board](), Category.hidden)
         
         boards.forEach {
             switch $0.category {
@@ -74,14 +75,15 @@ final class CategoriesPresenter {
             case .theme?: theme.0.append($0)
             case .technics?: technics.0.append($0)
             case .adults?: adults.0.append($0)
+            case .hidden?: hidden.0.append($0)
             case nil: break
             }
         }
         
         // По сути дефолтный порядок
-        let categories = [other, theme, art, technics, games, politics, japan, user, adults]
+        let categories = [other, theme, art, technics, games, politics, japan, user, hidden, adults]
         
-        // Тут выставляется порядок блоков из конфга, если он есть
+        // Тут выставляется порядок блоков из конфига, если он есть
         if let order = Config.blocksOrder {
             models = order.compactMap { category in
                 categories.first(where: { $0.1 == category })

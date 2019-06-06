@@ -10,6 +10,7 @@ import Foundation
 
 enum Category: String {
     case adults = "Взрослым"
+    case hidden = "Скрытые"
     case games = "Игры"
     case politics = "Политика"
     case user = "Пользовательские"
@@ -20,6 +21,6 @@ enum Category: String {
     case japan = "Японская культура"
     
     static var list: [Category] {
-        return [.adults, .games, .politics, .user, .other, .art, .theme, .technics, .japan]
+        return [.adults, .hidden, .games, .politics, .user, .other, .art, .theme, .technics, .japan]
     }
 }
