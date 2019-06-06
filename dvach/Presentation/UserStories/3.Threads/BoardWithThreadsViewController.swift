@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+private extension CGFloat {
+    static let tableViewContentInset: CGFloat = 12
+}
+
 protocol BoardWithThreadsView: AnyObject {
     func updateTable()
 }
@@ -26,6 +30,10 @@ final class ThreadsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
+        tableView.contentInset = .init(top: .tableViewContentInset,
+                                       left: 0,
+                                       bottom: 0,
+                                       right: 0)
         
         return tableView
     }()
