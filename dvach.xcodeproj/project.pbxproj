@@ -50,6 +50,16 @@
 		4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */; };
 		4193B1B522AA548200EE25FD /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B422AA548200EE25FD /* UIView+Animations.swift */; };
 		4193B1B722AA56ED00EE25FD /* Extension+CAAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B622AA56ED00EE25FD /* Extension+CAAnimation.swift */; };
+		4193B1BB22AA998200EE25FD /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1BA22AA998200EE25FD /* PostViewController.swift */; };
+		4193B1BD22AA998D00EE25FD /* PostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1BC22AA998D00EE25FD /* PostPresenter.swift */; };
+		4193B1BF22AA9BE300EE25FD /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1BE22AA9BE300EE25FD /* PostRouter.swift */; };
+		4193B1C122AA9BF600EE25FD /* PostAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1C022AA9BF600EE25FD /* PostAssembly.swift */; };
+		4193B1C322AA9CF000EE25FD /* IDvachService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1C222AA9CF000EE25FD /* IDvachService.swift */; };
+		4193B1C622AAA29C00EE25FD /* PostCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1C522AAA29C00EE25FD /* PostCommentView.swift */; };
+		4193B1CA22AAA33100EE25FD /* PostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1C922AAA33100EE25FD /* PostHeaderView.swift */; };
+		4193B1CC22AAA34E00EE25FD /* PostHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1CB22AAA34E00EE25FD /* PostHeaderView.xib */; };
+		4193B1CE22AAC13900EE25FD /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1CD22AAC13900EE25FD /* GalleryView.swift */; };
+		4193B1D022AAC8E500EE25FD /* Extension+UiImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1CF22AAC8E500EE25FD /* Extension+UiImageView.swift */; };
 		41B3E2D522A31298000B3F51 /* CategoriesViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */; };
 		41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D2229EFE720028EBFB /* AppDelegate.swift */; };
 		41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */; };
@@ -173,6 +183,16 @@
 		4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesSkeletonView.xib; sourceTree = "<group>"; };
 		4193B1B422AA548200EE25FD /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		4193B1B622AA56ED00EE25FD /* Extension+CAAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+CAAnimation.swift"; sourceTree = "<group>"; };
+		4193B1BA22AA998200EE25FD /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		4193B1BC22AA998D00EE25FD /* PostPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPresenter.swift; sourceTree = "<group>"; };
+		4193B1BE22AA9BE300EE25FD /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
+		4193B1C022AA9BF600EE25FD /* PostAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAssembly.swift; sourceTree = "<group>"; };
+		4193B1C222AA9CF000EE25FD /* IDvachService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDvachService.swift; sourceTree = "<group>"; };
+		4193B1C522AAA29C00EE25FD /* PostCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentView.swift; sourceTree = "<group>"; };
+		4193B1C922AAA33100EE25FD /* PostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderView.swift; sourceTree = "<group>"; };
+		4193B1CB22AAA34E00EE25FD /* PostHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostHeaderView.xib; sourceTree = "<group>"; };
+		4193B1CD22AAC13900EE25FD /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
+		4193B1CF22AAC8E500EE25FD /* Extension+UiImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UiImageView.swift"; sourceTree = "<group>"; };
 		41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModelFactory.swift; sourceTree = "<group>"; };
 		41BEE6CF229EFE720028EBFB /* dvach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dvach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BEE6D2229EFE720028EBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -357,6 +377,7 @@
 				414408A122A04B8A00E4E53E /* Models */,
 				414408A022A04B8100E4E53E /* Requests */,
 				4144089E22A04AC400E4E53E /* DvachService.swift */,
+				4193B1C222AA9CF000EE25FD /* IDvachService.swift */,
 			);
 			path = 2chService;
 			sourceTree = "<group>";
@@ -430,6 +451,29 @@
 				4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */,
 			);
 			path = Skeleton;
+			sourceTree = "<group>";
+		};
+		4193B1B922AA996D00EE25FD /* 4.Post */ = {
+			isa = PBXGroup;
+			children = (
+				4193B1C422AAA25300EE25FD /* New Group */,
+				4193B1BA22AA998200EE25FD /* PostViewController.swift */,
+				4193B1BC22AA998D00EE25FD /* PostPresenter.swift */,
+				4193B1BE22AA9BE300EE25FD /* PostRouter.swift */,
+				4193B1C022AA9BF600EE25FD /* PostAssembly.swift */,
+			);
+			path = 4.Post;
+			sourceTree = "<group>";
+		};
+		4193B1C422AAA25300EE25FD /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				4193B1C522AAA29C00EE25FD /* PostCommentView.swift */,
+				4193B1C922AAA33100EE25FD /* PostHeaderView.swift */,
+				4193B1CB22AAA34E00EE25FD /* PostHeaderView.xib */,
+				4193B1CD22AAC13900EE25FD /* GalleryView.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		41B3E2D322A3127C000B3F51 /* Factories */ = {
@@ -560,6 +604,7 @@
 				411902B322A6B8AA008231AC /* Extension+UIEdgeInsets.swift */,
 				D5A69D5622A3DCE900C46E24 /* Extension+CALayer.swift */,
 				4193B1B622AA56ED00EE25FD /* Extension+CAAnimation.swift */,
+				4193B1CF22AAC8E500EE25FD /* Extension+UiImageView.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -731,6 +776,7 @@
 				4117534122A2E4BF008EBD2A /* 1.Categories */,
 				41907FF822A6E1EE003309D9 /* 2.BoardsList */,
 				D5A69D1D22A2E5DB00C46E24 /* 3.Threads */,
+				4193B1B922AA996D00EE25FD /* 4.Post */,
 				41BEE76B229F05C10028EBFB /* Root */,
 			);
 			path = UserStories;
@@ -898,6 +944,7 @@
 			files = (
 				4190800D22A86872003309D9 /* GoogleService-Info.plist in Resources */,
 				D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */,
+				4193B1CC22AAA34E00EE25FD /* PostHeaderView.xib in Resources */,
 				4190800622A6EAF1003309D9 /* IconView.xib in Resources */,
 				4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */,
 				D5A69D5022A2FDA800C46E24 /* ThreadWithoutImageView.xib in Resources */,
@@ -989,11 +1036,14 @@
 				41907FFA22A6E222003309D9 /* BoardsListViewController.swift in Sources */,
 				414408A922A052A800E4E53E /* Categories.swift in Sources */,
 				41BEE728229F043C0028EBFB /* Extension+UITableView.swift in Sources */,
+				4193B1D022AAC8E500EE25FD /* Extension+UiImageView.swift in Sources */,
 				41BEE763229F04730028EBFB /* ImbaTableView.swift in Sources */,
 				411902CA22A6C642008231AC /* HighlightingGestureRecognizer.swift in Sources */,
+				4193B1BB22AA998200EE25FD /* PostViewController.swift in Sources */,
 				41BEE723229F043C0028EBFB /* UView+NibAwakable.swift in Sources */,
 				4144089F22A04AC400E4E53E /* DvachService.swift in Sources */,
 				41BEE73D229F04550028EBFB /* Locator.swift in Sources */,
+				4193B1C622AAA29C00EE25FD /* PostCommentView.swift in Sources */,
 				41BEE722229F043C0028EBFB /* Extension+UIImage.swift in Sources */,
 				4117534F22A2F22B008EBD2A /* CategoriesCardView.swift in Sources */,
 				41BEE71B229F043C0028EBFB /* IStorage.swift in Sources */,
@@ -1038,6 +1088,7 @@
 				D5A69D5322A3167700C46E24 /* ThreadsViewModelFactory.swift in Sources */,
 				41BEE71F229F043C0028EBFB /* IRequestManager.swift in Sources */,
 				4193B1B722AA56ED00EE25FD /* Extension+CAAnimation.swift in Sources */,
+				4193B1CE22AAC13900EE25FD /* GalleryView.swift in Sources */,
 				411902C422A6C1EA008231AC /* UIView+PressStateAnimatable.swift in Sources */,
 				41BEE73E229F04550028EBFB /* AppSettingsStorage.swift in Sources */,
 				41BEE731229F043C0028EBFB /* Extension+Int.swift in Sources */,
@@ -1048,10 +1099,12 @@
 				41BEE76F229F06970028EBFB /* ModelRequest.swift in Sources */,
 				414408A322A04BA200E4E53E /* Board.swift in Sources */,
 				41BEE734229F043C0028EBFB /* Extension+UIStackView.swift in Sources */,
+				4193B1C322AA9CF000EE25FD /* IDvachService.swift in Sources */,
 				41BEE730229F043C0028EBFB /* Extention+UIColor.swift in Sources */,
 				4117534322A2E4ED008EBD2A /* CategoriesViewController.swift in Sources */,
 				41907FF522A6CF8F003309D9 /* UIView+SeparatorAvailable.swift in Sources */,
 				4190801122A86A6D003309D9 /* ConfigService.swift in Sources */,
+				4193B1BD22AA998D00EE25FD /* PostPresenter.swift in Sources */,
 				41BEE71A229F043C0028EBFB /* Storage.swift in Sources */,
 				41BEE72B229F043C0028EBFB /* Extension+Array.swift in Sources */,
 				41BEE760229F04730028EBFB /* ShadowViewContainer.swift in Sources */,
@@ -1060,10 +1113,13 @@
 				41BEE75E229F04730028EBFB /* ChildViewController.swift in Sources */,
 				41BEE72A229F043C0028EBFB /* Extension+NSError.swift in Sources */,
 				41BEE729229F043C0028EBFB /* Extension+Dictionary.swift in Sources */,
+				4193B1CA22AAA33100EE25FD /* PostHeaderView.swift in Sources */,
 				411902C522A6C1EA008231AC /* UIView+Shadow.swift in Sources */,
 				41BEE75D229F04730028EBFB /* ReusableView.swift in Sources */,
 				41BEE720229F043C0028EBFB /* Extension+UIFont.swift in Sources */,
+				4193B1BF22AA9BE300EE25FD /* PostRouter.swift in Sources */,
 				D5B22BC022A165B7001EE4F8 /* Thread.swift in Sources */,
+				4193B1C122AA9BF600EE25FD /* PostAssembly.swift in Sources */,
 				41BEE762229F04730028EBFB /* StackViewContainer.swift in Sources */,
 				D5B22BC222A187A0001EE4F8 /* BoardWithBumpSortingThreadsRequest.swift in Sources */,
 				D5B22BBE22A165AF001EE4F8 /* File.swift in Sources */,

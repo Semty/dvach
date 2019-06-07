@@ -29,9 +29,9 @@ final class ThreadWithPostsRequest: IRequest {
     // MARK: - Initialization
     
     init(board: String,
-         withThreadNum thread: Int,
-         startWithPost post: Int,
-         andLocation location: PostNumberLocation) {
+         thread: Int,
+         post: Int,
+         location: PostNumberLocation) {
         self.board = board
         self.thread = thread
         self.post = post

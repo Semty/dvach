@@ -11,23 +11,27 @@ import UIKit
 
 protocol IBoardWithThreadsPresenter {
     var dataSource: [BoardWithThreadsPresenter.CellType] { get }
+    
     func viewDidLoad()
+    func didSelectCell(index: Int)
 }
 
 final class BoardWithThreadsPresenter {
+    
     enum CellType {
         case withImage(ThreadWithImageView.Model)
         case withoutImage(ThreadWithoutImageView.Model)
     }
     
     // Dependencies
-    weak var view: BoardWithThreadsView?
+    weak var view: (BoardWithThreadsView & UIViewController)?
     private let dvachService = Locator.shared.dvachService()
     private let viewModelFactory = ThreadsViewModelFactory()
     
     // Properties
     private let boardID: String
     var dataSource = [BoardWithThreadsPresenter.CellType]()
+    private var board: Board?
     
     // MARK: - Initialization
     
@@ -36,11 +40,13 @@ final class BoardWithThreadsPresenter {
     }
     
     // MARK: - Private
+    
     private func loadBoardWithBumpSortingThreads() {
         dvachService.loadBoardWithBumpSortingThreads(boardID) { [weak self] result in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             switch result {
             case .success(let board):
+                self.board = board
                 self.dataSource = self.createViewModels(board: board)
                 
                 DispatchQueue.main.async {
@@ -53,19 +59,23 @@ final class BoardWithThreadsPresenter {
     }
     
     private func createViewModels(board: Board) -> [CellType] {
-        var viewModels = [CellType]()
         guard let threads = board.additionalInfo?.threads else { return [] }
-        
-        viewModels = viewModelFactory.createThreadsViewModels(threads: threads)
-        
-        return viewModels
+        return viewModelFactory.createThreadsViewModels(threads: threads)
     }
 }
 
 // MARK: - IBoardWithThreadsPresenter
 
 extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
+    
     func viewDidLoad() {
         loadBoardWithBumpSortingThreads()
+    }
+    
+    func didSelectCell(index: Int) {
+        guard let threadNumber = board?.additionalInfo?.threads[index].num else { return }
+        
+        let viewController = PostAssembly.assemble(board: boardID, threadNum: threadNumber)
+        view?.present(viewController, animated: true)
     }
 }

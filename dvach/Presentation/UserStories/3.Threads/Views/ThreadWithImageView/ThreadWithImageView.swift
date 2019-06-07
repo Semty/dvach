@@ -70,25 +70,6 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, PressSt
         subjectLabel.text = model.subjectTitle
         commentLabel.text = model.commentTitle
         dateLabel.text = model.dateTitle
-        downloadImage(withPath: model.threadImageThumbnail)
-    }
-
-    // MARK: - Private Image Downloading
-    private func downloadImage(withPath path: String) {
-        let thumbnailFullPath = "https://2ch.hk\(path)"
-        if let url = URL(string: thumbnailFullPath) {
-            Nuke.loadImage(
-                with: url,
-                options: ImageLoadingOptions(
-                    transition: .fadeIn(duration: 0.5),
-                    contentModes: .init(
-                        success: .scaleAspectFill,
-                        failure: .center,
-                        placeholder: .center
-                    )
-                ),
-                into: threadImageView
-            )
-        }
+        threadImageView.loadImage(url: model.threadImageThumbnail)
     }
 }

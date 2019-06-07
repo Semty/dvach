@@ -86,6 +86,7 @@ extension ThreadsViewController: BoardWithThreadsView {
 // MARK: - UITableViewDataSource
 
 extension ThreadsViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.dataSource.count
     }
@@ -108,6 +109,7 @@ extension ThreadsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension ThreadsViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let model = presenter.dataSource[safeIndex: indexPath.row] else { return .zero }
         switch model {
@@ -116,6 +118,8 @@ extension ThreadsViewController: UITableViewDelegate {
         }
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.didSelectCell(index: indexPath.row)
+    }
 }
 
