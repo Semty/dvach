@@ -24,9 +24,11 @@ final class CategoriesViewController: UIViewController {
     private let componentsFactory = Locator.shared.componentsFactory()
     
     // UI
-    private lazy var stackView = componentsFactory.createStackViewContainer()
     private var searchBoardsController: BoardsListViewController?
+
+    private lazy var stackView = componentsFactory.createStackViewContainer()
     private lazy var searchController = UISearchController(searchResultsController: searchBoardsController)
+    private lazy var skeleton = CategoriesSkeletonView.fromNib()
     
     // MARK: - Initialization
     
@@ -62,8 +64,15 @@ final class CategoriesViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
+        
+        // blocks
         view.addSubview(stackView)
         stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        
+        // skeleton
+        view.addSubview(skeleton)
+        skeleton.snp.makeConstraints { $0.edges.equalToSuperview() }
+        skeleton.update(state: .active)
     }
     
     private func createBlock(model: CategoriesPresenter.BlockModel) -> BlockWithTitle {
@@ -94,6 +103,8 @@ extension CategoriesViewController: CategoriesView {
             if viewModels.count == $0.offset + 1 { block.removeBottomSeparator() }
             stackView.addView(block)
         }
+        skeleton.isHiddenFadeAnimated = true
+        skeleton.update(state: .nonactive)
     }
     
     func didLoadBoards(boards: [Board]) {
