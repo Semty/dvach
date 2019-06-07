@@ -15,6 +15,7 @@ target 'dvach' do
    pod 'SnapKit', '4.2.0'
    pod 'Kingfisher', '4.10.0'
    pod 'Nuke', '~> 7.6'
+   pod 'Nuke-FLAnimatedImage-Plugin'
    
   target 'dvachTests' do
     inherit! :search_paths
