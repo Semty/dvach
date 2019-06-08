@@ -20,16 +20,19 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, PressSt
     struct Model {
         let subjectTitle: String
         let commentTitle: String
-        let dateTitle: String
+        let postsCountTitle: String
         let threadImageThumbnail: String
     }
     
     // Outlets
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var postsCountLabel: UILabel!
     @IBOutlet weak var threadImageView: UIImageView!
     @IBOutlet weak var threadView: UIView!
+    
+    // Constraints
+    @IBOutlet weak var commentLabelTopConstraint: NSLayoutConstraint!
     
     // Layers
     private var viewShadowLayer: CAShapeLayer!
@@ -43,8 +46,8 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, PressSt
         super.awakeFromNib()
         enablePressStateAnimation()
         subjectLabel.textColor = .n1Gray
-        commentLabel.textColor = .n2Gray
-        dateLabel.textColor = .n5LightGray
+        commentLabel.textColor = .n1Gray
+        postsCountLabel.textColor = .n7Blue
         
         threadView.layer.cornerRadius = cornerRadius
         threadImageView.layer.cornerRadius = cornerRadius
@@ -67,9 +70,24 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, PressSt
     // MARK: - ConfigurableView
     
     func configure(with model: ThreadWithImageView.Model) {
+        subjectLabelValueWillBeChanged(with: model.subjectTitle)
         subjectLabel.text = model.subjectTitle
         commentLabel.text = model.commentTitle
-        dateLabel.text = model.dateTitle
+        postsCountLabel.text = model.dateTitle
         threadImageView.loadImage(url: model.threadImageThumbnail)
+    }
+}
+
+// MARK: - Constraints Configuration
+
+extension ThreadWithImageView {
+    fileprivate func subjectLabelValueWillBeChanged(with value: String) {
+        if value == "" {
+            subjectLabel.isHidden = true
+            commentLabelTopConstraint.constant = 8.0
+        } else {
+            subjectLabel.isHidden = false
+            commentLabelTopConstraint.constant = 49.0
+        }
     }
 }

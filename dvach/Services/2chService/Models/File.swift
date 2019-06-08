@@ -20,7 +20,7 @@ enum FileType: Int {
 }
 
 struct File {
-    let displayName: String
+    let displayName: String?
     let fullName: String?
     let height: Int
     let md5: String?
@@ -39,8 +39,7 @@ struct File {
 
 extension File: JSONParsable {
     static func from(json: JSON) -> File? {
-        guard let displayName = json["displayname"].string,
-            let height = json["height"].int,
+        guard let height = json["height"].int,
             let name = json["name"].string,
             let path = json["path"].string,
             let size = json["size"].int,
@@ -50,6 +49,7 @@ extension File: JSONParsable {
             let type = json["type"].int,
             let width = json["width"].int else { return nil }
         
+        let displayName = json["displayname"].string
         let fullName = json["fullname"].string
         let md5 = json["md5"].string
         let isNSFW = json["nsfw"].int

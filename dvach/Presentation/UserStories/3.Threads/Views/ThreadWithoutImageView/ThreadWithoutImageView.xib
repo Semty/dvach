@@ -13,14 +13,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ThreadWithoutImageView" customModule="dvach" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEU-LT-xVv">
-                    <rect key="frame" x="12" y="10" width="351" height="105"/>
+                    <rect key="frame" x="12" y="10" width="351" height="150"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Есть одна тян..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9p-Ls-3Ln">
-                            <rect key="frame" x="16" y="12" width="319" height="17"/>
+                            <rect key="frame" x="8" y="8" width="335" height="17"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="17" id="Knn-Yf-nCt"/>
                             </constraints>
@@ -29,7 +29,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02/10/16 Вск 23:28:17" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXE-eC-57I">
-                            <rect key="frame" x="8" y="90" width="335" height="11"/>
+                            <rect key="frame" x="8" y="133" width="335" height="11"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="11" id="Rvn-91-hiN"/>
                             </constraints>
@@ -38,28 +38,28 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWe-0q-KjG">
-                            <rect key="frame" x="16" y="33" width="319" height="49"/>
+                            <rect key="frame" x="8" y="25" width="335" height="108"/>
                             <string key="text">Продолжаем загнивать.Если ты решил начать HRT:
 1. Сдай анализы. ЛГ, ФСГ, тестостерон общий, пролактин, АЛТ, АСТ, ТТГ, ОАК - необходимый минимум.
 2. Препаратов есть 2 вида - инъекционные (омнадрен, сустанон…</string>
-                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="K9p-Ls-3Ln" secondAttribute="trailing" constant="16" id="0Fy-nh-ZMw"/>
-                        <constraint firstItem="K9p-Ls-3Ln" firstAttribute="leading" secondItem="IEU-LT-xVv" secondAttribute="leading" constant="16" id="579-hi-Eju"/>
-                        <constraint firstItem="sWe-0q-KjG" firstAttribute="top" secondItem="K9p-Ls-3Ln" secondAttribute="bottom" constant="4" id="9hO-9g-UwI"/>
+                        <constraint firstAttribute="trailing" secondItem="K9p-Ls-3Ln" secondAttribute="trailing" constant="8" id="0Fy-nh-ZMw"/>
+                        <constraint firstItem="K9p-Ls-3Ln" firstAttribute="leading" secondItem="IEU-LT-xVv" secondAttribute="leading" constant="8" id="579-hi-Eju"/>
+                        <constraint firstItem="sWe-0q-KjG" firstAttribute="top" secondItem="IEU-LT-xVv" secondAttribute="top" constant="25" id="95q-Mj-g2q"/>
                         <constraint firstAttribute="trailing" secondItem="ZXE-eC-57I" secondAttribute="trailing" constant="8" id="BTE-jG-RZD"/>
-                        <constraint firstAttribute="height" constant="105" id="DUV-en-arK"/>
-                        <constraint firstAttribute="bottom" secondItem="ZXE-eC-57I" secondAttribute="bottom" constant="4" id="LGS-O0-AL5"/>
-                        <constraint firstItem="sWe-0q-KjG" firstAttribute="leading" secondItem="IEU-LT-xVv" secondAttribute="leading" constant="16" id="TZ0-Yh-Fw6"/>
+                        <constraint firstAttribute="height" constant="150" id="DUV-en-arK"/>
+                        <constraint firstAttribute="bottom" secondItem="ZXE-eC-57I" secondAttribute="bottom" constant="6" id="LGS-O0-AL5"/>
+                        <constraint firstItem="sWe-0q-KjG" firstAttribute="leading" secondItem="IEU-LT-xVv" secondAttribute="leading" constant="8" id="TZ0-Yh-Fw6"/>
                         <constraint firstItem="ZXE-eC-57I" firstAttribute="leading" secondItem="IEU-LT-xVv" secondAttribute="leading" constant="8" id="ec9-Rd-GHx"/>
-                        <constraint firstItem="ZXE-eC-57I" firstAttribute="top" relation="greaterThanOrEqual" secondItem="sWe-0q-KjG" secondAttribute="bottom" constant="8" id="fe7-QX-tuE"/>
-                        <constraint firstItem="K9p-Ls-3Ln" firstAttribute="top" secondItem="IEU-LT-xVv" secondAttribute="top" constant="12" id="l7j-Ws-ZuL"/>
-                        <constraint firstAttribute="trailing" secondItem="sWe-0q-KjG" secondAttribute="trailing" constant="16" id="uUf-GL-Poa"/>
+                        <constraint firstItem="ZXE-eC-57I" firstAttribute="top" secondItem="sWe-0q-KjG" secondAttribute="bottom" id="fe7-QX-tuE"/>
+                        <constraint firstItem="K9p-Ls-3Ln" firstAttribute="top" secondItem="IEU-LT-xVv" secondAttribute="top" constant="8" id="l7j-Ws-ZuL"/>
+                        <constraint firstAttribute="trailing" secondItem="sWe-0q-KjG" secondAttribute="trailing" constant="8" id="uUf-GL-Poa"/>
                     </constraints>
                 </view>
             </subviews>
@@ -73,7 +73,8 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="commentLabel" destination="sWe-0q-KjG" id="1pa-la-Veo"/>
-                <outlet property="dateLabel" destination="ZXE-eC-57I" id="gNe-Qo-aLo"/>
+                <outlet property="commentLabelTopConstraint" destination="95q-Mj-g2q" id="rLo-Jd-Dvb"/>
+                <outlet property="postsCountLabel" destination="ZXE-eC-57I" id="gNe-Qo-aLo"/>
                 <outlet property="subjectLabel" destination="K9p-Ls-3Ln" id="Gqf-FB-vxy"/>
                 <outlet property="threadView" destination="IEU-LT-xVv" id="VGp-7m-6e9"/>
             </connections>

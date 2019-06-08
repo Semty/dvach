@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 private extension CGFloat {
-    static let tableViewContentInset: CGFloat = 12
+    static let tableViewContentInset: CGFloat = 16
     static let threadWithImageCellHeight: CGFloat = 185
-    static let threadWithoutImageCellHeight: CGFloat = 125
+    static let threadWithoutImageCellHeight: CGFloat = 170
 }
 
 protocol BoardWithThreadsView: AnyObject {
