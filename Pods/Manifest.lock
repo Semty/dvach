@@ -29,7 +29,7 @@ PODS:
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FLAnimatedImage (1.0.12)
+  - FLAnimatedImage (1.0.14)
   - GoogleAppMeasurement (6.0.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -73,6 +73,7 @@ DEPENDENCIES:
   - Alamofire
   - Firebase/Core
   - Firebase/Database
+  - FLAnimatedImage (from `https://github.com/Flipboard/FLAnimatedImage.git`, tag `1.0.14`)
   - Kingfisher (= 4.10.0)
   - Nuke (~> 7.6)
   - Nuke-FLAnimatedImage-Plugin
@@ -89,7 +90,6 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseDatabase
     - FirebaseInstanceID
-    - FLAnimatedImage
     - GoogleAppMeasurement
     - GoogleUtilities
     - Kingfisher
@@ -101,6 +101,16 @@ SPEC REPOS:
     - SnapKit
     - SwiftyJSON
 
+EXTERNAL SOURCES:
+  FLAnimatedImage:
+    :git: https://github.com/Flipboard/FLAnimatedImage.git
+    :tag: 1.0.14
+
+CHECKOUT OPTIONS:
+  FLAnimatedImage:
+    :git: https://github.com/Flipboard/FLAnimatedImage.git
+    :tag: 1.0.14
+
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Firebase: 8d77bb33624ae9b62d745d82ec023de5f70f7e4f
@@ -109,7 +119,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 66bdef3b310a026880e2a5bc8aa586ab62ce4543
   FirebaseDatabase: f48e067716864be2b855cf716b927ef375d6cfa0
   FirebaseInstanceID: 27bed93a59b6685f5c3e0c028a878a764fd75c33
-  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FLAnimatedImage: 58084d75cec819869a5ee8c76463df798dbaa906
   GoogleAppMeasurement: 51d8d9ea48f0ca44484d29cfbdef976fbd4fc336
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
@@ -121,6 +131,6 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 77b110d7cf91fa25f1f121c44c4e7b6e06ea3b6f
+PODFILE CHECKSUM: ca61f04e3b35ab1c5403bf2dca7578e63e50afbb
 
 COCOAPODS: 1.7.1
