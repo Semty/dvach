@@ -73,7 +73,7 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, PressSt
         subjectLabelValueWillBeChanged(with: model.subjectTitle)
         subjectLabel.text = model.subjectTitle
         commentLabel.text = model.commentTitle
-        postsCountLabel.text = model.dateTitle
+        postsCountLabel.text = model.postsCountTitle
         threadImageView.loadImage(url: model.threadImageThumbnail)
     }
 }
