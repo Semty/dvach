@@ -18,18 +18,20 @@ final class ThreadsViewModelFactory {
         threadViewModels = threads.compactMap { [weak self] thread in
             guard let `self` = self else { return nil}
             
+            let postsCountTitle = "\(thread.postsCount) \(thread.postsCount.rightWordForPostsCount())"
+            
             if let thumbnailPath = self.getThreadThumbnail(thread) {
                 let threadWithImageViewModel =
                     ThreadWithImageView.Model(subjectTitle: thread.subject,
                                               commentTitle: thread.comment,
-                                              dateTitle: thread.lastHit.convertTimestampToStringDate(),
+                                              postsCountTitle: postsCountTitle,
                                               threadImageThumbnail: thumbnailPath)
                 return .withImage(threadWithImageViewModel)
             } else {
                 let threadWithoutImageViewModel =
                     ThreadWithoutImageView.Model(subjectTitle: thread.subject,
                                                  commentTitle: thread.comment,
-                                                 dateTitle: thread.lastHit.convertTimestampToStringDate())
+                                                 postsCountTitle: postsCountTitle)
                 return .withoutImage(threadWithoutImageViewModel)
             }
         }

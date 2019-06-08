@@ -22,4 +22,17 @@ extension Int {
         let date = Date(timeIntervalSince1970: TimeInterval(self))
         return GlobalUtils.dateFormatter.string(from: date)
     }
+    
+    func rightWordForPostsCount() -> String {
+        let lastNumber = self % 100
+        
+        switch lastNumber {
+        case 1,21,31,41,51,61,71,81,91:
+            return "пост"
+        case 2,3,4,22,23,24,32,33,34,42,43,44,52,53,54,62,63,64,72,73,74,82,83,84,92,93,94:
+            return "поста"
+        default:
+            return "постов"
+        }
+    }
 }

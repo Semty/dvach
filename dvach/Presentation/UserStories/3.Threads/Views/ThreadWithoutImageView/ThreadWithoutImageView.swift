@@ -19,14 +19,17 @@ final class ThreadWithoutImageView: UIView, ConfigurableView, ReusableView, Pres
     struct Model {
         let subjectTitle: String
         let commentTitle: String
-        let dateTitle: String
+        let postsCountTitle: String
     }
     
     // Outlets
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var postsCountLabel: UILabel!
     @IBOutlet weak var threadView: UIView!
+    
+    // Constraints
+    @IBOutlet weak var commentLabelTopConstraint: NSLayoutConstraint!
     
     // Layers
     private var viewShadowLayer: CAShapeLayer!
@@ -37,8 +40,8 @@ final class ThreadWithoutImageView: UIView, ConfigurableView, ReusableView, Pres
         super.awakeFromNib()
         enablePressStateAnimation()
         subjectLabel.textColor = .n1Gray
-        commentLabel.textColor = .n2Gray
-        dateLabel.textColor = .n5LightGray
+        commentLabel.textColor = .n1Gray
+        postsCountLabel.textColor = .n7Blue
         
         threadView.layer.cornerRadius = 12
     }
@@ -57,9 +60,24 @@ final class ThreadWithoutImageView: UIView, ConfigurableView, ReusableView, Pres
     // MARK: - ConfigurableView
     
     func configure(with model: ThreadWithoutImageView.Model) {
+        subjectLabelValueWillBeChanged(with: model.subjectTitle)
         subjectLabel.text = model.subjectTitle
         commentLabel.text = model.commentTitle
-        dateLabel.text = model.dateTitle
+        postsCountLabel.text = model.postsCountTitle
     }
 
+}
+
+// MARK: - Constraints Configuration
+
+extension ThreadWithoutImageView {
+    fileprivate func subjectLabelValueWillBeChanged(with value: String) {
+        if value == "" {
+            subjectLabel.isHidden = true
+            commentLabelTopConstraint.constant = 8.0
+        } else {
+            subjectLabel.isHidden = false
+            commentLabelTopConstraint.constant = 25.0
+        }
+    }
 }
