@@ -17,6 +17,7 @@ target 'dvach' do
    pod 'Nuke', '~> 7.6'
    pod 'Nuke-FLAnimatedImage-Plugin'
    pod 'FLAnimatedImage', :git => 'https://github.com/Flipboard/FLAnimatedImage.git', :tag => "1.0.14"
+   pod 'Nantes'
    
   target 'dvachTests' do
     inherit! :search_paths
