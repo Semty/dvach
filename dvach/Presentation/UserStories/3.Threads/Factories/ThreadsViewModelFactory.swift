@@ -19,18 +19,19 @@ final class ThreadsViewModelFactory {
             guard let `self` = self else { return nil}
             
             let postsCountTitle = "\(thread.postsCount) \(thread.postsCount.rightWordForPostsCount())"
+            let comment = TextStripper.fullClean(text: thread.comment)
             
             if let thumbnailPath = self.getThreadThumbnail(thread) {
                 let threadWithImageViewModel =
                     ThreadWithImageView.Model(subjectTitle: thread.subject,
-                                              commentTitle: thread.comment,
+                                              commentTitle: comment,
                                               postsCountTitle: postsCountTitle,
                                               threadImageThumbnail: thumbnailPath)
                 return .withImage(threadWithImageViewModel)
             } else {
                 let threadWithoutImageViewModel =
                     ThreadWithoutImageView.Model(subjectTitle: thread.subject,
-                                                 commentTitle: thread.comment,
+                                                 commentTitle: comment,
                                                  postsCountTitle: postsCountTitle)
                 return .withoutImage(threadWithoutImageViewModel)
             }

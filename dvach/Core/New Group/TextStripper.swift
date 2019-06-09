@@ -53,6 +53,15 @@ class TextStripper {
         }
     }
     
+    static func removeAllDoubleLineBreaks(in text: String) -> String {
+        var text = text
+        text = text.trimmingCharacters(in: .newlines)
+        while let rangeToReplace = text.range(of: "\n\n") {
+            text.replaceSubrange(rangeToReplace, with: "\n")
+        }
+        return text
+    }
+    
     static func finishHtmlToNormalString(in text: String) -> String {
         return text
             .replacingOccurrences(of: "&gt;", with: ">")
@@ -74,11 +83,12 @@ class TextStripper {
     
     static func fullClean(text: String) -> String {
         var newText = TextStripper.removeAllCSSTags(in: text)
+        newText = TextStripper.htmlToNormal(in: newText)
         newText = TextStripper.removeAllHTMLTags(in: newText)
         newText = TextStripper.ampToNormal(in: newText)
-        newText = TextStripper.htmlToNormal(in: newText)
         newText = TextStripper.finishHtmlToNormalString(in: newText)
         newText = TextStripper.clean(text: newText)
+        newText = TextStripper.removeAllDoubleLineBreaks(in: newText)
         return newText
     }
 }
