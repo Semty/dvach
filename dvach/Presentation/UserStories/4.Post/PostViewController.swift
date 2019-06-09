@@ -28,7 +28,6 @@ final class PostViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PostCommentCell.self)
-        tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none

@@ -9,21 +9,21 @@
 import Foundation
 
 protocol IAppSettingsStorage: class {
-    var lastUpdatedStorageDate: TimeInterval { get set }
+    var lastUpdatedConfigDate: TimeInterval { get set }
 }
 
 private extension String {
-    static let lastUpdatedStorageDateKey = "lastUpdatedStorageDateKey"
+    static let lastUpdatedConfigDateKey = "lastUpdatedConfigDate"
 }
 
 final class AppSettingsStorage: IAppSettingsStorage {
     
-    var lastUpdatedStorageDate: TimeInterval {
+    var lastUpdatedConfigDate: TimeInterval {
         get {
-            return self[.lastUpdatedStorageDateKey] as? TimeInterval ?? 0
+            return self[.lastUpdatedConfigDateKey] as? TimeInterval ?? 0
         }
         set {
-            self[.lastUpdatedStorageDateKey] = newValue
+            self[.lastUpdatedConfigDateKey] = newValue
         }
     }
     

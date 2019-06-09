@@ -36,7 +36,7 @@ extension UIColor {
     static let n1GrayAlpha60 = UIColor.n1Gray.withAlphaComponent(0.6)
     static let n2Gray = UIColor(hexString: "#8E8E93")
     static let n3Purple = UIColor(hexString: "#645394")
-    static let n4Red = UIColor(hexString: "#C52332")
+    static let n4Red = UIColor(hexString: "#C74854")
     static let n5LightGray = UIColor(hexString: "#DEDEDE")
     static let n6Green = UIColor(hexString: "#417505")
     static let n7Blue = UIColor(hexString: "#4A90E2")

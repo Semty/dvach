@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PostCommentButtonsView" customModule="dvach" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="760" height="128"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKi-dF-F39">
+                    <rect key="frame" x="16" y="0.0" width="728" height="128"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BeF-aY-WBT" customClass="VerticalOvalButton" customModule="dvach" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="128"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="QNf-Mt-1fs"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="mda-ly-aos">
+                            <rect key="frame" x="40" y="0.0" width="608" height="128"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tn8-Hn-eOs" customClass="VerticalOvalButton" customModule="dvach" customModuleProvider="target">
+                            <rect key="frame" x="648" y="0.0" width="40" height="128"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="Fgx-Am-ES1"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EFc-j2-4YH" customClass="VerticalOvalButton" customModule="dvach" customModuleProvider="target">
+                            <rect key="frame" x="688" y="0.0" width="40" height="128"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="4Cp-OX-i9t"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="qKi-dF-F39" secondAttribute="bottom" id="2PV-WD-JqA"/>
+                <constraint firstItem="qKi-dF-F39" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MYw-mg-eiu"/>
+                <constraint firstItem="qKi-dF-F39" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="XDX-Ql-2Nc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qKi-dF-F39" secondAttribute="trailing" constant="16" id="kY0-P4-BDb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="answerButton" destination="BeF-aY-WBT" id="dmk-ZS-zlI"/>
+                <outlet property="answersButton" destination="tn8-Hn-eOs" id="Pu6-te-P4K"/>
+                <outlet property="moreButton" destination="EFc-j2-4YH" id="NDv-Ap-Xed"/>
+            </connections>
+            <point key="canvasLocation" x="388.40579710144931" y="409.82142857142856"/>
+        </view>
+    </objects>
+</document>

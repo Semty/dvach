@@ -20,6 +20,9 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
         let imageURLs: [String]
     }
     
+    // Dependencies
+    private let componentsFactory = Locator.shared.componentsFactory()
+    
     // UI
     private lazy var stackView = UIStackView(axis: .vertical)
     private lazy var headerView = PostHeaderView.fromNib()
@@ -29,24 +32,26 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
                                                         height: 80,
                                                         itemSpacing: .inset8,
                                                         insets: .defaultInsets)
-        
-        return HorizontalList<GalleryCell>(configuration: configuration)
+        let list = HorizontalList<GalleryCell>(configuration: configuration)
+        list.snp.makeConstraints { $0.height.equalTo(80) }
+        return list
     }()
     
     // Дата
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .n2Gray
-        label.font = UIFont.systemFont(ofSize: 10)
-        label.snp.makeConstraints { $0.height.equalTo(30) }
+        label.font = .systemFont(ofSize: 10)
         return label
     }()
+    
     private lazy var dateView: UIView = {
         let view = UIView()
         view.addSubview(dateLabel)
+        view.snp.makeConstraints { $0.height.equalTo(16) }
         dateLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(CGFloat.inset16)
-            $0.top.bottom.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(CGFloat.inset16)
+            $0.top.bottom.equalToSuperview()
         }
         return view
     }()
@@ -55,20 +60,38 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
     private lazy var text: NantesLabel = {
         let label = NantesLabel()
         label.textColor = .n1Gray
-        label.font = UIFont(name: "AvenirNext-Medium", size: 14.0)
+        label.font = .systemFont(ofSize: 14)
         label.numberOfLines = 0
         label.delegate = self
         return label
     }()
+    
     private lazy var textView: UIView = {
         let view = UIView()
         view.addSubview(text)
         text.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(CGFloat.inset16)
-            $0.top.bottom.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(CGFloat.inset16)
+            $0.top.bottom.equalToSuperview()
         }
         return view
     }()
+    
+    // Кнопки
+    private var buttonsView: PostCommentButtonsView = {
+        let view = PostCommentButtonsView.fromNib()
+        let answerModel = VerticalOvalButton.Model(color: .n1Gray, icon: UIImage(named: "answer"), text: nil)
+        let answersModel = VerticalOvalButton.Model(color: .n4Red, icon: UIImage(named: "answers"), text: "10")
+        let moreModel = VerticalOvalButton.Model(color: .n9LightGreen, icon: UIImage(named: "more"), text: nil)
+        let model = PostCommentButtonsView.Model(answerButtonModel: answerModel,
+                                                 answersButtonModel: answersModel,
+                                                 moreButtonModel: moreModel)
+        view.configure(with: model)
+        view.snp.makeConstraints { $0.height.equalTo(50) }
+        
+        return view
+    }()
+    
+    // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -90,10 +113,11 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
         stackView.addArrangedSubview(gallery)
         stackView.addArrangedSubview(dateView)
         stackView.addArrangedSubview(textView)
-    }
-    
-    private func setupGallery() {
+        stackView.addArrangedSubview(componentsFactory.createEmptyView(height: .inset8))
+        stackView.addArrangedSubview(buttonsView)
+        stackView.addArrangedSubview(componentsFactory.createEmptyView(height: .inset8))
         
+        buttonsView.delegate = self
     }
     
     // MARK: - ConfigurableView
@@ -116,7 +140,25 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
 // MARK: - NantesLabelDelegate
 
 extension PostCommentView: NantesLabelDelegate {
+    
     func attributedLabel(_ label: NantesLabel, didSelectLink link: URL) {
         print(link.absoluteString)
+    }
+}
+
+// MARK: - PostCommentButtonsViewDelegate
+
+extension PostCommentView: PostCommentButtonsViewDelegate {
+    
+    func answerButtonDidTap() {
+        print("answerButtonDidTap")
+    }
+    
+    func answersButtonDidTap() {
+        print("answersButtonDidTap")
+    }
+    
+    func moreButtonDidTap() {
+        print("moreButtonDidTap")
     }
 }

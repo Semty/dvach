@@ -60,6 +60,10 @@
 		4193B1CC22AAA34E00EE25FD /* PostHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1CB22AAA34E00EE25FD /* PostHeaderView.xib */; };
 		4193B1CE22AAC13900EE25FD /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1CD22AAC13900EE25FD /* GalleryView.swift */; };
 		4193B1D022AAC8E500EE25FD /* Extension+UiImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1CF22AAC8E500EE25FD /* Extension+UiImageView.swift */; };
+		4193B1D222AD898C00EE25FD /* PostCommentButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1D122AD898C00EE25FD /* PostCommentButtonsView.swift */; };
+		4193B1D422AD8BBE00EE25FD /* PostCommentButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1D322AD8BBE00EE25FD /* PostCommentButtonsView.xib */; };
+		4193B1D622AD8C4C00EE25FD /* VerticalOvalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1D522AD8C4C00EE25FD /* VerticalOvalButton.swift */; };
+		4193B1D822AD8C6800EE25FD /* VerticalOvalButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1D722AD8C6800EE25FD /* VerticalOvalButton.xib */; };
 		41B3E2D522A31298000B3F51 /* CategoriesViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */; };
 		41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D2229EFE720028EBFB /* AppDelegate.swift */; };
 		41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */; };
@@ -198,6 +202,10 @@
 		4193B1CB22AAA34E00EE25FD /* PostHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostHeaderView.xib; sourceTree = "<group>"; };
 		4193B1CD22AAC13900EE25FD /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		4193B1CF22AAC8E500EE25FD /* Extension+UiImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UiImageView.swift"; sourceTree = "<group>"; };
+		4193B1D122AD898C00EE25FD /* PostCommentButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentButtonsView.swift; sourceTree = "<group>"; };
+		4193B1D322AD8BBE00EE25FD /* PostCommentButtonsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCommentButtonsView.xib; sourceTree = "<group>"; };
+		4193B1D522AD8C4C00EE25FD /* VerticalOvalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalOvalButton.swift; sourceTree = "<group>"; };
+		4193B1D722AD8C6800EE25FD /* VerticalOvalButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalOvalButton.xib; sourceTree = "<group>"; };
 		41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModelFactory.swift; sourceTree = "<group>"; };
 		41BEE6CF229EFE720028EBFB /* dvach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dvach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BEE6D2229EFE720028EBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -482,6 +490,10 @@
 				4193B1C922AAA33100EE25FD /* PostHeaderView.swift */,
 				4193B1CB22AAA34E00EE25FD /* PostHeaderView.xib */,
 				4193B1CD22AAC13900EE25FD /* GalleryView.swift */,
+				4193B1D122AD898C00EE25FD /* PostCommentButtonsView.swift */,
+				4193B1D322AD8BBE00EE25FD /* PostCommentButtonsView.xib */,
+				4193B1D522AD8C4C00EE25FD /* VerticalOvalButton.swift */,
+				4193B1D722AD8C6800EE25FD /* VerticalOvalButton.xib */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -697,7 +709,6 @@
 		41BEE748229F04730028EBFB /* SharedElements */ = {
 			isa = PBXGroup;
 			children = (
-				4190800222A6E9CD003309D9 /* IconView */,
 				411902B522A6BDFB008231AC /* Cells */,
 				41BEE749229F04730028EBFB /* Gestures */,
 				41BEE74B229F04730028EBFB /* Containers */,
@@ -778,6 +789,7 @@
 		41BEE758229F04730028EBFB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4190800222A6E9CD003309D9 /* IconView */,
 				41BEE759229F04730028EBFB /* CloseButton.swift */,
 			);
 			path = Views;
@@ -969,6 +981,7 @@
 				D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */,
 				4193B1CC22AAA34E00EE25FD /* PostHeaderView.xib in Resources */,
 				4190800622A6EAF1003309D9 /* IconView.xib in Resources */,
+				4193B1D822AD8C6800EE25FD /* VerticalOvalButton.xib in Resources */,
 				4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */,
 				D5A69D5022A2FDA800C46E24 /* ThreadWithoutImageView.xib in Resources */,
 				4190800122A6E66A003309D9 /* BoardView.xib in Resources */,
@@ -979,6 +992,7 @@
 				4117534A22A2E80F008EBD2A /* BlockWithTitle.xib in Resources */,
 				4117535122A2F23B008EBD2A /* CategoriesCardView.xib in Resources */,
 				4190800922A6F47B003309D9 /* Assets.xcassets in Resources */,
+				4193B1D422AD8BBE00EE25FD /* PostCommentButtonsView.xib in Resources */,
 				41BEE761229F04730028EBFB /* StackViewContainer.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1059,6 +1073,7 @@
 				41907FFA22A6E222003309D9 /* BoardsListViewController.swift in Sources */,
 				414408A922A052A800E4E53E /* Categories.swift in Sources */,
 				41BEE728229F043C0028EBFB /* Extension+UITableView.swift in Sources */,
+				4193B1D222AD898C00EE25FD /* PostCommentButtonsView.swift in Sources */,
 				4193B1D022AAC8E500EE25FD /* Extension+UiImageView.swift in Sources */,
 				41BEE763229F04730028EBFB /* ImbaTableView.swift in Sources */,
 				411902CA22A6C642008231AC /* HighlightingGestureRecognizer.swift in Sources */,
@@ -1146,6 +1161,7 @@
 				41BEE720229F043C0028EBFB /* Extension+UIFont.swift in Sources */,
 				4193B1BF22AA9BE300EE25FD /* PostRouter.swift in Sources */,
 				D5B22BC022A165B7001EE4F8 /* Thread.swift in Sources */,
+				4193B1D622AD8C4C00EE25FD /* VerticalOvalButton.swift in Sources */,
 				4193B1C122AA9BF600EE25FD /* PostAssembly.swift in Sources */,
 				41BEE762229F04730028EBFB /* StackViewContainer.swift in Sources */,
 				D5B22BC222A187A0001EE4F8 /* BoardWithBumpSortingThreadsRequest.swift in Sources */,
@@ -1315,7 +1331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWGY2HKNAY;
+				DEVELOPMENT_TEAM = ZTRS68H53M;
 				INFOPLIST_FILE = dvach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1336,7 +1352,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWGY2HKNAY;
+				DEVELOPMENT_TEAM = ZTRS68H53M;
 				INFOPLIST_FILE = dvach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

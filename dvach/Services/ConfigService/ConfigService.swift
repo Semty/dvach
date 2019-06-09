@@ -9,6 +9,10 @@
 import Foundation
 import SwiftyJSON
 
+private extension TimeInterval {
+    static let invalidationTime: TimeInterval = 60 * 60 * 24 // day
+}
+
 protocol IConfigService {
     
     /// Обновляет конфиг
@@ -22,11 +26,13 @@ final class ConfigService: IConfigService {
     
     // Dependencies
     private let firebaseService: IFirebaseService
+    private let appSettingsStorage: IAppSettingsStorage
     
     // MARK: - Initialization
     
-    init(firebaseService: IFirebaseService) {
+    init(firebaseService: IFirebaseService, appSettingsStorage: IAppSettingsStorage) {
         self.firebaseService = firebaseService
+        self.appSettingsStorage = appSettingsStorage
     }
     
     // MARK: - Private
@@ -51,13 +57,19 @@ final class ConfigService: IConfigService {
     // MARK: - IConfigService
     
     func updateConfig(completion: @escaping () -> Void) {
+        // Обновляем конфиг только раз в день
+        guard Date().timeIntervalSince1970 - appSettingsStorage.lastUpdatedConfigDate > .invalidationTime else {
+            completion()
+            return
+        }
+        
         firebaseService.observeRemoteDatabase { [weak self] json, error in
             guard let json = json else {
                 print(error ?? "ConfigService")
                 completion()
                 return
             }
-            
+            self?.appSettingsStorage.lastUpdatedConfigDate = Date().timeIntervalSince1970
             self?.saveConfigToLocalFile(json: json)
             completion()
         }

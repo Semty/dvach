@@ -45,6 +45,7 @@ final class Locator {
     
     /// сервис для подгрузки и обновления конфига
     func configService() -> IConfigService {
-        return ConfigService(firebaseService: firebaseService())
+        return ConfigService(firebaseService: firebaseService(),
+                             appSettingsStorage: appSettingsStorage())
     }
 }
