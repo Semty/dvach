@@ -77,7 +77,7 @@ struct PostParse {
         removeHTMLTags(in: range)
         
         TextStripper.finishHtmlToNormal(in: attributedText.mutableString)
-        TextStripper.removeAllDoubleLineBreaks(in: attributedText.mutableString)
+        //TextStripper.removeAllDoubleLineBreaks(in: attributedText.mutableString)
     }
     
     // MARK: - Helpful Functions
