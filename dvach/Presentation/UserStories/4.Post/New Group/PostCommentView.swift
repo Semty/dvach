@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Nantes
 
 typealias PostCommentCell = TableViewContainerCellBase<PostCommentView>
 
@@ -15,7 +16,7 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
     struct Model {
         let headerModel: PostHeaderView.Model
         let date: String
-        let text: String
+        let text: NSAttributedString
         let imageURLs: [String]
     }
     
@@ -51,11 +52,12 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
     }()
     
     // Текст
-    private lazy var text: UILabel = {
-        let label = UILabel()
+    private lazy var text: NantesLabel = {
+        let label = NantesLabel()
         label.textColor = .n1Gray
-        label.font = UIFont.systemFont(ofSize: 11)
+        label.font = UIFont(name: "AvenirNext-Medium", size: 14.0)
         label.numberOfLines = 0
+        label.delegate = self
         return label
     }()
     private lazy var textView: UIView = {
@@ -101,12 +103,20 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
     func configure(with model: PostCommentView.Model) {
         headerView.configure(with: model.headerModel)
         dateLabel.text = model.date
-        text.text = model.text
+        text.attributedText = model.text
         
         gallery.isHidden = model.imageURLs.isEmpty
         if !model.imageURLs.isEmpty {
             let galleryModels = model.imageURLs.map { GalleryView.Model(imageURL: $0) }
             gallery.update(dataSource: galleryModels)
         }
+    }
+}
+
+// MARK: - NantesLabelDelegate
+
+extension PostCommentView: NantesLabelDelegate {
+    func attributedLabel(_ label: NantesLabel, didSelectLink link: URL) {
+        print(link.absoluteString)
     }
 }

@@ -16,4 +16,9 @@ public extension UIFont {
     static func systemWith(size: FontSize) -> UIFont? {
         return UIFont(name: "systemFont", size: size)
     }
+    
+    static let commentRegular = UIFont(name: "AvenirNext-Medium", size: 15.0)!
+    static let commentEm = UIFont(name: "AvenirNext-MediumItalic", size: 15.0)!
+    static let commentStrong = UIFont(name: "AvenirNext-DemiBold", size: 16.0)!
+    static let commentEmStrong = UIFont(name: "AvenirNext-DemiBoldItalic", size: 16.0)!
 }

@@ -60,7 +60,7 @@ final class PostViewPresenter {
         let imageURLs = post.files.map { $0.path }
         return PostCommentView.Model(headerModel: headerViewModel,
                                      date: post.date,
-                                     text: post.comment,
+                                     text: PostParse(text: post.comment).attributedText,
                                      imageURLs: imageURLs)
     }
 }
