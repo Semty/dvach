@@ -66,6 +66,7 @@
 		4193B1D822AD8C6800EE25FD /* VerticalOvalButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1D722AD8C6800EE25FD /* VerticalOvalButton.xib */; };
 		4193B1DB22AEF94200EE25FD /* SkeletonPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1DA22AEF94200EE25FD /* SkeletonPostView.swift */; };
 		4193B1DD22AEF96600EE25FD /* SkeletonPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1DC22AEF96600EE25FD /* SkeletonPostView.xib */; };
+		4193B1E322AF04B600EE25FD /* FavouriteBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1E222AF04B600EE25FD /* FavouriteBoard.swift */; };
 		41B3E2D522A31298000B3F51 /* CategoriesViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */; };
 		41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D2229EFE720028EBFB /* AppDelegate.swift */; };
 		41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */; };
@@ -210,6 +211,7 @@
 		4193B1D722AD8C6800EE25FD /* VerticalOvalButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalOvalButton.xib; sourceTree = "<group>"; };
 		4193B1DA22AEF94200EE25FD /* SkeletonPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonPostView.swift; sourceTree = "<group>"; };
 		4193B1DC22AEF96600EE25FD /* SkeletonPostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkeletonPostView.xib; sourceTree = "<group>"; };
+		4193B1E222AF04B600EE25FD /* FavouriteBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteBoard.swift; sourceTree = "<group>"; };
 		41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModelFactory.swift; sourceTree = "<group>"; };
 		41BEE6CF229EFE720028EBFB /* dvach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dvach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BEE6D2229EFE720028EBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -417,14 +419,10 @@
 		414408A122A04B8A00E4E53E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				414408A222A04BA200E4E53E /* Board.swift */,
-				D5B22BC322A18F31001EE4F8 /* BoardAdditionalInfo.swift */,
-				414408A622A050F600E4E53E /* Category.swift */,
-				414408A822A052A800E4E53E /* Categories.swift */,
-				D5B22BBF22A165B7001EE4F8 /* Thread.swift */,
-				D5B22BBB22A16597001EE4F8 /* ThreadAdditionalInfo.swift */,
-				D5B22BBD22A165AF001EE4F8 /* File.swift */,
-				D5E4733D22A937970055AB92 /* Post.swift */,
+				4193B1DE22AF044600EE25FD /* Board */,
+				4193B1DF22AF047200EE25FD /* Category */,
+				4193B1E022AF048300EE25FD /* Thread */,
+				4193B1E122AF049400EE25FD /* Post */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -512,6 +510,43 @@
 			path = Skeleton;
 			sourceTree = "<group>";
 		};
+		4193B1DE22AF044600EE25FD /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				414408A222A04BA200E4E53E /* Board.swift */,
+				D5B22BC322A18F31001EE4F8 /* BoardAdditionalInfo.swift */,
+				4193B1E222AF04B600EE25FD /* FavouriteBoard.swift */,
+			);
+			path = Board;
+			sourceTree = "<group>";
+		};
+		4193B1DF22AF047200EE25FD /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				414408A622A050F600E4E53E /* Category.swift */,
+				414408A822A052A800E4E53E /* Categories.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		4193B1E022AF048300EE25FD /* Thread */ = {
+			isa = PBXGroup;
+			children = (
+				D5B22BBF22A165B7001EE4F8 /* Thread.swift */,
+				D5B22BBB22A16597001EE4F8 /* ThreadAdditionalInfo.swift */,
+			);
+			path = Thread;
+			sourceTree = "<group>";
+		};
+		4193B1E122AF049400EE25FD /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				D5B22BBD22A165AF001EE4F8 /* File.swift */,
+				D5E4733D22A937970055AB92 /* Post.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
 		41B3E2D322A3127C000B3F51 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,8 +606,8 @@
 		41BEE6F5229F043C0028EBFB /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				D58ADB9F22AC271B00A8334B /* New Group */,
 				41BEE738229F04550028EBFB /* Locator.swift */,
+				D58ADB9F22AC271B00A8334B /* TextParser */,
 				411902BB22A6BE3D008231AC /* Shared models */,
 				41BEE6F6229F043C0028EBFB /* Utils */,
 				41BEE6F8229F043C0028EBFB /* Storage */,
@@ -852,13 +887,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		D58ADB9F22AC271B00A8334B /* New Group */ = {
+		D58ADB9F22AC271B00A8334B /* TextParser */ = {
 			isa = PBXGroup;
 			children = (
 				D5750AB922AEC57E0058E99D /* PostParser.swift */,
 				D5750AB522AEC5050058E99D /* DvachLinkModel.swift */,
 			);
-			path = "New Group";
+			path = TextParser;
 			sourceTree = "<group>";
 		};
 		D5A69D1D22A2E5DB00C46E24 /* 3.Threads */ = {
@@ -1124,6 +1159,7 @@
 				411902B922A6BE05008231AC /* ShadowCollectionViewCell.swift in Sources */,
 				411902CF22A6C6F2008231AC /* NonScrollableGestureRecognizer.swift in Sources */,
 				D5A69D4322A2E69700C46E24 /* BoardWithThreadsViewController.swift in Sources */,
+				4193B1E322AF04B600EE25FD /* FavouriteBoard.swift in Sources */,
 				41BEE737229F04450028EBFB /* TPKeyboardAvoidingSwift.swift in Sources */,
 				4190801322A86EE7003309D9 /* Config.swift in Sources */,
 				41BEE75B229F04730028EBFB /* IComponentsFactory.swift in Sources */,

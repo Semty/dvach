@@ -40,7 +40,7 @@ final class Locator {
     
     /// сервис 2ch
     func dvachService() -> IDvachService {
-        return DvachService(requestManager: requestManager())
+        return DvachService(requestManager: requestManager(), storage: storage())
     }
     
     /// сервис для подгрузки и обновления конфига

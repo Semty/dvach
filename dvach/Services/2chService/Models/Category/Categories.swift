@@ -10,6 +10,7 @@ import Foundation
 import SwiftyJSON
 
 struct Categories: JSONParsable {
+    
     let boards: [Board]
     
     // MARK: - JSONParsable

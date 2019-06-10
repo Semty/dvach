@@ -13,11 +13,13 @@ final class DvachService {
     
     // Dependencies
     private let requestManager: IRequestManager
+    private let storage: IStorage
     
     // MARK: - Initialization
     
-    init(requestManager: IRequestManager) {
+    init(requestManager: IRequestManager, storage: IStorage) {
         self.requestManager = requestManager
+        self.storage = storage
     }
 }
 
@@ -33,7 +35,7 @@ extension DvachService: IDvachService {
                 // TODO: тут будет кеширование
                 completion(.success(categories.boards))
             case .failure:
-                completion(.failure(NSError.defaultError(description: "Борды не загрузились. Вот так, в самом начале пути. Да, как всегда")))
+                completion(.failure(NSError.defaultError(description: "Борды не загрузились")))
             }
         }
     }
@@ -69,5 +71,18 @@ extension DvachService: IDvachService {
                 completion(.failure(NSError.defaultError(description: "Тред с постами не загрузился. Идем плакаться о ЕОТ в другое место (где есть интернет)")))
             }
         }
+    }
+    
+    func markBoardAsFavourite(_ board: Board) {
+        let favouriteBoard = FavouriteBoard(identifier: board.identifier,
+                                            category: board.category ?? .other,
+                                            name: board.name,
+                                            timestamp: Date().timeIntervalSince1970)
+        storage.save(objects: [favouriteBoard])
+    }
+    
+    var favouriteBoards: [FavouriteBoard] {
+        let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: true)
+        return storage.fetch(model: FavouriteBoard.self, predicate: nil, sortDescriptors: [sortDescriptor])
     }
 }
