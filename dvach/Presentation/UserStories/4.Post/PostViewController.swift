@@ -26,7 +26,6 @@ final class PostViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
-        tableView.delegate = self
         tableView.register(PostCommentCell.self)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
@@ -34,6 +33,8 @@ final class PostViewController: UIViewController {
         
         return tableView
     }()
+    
+    private lazy var skeleton = SkeletonPostView.fromNib()
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -57,6 +58,11 @@ final class PostViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        skeleton.update(state: .active)
+    }
+    
     // MARK: - Private
     
     private func setupUI() {
@@ -66,6 +72,10 @@ final class PostViewController: UIViewController {
         
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints { $0.top.trailing.equalToSuperview().inset(CGFloat.inset16) }
+        
+        view.addSubview(skeleton)
+        skeleton.snp.makeConstraints { $0.edges.equalToSuperview() }
+        
     }
 }
 
@@ -75,6 +85,8 @@ extension PostViewController: PostView {
     
     func updateTable() {
         tableView.reloadData()
+        skeleton.isHiddenFadeAnimated = true
+        skeleton.update(state: .nonactive)
     }
 }
 
@@ -97,15 +109,6 @@ extension PostViewController: UITableViewDataSource {
         }
 
         return cell
-    }
-}
-
-// MARK: - UITableViewDelegate
-
-extension PostViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        presenter.didSelectBoard(index: indexPath.row)
     }
 }
 

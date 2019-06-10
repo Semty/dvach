@@ -64,6 +64,8 @@
 		4193B1D422AD8BBE00EE25FD /* PostCommentButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1D322AD8BBE00EE25FD /* PostCommentButtonsView.xib */; };
 		4193B1D622AD8C4C00EE25FD /* VerticalOvalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1D522AD8C4C00EE25FD /* VerticalOvalButton.swift */; };
 		4193B1D822AD8C6800EE25FD /* VerticalOvalButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1D722AD8C6800EE25FD /* VerticalOvalButton.xib */; };
+		4193B1DB22AEF94200EE25FD /* SkeletonPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1DA22AEF94200EE25FD /* SkeletonPostView.swift */; };
+		4193B1DD22AEF96600EE25FD /* SkeletonPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1DC22AEF96600EE25FD /* SkeletonPostView.xib */; };
 		41B3E2D522A31298000B3F51 /* CategoriesViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */; };
 		41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D2229EFE720028EBFB /* AppDelegate.swift */; };
 		41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */; };
@@ -204,6 +206,8 @@
 		4193B1D322AD8BBE00EE25FD /* PostCommentButtonsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCommentButtonsView.xib; sourceTree = "<group>"; };
 		4193B1D522AD8C4C00EE25FD /* VerticalOvalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalOvalButton.swift; sourceTree = "<group>"; };
 		4193B1D722AD8C6800EE25FD /* VerticalOvalButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalOvalButton.xib; sourceTree = "<group>"; };
+		4193B1DA22AEF94200EE25FD /* SkeletonPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonPostView.swift; sourceTree = "<group>"; };
+		4193B1DC22AEF96600EE25FD /* SkeletonPostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkeletonPostView.xib; sourceTree = "<group>"; };
 		41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModelFactory.swift; sourceTree = "<group>"; };
 		41BEE6CF229EFE720028EBFB /* dvach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dvach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BEE6D2229EFE720028EBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -470,7 +474,7 @@
 		4193B1B922AA996D00EE25FD /* 4.Post */ = {
 			isa = PBXGroup;
 			children = (
-				4193B1C422AAA25300EE25FD /* New Group */,
+				4193B1C422AAA25300EE25FD /* Views */,
 				4193B1BA22AA998200EE25FD /* PostViewController.swift */,
 				4193B1BC22AA998D00EE25FD /* PostPresenter.swift */,
 				4193B1BE22AA9BE300EE25FD /* PostRouter.swift */,
@@ -479,9 +483,10 @@
 			path = 4.Post;
 			sourceTree = "<group>";
 		};
-		4193B1C422AAA25300EE25FD /* New Group */ = {
+		4193B1C422AAA25300EE25FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4193B1D922AEF91300EE25FD /* Skeleton */,
 				4193B1C522AAA29C00EE25FD /* PostCommentView.swift */,
 				4193B1C922AAA33100EE25FD /* PostHeaderView.swift */,
 				4193B1CB22AAA34E00EE25FD /* PostHeaderView.xib */,
@@ -491,7 +496,16 @@
 				4193B1D522AD8C4C00EE25FD /* VerticalOvalButton.swift */,
 				4193B1D722AD8C6800EE25FD /* VerticalOvalButton.xib */,
 			);
-			path = "New Group";
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4193B1D922AEF91300EE25FD /* Skeleton */ = {
+			isa = PBXGroup;
+			children = (
+				4193B1DA22AEF94200EE25FD /* SkeletonPostView.swift */,
+				4193B1DC22AEF96600EE25FD /* SkeletonPostView.xib */,
+			);
+			path = Skeleton;
 			sourceTree = "<group>";
 		};
 		41B3E2D322A3127C000B3F51 /* Factories */ = {
@@ -974,6 +988,7 @@
 				4190800D22A86872003309D9 /* GoogleService-Info.plist in Resources */,
 				D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */,
 				4193B1CC22AAA34E00EE25FD /* PostHeaderView.xib in Resources */,
+				4193B1DD22AEF96600EE25FD /* SkeletonPostView.xib in Resources */,
 				4190800622A6EAF1003309D9 /* IconView.xib in Resources */,
 				4193B1D822AD8C6800EE25FD /* VerticalOvalButton.xib in Resources */,
 				4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */,
@@ -1128,6 +1143,7 @@
 				41BEE731229F043C0028EBFB /* Extension+Int.swift in Sources */,
 				41BEE721229F043C0028EBFB /* Extension+UIViewController.swift in Sources */,
 				41907FF722A6CFC8003309D9 /* TCSSeparatorAvailable.swift in Sources */,
+				4193B1DB22AEF94200EE25FD /* SkeletonPostView.swift in Sources */,
 				41BEE73F229F04550028EBFB /* FireBaseService.swift in Sources */,
 				D5E4734022A941990055AB92 /* ThreadWithPostsRequest.swift in Sources */,
 				41BEE76F229F06970028EBFB /* ModelRequest.swift in Sources */,

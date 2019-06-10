@@ -10,6 +10,7 @@ import Foundation
 
 protocol IPostViewPresenter {
     var viewModels: [PostCommentView.Model] { get }
+    
     func viewDidLoad()
     func postCommentView(_ view: PostCommentView, didTapFile index: Int)
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
