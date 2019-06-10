@@ -12,7 +12,7 @@ import Nuke
 extension UIImageView {
     
     func loadImage(url: String) {
-        guard let url = URL(string: "https://2ch.hk\(url)") else {
+        guard let url = URL(string: "\(GlobalUtils.base2chPath)\(url)") else {
             image = nil
             return
         }

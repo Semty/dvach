@@ -63,11 +63,15 @@ final class PostViewPresenter {
     private func createViewModel(index: Int, post: Post) -> PostCommentView.Model {
         let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: index + 1)
         let imageURLs = post.files.map { $0.path }
+        let postParser = PostParser(text: post.comment)
+        
         return PostCommentView.Model(postNumber: post.num,
                                      headerModel: headerViewModel,
                                      date: post.date,
-                                     text: PostParse(text: post.comment).attributedText,
-                                     fileURLs: imageURLs)
+                                     text: postParser.attributedText,
+                                     fileURLs: imageURLs,
+                                     dvachLinkModels: postParser.dvachLinkModels,
+                                     repliedTo: postParser.repliedToPosts)
     }
 }
 

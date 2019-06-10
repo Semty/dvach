@@ -22,7 +22,7 @@ protocol BaseRequest {
 extension BaseRequest {
     
     var baseURL: String {
-        return "https://2ch.hk"
+        return GlobalUtils.base2chPath
     }
     
     var accessLevel: String {

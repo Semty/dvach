@@ -18,6 +18,16 @@ extension String {
         return prefix(1).uppercased() + self.lowercased().dropFirst()
     }
     
+    func substring(_ from: Int, to: Int) -> String {
+        let start = index(startIndex, offsetBy: from)
+        let end = index(startIndex, offsetBy: to)
+        return String(self[start ..< end])
+    }
+    
+    func substring(in range: NSRange) -> String {
+        return substring(range.location, to: range.location + range.length)
+    }
+    
     // MARK: - Text Parsing helpers
     
     var parsed2chPost: String {
