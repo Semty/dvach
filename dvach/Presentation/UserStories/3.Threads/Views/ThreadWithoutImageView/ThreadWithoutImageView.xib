@@ -24,7 +24,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="17" id="Knn-Yf-nCt"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -33,7 +33,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="11" id="Rvn-91-hiN"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="10"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -42,7 +42,7 @@
                             <string key="text">Продолжаем загнивать.Если ты решил начать HRT:
 1. Сдай анализы. ЛГ, ФСГ, тестостерон общий, пролактин, АЛТ, АСТ, ТТГ, ОАК - необходимый минимум.
 2. Препаратов есть 2 вида - инъекционные (омнадрен, сустанон…</string>
-                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>

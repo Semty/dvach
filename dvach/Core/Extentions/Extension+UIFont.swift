@@ -17,8 +17,26 @@ public extension UIFont {
         return UIFont(name: "systemFont", size: size)
     }
     
-    static let commentRegular = UIFont(name: "AvenirNext-Medium", size: 15.0)!
-    static let commentEm = UIFont(name: "AvenirNext-MediumItalic", size: 15.0)!
-    static let commentStrong = UIFont(name: "AvenirNext-DemiBold", size: 16.0)!
-    static let commentEmStrong = UIFont(name: "AvenirNext-DemiBoldItalic", size: 16.0)!
+    static let commentRegular = UIFont.systemFont(ofSize: 15.0, weight: .medium)
+    static let commentEm = UIFont.systemFont(ofSize: 15.0,
+                                             weight: .medium).with(.traitItalic)
+    static let commentStrong = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
+    static let commentEmStrong = UIFont.systemFont(ofSize: 16.0,
+                                                   weight: .semibold).with(.traitItalic)
+    
+    // MARK: - Private Functions
+    
+    private func with(_ traits: UIFontDescriptor.SymbolicTraits...) -> UIFont {
+        guard let descriptor = self.fontDescriptor.withSymbolicTraits(UIFontDescriptor.SymbolicTraits(traits).union(self.fontDescriptor.symbolicTraits)) else {
+            return self
+        }
+        return UIFont(descriptor: descriptor, size: 0)
+    }
+    
+    private func without(_ traits: UIFontDescriptor.SymbolicTraits...) -> UIFont {
+        guard let descriptor = self.fontDescriptor.withSymbolicTraits(self.fontDescriptor.symbolicTraits.subtracting(UIFontDescriptor.SymbolicTraits(traits))) else {
+            return self
+        }
+        return UIFont(descriptor: descriptor, size: 0)
+    }
 }

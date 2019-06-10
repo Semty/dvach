@@ -11,7 +11,7 @@ import Foundation
 class Style {
     
     class func post(text: String) -> NSMutableAttributedString {
-        return NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.font : UIFont.commentRegular, NSAttributedString.Key.foregroundColor: UIColor.black])
+        return NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.font : UIFont.commentRegular, NSAttributedString.Key.foregroundColor: UIColor.n1Gray])
     }
     
     class func em(text: NSMutableAttributedString, range: NSRange) {
