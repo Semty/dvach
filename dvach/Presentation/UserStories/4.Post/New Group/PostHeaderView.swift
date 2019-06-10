@@ -43,4 +43,12 @@ final class PostHeaderView: UIView, ConfigurableView, ReusableView {
         subtitleLabel.text = "№ \(model.subtitle)"
         numberLabel.text = "#\(model.number)"
     }
+    
+    // MARK: - ReusableView
+    
+    func prepareForReuse() {
+        titleLabel.text = "Аноним"
+        subtitleLabel.text = "№ 111111111"
+        numberLabel.text = "#0"
+    }
 }

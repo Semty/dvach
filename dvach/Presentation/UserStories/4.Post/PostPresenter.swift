@@ -11,6 +11,10 @@ import Foundation
 protocol IPostViewPresenter {
     var viewModels: [PostCommentView.Model] { get }
     func viewDidLoad()
+    func postCommentView(_ view: PostCommentView, didTapFile index: Int)
+    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
+    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
 }
 
 final class PostViewPresenter {
@@ -58,10 +62,11 @@ final class PostViewPresenter {
     private func createViewModel(index: Int, post: Post) -> PostCommentView.Model {
         let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: index + 1)
         let imageURLs = post.files.map { $0.path }
-        return PostCommentView.Model(headerModel: headerViewModel,
+        return PostCommentView.Model(postNumber: post.num,
+                                     headerModel: headerViewModel,
                                      date: post.date,
                                      text: PostParse(text: post.comment).attributedText,
-                                     imageURLs: imageURLs)
+                                     fileURLs: imageURLs)
     }
 }
 
@@ -71,5 +76,21 @@ extension PostViewPresenter: IPostViewPresenter {
     
     func viewDidLoad() {
         loadPost()
+    }
+    
+    func postCommentView(_ view: PostCommentView, didTapFile index: Int) {
+        router.postCommentView(view, didTapFile: index)
+    }
+    
+    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {
+        router.postCommentView(view, didTapAnswerButton: postNumber)
+    }
+    
+    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int) {
+        router.postCommentView(view, didTapAnswersButton: postNumber)
+    }
+    
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
+        router.postCommentView(view, didTapMoreButton: postNumber)
     }
 }

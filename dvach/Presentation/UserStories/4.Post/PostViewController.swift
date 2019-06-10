@@ -88,8 +88,10 @@ extension PostViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostCommentCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        cell.prepareForReuse()
         let viewModel = presenter.viewModels[indexPath.row]
         cell.configure(with: viewModel)
+        cell.containedView.delegate = self
         if indexPath.row == presenter.viewModels.count - 1 {
             cell.containedView.removeBottomSeparator()
         }
@@ -104,5 +106,26 @@ extension PostViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        presenter.didSelectBoard(index: indexPath.row)
+    }
+}
+
+// MARK: - PostCommentViewDelegate
+
+extension PostViewController: PostCommentViewDelegate {
+    
+    func postCommentView(_ view: PostCommentView, didTapFile index: Int) {
+        presenter.postCommentView(view, didTapFile: index)
+    }
+    
+    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {
+        presenter.postCommentView(view, didTapAnswerButton: postNumber)
+    }
+    
+    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int) {
+        presenter.postCommentView(view, didTapAnswersButton: postNumber)
+    }
+    
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
+        presenter.postCommentView(view, didTapMoreButton: postNumber)
     }
 }

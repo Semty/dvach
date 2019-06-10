@@ -16,6 +16,7 @@ final class PostAssembly {
         let viewController = PostViewController(presenter: presenter)
         
         presenter.view = viewController
+        router.viewHandler = viewController
         
         return viewController
     }

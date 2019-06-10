@@ -11,17 +11,29 @@ import Nantes
 
 typealias PostCommentCell = TableViewContainerCellBase<PostCommentView>
 
+protocol PostCommentViewDelegate: AnyObject {
+    func postCommentView(_ view: PostCommentView, didTapFile index: Int)
+    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
+    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
+}
+
 final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAvailable {
     
     struct Model {
+        let postNumber: Int
         let headerModel: PostHeaderView.Model
         let date: String
         let text: NSAttributedString
-        let imageURLs: [String]
+        let fileURLs: [String]
     }
     
     // Dependencies
+    weak var delegate: PostCommentViewDelegate?
     private let componentsFactory = Locator.shared.componentsFactory()
+    
+    // Properties
+    private var postNumber = 0
     
     // UI
     private lazy var stackView = UIStackView(axis: .vertical)
@@ -34,6 +46,10 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
                                                         insets: .defaultInsets)
         let list = HorizontalList<GalleryCell>(configuration: configuration)
         list.snp.makeConstraints { $0.height.equalTo(80) }
+        list.selectionHandler = { [weak self] index in
+            guard let self = self else { return }
+            self.delegate?.postCommentView(self, didTapFile: index.row)
+        }
         return list
     }()
     
@@ -125,15 +141,25 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
     typealias ConfigurationModel = Model
     
     func configure(with model: PostCommentView.Model) {
+        postNumber = model.postNumber
         headerView.configure(with: model.headerModel)
         dateLabel.text = model.date
         text.attributedText = model.text
         
-        gallery.isHidden = model.imageURLs.isEmpty
-        if !model.imageURLs.isEmpty {
-            let galleryModels = model.imageURLs.map { GalleryView.Model(imageURL: $0) }
+        gallery.isHidden = model.fileURLs.isEmpty
+        if !model.fileURLs.isEmpty {
+            let galleryModels = model.fileURLs.map { GalleryView.Model(imageURL: $0) }
             gallery.update(dataSource: galleryModels)
         }
+    }
+    
+    // MARK: - ReusableView
+    
+    func prepareForReuse() {
+        headerView.prepareForReuse()
+        dateLabel.text = nil
+        text.attributedText = nil
+        gallery.isHidden = true
     }
 }
 
@@ -151,14 +177,14 @@ extension PostCommentView: NantesLabelDelegate {
 extension PostCommentView: PostCommentButtonsViewDelegate {
     
     func answerButtonDidTap() {
-        print("answerButtonDidTap")
+        delegate?.postCommentView(self, didTapAnswerButton: postNumber)
     }
     
     func answersButtonDidTap() {
-        print("answersButtonDidTap")
+        delegate?.postCommentView(self, didTapAnswersButton: postNumber)
     }
     
     func moreButtonDidTap() {
-        print("moreButtonDidTap")
+        delegate?.postCommentView(self, didTapMoreButton: postNumber)
     }
 }
