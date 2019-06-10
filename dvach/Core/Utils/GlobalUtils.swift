@@ -15,4 +15,12 @@ public enum GlobalUtils {
         dateFormatter.timeStyle = .medium
         return dateFormatter
     }()
+    
+    static var base2chPath: String {
+        return "https://2ch.hk"
+    }
+    
+    static var base2chPathWithoutScheme: String {
+        return "2ch.hk"
+    }
 }

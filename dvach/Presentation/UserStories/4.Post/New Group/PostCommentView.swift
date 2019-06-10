@@ -18,6 +18,8 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
         let date: String
         let text: NSAttributedString
         let imageURLs: [String]
+        let dvachLinkModels: [DvachLinkModel]
+        let repliedTo: [String]
     }
     
     // Dependencies
