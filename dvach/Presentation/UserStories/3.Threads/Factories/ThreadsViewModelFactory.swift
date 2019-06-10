@@ -19,7 +19,7 @@ final class ThreadsViewModelFactory {
             guard let `self` = self else { return nil}
             
             let postsCountTitle = "\(thread.postsCount) \(thread.postsCount.rightWordForPostsCount())"
-            let comment = TextStripper.fullClean(text: thread.comment)
+            let comment = thread.comment.parsed2chPost
             
             if let thumbnailPath = self.getThreadThumbnail(thread) {
                 let threadWithImageViewModel =

@@ -9,20 +9,106 @@
 import Foundation
 
 private extension String {
-    // Link Formats
-    static var linkFirstFormat = "href=\"(.*?)\""
-    static var linkSecondFormat = "href='(.*?)'"
+
+    // Span Style Tags
+    static let spanStyleFontBold = "font-weight: bold"
+    static let spanStyleBackgroundColor = "background-color:"
     
     // Regular Expressions for Parsing
-    static var regexLink = "<a[^>]*>(.*?[\\s\\S])</a>"
-    static var regexStrong = "<strong[^>]*>(.*?)</strong>"
-    static var regexEm = "<em[^>]*>(.*?)</em>"
-    static var regexUnderline = "<span class=\"u\">(.*?)</span>"
-    static var regexSpoiler = "<span class=\"spoiler\">(.*?)</span>"
-    static var regexQuote = "<span class=\"unkfunc\">(.*?)</span>"
-    static var regexSpanStyle = "<span (.*?)>(.*?)</span>"
-    static var regexHTML = "<[^>]*>"
-    static var regexCSS = "<style type=\"text/css\">(.+?)</style>"
+    static let linkFirstFormat = "href=\"(.*?)\""
+    static let linkSecondFormat = "href='(.*?)'"
+    static let regexLink = "<a[^>]*>(.*?[\\s\\S])</a>"
+    static let regexStrong = "<strong[^>]*>(.*?)</strong>"
+    static let regexEm = "<em[^>]*>(.*?)</em>"
+    static let regexUnderline = "<span class=\"u\">(.*?)</span>"
+    static let regexSpoiler = "<span class=\"spoiler\">(.*?)</span>"
+    static let regexQuote = "<span class=\"unkfunc\">(.*?)</span>"
+    static let regexSpanStyle = "<span (.*?)>(.*?)</span>"
+    static let regexHTML = "<[^>]*>"
+    static let regexCSS = "<style type=\"text/css\">(.+?)</style>"
+    
+    // Set Font and Color for given text and return as NSMutableAttributedString
+    func setFontAndColor() -> NSMutableAttributedString {
+        return
+            NSMutableAttributedString(string: self,
+                                      attributes: [.font: UIFont.commentRegular,
+                                                   .foregroundColor: UIColor.n1Gray])
+    }
+}
+
+private extension NSMutableAttributedString {
+    
+    func em(range: NSRange) {
+        addAttributes([.font: UIFont.commentEm], range: range)
+    }
+    
+    func spanStyle(range: NSRange) {
+        addAttributes([.font: UIFont.commentStrong], range: range)
+    }
+    
+    func strong(range: NSRange) {
+        addAttributes([.font: UIFont.commentStrong], range: range)
+    }
+    
+    func backgroundColor(range: NSRange) {
+        addAttributes([.backgroundColor: UIColor.a2Yellow], range: range)
+    }
+    
+    func emStrong(range: NSRange) {
+        addAttributes([.font: UIFont.commentEmStrong], range: range)
+    }
+    
+    func underline(range: NSRange) {
+        addAttributes([.underlineStyle: NSUnderlineStyle.single], range: range)
+    }
+    
+    func spoiler(range: NSRange) {
+        addAttributes([.foregroundColor: UIColor.n5LightGray], range: range)
+    }
+    
+    func quote(range: NSRange) {
+        addAttributes([.foregroundColor: UIColor.a1Green], range: range)
+    }
+    
+    func linkPost(range: NSRange, url: URL?) {
+        var attrs: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.a3Orange]
+        if let url = url {
+            attrs[.link] = url
+        }
+        addAttributes(attrs, range: range)
+    }
+}
+
+private extension NSMutableString {
+    
+    func finishHtmlToNormal() {
+        replaceOccurrences(of: "&gt;", with: ">",
+                           options: .caseInsensitive,
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "&lt;", with: "<",
+                           options: .caseInsensitive,
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "&quot;", with: "\"",
+                           options: .caseInsensitive,
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "&amp;", with: "&",
+                           options: .caseInsensitive,
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "&nbsp;", with: "\n",
+                           options: .caseInsensitive,
+                           range: NSRange(location: 0, length: length))
+    }
+    
+    func removeAllTripleLineBreaks() {
+        var textReplacingState = -1
+        while textReplacingState != 0 {
+            textReplacingState =
+                replaceOccurrences(of: "\n\n\n",
+                                   with: "\n\n",
+                                   options: .caseInsensitive,
+                                   range: NSRange(location: 0, length: length))
+        }
+    }
 }
 
 struct PostParse {
@@ -43,20 +129,12 @@ struct PostParse {
         return NSRange(location: 0, length: attributedTextString.count)
     }
     
-    private var regexOption: NSRegularExpression.Options {
-        return NSRegularExpression.Options.caseInsensitive
-    }
-    
-    private var regexMatchingOption: NSRegularExpression.MatchingOptions {
-        return NSRegularExpression.MatchingOptions.init(rawValue: 0)
-    }
-    
     // MARK: - Initialization
     
     init(text: String) {
-        self.text = TextStripper.htmlToNormal(in: text)
+        self.text = text.htmlToNormal()
         
-        let attributedText = Style.post(text: self.text)
+        let attributedText = self.text.setFontAndColor()
         self.attributedText = attributedText
         
         parse()
@@ -76,17 +154,17 @@ struct PostParse {
         removeCSSTags(in: range)
         removeHTMLTags(in: range)
         
-        TextStripper.finishHtmlToNormal(in: attributedText.mutableString)
-        //TextStripper.removeAllDoubleLineBreaks(in: attributedText.mutableString)
+        attributedText.mutableString.finishHtmlToNormal()
+        attributedText.mutableString.removeAllTripleLineBreaks()
     }
     
-    // MARK: - Helpful Functions
+    // MARK: - Regular Expressions Helpers
     
     private func regexFind(regex regexString: String, range fullRange: NSRange, result: (NSRange) -> ()) {
         if let regex = prepareRegex(regexString) {
             
             regex.enumerateMatches(in: attributedTextString,
-                                   options: regexMatchingOption,
+                                   options: .reportProgress,
                                    range: fullRange) { res, flags, stop in
                 if let rng = res?.range {
                     result(rng)
@@ -100,7 +178,7 @@ struct PostParse {
     }
     
     private func regexDelete(regex regexString: String, range fullRange: NSRange) {
-        self.regexFind(regex: regexString, range: fullRange) { range in
+        regexFind(regex: regexString, range: fullRange) { range in
             if range.length != 0 {
                 self.attributedText.deleteCharacters(in: range)
             }
@@ -119,11 +197,11 @@ struct PostParse {
         spanStyles.forEach { range in
             
             let substring = (self.attributedTextString as NSString).substring(with: range)
-            if substring.contains("font-weight: bold") {
-                Style.strong(text: self.attributedText, range: range)
+            if substring.contains(String.spanStyleFontBold) {
+                self.attributedText.strong(range: range)
             }
-            if substring.contains("background-color:") {
-                Style.backgroundColor(text: self.attributedText, range: range)
+            if substring.contains(String.spanStyleBackgroundColor) {
+                self.attributedText.backgroundColor(range: range)
             }
         }
     }
@@ -132,14 +210,14 @@ struct PostParse {
         var ems: [NSRange] = []
         var strongs: [NSRange] = []
         
-        self.regexFind(regex: .regexEm, range: range) { range in
-            Style.em(text: self.attributedText, range: range)
+        regexFind(regex: .regexEm, range: range) { range in
+            self.attributedText.em(range: range)
             ems.append(range)
             
         }
         
-        self.regexFind(regex: .regexStrong, range: range) { range in
-            Style.strong(text: self.attributedText, range: range)
+        regexFind(regex: .regexStrong, range: range) { range in
+            self.attributedText.strong(range: range)
             strongs.append(range)
         }
         
@@ -147,7 +225,7 @@ struct PostParse {
             for strong in strongs {
                 let emStrongRange = NSIntersectionRange(em, strong)
                 if emStrongRange.length != 0 {
-                    Style.emStrong(text: attributedText, range: emStrongRange)
+                    attributedText.emStrong(range: emStrongRange)
                 }
             }
         }
@@ -156,18 +234,18 @@ struct PostParse {
     
     
     private func underlineParse(in range: NSRange) {
-        self.regexFind(regex: .regexUnderline, range: range) { range in
-            Style.underline(text: self.attributedText, range: range)
+        regexFind(regex: .regexUnderline, range: range) { range in
+            self.attributedText.underline(range: range)
         }
     }
     
-    private func strikeParse(in range: NSRange) {
-        
-    }
+//    private func strikeParse(in range: NSRange) {
+//
+//    }
     
     private func spoilerParse(in range: NSRange) {
-        self.regexFind(regex: .regexSpoiler, range: range) { range in
-            Style.spoiler(text: self.attributedText, range: range)
+        regexFind(regex: .regexSpoiler, range: range) { range in
+            self.attributedText.spoiler(range: range)
         }
         
 //        let spoilerRanges = text.ranges(of: "<span class=\"spoiler\">(.*?)</span>")
@@ -180,8 +258,8 @@ struct PostParse {
     }
     
     private func quoteParse(in range: NSRange) {
-        self.regexFind(regex: .regexQuote, range: range) { range in
-            Style.quote(text: self.attributedText, range: range)
+        regexFind(regex: .regexQuote, range: range) { range in
+            self.attributedText.quote(range: range)
         }
         
 //        let quoteRanges = text.ranges(of: "<span class=\"unkfunc\">(.*?)</span>")
@@ -202,15 +280,23 @@ struct PostParse {
             
             let fullLink = (self.attributedTextString as NSString).substring(with: range)
             let fullLinkRange = NSRange(location: 0, length: fullLink.count)
-            var addingUrl: URL? = nil
+            
+            var addingUrl: URL?
             var urlRange = NSRange(location: 0, length: 0)
             
-            if let linkResult = linkFirstFormat.firstMatch(in: fullLink, options: regexMatchingOption, range: fullLinkRange) {
+            if let linkResult =
+                linkFirstFormat.firstMatch(in: fullLink,
+                                           options: .reportProgress,
+                                           range: fullLinkRange) {
                 
                 if linkResult.numberOfRanges != 0 {
-                    urlRange = NSMakeRange(linkResult.range.location+6, linkResult.range.length-7);
+                    urlRange = NSMakeRange(linkResult.range.location+6,
+                                           linkResult.range.length-7);
                 }
-            } else if let linkResult = linkSecondFormat.firstMatch(in: fullLink, options: regexMatchingOption, range: fullLinkRange) {
+            } else if let linkResult =
+                linkSecondFormat.firstMatch(in: fullLink,
+                                            options: .reportProgress,
+                                            range: fullLinkRange) {
                 
                 if linkResult.numberOfRanges != 0 {
                     urlRange = NSMakeRange(linkResult.range.location+6, linkResult.range.length-7);
@@ -218,11 +304,12 @@ struct PostParse {
             }
             
             if urlRange.length != 0 {
-                let urlString = TextStripper.ampToNormal(in: (fullLink as NSString).substring(with: urlRange))
+                let linkSubstring = (fullLink as NSString).substring(with: urlRange)
+                let urlString = linkSubstring.ampToNormal()
                 addingUrl = URL(string: urlString)
             }
             
-            Style.linkPost(text: attributedText, range: range, url: addingUrl)
+            attributedText.linkPost(range: range, url: addingUrl)
         }
     }
     
@@ -252,7 +339,8 @@ struct PostParse {
         
         var shift = 0
         for range in cssRanges {
-            let newRange = NSRange(location: range.location - shift, length: range.length)
+            let newRange = NSRange(location: range.location - shift,
+                                   length: range.length)
             self.attributedText.deleteCharacters(in: newRange)
             shift += range.length
         }

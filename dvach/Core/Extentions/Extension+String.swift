@@ -20,8 +20,35 @@ extension String {
     
     // MARK: - Text Parsing helpers
     
-    func convertHTMLToTextFor(text: String) -> String {
-        return text
+    var parsed2chPost: String {
+        var newText = removeAllCSSTags()
+        newText = newText.htmlToNormal()
+        newText = newText.removeAllHTMLTags()
+        newText = newText.ampToNormal()
+        newText = newText.finishHtmlToNormalString()
+        newText = newText.trimWhitespacesAndNewlines()
+        newText = newText.removeAllDoubleLineBreaks()
+        return newText
+    }
+    
+    func removeAllCSSTags() -> String {
+        let str = replacingOccurrences(of: "<style type=\"text/css\">(.+?)</style>",
+                                       with: "",
+                                       options: .regularExpression,
+                                       range: nil)
+        return str
+    }
+    
+    func removeAllHTMLTags() -> String {
+        let str = replacingOccurrences(of: "<[^>]+>",
+                                       with: "",
+                                       options: .regularExpression,
+                                       range: nil)
+        return str
+    }
+    
+    func htmlToNormal() -> String {
+        return self
             .replacingOccurrences(of: "&#39;", with: "'")
             .replacingOccurrences(of: "&#44;", with: ",")
             .replacingOccurrences(of: "&#47;", with: "/")
@@ -36,6 +63,35 @@ extension String {
             .replacingOccurrences(of: "<br/>", with: "\n")
             .replacingOccurrences(of: "<br>", with: "\n")
     }
+    
+    func removeAllDoubleLineBreaks() -> String {
+        var text = self
+        text = text.trimmingCharacters(in: .newlines)
+        while let rangeToReplace = text.range(of: "\n\n") {
+            text.replaceSubrange(rangeToReplace, with: "\n")
+        }
+        return text
+    }
+    
+    func finishHtmlToNormalString() -> String {
+        return self
+            .replacingOccurrences(of: "&gt;", with: ">")
+            .replacingOccurrences(of: "&lt;", with: "<")
+            .replacingOccurrences(of: "&amp;", with: "&")
+            .replacingOccurrences(of: "&quot;", with: "\\")
+            .replacingOccurrences(of: "&nbsp;", with: " ")
+    }
+    
+    func ampToNormal() -> String {
+        return self
+            .replacingOccurrences(of: "&amp;", with: "&")
+    }
+    
+    func trimWhitespacesAndNewlines() -> String {
+        return trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+    }
+    
+    // MARK: - Ranges and Slices of String
     
     func ranges(of string: String, options: CompareOptions = .regularExpression) -> [Range<Index>] {
         var result: [Range<Index>] = []

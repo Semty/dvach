@@ -116,8 +116,6 @@
 		41BEE76D229F05C10028EBFB /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE76C229F05C10028EBFB /* RootTabBarController.swift */; };
 		41BEE76F229F06970028EBFB /* ModelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE76E229F06970028EBFB /* ModelRequest.swift */; };
 		D58ADBA122AC273F00A8334B /* PostParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58ADBA022AC273F00A8334B /* PostParse.swift */; };
-		D58ADBA322AC27EF00A8334B /* TextStripper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58ADBA222AC27EF00A8334B /* TextStripper.swift */; };
-		D58ADBA522AC28B100A8334B /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58ADBA422AC28B100A8334B /* Style.swift */; };
 		D58ADBA722AC405300A8334B /* Extension+NSRegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58ADBA622AC405300A8334B /* Extension+NSRegularExpression.swift */; };
 		D5A69D4322A2E69700C46E24 /* BoardWithThreadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */; };
 		D5A69D4522A2E83200C46E24 /* BoardWithThreadsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4422A2E83200C46E24 /* BoardWithThreadsPresenter.swift */; };
@@ -267,8 +265,6 @@
 		BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56667501DB5905B423A9582 /* Pods-dvachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D58ADBA022AC273F00A8334B /* PostParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParse.swift; sourceTree = "<group>"; };
-		D58ADBA222AC27EF00A8334B /* TextStripper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStripper.swift; sourceTree = "<group>"; };
-		D58ADBA422AC28B100A8334B /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		D58ADBA622AC405300A8334B /* Extension+NSRegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSRegularExpression.swift"; sourceTree = "<group>"; };
 		D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithThreadsViewController.swift; sourceTree = "<group>"; };
 		D5A69D4422A2E83200C46E24 /* BoardWithThreadsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithThreadsPresenter.swift; sourceTree = "<group>"; };
@@ -841,8 +837,6 @@
 			isa = PBXGroup;
 			children = (
 				D58ADBA022AC273F00A8334B /* PostParse.swift */,
-				D58ADBA222AC27EF00A8334B /* TextStripper.swift */,
-				D58ADBA422AC28B100A8334B /* Style.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -1087,7 +1081,6 @@
 				41BEE71B229F043C0028EBFB /* IStorage.swift in Sources */,
 				41B3E2D522A31298000B3F51 /* CategoriesViewModelFactory.swift in Sources */,
 				D5A69D4C22A2FB4B00C46E24 /* ThreadWithoutImageView.swift in Sources */,
-				D58ADBA522AC28B100A8334B /* Style.swift in Sources */,
 				D5A69D4522A2E83200C46E24 /* BoardWithThreadsPresenter.swift in Sources */,
 				41BEE725229F043C0028EBFB /* UIView+NibLoadable.swift in Sources */,
 				414408A522A04BBC00E4E53E /* BoardsRequest.swift in Sources */,
@@ -1137,7 +1130,6 @@
 				41907FF722A6CFC8003309D9 /* TCSSeparatorAvailable.swift in Sources */,
 				41BEE73F229F04550028EBFB /* FireBaseService.swift in Sources */,
 				D5E4734022A941990055AB92 /* ThreadWithPostsRequest.swift in Sources */,
-				D58ADBA322AC27EF00A8334B /* TextStripper.swift in Sources */,
 				41BEE76F229F06970028EBFB /* ModelRequest.swift in Sources */,
 				414408A322A04BA200E4E53E /* Board.swift in Sources */,
 				41BEE734229F043C0028EBFB /* Extension+UIStackView.swift in Sources */,
