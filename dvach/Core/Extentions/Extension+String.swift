@@ -41,6 +41,10 @@ extension String {
         return newText
     }
     
+    var parsed2chSubject: String {
+       return htmlToNormal().finishHtmlToNormalString().trimWhitespacesAndNewlines()
+    }
+    
     func removeAllCSSTags() -> String {
         let str = replacingOccurrences(of: "<style type=\"text/css\">(.+?)</style>",
                                        with: "",
@@ -88,7 +92,7 @@ extension String {
             .replacingOccurrences(of: "&gt;", with: ">")
             .replacingOccurrences(of: "&lt;", with: "<")
             .replacingOccurrences(of: "&amp;", with: "&")
-            .replacingOccurrences(of: "&quot;", with: "\\")
+            .replacingOccurrences(of: "&quot;", with: "\"")
             .replacingOccurrences(of: "&nbsp;", with: " ")
     }
     
