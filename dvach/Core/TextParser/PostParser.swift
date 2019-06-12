@@ -11,21 +11,29 @@ import Foundation
 private extension String {
     
     // Span Style Tags
-    static let spanStyleFontBold = "font-weight: bold"
-    static let spanStyleBackgroundColor = "background-color:"
+    static let styleFontBold = "font-weight: bold"
+    static let styleBackgroundColor = "background-color:"
+    static let styleTextColor = "color:"
     
     // Regular Expressions for Parsing
     static let linkFirstFormat = "href=\"(.*?)\""
     static let linkSecondFormat = "href='(.*?)'"
-    static let regexLink = "<a[^>]*>(.*?[\\s\\S])</a>"
+    static let regexLink = "<a[^>]*>(.*?)</a>"
     static let regexStrong = "<strong[^>]*>(.*?)</strong>"
+    static let regexBold = "<b[^>]*>(.*?)</b>"
+    static let regexFontColor = "<font color=(.*?)>(.*?)</font>"
     static let regexEm = "<em[^>]*>(.*?)</em>"
     static let regexUnderline = "<span class=\"u\">(.*?)</span>"
+    static let regexInserted = "<ins>(.*?)</ins>"
     static let regexSpoiler = "<span class=\"spoiler\">(.*?)</span>"
     static let regexQuote = "<span class=\"unkfunc\">(.*?)</span>"
     static let regexSpanStyle = "<span (.*?)>(.*?)</span>"
     static let regexHTML = "<[^>]*>"
-    static let regexCSS = "<style type=\"text/css\">(.+?)</style>"
+    static let regexCSSStyle = "<style type=\"text/css\">(.+?)</style>"
+    static let regexCSSScript = "<script(.*?)>(.+?)</script>"
+    static let regexParagraph = "<p[^>]*>(.*?)</p>"
+    
+    static let regexHeading = "<h[1|2|3][^>]*>(.*?)</h[1|2|3]>"
     
     // Set Font and Color for given text and return as NSMutableAttributedString
     func setFontAndColor() -> NSMutableAttributedString {
@@ -61,8 +69,8 @@ private extension String {
             if let result = checker.firstMatch(in: self,
                                                options: .reportProgress,
                                                range: NSRange(location: 0,
-                                                              length: self.count)) {
-                return result.range.length == self.count
+                                                              length: count)) {
+                return result.range.length == count
             }
         }
         
@@ -121,8 +129,23 @@ private extension NSMutableAttributedString {
         addAttributes([.font: UIFont.commentStrong], range: range)
     }
     
-    func backgroundColor(range: NSRange) {
-        addAttributes([.backgroundColor: UIColor.a2Yellow], range: range)
+    func paragraph(range: NSRange) {
+        insert(NSAttributedString(string: "\n\n"), at: range.location+range.length)
+        insert(NSAttributedString(string: "\n\n"), at: range.location)
+    }
+    
+    func heading(range: NSRange) {
+        insert(NSAttributedString(string: "\n\n"), at: range.location+range.length)
+        insert(NSAttributedString(string: "\n"), at: range.location)
+        addAttributes([.font: UIFont.commentHeading], range: range)
+    }
+    
+    func backgroundColor(range: NSRange, color: UIColor) {
+        addAttributes([.backgroundColor: color], range: range)
+    }
+    
+    func textColor(range: NSRange) {
+        addAttributes([.foregroundColor: UIColor.n12Redline], range: range)
     }
     
     func emStrong(range: NSRange) {
@@ -130,7 +153,7 @@ private extension NSMutableAttributedString {
     }
     
     func underline(range: NSRange) {
-        addAttributes([.underlineStyle: NSUnderlineStyle.single], range: range)
+        addAttributes([.underlineStyle: NSUnderlineStyle.single.rawValue], range: range)
     }
     
     func spoiler(range: NSRange) {
@@ -206,7 +229,7 @@ struct PostParser {
     }
     
     private var range: NSRange {
-        return NSRange(location: 0, length: attributedTextString.count)
+        return NSRange(location: 0, length: attributedText.length)
     }
     
     // MARK: - Initialization
@@ -223,13 +246,18 @@ struct PostParser {
     
     private mutating func parse() {
         
+        headingParse(in: range)
+        paragraphParse(in: range)
+        fontColor(in: range)
         emAndStrongParse(in: range)
+        boldParse(in: range)
         spanStyleParse(in: range)
-        //underlineParse(in: range) // Не работает
-        //strikeParse(in: range) // Не реализован
+        underlineParse(in: range)
+        //strikeParse(in: range) // Не реализовано пока
         spoilerParse(in: range)
         quoteParse(in: range)
         linkParse(in: range)
+        removeCSSScripts(in: range)
         removeCSSTags(in: range)
         removeHTMLTags(in: range)
         
@@ -254,18 +282,45 @@ struct PostParser {
     
     private func prepareRegex(_ string: String) -> NSRegularExpression? {
         return try? NSRegularExpression(pattern: string,
-                                        options: .caseInsensitive)
+                                        options: [.caseInsensitive,
+                                                  .dotMatchesLineSeparators])
     }
     
     private func regexDelete(regex regexString: String, range fullRange: NSRange) {
         regexFind(regex: regexString, range: fullRange) { range in
             if range.length != 0 {
-                self.attributedText.deleteCharacters(in: range)
+                attributedText.deleteCharacters(in: range)
             }
         }
     }
     
     // MARK: - Parse Functions
+    
+    private func headingParse(in range: NSRange) {
+        var shift = 0
+        regexFind(regex: .regexHeading, range: range) { range in
+            var range = range
+            range.location += shift
+            attributedText.heading(range: range)
+            shift += 2
+        }
+    }
+    
+    private func paragraphParse(in range: NSRange) {
+        var shift = 0
+        regexFind(regex: .regexParagraph, range: range) { range in
+            var range = range
+            range.location += shift
+            attributedText.paragraph(range: range)
+            shift += 4
+        }
+    }
+    
+    private func fontColor(in range: NSRange) {
+        regexFind(regex: .regexFontColor, range: range) { range in
+            attributedText.textColor(range: range)
+        }
+    }
     
     private func spanStyleParse(in range: NSRange) {
         var spanStyles = [NSRange]()
@@ -276,13 +331,12 @@ struct PostParser {
         
         spanStyles.forEach { range in
             
-            let substring = (self.attributedTextString as NSString).substring(with: range)
-            if substring.contains(String.spanStyleFontBold) {
-                self.attributedText.strong(range: range)
+            let substring = attributedTextString.substring(in: range)
+            if substring.contains(String.styleFontBold) {
+                attributedText.strong(range: range)
             }
-            if substring.contains(String.spanStyleBackgroundColor) {
-                self.attributedText.backgroundColor(range: range)
-            }
+            
+            parseBgAndFgColors(in: range)
         }
     }
     
@@ -291,13 +345,13 @@ struct PostParser {
         var strongs: [NSRange] = []
         
         regexFind(regex: .regexEm, range: range) { range in
-            self.attributedText.em(range: range)
+            attributedText.em(range: range)
             ems.append(range)
             
         }
         
         regexFind(regex: .regexStrong, range: range) { range in
-            self.attributedText.strong(range: range)
+            attributedText.strong(range: range)
             strongs.append(range)
         }
         
@@ -311,11 +365,19 @@ struct PostParser {
         }
     }
     
-    
+    private func boldParse(in range: NSRange) {
+        regexFind(regex: .regexBold, range: range) { range in
+            attributedText.strong(range: range)
+            parseBgAndFgColors(in: range)
+        }
+    }
     
     private func underlineParse(in range: NSRange) {
         regexFind(regex: .regexUnderline, range: range) { range in
-            self.attributedText.underline(range: range)
+            attributedText.underline(range: range)
+        }
+        regexFind(regex: .regexInserted, range: range) { range in
+            attributedText.underline(range: range)
         }
     }
     
@@ -325,7 +387,7 @@ struct PostParser {
     
     private func spoilerParse(in range: NSRange) {
         regexFind(regex: .regexSpoiler, range: range) { range in
-            self.attributedText.spoiler(range: range)
+            attributedText.spoiler(range: range)
         }
         
         //        let spoilerRanges = text.ranges(of: "<span class=\"spoiler\">(.*?)</span>")
@@ -339,7 +401,7 @@ struct PostParser {
     
     private func quoteParse(in range: NSRange) {
         regexFind(regex: .regexQuote, range: range) { range in
-            self.attributedText.quote(range: range)
+            attributedText.quote(range: range)
         }
         
         //        let quoteRanges = text.ranges(of: "<span class=\"unkfunc\">(.*?)</span>")
@@ -358,7 +420,7 @@ struct PostParser {
         
         regexFind(regex: .regexLink, range: fullRange) { range in
             
-            let fullLink = self.attributedTextString.substring(in: range)
+            let fullLink = attributedTextString.substring(in: range)
             let fullLinkRange = NSRange(location: 0, length: fullLink.count)
             
             var addingUrl: URL?
@@ -389,13 +451,14 @@ struct PostParser {
                 
                 if let dvachURL = urlString.getURLFrom2chLink(),
                     let dvachLinkModel = dvachURL.parse2chLink() {
-                    self.dvachLinkModels.append(dvachLinkModel)
+                    dvachLinkModels.append(dvachLinkModel)
                 }
                 
                 addingUrl = URL(string: urlString)
             }
             
             attributedText.linkPost(range: range, url: addingUrl)
+            parseBgAndFgColors(in: range)
         }
     }
     
@@ -411,7 +474,7 @@ struct PostParser {
         var shift = 0
         for range in ranges {
             let newRange = NSRange(location: range.location - shift, length: range.length)
-            self.attributedText.deleteCharacters(in: newRange)
+            attributedText.deleteCharacters(in: newRange)
             shift += range.length
         }
     }
@@ -419,7 +482,7 @@ struct PostParser {
     private func removeCSSTags(in fullRange: NSRange) {
         var cssRanges = [NSRange]()
         
-        regexFind(regex: .regexCSS, range: fullRange) { range in
+        regexFind(regex: .regexCSSStyle, range: fullRange) { range in
             cssRanges.append(range)
         }
         
@@ -427,8 +490,48 @@ struct PostParser {
         for range in cssRanges {
             let newRange = NSRange(location: range.location - shift,
                                    length: range.length)
-            self.attributedText.deleteCharacters(in: newRange)
+            attributedText.deleteCharacters(in: newRange)
             shift += range.length
+        }
+    }
+    
+    private func removeCSSScripts(in fullRange: NSRange) {
+        var cssRanges = [NSRange]()
+        
+        regexFind(regex: .regexCSSScript, range: fullRange) { range in
+            cssRanges.append(range)
+        }
+        
+        var shift = 0
+        for range in cssRanges {
+            let newRange = NSRange(location: range.location - shift,
+                                   length: range.length)
+            attributedText.deleteCharacters(in: newRange)
+            shift += range.length
+        }
+    }
+    
+    // MARK: - Parse Background and Foreground Colors
+    
+    private func parseBgAndFgColors(in range: NSRange) {
+        let substring = attributedTextString.substring(in: range)
+
+        let bgColorRange = substring.range(of: String.styleBackgroundColor)
+        
+        if let _ = bgColorRange {
+            if substring.contains(String.styleBackgroundColor + " rgb(255, 255, 255)") ||
+                substring.contains(String.styleBackgroundColor + " white") {
+                attributedText.backgroundColor(range: range, color: .n10WhiteIsh)
+            } else {
+                attributedText.backgroundColor(range: range, color: .n11EggYellow)
+            }
+        }
+        
+        if let textColorRange = substring.range(of: String.styleTextColor) {
+            if let bgColorRange = bgColorRange, textColorRange.overlaps(bgColorRange) {
+                return
+            }
+            attributedText.textColor(range: range)
         }
     }
 }

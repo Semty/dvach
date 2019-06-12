@@ -32,6 +32,7 @@ extension String {
     
     var parsed2chPost: String {
         var newText = removeAllCSSTags()
+        newText = newText.removeAllCSSScripts()
         newText = newText.htmlToNormal()
         newText = newText.removeAllHTMLTags()
         newText = newText.ampToNormal()
@@ -47,6 +48,14 @@ extension String {
     
     func removeAllCSSTags() -> String {
         let str = replacingOccurrences(of: "<style type=\"text/css\">(.+?)</style>",
+                                       with: "",
+                                       options: .regularExpression,
+                                       range: nil)
+        return str
+    }
+    
+    func removeAllCSSScripts() -> String {
+        let str = replacingOccurrences(of: "<script(.*?)>(.+?)</script>",
                                        with: "",
                                        options: .regularExpression,
                                        range: nil)
@@ -76,6 +85,8 @@ extension String {
             .replacingOccurrences(of: "<br />", with: "\n")
             .replacingOccurrences(of: "<br/>", with: "\n")
             .replacingOccurrences(of: "<br>", with: "\n")
+            .replacingOccurrences(of: "</br>", with: "\n")
+            .replacingOccurrences(of: "<li>", with: "\n\n\u{2022} ")
     }
     
     func removeAllDoubleLineBreaks() -> String {

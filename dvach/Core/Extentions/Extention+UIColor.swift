@@ -42,6 +42,9 @@ extension UIColor {
     static let n7Blue = UIColor(hexString: "#4A90E2")
     static let n8SuperLightBlack = UIColor(hexString: "#000000").withAlphaComponent(0.05)
     static let n9LightGreen = UIColor(hexString: "#99C26F")
+    static let n10WhiteIsh = UIColor(hexString: "#f5f5f5")
+    static let n11EggYellow = UIColor(hexString: "#ffdc6a")
+    static let n12Redline = UIColor(hexString: "#eb1736")
     
     /// Получение цвета от текста
     static func from(text: String) -> UIColor {
