@@ -15,10 +15,14 @@ final class RootTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
         let categoriesViewController = CategoriesViewController()
         categoriesViewController.title = "Категории"
+        let favouritesViewController = FavouritesViewController()
+        favouritesViewController.title = "Избранное"
         
-        viewControllers = [categoriesViewController.wrappedInLargeNavigation]
+        viewControllers = [categoriesViewController.wrappedInLargeNavigation,
+                           favouritesViewController.wrappedInNavigation]
         tabBar.barTintColor = .white
         tabBar.tintColor = .n1Gray
     }

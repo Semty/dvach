@@ -12,10 +12,6 @@ import UIKit
 extension UIViewController {
     
     var wrappedInNavigation: UIViewController {
-        let leftItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(backAction))
-        leftItem.tintColor = .n1Gray
-        navigationItem.leftBarButtonItem = leftItem
-        
         let backItem = UIBarButtonItem(title: "", style: .done, target: self, action: #selector(backAction))
         backItem.tintColor = .n1Gray
         navigationItem.backBarButtonItem = backItem
@@ -30,7 +26,6 @@ extension UIViewController {
     }
     
     var wrappedInLargeNavigation: UIViewController {
-        
         let backItem = UIBarButtonItem(title: "", style: .done, target: self, action: #selector(backAction))
         backItem.tintColor = .n1Gray
         navigationItem.backBarButtonItem = backItem

@@ -67,6 +67,14 @@
 		4193B1DB22AEF94200EE25FD /* SkeletonPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1DA22AEF94200EE25FD /* SkeletonPostView.swift */; };
 		4193B1DD22AEF96600EE25FD /* SkeletonPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1DC22AEF96600EE25FD /* SkeletonPostView.xib */; };
 		4193B1E322AF04B600EE25FD /* FavouriteBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1E222AF04B600EE25FD /* FavouriteBoard.swift */; };
+		4193B1E622B19EB600EE25FD /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1E522B19EB600EE25FD /* FavouritesViewController.swift */; };
+		4193B1E822B19EC600EE25FD /* FavouritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1E722B19EC600EE25FD /* FavouritesPresenter.swift */; };
+		4193B1EB22B1A32000EE25FD /* FavouriteBoardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1EA22B1A32000EE25FD /* FavouriteBoardsViewController.swift */; };
+		4193B1ED22B1A33200EE25FD /* FavouriteBoardsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1EC22B1A33200EE25FD /* FavouriteBoardsPresenter.swift */; };
+		4193B1F022B1A8BF00EE25FD /* FavouriteThreadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1EF22B1A8BF00EE25FD /* FavouriteThreadsViewController.swift */; };
+		4193B1F222B1A8E100EE25FD /* FavouriteThreadsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1F122B1A8E100EE25FD /* FavouriteThreadsPresenter.swift */; };
+		4193B1F522B1A90D00EE25FD /* FavouritePostsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1F422B1A90D00EE25FD /* FavouritePostsPresenter.swift */; };
+		4193B1F722B1A92000EE25FD /* FavouritePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1F622B1A92000EE25FD /* FavouritePostsViewController.swift */; };
 		41B3E2D522A31298000B3F51 /* CategoriesViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */; };
 		41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D2229EFE720028EBFB /* AppDelegate.swift */; };
 		41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */; };
@@ -212,6 +220,14 @@
 		4193B1DA22AEF94200EE25FD /* SkeletonPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonPostView.swift; sourceTree = "<group>"; };
 		4193B1DC22AEF96600EE25FD /* SkeletonPostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkeletonPostView.xib; sourceTree = "<group>"; };
 		4193B1E222AF04B600EE25FD /* FavouriteBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteBoard.swift; sourceTree = "<group>"; };
+		4193B1E522B19EB600EE25FD /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		4193B1E722B19EC600EE25FD /* FavouritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesPresenter.swift; sourceTree = "<group>"; };
+		4193B1EA22B1A32000EE25FD /* FavouriteBoardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteBoardsViewController.swift; sourceTree = "<group>"; };
+		4193B1EC22B1A33200EE25FD /* FavouriteBoardsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteBoardsPresenter.swift; sourceTree = "<group>"; };
+		4193B1EF22B1A8BF00EE25FD /* FavouriteThreadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteThreadsViewController.swift; sourceTree = "<group>"; };
+		4193B1F122B1A8E100EE25FD /* FavouriteThreadsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteThreadsPresenter.swift; sourceTree = "<group>"; };
+		4193B1F422B1A90D00EE25FD /* FavouritePostsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePostsPresenter.swift; sourceTree = "<group>"; };
+		4193B1F622B1A92000EE25FD /* FavouritePostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePostsViewController.swift; sourceTree = "<group>"; };
 		41B3E2D422A31298000B3F51 /* CategoriesViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModelFactory.swift; sourceTree = "<group>"; };
 		41BEE6CF229EFE720028EBFB /* dvach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dvach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BEE6D2229EFE720028EBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -547,6 +563,45 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
+		4193B1E422B19E9500EE25FD /* 5.Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				4193B1F322B1A8F700EE25FD /* Posts */,
+				4193B1EE22B1A8A300EE25FD /* Threads */,
+				4193B1E922B1A30000EE25FD /* Boards */,
+				4193B1E522B19EB600EE25FD /* FavouritesViewController.swift */,
+				4193B1E722B19EC600EE25FD /* FavouritesPresenter.swift */,
+			);
+			path = 5.Favourites;
+			sourceTree = "<group>";
+		};
+		4193B1E922B1A30000EE25FD /* Boards */ = {
+			isa = PBXGroup;
+			children = (
+				4193B1EA22B1A32000EE25FD /* FavouriteBoardsViewController.swift */,
+				4193B1EC22B1A33200EE25FD /* FavouriteBoardsPresenter.swift */,
+			);
+			path = Boards;
+			sourceTree = "<group>";
+		};
+		4193B1EE22B1A8A300EE25FD /* Threads */ = {
+			isa = PBXGroup;
+			children = (
+				4193B1EF22B1A8BF00EE25FD /* FavouriteThreadsViewController.swift */,
+				4193B1F122B1A8E100EE25FD /* FavouriteThreadsPresenter.swift */,
+			);
+			path = Threads;
+			sourceTree = "<group>";
+		};
+		4193B1F322B1A8F700EE25FD /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				4193B1F422B1A90D00EE25FD /* FavouritePostsPresenter.swift */,
+				4193B1F622B1A92000EE25FD /* FavouritePostsViewController.swift */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
 		41B3E2D322A3127C000B3F51 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
@@ -852,6 +907,7 @@
 				41907FF822A6E1EE003309D9 /* 2.BoardsList */,
 				D5A69D1D22A2E5DB00C46E24 /* 3.Threads */,
 				4193B1B922AA996D00EE25FD /* 4.Post */,
+				4193B1E422B19E9500EE25FD /* 5.Favourites */,
 				41BEE76B229F05C10028EBFB /* Root */,
 			);
 			path = UserStories;
@@ -1121,6 +1177,7 @@
 				411902CB22A6C642008231AC /* TouchGestureRecognizer.swift in Sources */,
 				D5A69D5722A3DCE900C46E24 /* Extension+CALayer.swift in Sources */,
 				41907FFA22A6E222003309D9 /* BoardsListViewController.swift in Sources */,
+				4193B1ED22B1A33200EE25FD /* FavouriteBoardsPresenter.swift in Sources */,
 				414408A922A052A800E4E53E /* Categories.swift in Sources */,
 				41BEE728229F043C0028EBFB /* Extension+UITableView.swift in Sources */,
 				4193B1D222AD898C00EE25FD /* PostCommentButtonsView.swift in Sources */,
@@ -1142,7 +1199,9 @@
 				414408A522A04BBC00E4E53E /* BoardsRequest.swift in Sources */,
 				4190800422A6EA9A003309D9 /* IconView.swift in Sources */,
 				411902BD22A6BE53008231AC /* Shadow.swift in Sources */,
+				4193B1E822B19EC600EE25FD /* FavouritesPresenter.swift in Sources */,
 				414408A722A050F600E4E53E /* Category.swift in Sources */,
+				4193B1F522B1A90D00EE25FD /* FavouritePostsPresenter.swift in Sources */,
 				4117534822A2E7FF008EBD2A /* BlockWithTitle.swift in Sources */,
 				41BEE75F229F04730028EBFB /* TapGestureRecognizer.swift in Sources */,
 				41907FFC22A6E355003309D9 /* BoardsListPresenter.swift in Sources */,
@@ -1157,6 +1216,7 @@
 				41BEE72D229F043C0028EBFB /* Extension+String.swift in Sources */,
 				41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */,
 				411902B922A6BE05008231AC /* ShadowCollectionViewCell.swift in Sources */,
+				4193B1EB22B1A32000EE25FD /* FavouriteBoardsViewController.swift in Sources */,
 				411902CF22A6C6F2008231AC /* NonScrollableGestureRecognizer.swift in Sources */,
 				D5A69D4322A2E69700C46E24 /* BoardWithThreadsViewController.swift in Sources */,
 				4193B1E322AF04B600EE25FD /* FavouriteBoard.swift in Sources */,
@@ -1184,7 +1244,9 @@
 				411902C422A6C1EA008231AC /* UIView+PressStateAnimatable.swift in Sources */,
 				41BEE73E229F04550028EBFB /* AppSettingsStorage.swift in Sources */,
 				41BEE731229F043C0028EBFB /* Extension+Int.swift in Sources */,
+				4193B1F722B1A92000EE25FD /* FavouritePostsViewController.swift in Sources */,
 				41BEE721229F043C0028EBFB /* Extension+UIViewController.swift in Sources */,
+				4193B1F222B1A8E100EE25FD /* FavouriteThreadsPresenter.swift in Sources */,
 				41907FF722A6CFC8003309D9 /* TCSSeparatorAvailable.swift in Sources */,
 				4193B1DB22AEF94200EE25FD /* SkeletonPostView.swift in Sources */,
 				41BEE73F229F04550028EBFB /* FireBaseService.swift in Sources */,
@@ -1208,11 +1270,13 @@
 				41BEE729229F043C0028EBFB /* Extension+Dictionary.swift in Sources */,
 				4193B1CA22AAA33100EE25FD /* PostHeaderView.swift in Sources */,
 				411902C522A6C1EA008231AC /* UIView+Shadow.swift in Sources */,
+				4193B1F022B1A8BF00EE25FD /* FavouriteThreadsViewController.swift in Sources */,
 				41BEE75D229F04730028EBFB /* ReusableView.swift in Sources */,
 				41BEE720229F043C0028EBFB /* Extension+UIFont.swift in Sources */,
 				4193B1BF22AA9BE300EE25FD /* PostRouter.swift in Sources */,
 				D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */,
 				D5B22BC022A165B7001EE4F8 /* Thread.swift in Sources */,
+				4193B1E622B19EB600EE25FD /* FavouritesViewController.swift in Sources */,
 				4193B1D622AD8C4C00EE25FD /* VerticalOvalButton.swift in Sources */,
 				4193B1C122AA9BF600EE25FD /* PostAssembly.swift in Sources */,
 				41BEE762229F04730028EBFB /* StackViewContainer.swift in Sources */,
