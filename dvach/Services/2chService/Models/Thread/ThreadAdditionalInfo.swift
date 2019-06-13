@@ -21,7 +21,7 @@ struct ThreadAdditionalInfo {
     /// op - Автор поста. Данная переменная показывает, автор ли поста написал сообщение
     let isOp: Bool
     let parent: String
-    let sticky: Int // до конца не понял, что данная переменная значит
+    let sticky: Bool // прикреплен ли пост или нет
     let tags: String
     let trip: String
 }
@@ -57,7 +57,7 @@ extension ThreadAdditionalInfo: JSONParsable {
                                     name: name,
                                     isOp: isOp.boolValue,
                                     parent: parent,
-                                    sticky: sticky,
+                                    sticky: sticky.boolValue,
                                     tags: tags,
                                     trip: trip)
     }

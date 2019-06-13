@@ -22,7 +22,7 @@ struct Post {
     let num: Int
     let isOp: Bool
     let parent: String
-    let sticky: Int
+    let sticky: Bool
     let subject: String
     let timestamp: Int
     let trip: String
@@ -79,7 +79,7 @@ extension Post: JSONParsable {
                     num: num,
                     isOp: isOp.boolValue,
                     parent: parent,
-                    sticky: sticky,
+                    sticky: sticky.boolValue,
                     subject: subject,
                     timestamp: timestamp,
                     trip: trip,
