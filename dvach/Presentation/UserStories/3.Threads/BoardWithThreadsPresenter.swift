@@ -41,8 +41,8 @@ final class BoardWithThreadsPresenter {
     
     // MARK: - Private
     
-    private func loadBoardWithBumpSortingThreads() {
-        dvachService.loadBoardWithBumpSortingThreads(boardID) { [weak self] result in
+    private func loadBoardWithThreads() {
+        dvachService.loadBoardWithPerPageThreadsRequest(boardID, 0) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let board):
@@ -69,7 +69,7 @@ final class BoardWithThreadsPresenter {
 extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
     
     func viewDidLoad() {
-        loadBoardWithBumpSortingThreads()
+        loadBoardWithThreads()
     }
     
     func didSelectCell(index: Int) {

@@ -40,9 +40,23 @@ extension DvachService: IDvachService {
         }
     }
     
-    func loadBoardWithBumpSortingThreads(_ board: String,
-                                         completion: @escaping (Result<Board>) -> Void) {
-        let request = BoardWithBumpSortingThreadsRequest(board)
+    func loadBoardWithBumpSortingThreadsCatalog(_ board: String,
+                                                completion: @escaping (Result<Board>) -> Void) {
+        let request = BoardWithBumpSortingThreadsCatalogRequest(board)
+        requestManager.loadModel(request: request) { result in
+            switch result {
+            case .success(let board):
+                completion(.success(board))
+            case .failure:
+                completion(.failure(NSError.defaultError(description: "Борда с тредами не загрузилась. Верим, что Абу не изменил API")))
+            }
+        }
+    }
+    
+    func loadBoardWithPerPageThreadsRequest(_ board: String,
+                                            _ page: Int,
+                                            completion: @escaping (Result<Board>) -> Void) {
+        let request = BoardWithPerPageThreadsRequest(board, page)
         requestManager.loadModel(request: request) { result in
             switch result {
             case .success(let board):

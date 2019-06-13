@@ -14,6 +14,8 @@ struct Board {
     let category: Category?
     let name: String
     let pages: Int?
+    let boardSpeed: Int?
+    let currentPage: Int?
     let bumpLimit: Int
     let defaultName: String
     let isDicesEnabled: Bool
@@ -79,12 +81,18 @@ extension Board: JSONParsable {
         }
         
         let pages = json["pages"].int
+        let arrayOfPages = json["pages"].arrayObject as? [Int]
+        let boardSpeed = json["board_speed"].int
+        let currentPage = json["current_page"].int
+        
         let additionalInfo = BoardAdditionalInfo.from(json: json)
         
         return Board(identifier: identifier,
                      category: category,
                      name: name,
-                     pages: pages,
+                     pages: pages ?? arrayOfPages?.count,
+                     boardSpeed: boardSpeed,
+                     currentPage: currentPage,
                      bumpLimit: bumpLimit,
                      defaultName: defaultName,
                      isDicesEnabled: isDicesEnabled.boolValue,

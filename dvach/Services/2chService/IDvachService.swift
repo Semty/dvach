@@ -13,9 +13,14 @@ protocol IDvachService {
     /// Загрузка всех досок (без тредов и дополнительной информации)
     func loadBoards(completion: @escaping (Result<[Board]>) -> Void)
     
-    /// Загрузка конкретной доски (с тредами, отсортированными по последнему сообщению)
-    func loadBoardWithBumpSortingThreads(_ board: String,
-                                         completion: @escaping (Result<Board>) -> Void)
+    /// Загрузка конкретной доски (с каталогом тредов, отсортированных по последнему сообщению)
+    func loadBoardWithBumpSortingThreadsCatalog(_ board: String,
+                                                completion: @escaping (Result<Board>) -> Void)
+    
+    /// Загрузка конкретной доски с тредами по странице
+    func loadBoardWithPerPageThreadsRequest(_ board: String,
+                                            _ page: Int,
+                                            completion: @escaping (Result<Board>) -> Void)
     
     /*
      Параметры:

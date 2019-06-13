@@ -1,5 +1,5 @@
 //
-//  BoardWithBumpSortingThreadsRequest.swift
+//  BoardWithBumpSortingThreadsCatalogRequest.swift
 //  dvach
 //
 //  Created by Ruslan Timchenko on 31/05/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class BoardWithBumpSortingThreadsRequest: IRequest {
+final class BoardWithBumpSortingThreadsCatalogRequest: IRequest {
     
     private var board: String
     

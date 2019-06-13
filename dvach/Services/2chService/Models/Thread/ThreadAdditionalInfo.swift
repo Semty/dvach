@@ -16,7 +16,6 @@ struct ThreadAdditionalInfo {
     let email: String
     let isEndless: Bool
     let files: [File]
-    let filesCount: Int
     let name: String
     /// op - Автор поста. Данная переменная показывает, автор ли поста написал сообщение
     let isOp: Bool
@@ -37,7 +36,6 @@ extension ThreadAdditionalInfo: JSONParsable {
             let email = json["email"].string,
             let isEndless = json["endless"].int,
             let filesArray = json["files"].array,
-            let filesCount = json["files_count"].int,
             let name = json["name"].string,
             let isOp = json["op"].int,
             let parent = json["parent"].string,
@@ -53,7 +51,6 @@ extension ThreadAdditionalInfo: JSONParsable {
                                     email: email,
                                     isEndless: isEndless.boolValue,
                                     files: files,
-                                    filesCount: filesCount,
                                     name: name,
                                     isOp: isOp.boolValue,
                                     parent: parent,
