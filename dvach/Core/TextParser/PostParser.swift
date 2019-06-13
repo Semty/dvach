@@ -158,8 +158,7 @@ private extension NSMutableAttributedString {
     }
     
     func strike(range: NSRange) {
-        print(range)
-        addAttributes([NSAttributedString.Key.strikethroughStyle: 2], range: range)
+        addAttributes([.nantesLabelStrikeOut: true], range: range)
     }
     
     func spoiler(range: NSRange) {
@@ -259,7 +258,7 @@ struct PostParser {
         boldParse(in: range)
         spanStyleParse(in: range)
         underlineParse(in: range)
-        //strikeParse(in: range) На данный момент Nantes не поддерживает striketrough
+        strikeParse(in: range)
         spoilerParse(in: range)
         quoteParse(in: range)
         linkParse(in: range)
