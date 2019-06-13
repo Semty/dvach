@@ -23,7 +23,7 @@ final class SkeletonThreadView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         elements.forEach {
-            $0.makeRoundedByCornerRadius(.radius6)
+            $0.makeRoundedByCornerRadius(.radius10)
             $0.backgroundColor = .n5LightGray
         }
     }
