@@ -20,6 +20,10 @@ extension String {
     
     func substring(_ from: Int, to: Int) -> String {
         let start = index(startIndex, offsetBy: from)
+        var to = to
+        if to >= count {
+            to = count
+        }
         let end = index(startIndex, offsetBy: to)
         return String(self[start ..< end])
     }

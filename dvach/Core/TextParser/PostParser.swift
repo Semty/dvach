@@ -26,6 +26,7 @@ private extension String {
     static let regexUnderline = "<span class=\"u\">(.*?)</span>"
     static let regexInserted = "<ins>(.*?)</ins>"
     static let regexSpoiler = "<span class=\"spoiler\">(.*?)</span>"
+    static let regexStrike = "<span class=\"s\">(.*?)</span>"
     static let regexQuote = "<span class=\"unkfunc\">(.*?)</span>"
     static let regexSpanStyle = "<span (.*?)>(.*?)</span>"
     static let regexHTML = "<[^>]*>"
@@ -156,6 +157,11 @@ private extension NSMutableAttributedString {
         addAttributes([.underlineStyle: NSUnderlineStyle.single.rawValue], range: range)
     }
     
+    func strike(range: NSRange) {
+        print(range)
+        addAttributes([NSAttributedString.Key.strikethroughStyle: 2], range: range)
+    }
+    
     func spoiler(range: NSRange) {
         addAttributes([.foregroundColor: UIColor.n5LightGray], range: range)
     }
@@ -253,7 +259,7 @@ struct PostParser {
         boldParse(in: range)
         spanStyleParse(in: range)
         underlineParse(in: range)
-        //strikeParse(in: range) // Не реализовано пока
+        //strikeParse(in: range) На данный момент Nantes не поддерживает striketrough
         spoilerParse(in: range)
         quoteParse(in: range)
         linkParse(in: range)
@@ -381,36 +387,22 @@ struct PostParser {
         }
     }
     
-    //    private func strikeParse(in range: NSRange) {
-    //
-    //    }
+    private func strikeParse(in range: NSRange) {
+        regexFind(regex: .regexStrike, range: range) { range in
+            attributedText.strike(range: range)
+        }
+    }
     
     private func spoilerParse(in range: NSRange) {
         regexFind(regex: .regexSpoiler, range: range) { range in
             attributedText.spoiler(range: range)
         }
-        
-        //        let spoilerRanges = text.ranges(of: "<span class=\"spoiler\">(.*?)</span>")
-        //        spoilerRanges.forEach { [weak self] range in
-        //            guard self != nil else { return }
-        //            Style.quoteParse(attrText: attributedText,
-        //                        text: text,
-        //                        range: range)
-        //        }
     }
     
     private func quoteParse(in range: NSRange) {
         regexFind(regex: .regexQuote, range: range) { range in
             attributedText.quote(range: range)
         }
-        
-        //        let quoteRanges = text.ranges(of: "<span class=\"unkfunc\">(.*?)</span>")
-        //        quoteRanges.forEach { [weak self] range in
-        //            guard self != nil else { return }
-        //            Style.quoteParse(attrText: attributedText,
-        //                        text: text,
-        //                        range: range)
-        //        }
     }
     
     private mutating func linkParse(in fullRange: NSRange) {
