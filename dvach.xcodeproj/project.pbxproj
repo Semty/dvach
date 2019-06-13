@@ -144,6 +144,8 @@
 		D5B22BC222A187A0001EE4F8 /* BoardWithBumpSortingThreadsCatalogRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BC122A187A0001EE4F8 /* BoardWithBumpSortingThreadsCatalogRequest.swift */; };
 		D5B22BC422A18F31001EE4F8 /* BoardAdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BC322A18F31001EE4F8 /* BoardAdditionalInfo.swift */; };
 		D5D37B3522B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D37B3422B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift */; };
+		D5D37B3822B2790C00CDEBA2 /* SkeletonThreadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D37B3722B2790C00CDEBA2 /* SkeletonThreadView.xib */; };
+		D5D37B3A22B2835D00CDEBA2 /* SkeletonThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */; };
 		D5E4733E22A937980055AB92 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E4733D22A937970055AB92 /* Post.swift */; };
 		D5E4734022A941990055AB92 /* ThreadWithPostsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */; };
 		D5FC9CF822ACEE8B002E0F79 /* Extension+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC9CF722ACEE8B002E0F79 /* Extension+NSRange.swift */; };
@@ -307,6 +309,8 @@
 		D5B22BC122A187A0001EE4F8 /* BoardWithBumpSortingThreadsCatalogRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithBumpSortingThreadsCatalogRequest.swift; sourceTree = "<group>"; };
 		D5B22BC322A18F31001EE4F8 /* BoardAdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardAdditionalInfo.swift; sourceTree = "<group>"; };
 		D5D37B3422B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithPerPageThreadsRequest.swift; sourceTree = "<group>"; };
+		D5D37B3722B2790C00CDEBA2 /* SkeletonThreadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkeletonThreadView.xib; sourceTree = "<group>"; };
+		D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonThreadView.swift; sourceTree = "<group>"; };
 		D5E4733D22A937970055AB92 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithPostsRequest.swift; sourceTree = "<group>"; };
 		D5FC9CF722ACEE8B002E0F79 /* Extension+NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSRange.swift"; sourceTree = "<group>"; };
@@ -969,6 +973,7 @@
 		D5A69D4622A2FADF00C46E24 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D5D37B3622B278D100CDEBA2 /* Skeleton */,
 				D5A69D4722A2FAF700C46E24 /* ThreadWithImageView */,
 				D5A69D4822A2FB0B00C46E24 /* ThreadWithoutImageView */,
 			);
@@ -999,6 +1004,15 @@
 				D5A69D5222A3167700C46E24 /* ThreadsViewModelFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		D5D37B3622B278D100CDEBA2 /* Skeleton */ = {
+			isa = PBXGroup;
+			children = (
+				D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */,
+				D5D37B3722B2790C00CDEBA2 /* SkeletonThreadView.xib */,
+			);
+			path = Skeleton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1095,6 +1109,7 @@
 				D5A69D5022A2FDA800C46E24 /* ThreadWithoutImageView.xib in Resources */,
 				4190800122A6E66A003309D9 /* BoardView.xib in Resources */,
 				41BEE764229F04730028EBFB /* ImbaTableView.xib in Resources */,
+				D5D37B3822B2790C00CDEBA2 /* SkeletonThreadView.xib in Resources */,
 				41BEE6E0229EFE750028EBFB /* LaunchScreen.storyboard in Resources */,
 				4190801D22A8865D003309D9 /* config.json in Resources */,
 				411902BA22A6BE05008231AC /* ShadowCollectionViewCell.xib in Resources */,
@@ -1195,6 +1210,7 @@
 				41BEE722229F043C0028EBFB /* Extension+UIImage.swift in Sources */,
 				4117534F22A2F22B008EBD2A /* CategoriesCardView.swift in Sources */,
 				41BEE71B229F043C0028EBFB /* IStorage.swift in Sources */,
+				D5D37B3A22B2835D00CDEBA2 /* SkeletonThreadView.swift in Sources */,
 				41B3E2D522A31298000B3F51 /* CategoriesViewModelFactory.swift in Sources */,
 				D5A69D4C22A2FB4B00C46E24 /* ThreadWithoutImageView.swift in Sources */,
 				D5A69D4522A2E83200C46E24 /* BoardWithThreadsPresenter.swift in Sources */,

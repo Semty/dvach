@@ -16,7 +16,9 @@ public extension CGFloat {
     
     // MARK: - Corner radius
 
+    static let radius6: CGFloat = 6
     static let radius10: CGFloat = 10
+    static let radius12: CGFloat = 12
 
     // MARK: - Fonts
 
