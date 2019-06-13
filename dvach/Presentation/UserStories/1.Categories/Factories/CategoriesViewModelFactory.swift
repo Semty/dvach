@@ -37,7 +37,7 @@ final class CategoriesViewModelFactory {
             } else {
                 icon = UIImage(named: "default") ?? UIImage()
             }
-            return CategoriesCardView.Model(image: icon, title: $0.name, subtitle: "\\\($0.identifier)\\")
+            return CategoriesCardView.Model(image: icon, title: $0.name, subtitle: "/\($0.identifier)/")
         }
     }
 }

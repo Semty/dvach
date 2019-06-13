@@ -20,4 +20,14 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return img
     }
+    
+    static func icon(boardId: String) -> UIImage {
+        let icon: UIImage
+        if let assetsIcon = UIImage(named: boardId) {
+            icon = assetsIcon
+        } else {
+            icon = UIImage(named: "default") ?? UIImage()
+        }
+        return icon
+    }
 }

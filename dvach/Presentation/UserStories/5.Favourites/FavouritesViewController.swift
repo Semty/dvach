@@ -22,8 +22,8 @@ final class FavouritesViewController: UIViewController {
         let segment = UISegmentedControl()
         segment.addTarget(self, action: #selector(segmentedControlDidChangeValue), for: .allEvents)
         segment.insertSegment(withTitle: "Доски", at: 0, animated: false)
-        segment.insertSegment(withTitle: "Треды", at: 0, animated: false)
-        segment.insertSegment(withTitle: "Посты", at: 0, animated: false)
+        segment.insertSegment(withTitle: "Треды", at: 1, animated: false)
+        segment.insertSegment(withTitle: "Посты", at: 2, animated: false)
         segment.selectedSegmentIndex = 0
         segment.tintColor = .n7Blue
         
@@ -34,11 +34,8 @@ final class FavouritesViewController: UIViewController {
         let viewControllers = [FavouriteBoardsViewController(),
                                FavouriteThreadsViewController(),
                                FavouritePostsViewController()]
-        viewControllers.forEach {
-            addChild($0)
-            $0.didMove(toParent: self)
-        }
-    
+        viewControllers.forEach(addChild)
+        
         return viewControllers
     }()
     
@@ -85,6 +82,7 @@ final class FavouritesViewController: UIViewController {
         guard let vc = viewController else { return }
         stackView.arrangedSubviews.forEach(stackView.removeArrangedSubview)
         stackView.addArrangedSubview(vc.view)
+        vc.willMove(toParent: self)
     }
     
     // MARK: - Actions

@@ -18,6 +18,10 @@ final class Storage: IStorage {
     }
     
     func save<T>(objects: [T]) where T: Persistable {
+        save(objects: objects) { }
+    }
+    
+    func save<T: Persistable>(objects: [T], completion: @escaping () -> Void) {
         let request = NSFetchRequest<T.DBModel>(entityName: T.entityName)
         
         persistentContainer.performBackgroundTask { context in
@@ -32,7 +36,7 @@ final class Storage: IStorage {
             }
             
             try? context.save()
-            print("DATA SAVED SUCCESSFULY")
+            completion()
         }
     }
     

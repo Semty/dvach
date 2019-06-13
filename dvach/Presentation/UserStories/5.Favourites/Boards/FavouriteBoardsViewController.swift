@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FavouriteBoardsView {
-    
+    func updateTable()
 }
 
 final class FavouriteBoardsViewController: UIViewController {
@@ -26,8 +26,21 @@ final class FavouriteBoardsViewController: UIViewController {
         tableView.rowHeight = .defaultRowHeight
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
+        tableView.isHidden = true
         
         return tableView
+    }()
+    
+    private lazy var placeholderView: UIView = {
+        let label = UILabel()
+        label.text = "У вас пока нет любимых досок"
+        label.textColor = .n2Gray
+        label.textAlignment = .center
+        let view = UIView()
+        view.addSubview(label)
+        label.snp.makeConstraints { $0.edges.equalToSuperview() }
+        
+        return view
     }()
     
     // MARK: - Initialization
@@ -50,12 +63,20 @@ final class FavouriteBoardsViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewWillAppear()
+    }
+    
     // MARK: - Private
     
     private func setupUI() {
-        view.backgroundColor = .blue
-//        view.addSubview(tableView)
-//        tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        view.backgroundColor = .white
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        
+        view.addSubview(placeholderView)
+        placeholderView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
 }
 
@@ -63,6 +84,12 @@ final class FavouriteBoardsViewController: UIViewController {
 
 extension FavouriteBoardsViewController: FavouriteBoardsView {
     
+    func updateTable() {
+        tableView.reloadData()
+        let shouldHidePlaceholder = !presenter.dataSource.isEmpty
+        tableView.isHidden = !shouldHidePlaceholder
+        placeholderView.isHidden = shouldHidePlaceholder
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -75,6 +102,7 @@ extension FavouriteBoardsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: BoardCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        cell.prepareForReuse()
         let viewModel = presenter.dataSource[indexPath.row]
         cell.configure(with: viewModel)
         if indexPath.row == presenter.dataSource.count - 1 {
@@ -90,6 +118,6 @@ extension FavouriteBoardsViewController: UITableViewDataSource {
 extension FavouriteBoardsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        presenter.didSelectBoard(index: indexPath.row)
+        presenter.didSelectBoard(index: indexPath.row)
     }
 }

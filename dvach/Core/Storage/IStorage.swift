@@ -15,9 +15,9 @@ protocol IStorage {
     
     /// Сохраняет новые объекты, заменяет старые по identifier
     func save<T: Persistable>(objects: [T])
+    func save<T: Persistable>(objects: [T], completion: @escaping () -> Void)
     
     func fetch<T: Persistable>(model: T.Type) -> [T]
-    
     func fetch<T: Persistable>(model: T.Type,
                                predicate: NSPredicate?,
                                sortDescriptors: [NSSortDescriptor]) -> [T]

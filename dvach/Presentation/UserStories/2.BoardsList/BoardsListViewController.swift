@@ -88,6 +88,7 @@ extension BoardsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: BoardCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        cell.prepareForReuse()
         let viewModel = presenter.dataSource[indexPath.row]
         cell.configure(with: viewModel)
         if indexPath.row == presenter.dataSource.count - 1 {

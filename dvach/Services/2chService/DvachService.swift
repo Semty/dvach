@@ -87,16 +87,28 @@ extension DvachService: IDvachService {
         }
     }
     
-    func markBoardAsFavourite(_ board: Board) {
+    func addBoardToFavourites(_ board: Board, completion: @escaping () -> Void) {
         let favouriteBoard = FavouriteBoard(identifier: board.identifier,
                                             category: board.category ?? .other,
                                             name: board.name,
                                             timestamp: Date().timeIntervalSince1970)
-        storage.save(objects: [favouriteBoard])
+        storage.save(objects: [favouriteBoard], completion: completion)
+    }
+    
+    func removeBoardFromFavourites(_ board: Board) {
+        storage.delete(model: FavouriteBoard.self, with: board.identifier)
     }
     
     var favouriteBoards: [FavouriteBoard] {
         let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: true)
         return storage.fetch(model: FavouriteBoard.self, predicate: nil, sortDescriptors: [sortDescriptor])
+    }
+    
+    func isBoardFavourite(identifier: String) -> Bool {
+        let predicate = NSPredicate(format: "identifier == %@", identifier)
+        let board = storage.fetch(model: FavouriteBoard.self,
+                                  predicate: predicate,
+                                  sortDescriptors: [])
+        return board.first != nil
     }
 }

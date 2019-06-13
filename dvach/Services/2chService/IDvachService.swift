@@ -55,8 +55,14 @@ protocol IDvachService {
                              completion: @escaping (Result<[Post]>) -> Void)
     
     /// Добавить доску в избранное
-    func markBoardAsFavourite(_ board: Board)
+    func addBoardToFavourites(_ board: Board, completion: @escaping () -> Void)
+    
+    /// Убрать доску из избранного
+    func removeBoardFromFavourites(_ board: Board)
     
     /// Достать список избранных досок из кеша
     var favouriteBoards: [FavouriteBoard] { get }
+    
+    /// Проверка на то, добавлена ли доска в избранное
+    func isBoardFavourite(identifier: String) -> Bool
 }

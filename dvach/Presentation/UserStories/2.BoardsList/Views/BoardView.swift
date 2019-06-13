@@ -34,7 +34,6 @@ final class BoardView: UIView, ConfigurableView, SeparatorAvailable, ReusableVie
         super.awakeFromNib()
         titleLabel.textColor = .n1Gray
         subtitleLabel.textColor = .n2Gray
-        addBottomSeparator(with: .init(insets: .separatorInsets))
     }
     
     // MARK: - ConfigurableView
@@ -46,5 +45,11 @@ final class BoardView: UIView, ConfigurableView, SeparatorAvailable, ReusableVie
         subtitleLabel.text = model.subtitle
         let iconViewModel = IconView.Model(icon: model.icon, text: model.title)
         iconView.configure(with: iconViewModel)
+    }
+    
+    // MARK: - Reusable
+    
+    func prepareForReuse() {
+        addBottomSeparator(with: .init(insets: .separatorInsets))
     }
 }

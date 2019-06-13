@@ -11,9 +11,12 @@ import UIKit
 
 protocol IBoardWithThreadsPresenter {
     var dataSource: [BoardWithThreadsPresenter.CellType] { get }
+    var isFavourite: Bool { get }
     
     func viewDidLoad()
     func didSelectCell(index: Int)
+    func addToFavouritesDidTap()
+    func removeFromFavouritesDidTap()
 }
 
 final class BoardWithThreadsPresenter {
@@ -77,5 +80,24 @@ extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
         
         let viewController = PostAssembly.assemble(board: boardID, threadNum: threadNumber)
         view?.present(viewController, animated: true)
+    }
+    
+    func addToFavouritesDidTap() {
+        guard let board = board else { return }
+        dvachService.addBoardToFavourites(board) { [weak self] in
+            DispatchQueue.main.async {
+                self?.view?.updateNavigationBar()
+            }
+        }
+    }
+    
+    func removeFromFavouritesDidTap() {
+        guard let board = board else { return }
+        dvachService.removeBoardFromFavourites(board)
+        view?.updateNavigationBar()
+    }
+    
+    var isFavourite: Bool {
+        return dvachService.isBoardFavourite(identifier: boardID)
     }
 }

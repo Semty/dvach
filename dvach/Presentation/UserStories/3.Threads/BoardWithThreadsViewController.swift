@@ -17,6 +17,7 @@ private extension CGFloat {
 
 protocol BoardWithThreadsView: AnyObject {
     func updateTable()
+    func updateNavigationBar()
 }
 
 final class ThreadsViewController: UIViewController {
@@ -62,8 +63,9 @@ final class ThreadsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         setupUI()
-         presenter.viewDidLoad()
+        setupUI()
+        updateNavigationItem()
+        presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,16 +87,46 @@ final class ThreadsViewController: UIViewController {
         view.addSubview(skeleton)
         skeleton.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
+    
+    private func updateNavigationItem() {
+        let item: UIBarButtonItem
+        if presenter.isFavourite {
+            item = .menuButton(self,
+                               action: #selector(removeFromFavourites),
+                               imageName: "heart")
+        } else {
+            item = .menuButton(self,
+                               action: #selector(addToFavourites),
+                               imageName: "empty_heart")
+        }
+        item.tintColor = .n7Blue
+        navigationItem.rightBarButtonItem = item
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func addToFavourites() {
+        presenter.addToFavouritesDidTap()
+    }
+    
+    @objc private func removeFromFavourites() {
+        presenter.removeFromFavouritesDidTap()
+    }
 }
 
 // MARK: - BoardWithThreadsView
 
 extension ThreadsViewController: BoardWithThreadsView {
+    
     func updateTable() {
         tableView.reloadData()
         skeleton.update(state: .nonactive)
         
         view.skeletonAnimation(skeletonView: skeleton, mainView: tableView)
+    }
+    
+    func updateNavigationBar() {
+        updateNavigationItem()
     }
 }
 
