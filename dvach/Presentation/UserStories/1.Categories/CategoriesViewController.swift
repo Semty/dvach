@@ -26,7 +26,11 @@ final class CategoriesViewController: UIViewController {
     // UI
     private var searchBoardsController: BoardsListViewController?
 
-    private lazy var stackView = componentsFactory.createStackViewContainer()
+    private lazy var stackView: StackViewContainer = {
+        let stackView = componentsFactory.createStackViewContainer()
+        stackView.alpha = 0.0
+        return stackView
+    }()
     private lazy var searchController = UISearchController(searchResultsController: searchBoardsController)
     private lazy var skeleton = CategoriesSkeletonView.fromNib()
     
@@ -103,8 +107,8 @@ extension CategoriesViewController: CategoriesView {
             if viewModels.count == $0.offset + 1 { block.removeBottomSeparator() }
             stackView.addView(block)
         }
-        skeleton.isHiddenFadeAnimated = true
         skeleton.update(state: .nonactive)
+        view.skeletonAnimation(skeletonView: skeleton, mainView: stackView)
     }
     
     func didLoadBoards(boards: [Board]) {

@@ -36,9 +36,12 @@ final class ThreadsViewController: UIViewController {
                                        left: 0,
                                        bottom: 0,
                                        right: 0)
+        tableView.alpha = 0.0
         
         return tableView
     }()
+    
+    private lazy var skeleton = SkeletonThreadView.fromNib()
     
     // MARK: - Initialization
     
@@ -63,6 +66,12 @@ final class ThreadsViewController: UIViewController {
          presenter.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        skeleton.update(state: .active)
+    }
+    
     // MARK: - Private
     
     private func setupUI() {
@@ -72,6 +81,9 @@ final class ThreadsViewController: UIViewController {
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        view.addSubview(skeleton)
+        skeleton.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
 }
 
@@ -80,6 +92,9 @@ final class ThreadsViewController: UIViewController {
 extension ThreadsViewController: BoardWithThreadsView {
     func updateTable() {
         tableView.reloadData()
+        skeleton.update(state: .nonactive)
+        
+        view.skeletonAnimation(skeletonView: skeleton, mainView: tableView)
     }
 }
 

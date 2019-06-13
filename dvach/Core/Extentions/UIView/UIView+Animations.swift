@@ -18,20 +18,20 @@ extension UIView {
         layer.removeAnimation(forKey: "pulseAnimation")
     }
     
-    var isHiddenFadeAnimated: Bool {
-        set {
-            updateHiddenFadeAnimated(isHidden: newValue, duration: 3)
-        }
-        get {
-            return self.isHidden
-        }
-    }
-    
-    func updateHiddenFadeAnimated(isHidden: Bool, duration: TimeInterval) {
-        let transition = CATransition()
-        transition.type = .fade
-        transition.duration = duration
-        layer.add(transition, forKey: nil)
-        self.isHidden = isHidden
+    func skeletonAnimation(skeletonView: UIView, mainView: UIView) {
+        UIView.animateKeyframes(withDuration: 4/10, delay: 0, options: [.calculationModeLinear], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0,
+                               relativeDuration: 7/10,
+                               animations: {
+                skeletonView.alpha = 0.0
+            })
+            UIView.addKeyframe(withRelativeStartTime: 3/10,
+                               relativeDuration: 7/10,
+                               animations: {
+                mainView.alpha = 1.0
+            })
+        }, completion:{ _ in
+            skeletonView.isHidden = true
+        })
     }
 }

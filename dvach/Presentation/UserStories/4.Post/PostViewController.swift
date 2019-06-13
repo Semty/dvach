@@ -30,6 +30,7 @@ final class PostViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
+        tableView.alpha = 0.0
         
         return tableView
     }()
@@ -85,8 +86,8 @@ extension PostViewController: PostView {
     
     func updateTable() {
         tableView.reloadData()
-        skeleton.isHiddenFadeAnimated = true
         skeleton.update(state: .nonactive)
+        view.skeletonAnimation(skeletonView: skeleton, mainView: tableView)
     }
 }
 
