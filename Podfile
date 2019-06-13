@@ -13,7 +13,6 @@ target 'dvach' do
    pod 'Alamofire'
    pod 'SwiftyJSON', '4.2.0'
    pod 'SnapKit', '4.2.0'
-   pod 'Kingfisher', '4.10.0'
    pod 'Nuke', '~> 7.6'
    pod 'Nuke-FLAnimatedImage-Plugin'
    pod 'FLAnimatedImage', :git => 'https://github.com/Flipboard/FLAnimatedImage.git', :tag => "1.0.14"
