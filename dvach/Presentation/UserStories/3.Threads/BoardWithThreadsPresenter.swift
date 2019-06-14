@@ -11,12 +11,16 @@ import UIKit
 
 protocol IBoardWithThreadsPresenter {
     var dataSource: [BoardWithThreadsPresenter.CellType] { get }
+    var currentPage: Int? { get }
+    var lastPage: Int? { get }
+    var isLoadingNewData: Bool { get }
     var isFavourite: Bool { get }
     
     func viewDidLoad()
     func didSelectCell(index: Int)
     func addToFavouritesDidTap()
     func removeFromFavouritesDidTap()
+    func loadBoardWithThreads(page: Int)
 }
 
 final class BoardWithThreadsPresenter {
@@ -31,9 +35,19 @@ final class BoardWithThreadsPresenter {
     private let dvachService = Locator.shared.dvachService()
     private let viewModelFactory = ThreadsViewModelFactory()
     
-    // Properties
+    // Public Properties and Flags
+    public var dataSource = [BoardWithThreadsPresenter.CellType]()
+    public var currentPage: Int? {
+        return board?.currentPage
+    }
+    public var lastPage: Int? {
+        guard let pages = board?.pages else { return nil }
+        return pages - 1
+    }
+    public var isLoadingNewData = false
+    
+    // Private Properties
     private let boardID: String
-    var dataSource = [BoardWithThreadsPresenter.CellType]()
     private var board: Board?
     
     // MARK: - Initialization
@@ -42,15 +56,23 @@ final class BoardWithThreadsPresenter {
         self.boardID = boardID
     }
     
-    // MARK: - Private
+    // MARK: - Public Functions
     
-    private func loadBoardWithThreads() {
-        dvachService.loadBoardWithPerPageThreadsRequest(boardID, 0) { [weak self] result in
+    public func loadBoardWithThreads(page: Int) {
+        isLoadingNewData = true
+        dvachService.loadBoardWithPerPageThreadsRequest(boardID, page) { [weak self] result in
             guard let self = self else { return }
+            self.isLoadingNewData = false
+            
             switch result {
             case .success(let board):
                 self.board = board
-                self.dataSource = self.createViewModels(board: board)
+                
+                if page == 0 {
+                    self.dataSource = self.createViewModels(board: board)
+                } else {
+                    self.dataSource += self.createViewModels(board: board)
+                }
                 
                 DispatchQueue.main.async {
                     self.view?.updateTable()
@@ -72,7 +94,7 @@ final class BoardWithThreadsPresenter {
 extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
     
     func viewDidLoad() {
-        loadBoardWithThreads()
+        loadBoardWithThreads(page: 0)
     }
     
     func didSelectCell(index: Int) {

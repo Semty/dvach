@@ -157,6 +157,20 @@ extension ThreadsViewController: UITableViewDataSource {
 
 extension ThreadsViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let currentPage = presenter.currentPage else { return }
+        guard let lastPage = presenter.lastPage else { return }
+        
+        let dataSourceCount = presenter.dataSource.count
+        let updateElement = dataSourceCount - 4
+        
+        if indexPath.row == updateElement
+            && !presenter.isLoadingNewData
+            && currentPage != lastPage {
+            presenter.loadBoardWithThreads(page: currentPage + 1)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let model = presenter.dataSource[safeIndex: indexPath.row] else { return .zero }
         switch model {
