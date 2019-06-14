@@ -51,7 +51,7 @@ extension String {
     }
     
     func removeAllCSSTags() -> String {
-        let str = replacingOccurrences(of: "<style type=\"text/css\">(.+?)</style>",
+        let str = replacingOccurrences(of: "<style[^>]*>(.+?)</style>",
                                        with: "",
                                        options: .regularExpression,
                                        range: nil)

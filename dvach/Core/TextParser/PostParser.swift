@@ -30,7 +30,7 @@ private extension String {
     static let regexQuote = "<span class=\"unkfunc\">(.*?)</span>"
     static let regexSpanStyle = "<span (.*?)>(.*?)</span>"
     static let regexHTML = "<[^>]*>"
-    static let regexCSSStyle = "<style type=\"text/css\">(.+?)</style>"
+    static let regexCSSStyle = "<style[^>]*>(.+?)</style>"
     static let regexCSSScript = "<script(.*?)>(.+?)</script>"
     static let regexParagraph = "<p[^>]*>(.*?)</p>"
     
@@ -307,7 +307,7 @@ struct PostParser {
             var range = range
             range.location += shift
             attributedText.heading(range: range)
-            shift += 2
+            shift += 3
         }
     }
     
