@@ -93,11 +93,11 @@ final class ThreadsViewController: UIViewController {
         if presenter.isFavourite {
             item = .menuButton(self,
                                action: #selector(removeFromFavourites),
-                               imageName: "heart")
+                               imageName: "bookmark")
         } else {
             item = .menuButton(self,
                                action: #selector(addToFavourites),
-                               imageName: "empty_heart")
+                               imageName: "empty_bookmark")
         }
         item.tintColor = .n7Blue
         navigationItem.rightBarButtonItem = item
