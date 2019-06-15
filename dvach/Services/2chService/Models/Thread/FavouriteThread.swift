@@ -12,7 +12,7 @@ import CoreData
 struct FavouriteThread {
     var identifier: String
     let boardId: String
-    let threadNum: Int
+    var number: Int
     let comment: String
     let subject: String
     let thumbnailURL: String
@@ -38,7 +38,7 @@ extension FavouriteThread: Persistable {
     static func from(_ dbModel: DBFavouriteThread) -> FavouriteThread {
         return FavouriteThread(identifier: dbModel.identifier,
                                boardId: dbModel.boardId,
-                               threadNum: dbModel.threadNum,
+                               number: dbModel.threadNum,
                                comment: dbModel.comment,
                                subject: dbModel.subject,
                                thumbnailURL: dbModel.thumbnailURL,
@@ -49,7 +49,7 @@ extension FavouriteThread: Persistable {
         let dbModel = createModel(from: context)
         dbModel.identifier = identifier
         dbModel.boardId = boardId
-        dbModel.threadNum = threadNum
+        dbModel.threadNum = number
         dbModel.comment = comment
         dbModel.subject = subject
         dbModel.thumbnailURL = thumbnailURL

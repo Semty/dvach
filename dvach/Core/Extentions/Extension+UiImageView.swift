@@ -12,8 +12,12 @@ import Nuke
 extension UIImageView {
     
     func loadImage(url: String) {
+        loadImage(url: url, defaultImage: nil)
+    }
+    
+    func loadImage(url: String, defaultImage: UIImage?) {
+        image = defaultImage
         guard let url = URL(string: "\(GlobalUtils.base2chPath)\(url)") else {
-            image = nil
             return
         }
         

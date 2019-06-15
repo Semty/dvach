@@ -12,7 +12,7 @@ import SwiftyJSON
 struct Thread {
     let comment: String?
     let lastHit: Int? // Как я понял, это таймстамп последней активности в треде
-    let num: Int
+    var number: Int
     let postsCount: Int
     let score: Double?
     let subject: String?
@@ -24,7 +24,7 @@ struct Thread {
     let additionalInfo: ThreadAdditionalInfo?
     
     var identifier: String {
-        return "\(num)"
+        return "\(number)"
     }
 }
 
@@ -63,7 +63,7 @@ extension Thread: JSONParsable {
         
         return Thread(comment: comment,
                       lastHit: lastHit,
-                      num: num,
+                      number: num,
                       postsCount: postsCount,
                       score: score,
                       subject: subject,

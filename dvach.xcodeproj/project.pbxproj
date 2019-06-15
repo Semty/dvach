@@ -130,6 +130,8 @@
 		41D38A6522B51968000D1391 /* DvachItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A6422B51968000D1391 /* DvachItem.swift */; };
 		41D38A6722B52BD8000D1391 /* FavouriteThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A6622B52BD8000D1391 /* FavouriteThread.swift */; };
 		41D38A6A22B536A6000D1391 /* PostBottomSheetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A6922B536A6000D1391 /* PostBottomSheetFactory.swift */; };
+		41D38A6D22B5434F000D1391 /* FavouriteThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A6C22B5434F000D1391 /* FavouriteThreadView.swift */; };
+		41D38A6F22B54381000D1391 /* FavouriteThreadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D38A6E22B54381000D1391 /* FavouriteThreadView.xib */; };
 		D5750AB422AEC0D70058E99D /* Extension+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */; };
 		D5750AB622AEC5050058E99D /* DvachLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB522AEC5050058E99D /* DvachLinkModel.swift */; };
 		D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB922AEC57E0058E99D /* PostParser.swift */; };
@@ -295,6 +297,8 @@
 		41D38A6422B51968000D1391 /* DvachItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DvachItem.swift; sourceTree = "<group>"; };
 		41D38A6622B52BD8000D1391 /* FavouriteThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteThread.swift; sourceTree = "<group>"; };
 		41D38A6922B536A6000D1391 /* PostBottomSheetFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBottomSheetFactory.swift; sourceTree = "<group>"; };
+		41D38A6C22B5434F000D1391 /* FavouriteThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteThreadView.swift; sourceTree = "<group>"; };
+		41D38A6E22B54381000D1391 /* FavouriteThreadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouriteThreadView.xib; sourceTree = "<group>"; };
 		4274A55E1D343EF270BE19BF /* Pods-dvach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.debug.xcconfig"; sourceTree = "<group>"; };
 		969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.release.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.release.xcconfig"; sourceTree = "<group>"; };
 		BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -605,6 +609,7 @@
 		4193B1EE22B1A8A300EE25FD /* Threads */ = {
 			isa = PBXGroup;
 			children = (
+				41D38A6B22B54334000D1391 /* Views */,
 				4193B1EF22B1A8BF00EE25FD /* FavouriteThreadsViewController.swift */,
 				4193B1F122B1A8E100EE25FD /* FavouriteThreadsPresenter.swift */,
 			);
@@ -680,7 +685,6 @@
 			isa = PBXGroup;
 			children = (
 				41BEE738229F04550028EBFB /* Locator.swift */,
-				41D38A6322B51942000D1391 /* SharedProtocols */,
 				D58ADB9F22AC271B00A8334B /* TextParser */,
 				411902BB22A6BE3D008231AC /* Shared models */,
 				41BEE6F6229F043C0028EBFB /* Utils */,
@@ -952,19 +956,21 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
-		41D38A6322B51942000D1391 /* SharedProtocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SharedProtocols;
-			sourceTree = "<group>";
-		};
 		41D38A6822B5365A000D1391 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
 				41D38A6922B536A6000D1391 /* PostBottomSheetFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		41D38A6B22B54334000D1391 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				41D38A6C22B5434F000D1391 /* FavouriteThreadView.swift */,
+				41D38A6E22B54381000D1391 /* FavouriteThreadView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CA89EE3F855E333C81DBA6A2 /* Pods */ = {
@@ -1131,6 +1137,7 @@
 				D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */,
 				4193B1CC22AAA34E00EE25FD /* PostHeaderView.xib in Resources */,
 				4193B1DD22AEF96600EE25FD /* SkeletonPostView.xib in Resources */,
+				41D38A6F22B54381000D1391 /* FavouriteThreadView.xib in Resources */,
 				4190800622A6EAF1003309D9 /* IconView.xib in Resources */,
 				4193B1D822AD8C6800EE25FD /* VerticalOvalButton.xib in Resources */,
 				4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */,
@@ -1343,6 +1350,7 @@
 				41BEE724229F043C0028EBFB /* UIView+Tappable.swift in Sources */,
 				D5B22BBC22A16597001EE4F8 /* ThreadAdditionalInfo.swift in Sources */,
 				D5A69D4A22A2FB3400C46E24 /* ThreadWithImageView.swift in Sources */,
+				41D38A6D22B5434F000D1391 /* FavouriteThreadView.swift in Sources */,
 				41BEE765229F04730028EBFB /* TableViewContainerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

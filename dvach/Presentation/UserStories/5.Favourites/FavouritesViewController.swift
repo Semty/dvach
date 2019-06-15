@@ -17,10 +17,13 @@ final class FavouritesViewController: UIViewController {
     // Dependencies
     private let presenter: IFavouritesPresenter
     
+    // Properties
+    private var previousChildControllerIndex = 0
+    
     // UI
     private lazy var segmentControll: UISegmentedControl = {
         let segment = UISegmentedControl()
-        segment.addTarget(self, action: #selector(segmentedControlDidChangeValue), for: .allEvents)
+        segment.addTarget(self, action: #selector(segmentedControlDidChangeValue), for: .valueChanged)
         segment.insertSegment(withTitle: "Доски", at: 0, animated: false)
         segment.insertSegment(withTitle: "Треды", at: 1, animated: false)
         segment.insertSegment(withTitle: "Посты", at: 2, animated: false)
@@ -29,14 +32,11 @@ final class FavouritesViewController: UIViewController {
         
         return segment
     }()
-    private lazy var stackView = UIStackView(axis: .vertical)
+    private lazy var containerView = UIView()
     private lazy var childControllers: [UIViewController] = {
-        let viewControllers = [FavouriteBoardsViewController(),
-                               FavouriteThreadsViewController(),
-                               FavouritePostsViewController()]
-        viewControllers.forEach(addChild)
-        
-        return viewControllers
+        return [FavouriteBoardsViewController(),
+                FavouriteThreadsViewController(),
+                FavouritePostsViewController()]
     }()
     
     // MARK: - Initialization
@@ -71,18 +71,26 @@ final class FavouritesViewController: UIViewController {
             $0.trailing.leading.equalToSuperview().inset(CGFloat.inset16)
         }
         
-        view.addSubview(stackView)
-        stackView.snp.makeConstraints {
+        view.addSubview(containerView)
+        containerView.snp.makeConstraints {
             $0.top.equalTo(segmentControll.snp.bottom).offset(CGFloat.inset8)
             $0.bottom.leading.trailing.equalToSuperview()
         }
     }
     
     private func changeChildController(_ viewController: UIViewController?) {
-        guard let vc = viewController else { return }
-        stackView.arrangedSubviews.forEach(stackView.removeArrangedSubview)
-        stackView.addArrangedSubview(vc.view)
-        vc.willMove(toParent: self)
+        guard let vc = viewController,
+            let previousController = childControllers[safeIndex: previousChildControllerIndex] else { return }
+        
+        // Ремув предыдущего
+        containerView.subviews.forEach { $0.removeFromSuperview() }
+        previousController.willMove(toParent: nil)
+        previousController.removeFromParent()
+        
+        // Добавление следующего
+        addChild(vc)
+        containerView.addSubview(vc.view)
+        vc.didMove(toParent: self)
     }
     
     // MARK: - Actions
@@ -90,6 +98,7 @@ final class FavouritesViewController: UIViewController {
     @objc private func segmentedControlDidChangeValue(_ segmentedControll: UISegmentedControl) {
         let viewController = childControllers[safeIndex: segmentedControll.selectedSegmentIndex]
         changeChildController(viewController)
+        previousChildControllerIndex = segmentedControll.selectedSegmentIndex
     }
 }
 

@@ -43,7 +43,10 @@ final class PostViewPresenter {
     // MARK: - Private
     
     private func loadPost() {
-        dvachService.loadThreadWithPosts(board: boardIdentifier, threadNum: thread.num, postNum: nil, location: nil) { [weak self] result in
+        dvachService.loadThreadWithPosts(board: boardIdentifier,
+                                         threadNum: thread.number,
+                                         postNum: nil,
+                                         location: nil) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let posts):

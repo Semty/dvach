@@ -104,7 +104,7 @@ extension CategoriesPresenter: ICategoriesPresenter {
     
     func viewDidLoad() {
         loadCategories()
-        Analytics.logEvent("CategoriesShown", parameters: [:])
+//        Analytics.logEvent("CategoriesShown", parameters: [:])
     }
     
     func didSelectCell(indexPath: IndexPath, category: Category) {

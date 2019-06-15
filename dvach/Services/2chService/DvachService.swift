@@ -101,7 +101,7 @@ extension DvachService: IDvachService {
             guard let boardId = boardId else { return }
             let favouriteThread = FavouriteThread(identifier: thread.identifier,
                                                   boardId: boardId,
-                                                  threadNum: thread.num,
+                                                  number: thread.number,
                                                   comment: thread.comment?.parsed2chPost ?? "",
                                                   subject: thread.subject?.parsed2chSubject ?? "",
                                                   thumbnailURL: thread.additionalInfo?.files.first?.thumbnail ?? "",
