@@ -76,15 +76,14 @@ extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
     }
     
     func didSelectCell(index: Int) {
-        guard let threadNumber = board?.additionalInfo?.threads[index].num else { return }
-        
-        let viewController = PostAssembly.assemble(board: boardID, threadNum: threadNumber)
+        guard let thread = board?.additionalInfo?.threads[index] else { return }
+        let viewController = PostAssembly.assemble(board: boardID, thread: thread)
         view?.present(viewController, animated: true)
     }
     
     func addToFavouritesDidTap() {
         guard let board = board else { return }
-        dvachService.addBoardToFavourites(board) { [weak self] in
+        dvachService.addToFavourites(.board(board)) { [weak self] in
             DispatchQueue.main.async {
                 self?.view?.updateNavigationBar()
             }
@@ -93,11 +92,12 @@ extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
     
     func removeFromFavouritesDidTap() {
         guard let board = board else { return }
-        dvachService.removeBoardFromFavourites(board)
+        dvachService.removeFromFavourites(.board(board))
         view?.updateNavigationBar()
     }
     
     var isFavourite: Bool {
-        return dvachService.isBoardFavourite(identifier: boardID)
+        guard let board = board else { return false }
+        return dvachService.isFavourite(.board(board))
     }
 }

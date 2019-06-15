@@ -20,12 +20,16 @@ protocol IPostRouter {
     func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
     
     /// Нажали на "Еще"
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int, thread: Thread, boardId: String)
 }
 
 final class PostRouter: IPostRouter {
     
+    // Dependencies
     weak var viewHandler: UIViewController?
+    private let actionSheetFactory = PostBottomSheetFactory()
+    
+    // MARK: - IPostRouter
     
     func postCommentView(_ view: PostCommentView, didTapFile index: Int) {
         print("didTapFile")
@@ -39,7 +43,8 @@ final class PostRouter: IPostRouter {
         print("didTapAnswersButton")
     }
     
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
-        print("didTapMoreButton")
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int, thread: Thread, boardId: String) {
+        let bottomSheet = actionSheetFactory.createBottomSheet(thread: thread, boardId: boardId)
+        viewHandler?.present(bottomSheet, animated: true)
     }
 }

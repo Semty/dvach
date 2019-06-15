@@ -29,21 +29,21 @@ final class PostViewPresenter {
     var viewModels = [PostCommentView.Model]()
 
     private let boardIdentifier: String
-    private let threadNumber: Int
+    private let thread: Thread
     private var posts = [Post]()
     
     // MARK: - Initialization
     
-    init(router: IPostRouter, board: String, threadNum: Int) {
+    init(router: IPostRouter, board: String, thread: Thread) {
         self.router = router
         self.boardIdentifier = board
-        self.threadNumber = threadNum
+        self.thread = thread
     }
     
     // MARK: - Private
     
     private func loadPost() {
-        dvachService.loadThreadWithPosts(board: boardIdentifier, threadNum: threadNumber, postNum: nil, location: nil) { [weak self] result in
+        dvachService.loadThreadWithPosts(board: boardIdentifier, threadNum: thread.num, postNum: nil, location: nil) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let posts):
@@ -96,6 +96,6 @@ extension PostViewPresenter: IPostViewPresenter {
     }
     
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
-        router.postCommentView(view, didTapMoreButton: postNumber)
+        router.postCommentView(view, didTapMoreButton: postNumber, thread: thread, boardId: boardIdentifier)
     }
 }

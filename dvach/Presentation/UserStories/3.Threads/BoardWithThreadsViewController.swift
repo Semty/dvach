@@ -64,13 +64,12 @@ final class ThreadsViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-        updateNavigationItem()
         presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        updateNavigationItem()
         skeleton.update(state: .active)
     }
     

@@ -46,7 +46,7 @@ extension FavouriteBoardsPresenter: IFavouriteBoardsPresenter {
     }
     
     func viewWillAppear() {
-        favouriteBoards = dvachService.favouriteBoards
+        favouriteBoards = dvachService.favourites(type: FavouriteBoard.self)
         dataSource = createViewModels(boards: favouriteBoards)
         view?.updateTable()
     }

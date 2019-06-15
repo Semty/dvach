@@ -22,6 +22,10 @@ struct Thread {
     let titlePost: Post?
     let threeLastPosts: [Post]?
     let additionalInfo: ThreadAdditionalInfo?
+    
+    var identifier: String {
+        return "\(num)"
+    }
 }
 
 // MARK: - JSONParsable

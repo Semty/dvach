@@ -13,15 +13,9 @@ final class ThreadsViewModelFactory {
     // MARK: - Public Interface
     
     func createThreadsViewModels(threads: [Thread]) -> [BoardWithThreadsPresenter.CellType] {
-        var threadViewModels = [BoardWithThreadsPresenter.CellType]()
-        
-        threadViewModels = threads.compactMap { [weak self] thread in
-            guard let `self` = self else { return nil}
-            guard var comment = thread.comment else { return nil }
-            guard var subject = thread.subject else { return nil }
-            
-            comment = comment.parsed2chPost
-            subject = subject.parsed2chSubject
+        return threads.compactMap { thread in
+            guard let comment = thread.comment?.parsed2chPost,
+                let subject = thread.subject?.parsed2chSubject else { return nil }
             
             let postsCountTitle = "\(thread.postsCount) \(thread.postsCount.rightWordForPostsCount())"
             
@@ -40,16 +34,11 @@ final class ThreadsViewModelFactory {
                 return .withoutImage(threadWithoutImageViewModel)
             }
         }
-        
-        return threadViewModels
     }
     
     // MARK: - Private Interface
     private func getThreadThumbnail(_ thread: Thread) -> String? {
-        if let threadImageThumbnail = thread.additionalInfo?.files.first?.thumbnail {
-            return threadImageThumbnail
-        } else {
-            return nil
-        }
+        guard let threadImageThumbnail = thread.additionalInfo?.files.first?.thumbnail else { return nil }
+        return threadImageThumbnail
     }
 }

@@ -35,15 +35,14 @@ extension String {
     // MARK: - Text Parsing helpers
     
     var parsed2chPost: String {
-        var newText = removeAllCSSTags()
-        newText = newText.removeAllCSSScripts()
-        newText = newText.htmlToNormal()
-        newText = newText.removeAllHTMLTags()
-        newText = newText.ampToNormal()
-        newText = newText.finishHtmlToNormalString()
-        newText = newText.trimWhitespacesAndNewlines()
-        newText = newText.removeAllDoubleLineBreaks()
-        return newText
+        return removeAllCSSTags()
+            .removeAllCSSScripts()
+            .htmlToNormal()
+            .removeAllHTMLTags()
+            .ampToNormal()
+            .finishHtmlToNormalString()
+            .trimWhitespacesAndNewlines()
+            .removeAllDoubleLineBreaks()
     }
     
     var parsed2chSubject: String {

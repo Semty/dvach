@@ -54,15 +54,24 @@ protocol IDvachService {
                              location: PostNumberLocation?,
                              completion: @escaping (Result<[Post]>) -> Void)
     
-    /// Добавить доску в избранное
-    func addBoardToFavourites(_ board: Board, completion: @escaping () -> Void)
+    // MARK: - Избранное
     
-    /// Убрать доску из избранного
-    func removeBoardFromFavourites(_ board: Board)
+    /// Добавить в избранное
+    func addToFavourites(_ item: DvachItem, boardId: String?, completion: @escaping () -> Void)
     
-    /// Достать список избранных досок из кеша
-    var favouriteBoards: [FavouriteBoard] { get }
+    /// Убрать из избранного
+    func removeFromFavourites(_ item: DvachItem)
     
-    /// Проверка на то, добавлена ли доска в избранное
-    func isBoardFavourite(identifier: String) -> Bool
+    /// Достать список избранного из кеша
+    func favourites<T: Persistable>(type: T.Type) -> [T]
+    
+    /// Проверка на то, добавлен ли объект в избранное
+    func isFavourite(_ item: DvachItem) -> Bool
+}
+
+extension IDvachService {
+    
+    func addToFavourites(_ item: DvachItem, completion: @escaping () -> Void) {
+        addToFavourites(item, boardId: nil, completion: completion)
+    }
 }

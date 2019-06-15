@@ -33,6 +33,10 @@ struct Post {
     let postsCount: Int?
     let tags: String?
     let uniquePosters: String? // В API видел число 110 один раз в строке
+    
+    var identifier: String {
+        return "\(num)"
+    }
 }
 
 // MARK: - JSONParsable

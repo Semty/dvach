@@ -87,28 +87,59 @@ extension DvachService: IDvachService {
         }
     }
     
-    func addBoardToFavourites(_ board: Board, completion: @escaping () -> Void) {
-        let favouriteBoard = FavouriteBoard(identifier: board.identifier,
-                                            category: board.category ?? .other,
-                                            name: board.name,
-                                            timestamp: Date().timeIntervalSince1970)
-        storage.save(objects: [favouriteBoard], completion: completion)
+    // MARK: - Favourites
+    
+    func addToFavourites(_ item: DvachItem, boardId: String?, completion: @escaping () -> Void) {
+        switch item {
+        case .board(let board):
+            let favouriteBoard = FavouriteBoard(identifier: board.identifier,
+                                                category: board.category ?? .other,
+                                                name: board.name,
+                                                timestamp: Date().timeIntervalSince1970)
+            storage.save(objects: [favouriteBoard], completion: completion)
+        case .thread(let thread):
+            guard let boardId = boardId else { return }
+            let favouriteThread = FavouriteThread(identifier: thread.identifier,
+                                                  boardId: boardId,
+                                                  threadNum: thread.num,
+                                                  comment: thread.comment?.parsed2chPost ?? "",
+                                                  subject: thread.subject?.parsed2chSubject ?? "",
+                                                  thumbnailURL: thread.additionalInfo?.files.first?.thumbnail ?? "",
+                                                  timestamp: Date().timeIntervalSince1970)
+            storage.save(objects: [favouriteThread], completion: completion)
+        case .post(let post):
+            break
+        }
     }
     
-    func removeBoardFromFavourites(_ board: Board) {
-        storage.delete(model: FavouriteBoard.self, with: board.identifier)
+    func removeFromFavourites(_ item: DvachItem) {
+        switch item {
+        case .board:
+            storage.delete(model: FavouriteBoard.self, with: item.identifier)
+        case .thread:
+            storage.delete(model: FavouriteThread.self, with: item.identifier)
+        case .post:
+            break
+        }
     }
     
-    var favouriteBoards: [FavouriteBoard] {
+    func favourites<T: Persistable>(type: T.Type) -> [T] {
         let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: true)
-        return storage.fetch(model: FavouriteBoard.self, predicate: nil, sortDescriptors: [sortDescriptor])
+        return storage.fetch(model: type, predicate: nil, sortDescriptors: [sortDescriptor])
     }
     
-    func isBoardFavourite(identifier: String) -> Bool {
-        let predicate = NSPredicate(format: "identifier == %@", identifier)
-        let board = storage.fetch(model: FavouriteBoard.self,
-                                  predicate: predicate,
-                                  sortDescriptors: [])
-        return board.first != nil
+    func isFavourite(_ item: DvachItem) -> Bool {
+        let predicate = NSPredicate(format: "identifier == %@", item.identifier)
+        switch item {
+        case .board:
+            let board = storage.fetch(model: FavouriteBoard.self, predicate: predicate, sortDescriptors: [])
+            return board.first != nil
+        case .thread:
+            let board = storage.fetch(model: FavouriteThread.self, predicate: predicate, sortDescriptors: [])
+            return board.first != nil
+        case .post:
+            break
+        }
+        return false
     }
 }
