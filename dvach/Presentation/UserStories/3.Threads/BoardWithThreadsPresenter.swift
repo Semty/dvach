@@ -45,7 +45,7 @@ final class BoardWithThreadsPresenter {
     // MARK: - Private
     
     private func loadBoardWithThreads() {
-        dvachService.loadBoardWithPerPageThreadsRequest(boardID, 0) { [weak self] result in
+        dvachService.loadBoardWithBumpSortingThreadsCatalog(boardID) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let board):

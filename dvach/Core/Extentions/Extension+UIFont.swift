@@ -23,7 +23,7 @@ public extension UIFont {
     static let commentStrong = UIFont.systemFont(ofSize: 15.0, weight: .semibold)
     static let commentEmStrong = UIFont.systemFont(ofSize: 15.0,
                                                    weight: .semibold).with(.traitItalic)
-    static let commentHeading = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
+    static let commentHeading = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
     
     // MARK: - Private Functions
     

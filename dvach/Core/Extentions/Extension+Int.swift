@@ -18,6 +18,10 @@ extension Int {
         return self != 0
     }
     
+    var isZero: Bool {
+        return self == 0
+    }
+    
     func convertTimestampToStringDate() -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(self))
         return GlobalUtils.dateFormatter.string(from: date)

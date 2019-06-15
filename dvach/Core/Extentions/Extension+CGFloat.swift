@@ -29,7 +29,7 @@ public extension CGFloat {
     static let size24: CGFloat = 24
     static let size34: CGFloat = 34
     
-    // MARK: - Alfa
+    // MARK: - Alfa (and Omega)
     
     static let alpha30: CGFloat = 0.3
     static let alpha50: CGFloat = 0.5

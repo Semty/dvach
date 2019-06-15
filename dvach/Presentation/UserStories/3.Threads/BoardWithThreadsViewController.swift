@@ -119,7 +119,24 @@ final class ThreadsViewController: UIViewController {
 extension ThreadsViewController: BoardWithThreadsView {
     
     func updateTable() {
-        tableView.reloadData()
+        
+        var indexPaths = [IndexPath]()
+        for row in 0..<presenter.dataSource.count {
+            indexPaths.append(IndexPath(row: row, section: 0))
+        }
+        
+        if tableView.numberOfRows(inSection: 0).isZero {
+            tableView.beginUpdates()
+            tableView.insertRows(at: indexPaths,
+                                 with: .fade)
+            tableView.endUpdates()
+        } else {
+            tableView.beginUpdates()
+            tableView.reloadRows(at: indexPaths,
+                                 with: .automatic)
+            tableView.endUpdates()
+        }
+        
         skeleton.update(state: .nonactive)
         
         view.skeletonAnimation(skeletonView: skeleton, mainView: tableView)

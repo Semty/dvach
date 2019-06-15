@@ -17,14 +17,15 @@ final class ThreadsViewModelFactory {
         
         threadViewModels = threads.compactMap { [weak self] thread in
             guard let `self` = self else { return nil}
-            guard let titlePost = thread.titlePost else { return nil }
+            guard var comment = thread.comment else { return nil }
+            guard var subject = thread.subject else { return nil }
+            
+            comment = comment.parsed2chPost
+            subject = subject.parsed2chSubject
             
             let postsCountTitle = "\(thread.postsCount) \(thread.postsCount.rightWordForPostsCount())"
             
-            let comment = titlePost.comment.parsed2chPost
-            let subject = titlePost.subject.parsed2chSubject
-            
-            if let thumbnailPath = self.getThreadThumbnail(titlePost) {
+            if let thumbnailPath = self.getThreadThumbnail(thread) {
                 let threadWithImageViewModel =
                     ThreadWithImageView.Model(subjectTitle: subject,
                                               commentTitle: comment,
@@ -44,8 +45,8 @@ final class ThreadsViewModelFactory {
     }
     
     // MARK: - Private Interface
-    private func getThreadThumbnail(_ post: Post) -> String? {
-        if let threadImageThumbnail = post.files.first?.thumbnail {
+    private func getThreadThumbnail(_ thread: Thread) -> String? {
+        if let threadImageThumbnail = thread.additionalInfo?.files.first?.thumbnail {
             return threadImageThumbnail
         } else {
             return nil
