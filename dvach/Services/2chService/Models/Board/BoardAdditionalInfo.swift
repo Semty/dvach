@@ -23,6 +23,7 @@ struct BoardAdditionalInfo {
 // MARK: - JSONParsable
 
 extension BoardAdditionalInfo: JSONParsable {
+    
     static func from(json: JSON) -> BoardAdditionalInfo? {
         guard let boardInfo = json["BoardInfo"].string,
             let boardInfoOuter = json["BoardInfoOuter"].string,

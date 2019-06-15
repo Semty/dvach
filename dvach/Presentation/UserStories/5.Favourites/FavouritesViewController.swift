@@ -90,6 +90,7 @@ final class FavouritesViewController: UIViewController {
         // Добавление следующего
         addChild(vc)
         containerView.addSubview(vc.view)
+        vc.view.snp.makeConstraints { $0.edges.equalToSuperview() }
         vc.didMove(toParent: self)
     }
     

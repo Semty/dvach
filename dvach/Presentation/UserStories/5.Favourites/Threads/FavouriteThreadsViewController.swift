@@ -33,7 +33,7 @@ final class FavouriteThreadsViewController: UIViewController {
     
     private lazy var placeholderView: UIView = {
         let label = UILabel()
-        label.text = "У вас пока нет любимых досок"
+        label.text = "У вас пока нет любимых тредов"
         label.textColor = .n2Gray
         label.textAlignment = .center
         let view = UIView()
@@ -60,7 +60,7 @@ final class FavouriteThreadsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        //        presenter.viewDidLoad()
+        presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -29,12 +29,12 @@ final class PostViewPresenter {
     var viewModels = [PostCommentView.Model]()
 
     private let boardIdentifier: String
-    private let thread: Thread
+    private let thread: ThreadShortInfo
     private var posts = [Post]()
     
     // MARK: - Initialization
     
-    init(router: IPostRouter, board: String, thread: Thread) {
+    init(router: IPostRouter, board: String, thread: ThreadShortInfo) {
         self.router = router
         self.boardIdentifier = board
         self.thread = thread

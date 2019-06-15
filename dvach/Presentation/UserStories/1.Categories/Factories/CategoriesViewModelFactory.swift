@@ -32,12 +32,14 @@ final class CategoriesViewModelFactory {
     private func collectionModels(category: Category, boards: [Board]) -> [CategoriesCardView.Model] {
         return boards.prefix(.maxModelsCount).map {
             let icon: UIImage
-            if let assetsIcon = UIImage(named: $0.identifier) {
+            if let assetsIcon = UIImage(named: $0.shortInfo.identifier) {
                 icon = assetsIcon
             } else {
                 icon = UIImage(named: "default") ?? UIImage()
             }
-            return CategoriesCardView.Model(image: icon, title: $0.name, subtitle: "/\($0.identifier)/")
+            return CategoriesCardView.Model(image: icon,
+                                            title: $0.shortInfo.name,
+                                            subtitle: "/\($0.shortInfo.identifier)/")
         }
     }
 }

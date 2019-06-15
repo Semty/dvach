@@ -9,39 +9,37 @@
 import Foundation
 import CoreData
 
-struct FavouriteBoard {
+struct BoardShortInfo {
     var identifier: String
     let category: Category
     let name: String
-    let timestamp: TimeInterval // Дата добавления в избранное
 }
 
-final class DBFavouriteBoard: NSManagedObject {
+final class DBBoardShortInfo: NSManagedObject {
     @NSManaged var identifier: String
     @NSManaged var category: String
     @NSManaged var name: String
-    @NSManaged var timestamp: Double
+    @NSManaged var timestamp: Double // Дата добавления в избранное
 }
 
 // MARK: - Persistable
 
-extension FavouriteBoard: Persistable {
+extension BoardShortInfo: Persistable {
     
-    typealias DBModel = DBFavouriteBoard
+    typealias DBModel = DBBoardShortInfo
     
-    static func from(_ dbModel: DBFavouriteBoard) -> FavouriteBoard {
-        return FavouriteBoard(identifier: dbModel.identifier,
+    static func from(_ dbModel: DBBoardShortInfo) -> BoardShortInfo {
+        return BoardShortInfo(identifier: dbModel.identifier,
                               category: Category(rawValue: dbModel.category) ?? .other,
-                              name: dbModel.name,
-                              timestamp: dbModel.timestamp)
+                              name: dbModel.name)
     }
     
-    func dbModel(from context: NSManagedObjectContext) -> DBFavouriteBoard {
+    func dbModel(from context: NSManagedObjectContext) -> DBBoardShortInfo {
         let dbModel = createModel(from: context)
         dbModel.identifier = identifier
         dbModel.category = category.rawValue
         dbModel.name = name
-        dbModel.timestamp = timestamp
+        dbModel.timestamp = Date().timeIntervalSince1970
         
         return dbModel
     }

@@ -10,22 +10,16 @@ import Foundation
 import SwiftyJSON
 
 struct Thread {
-    let comment: String?
-    let lastHit: Int? // Как я понял, это таймстамп последней активности в треде
-    var number: Int
+    let shortInfo: ThreadShortInfo
+    let lastHit: TimeInterval? // Как я понял, это таймстамп последней активности в треде
     let postsCount: Int
     let score: Double?
-    let subject: String?
-    let timestamp: Int? // А вот это должно быть время создания треда
+    let createTime: TimeInterval? // А вот это должно быть время создания треда
     let views: Int?
     let filesCount: Int?
     let titlePost: Post?
     let threeLastPosts: [Post]?
     let additionalInfo: ThreadAdditionalInfo?
-    
-    var identifier: String {
-        return "\(number)"
-    }
 }
 
 // MARK: - JSONParsable
@@ -36,7 +30,6 @@ extension Thread: JSONParsable {
         guard let postsCount = json["posts_count"].int else { return nil }
         
         var num: Int
-        
         if let numString = json["num"].string {
             num = Int(numString) ?? -1
         } else if let numString = json["thread_num"].string {
@@ -45,10 +38,10 @@ extension Thread: JSONParsable {
             return nil
         }
         
-        let comment = json["comment"].string
-        let lastHit = json["lasthit"].int
-        let subject = json["subject"].string
-        let timestamp = json["timestamp"].int
+        let comment = json["comment"].string?.parsed2chPost
+        let lastHit = json["lasthit"].double
+        let subject = json["subject"].string?.parsed2chSubject
+        let timestamp = json["timestamp"].double
         
         let score = json["score"].double
         let views = json["views"].int
@@ -61,13 +54,17 @@ extension Thread: JSONParsable {
         let titlePost = posts?.removeFirst()
         let threeLastPosts = posts
         
-        return Thread(comment: comment,
+        let shortInfo = ThreadShortInfo(identifier: UUID().uuidString,
+                                        boardId: nil,
+                                        number: num,
+                                        comment: comment,
+                                        subject: subject,
+                                        thumbnailURL: additionalInfo?.files.first?.thumbnail)
+        return Thread(shortInfo: shortInfo,
                       lastHit: lastHit,
-                      number: num,
                       postsCount: postsCount,
                       score: score,
-                      subject: subject,
-                      timestamp: timestamp,
+                      createTime: timestamp,
                       views: views,
                       filesCount: filesCount,
                       titlePost: titlePost,

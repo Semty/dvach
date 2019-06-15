@@ -15,7 +15,7 @@ final class PostBottomSheetFactory {
     
     // MARK: - Public
     
-    func createBottomSheet(thread: Thread, boardId: String) -> UIAlertController {
+    func createBottomSheet(thread: ThreadShortInfo, boardId: String) -> UIAlertController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         if dvachService.isFavourite(.thread(thread)) {

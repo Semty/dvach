@@ -35,9 +35,10 @@ final class BoardsListPresenter {
     
     private func createViewModels(from boards: [Board]) -> [BoardView.Model] {
         return boards.map {
-            return BoardView.Model(title: $0.name,
-                                            subtitle: "/\($0.identifier)/",
-                                            icon: .icon(boardId: $0.identifier)) }
+            return BoardView.Model(title: $0.shortInfo.name,
+                                   subtitle: "/\($0.shortInfo.identifier)/",
+                icon: .icon(boardId: $0.shortInfo.identifier))
+        }
     }
 }
 
@@ -54,15 +55,15 @@ extension BoardsListPresenter: IBoardsListPresenter {
         let board = filteredBoards.isEmpty ? boards[index] : filteredBoards[index]
         view?.didSelectBoard(board)
         
-        let viewController = ThreadsViewController(boardID: board.identifier)
-        viewController.title = board.name
+        let viewController = ThreadsViewController(boardID: board.shortInfo.identifier)
+        viewController.title = board.shortInfo.name
         view?.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func searchBoard(for text: String?) {
         guard let text = text, !text.isEmpty else { return }
         filteredBoards = boards.filter {
-            $0.name.lowercased().contains(text) || $0.identifier.lowercased().contains(text)
+            $0.shortInfo.name.lowercased().contains(text) || $0.shortInfo.identifier.lowercased().contains(text)
         }
         let viewModels = createViewModels(from: filteredBoards)
         dataSource = viewModels

@@ -9,8 +9,8 @@
 import Foundation
 
 enum DvachItem {
-    case board(Board)
-    case thread(Thread)
+    case board(BoardShortInfo)
+    case thread(ThreadShortInfo)
     case post(Post)
     
     var identifier: String {

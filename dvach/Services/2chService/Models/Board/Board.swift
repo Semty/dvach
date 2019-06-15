@@ -10,9 +10,7 @@ import Foundation
 import SwiftyJSON
 
 struct Board {
-    let identifier: String
-    let category: Category?
-    let name: String
+    let shortInfo: BoardShortInfo
     let pages: Int?
     let boardSpeed: Int?
     let currentPage: Int?
@@ -51,11 +49,9 @@ extension Board: JSONParsable {
             let isShieldEnabled = json["enable_shield"].int,
             let isSubjectEnabled = json["enable_subject"].int,
             let isThreadTagsEnabled = json["enable_thread_tags"].int,
-            let isTripsEnabled = json["enable_trips"].int
-            else { return nil }
+            let isTripsEnabled = json["enable_trips"].int else { return nil }
         
         var identifier: String
-        
         if let identifierValue = json["id"].string {
             identifier = identifierValue
         } else if let identifierValue = json["Board"].string {
@@ -65,19 +61,12 @@ extension Board: JSONParsable {
         }
         
         var name: String
-        
-        if let nameValue = json["name"].string {
+                if let nameValue = json["name"].string {
             name = nameValue
         } else if let nameValue = json["BoardName"].string {
             name = nameValue
         } else {
             return nil
-        }
-        
-        var category: Category?
-        
-        if let categoryValue = json["category"].string {
-            category = Category(rawValue: categoryValue)
         }
         
         let pages = json["pages"].int
@@ -86,10 +75,10 @@ extension Board: JSONParsable {
         let currentPage = json["current_page"].int
         
         let additionalInfo = BoardAdditionalInfo.from(json: json)
+        let category = Category(rawValue: json["category"].stringValue) ?? .other
+        let shortInfo = BoardShortInfo(identifier: identifier, category: category, name: name)
         
-        return Board(identifier: identifier,
-                     category: category,
-                     name: name,
+        return Board(shortInfo: shortInfo,
                      pages: pages ?? arrayOfPages?.count,
                      boardSpeed: boardSpeed,
                      currentPage: currentPage,

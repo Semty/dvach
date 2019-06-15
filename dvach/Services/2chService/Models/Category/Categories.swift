@@ -29,9 +29,8 @@ struct Categories: JSONParsable {
 
 extension Categories {
     static private var tyanach: Board {
-        return Board(identifier: "dev",
-                     category: Category.hidden,
-                     name: "Тянач",
+        let shortInfo = BoardShortInfo(identifier: "dev", category: .hidden, name: "Тянач")
+        return Board(shortInfo: shortInfo,
                      pages: nil,
                      boardSpeed: nil,
                      currentPage: nil,
@@ -53,9 +52,8 @@ extension Categories {
     }
     
     static private var asylum: Board {
-        return Board(identifier: "asylum",
-                     category: Category.hidden,
-                     name: "Убежище",
+        let shortInfo = BoardShortInfo(identifier: "asylum", category: .hidden, name: "Убежище")
+        return Board(shortInfo: shortInfo,
                      pages: nil,
                      boardSpeed: nil,
                      currentPage: nil,

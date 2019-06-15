@@ -92,20 +92,10 @@ extension DvachService: IDvachService {
     func addToFavourites(_ item: DvachItem, boardId: String?, completion: @escaping () -> Void) {
         switch item {
         case .board(let board):
-            let favouriteBoard = FavouriteBoard(identifier: board.identifier,
-                                                category: board.category ?? .other,
-                                                name: board.name,
-                                                timestamp: Date().timeIntervalSince1970)
-            storage.save(objects: [favouriteBoard], completion: completion)
+            storage.save(objects: [board], completion: completion)
         case .thread(let thread):
-            guard let boardId = boardId else { return }
-            let favouriteThread = FavouriteThread(identifier: thread.identifier,
-                                                  boardId: boardId,
-                                                  number: thread.number,
-                                                  comment: thread.comment?.parsed2chPost ?? "",
-                                                  subject: thread.subject?.parsed2chSubject ?? "",
-                                                  thumbnailURL: thread.additionalInfo?.files.first?.thumbnail ?? "",
-                                                  timestamp: Date().timeIntervalSince1970)
+            var favouriteThread = thread
+            favouriteThread.boardId = boardId
             storage.save(objects: [favouriteThread], completion: completion)
         case .post(let post):
             break
@@ -115,9 +105,9 @@ extension DvachService: IDvachService {
     func removeFromFavourites(_ item: DvachItem) {
         switch item {
         case .board:
-            storage.delete(model: FavouriteBoard.self, with: item.identifier)
+            storage.delete(model: BoardShortInfo.self, with: item.identifier)
         case .thread:
-            storage.delete(model: FavouriteThread.self, with: item.identifier)
+            storage.delete(model: ThreadShortInfo.self, with: item.identifier)
         case .post:
             break
         }
@@ -132,10 +122,10 @@ extension DvachService: IDvachService {
         let predicate = NSPredicate(format: "identifier == %@", item.identifier)
         switch item {
         case .board:
-            let board = storage.fetch(model: FavouriteBoard.self, predicate: predicate, sortDescriptors: [])
+            let board = storage.fetch(model: BoardShortInfo.self, predicate: predicate, sortDescriptors: [])
             return board.first != nil
         case .thread:
-            let board = storage.fetch(model: FavouriteThread.self, predicate: predicate, sortDescriptors: [])
+            let board = storage.fetch(model: ThreadShortInfo.self, predicate: predicate, sortDescriptors: [])
             return board.first != nil
         case .post:
             break

@@ -20,7 +20,7 @@ protocol IPostRouter {
     func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
     
     /// Нажали на "Еще"
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int, thread: Thread, boardId: String)
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int, thread: ThreadShortInfo, boardId: String)
 }
 
 final class PostRouter: IPostRouter {
@@ -43,7 +43,7 @@ final class PostRouter: IPostRouter {
         print("didTapAnswersButton")
     }
     
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int, thread: Thread, boardId: String) {
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int, thread: ThreadShortInfo, boardId: String) {
         let bottomSheet = actionSheetFactory.createBottomSheet(thread: thread, boardId: boardId)
         viewHandler?.present(bottomSheet, animated: true)
     }

@@ -10,6 +10,7 @@ import Foundation
 import SwiftyJSON
 
 struct Post {
+    let identifier: String
     let isBanned: Bool
     let isClosed: Bool
     let comment: String
@@ -24,7 +25,7 @@ struct Post {
     let parent: String
     let sticky: Bool
     let subject: String
-    let timestamp: Int
+    let timestamp: Double
     let trip: String
     let tripType: String?
     let likes: Int?
@@ -33,15 +34,12 @@ struct Post {
     let postsCount: Int?
     let tags: String?
     let uniquePosters: String? // В API видел число 110 один раз в строке
-    
-    var identifier: String {
-        return "\(num)"
-    }
 }
 
 // MARK: - JSONParsable
 
 extension Post: JSONParsable {
+    
     static func from(json: JSON) -> Post? {
         guard let isBanned = json["banned"].int,
             let isClosed = json["closed"].int,
@@ -58,7 +56,7 @@ extension Post: JSONParsable {
             let parent = json["parent"].string,
             let sticky = json["sticky"].int,
             let subject = json["subject"].string,
-            let timestamp = json["timestamp"].int,
+            let timestamp = json["timestamp"].double,
             let trip = json["trip"].string else { return nil }
         
         let tripType = json["trip_type"].string
@@ -71,7 +69,8 @@ extension Post: JSONParsable {
         
         let files = filesArray.compactMap(File.from)
         
-        return Post(isBanned: isBanned.boolValue,
+        return Post(identifier: UUID().uuidString,
+                    isBanned: isBanned.boolValue,
                     isClosed: isClosed.boolValue,
                     comment: comment,
                     date: date,

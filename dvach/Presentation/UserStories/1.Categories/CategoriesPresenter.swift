@@ -65,18 +65,17 @@ final class CategoriesPresenter {
         var hidden = ([Board](), Category.hidden)
         
         boards.forEach {
-            switch $0.category {
-            case .japan?: japan.0.append($0)
-            case .games?: games.0.append($0)
-            case .politics?: politics.0.append($0)
-            case .user?: user.0.append($0)
-            case .other?: other.0.append($0)
-            case .art?: art.0.append($0)
-            case .theme?: theme.0.append($0)
-            case .technics?: technics.0.append($0)
-            case .adults?: adults.0.append($0)
-            case .hidden?: hidden.0.append($0)
-            case nil: break
+            switch $0.shortInfo.category {
+            case .japan: japan.0.append($0)
+            case .games: games.0.append($0)
+            case .politics: politics.0.append($0)
+            case .user: user.0.append($0)
+            case .other: other.0.append($0)
+            case .art: art.0.append($0)
+            case .theme: theme.0.append($0)
+            case .technics: technics.0.append($0)
+            case .adults: adults.0.append($0)
+            case .hidden: hidden.0.append($0)
             }
         }
         
@@ -110,8 +109,8 @@ extension CategoriesPresenter: ICategoriesPresenter {
     func didSelectCell(indexPath: IndexPath, category: Category) {
         let boards = models.first(where: { $0.1 == category })?.0 ?? []
         let board = boards[indexPath.row]
-        let viewController = ThreadsViewController(boardID: board.identifier)
-        viewController.title = board.name
+        let viewController = ThreadsViewController(boardID: board.shortInfo.identifier)
+        viewController.title = board.shortInfo.name
         view?.navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -123,8 +122,8 @@ extension CategoriesPresenter: ICategoriesPresenter {
     }
     
     func didTap(board: Board) {
-        let viewController = ThreadsViewController(boardID: board.identifier)
-        viewController.title = board.name
+        let viewController = ThreadsViewController(boardID: board.shortInfo.identifier)
+        viewController.title = board.shortInfo.name
         view?.navigationController?.pushViewController(viewController, animated: true)
     }
 }

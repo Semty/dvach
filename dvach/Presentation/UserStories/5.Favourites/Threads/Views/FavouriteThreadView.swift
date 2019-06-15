@@ -11,15 +11,15 @@ import Foundation
 typealias FavouriteThreadCell = TableViewContainerCellBase<FavouriteThreadView>
 
 private extension SeparatorInsets {
-    static let separatorInsets = SeparatorInsets(100, .inset16)
+    static let separatorInsets = SeparatorInsets(106, .inset16)
 }
 
 final class FavouriteThreadView: UIView, SeparatorAvailable, ConfigurableView, ReusableView {
     
     // Nested
     struct Model {
-        let title: String
-        let subtitle: String
+        let title: String?
+        let subtitle: String?
         let iconURL: String?
     }
     

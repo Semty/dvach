@@ -23,11 +23,11 @@ final class FavouriteBoardsPresenter {
     
     // Properties
     var dataSource = [BoardView.Model]()
-    private var favouriteBoards = [FavouriteBoard]()
+    private var favouriteBoards = [BoardShortInfo]()
     
     // MARK: - Private
     
-    private func createViewModels(boards: [FavouriteBoard]) -> [BoardView.Model] {
+    private func createViewModels(boards: [BoardShortInfo]) -> [BoardView.Model] {
         return boards.map {
             BoardView.Model(title: $0.name,
                             subtitle: "/\($0.identifier)/",
@@ -46,7 +46,7 @@ extension FavouriteBoardsPresenter: IFavouriteBoardsPresenter {
     }
     
     func viewWillAppear() {
-        favouriteBoards = dvachService.favourites(type: FavouriteBoard.self)
+        favouriteBoards = dvachService.favourites(type: BoardShortInfo.self)
         dataSource = createViewModels(boards: favouriteBoards)
         view?.updateTable()
     }

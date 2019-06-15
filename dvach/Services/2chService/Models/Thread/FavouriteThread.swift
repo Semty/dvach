@@ -1,5 +1,5 @@
 //
-//  FavouriteThread.swift
+//  ThreadShortInfo.swift
 //  dvach
 //
 //  Created by Kirill Solovyov on 15/06/2019.
@@ -9,43 +9,41 @@
 import Foundation
 import CoreData
 
-struct FavouriteThread {
+struct ThreadShortInfo {
     var identifier: String
-    let boardId: String
-    var number: Int
-    let comment: String
-    let subject: String
-    let thumbnailURL: String
-    let timestamp: TimeInterval
+    var boardId: String? // Насаживается при кешировании
+    let number: Int
+    let comment: String?
+    let subject: String?
+    let thumbnailURL: String?
 }
 
-final class DBFavouriteThread: NSManagedObject {
+final class DBThreadShortInfo: NSManagedObject {
     @NSManaged var identifier: String
-    @NSManaged var boardId: String
+    @NSManaged var boardId: String?
     @NSManaged var threadNum: Int
-    @NSManaged var comment: String
-    @NSManaged var subject: String
-    @NSManaged var thumbnailURL: String
+    @NSManaged var comment: String?
+    @NSManaged var subject: String?
+    @NSManaged var thumbnailURL: String?
     @NSManaged var timestamp: TimeInterval
 }
 
 // MARK: - Persistable
 
-extension FavouriteThread: Persistable {
+extension ThreadShortInfo: Persistable {
     
-    typealias DBModel = DBFavouriteThread
+    typealias DBModel = DBThreadShortInfo
     
-    static func from(_ dbModel: DBFavouriteThread) -> FavouriteThread {
-        return FavouriteThread(identifier: dbModel.identifier,
+    static func from(_ dbModel: DBThreadShortInfo) -> ThreadShortInfo {
+        return ThreadShortInfo(identifier: dbModel.identifier,
                                boardId: dbModel.boardId,
                                number: dbModel.threadNum,
                                comment: dbModel.comment,
                                subject: dbModel.subject,
-                               thumbnailURL: dbModel.thumbnailURL,
-                               timestamp: dbModel.timestamp)
+                               thumbnailURL: dbModel.thumbnailURL)
     }
     
-    func dbModel(from context: NSManagedObjectContext) -> DBFavouriteThread {
+    func dbModel(from context: NSManagedObjectContext) -> DBThreadShortInfo {
         let dbModel = createModel(from: context)
         dbModel.identifier = identifier
         dbModel.boardId = boardId
@@ -53,7 +51,7 @@ extension FavouriteThread: Persistable {
         dbModel.comment = comment
         dbModel.subject = subject
         dbModel.thumbnailURL = thumbnailURL
-        dbModel.timestamp = timestamp
+        dbModel.timestamp = Date().timeIntervalSince1970
         
         return dbModel
     }

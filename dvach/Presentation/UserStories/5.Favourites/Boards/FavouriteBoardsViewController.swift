@@ -33,9 +33,10 @@ final class FavouriteBoardsViewController: UIViewController {
     
     private lazy var placeholderView: UIView = {
         let label = UILabel()
-        label.text = "У вас пока нет любимых досок"
         label.textColor = .n2Gray
         label.textAlignment = .center
+        label.text = "У вас пока нет любимых досок"
+        
         let view = UIView()
         view.addSubview(label)
         label.snp.makeConstraints { $0.edges.equalToSuperview() }

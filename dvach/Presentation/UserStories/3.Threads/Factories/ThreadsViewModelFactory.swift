@@ -14,8 +14,8 @@ final class ThreadsViewModelFactory {
     
     func createThreadsViewModels(threads: [Thread]) -> [BoardWithThreadsPresenter.CellType] {
         return threads.compactMap { thread in
-            guard let comment = thread.comment?.parsed2chPost,
-                let subject = thread.subject?.parsed2chSubject else { return nil }
+            guard let comment = thread.shortInfo.comment,
+                let subject = thread.shortInfo.subject else { return nil }
             
             let postsCountTitle = "\(thread.postsCount) \(thread.postsCount.rightWordForPostsCount())"
             
