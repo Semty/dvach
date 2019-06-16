@@ -20,12 +20,12 @@ final class PostBottomSheetFactory {
         
         // Пост
         if dvachService.isFavourite(.post(post)) {
-            let removeThreadAction = UIAlertAction(title: "Убрать пост из избранного", style: .destructive) { [weak self] action in
+            let removeThreadAction = UIAlertAction(title: "Удалить пост из избранного", style: .destructive) { [weak self] action in
                 self?.dvachService.removeFromFavourites(.post(post))
             }
             actionSheet.addAction(removeThreadAction)
         } else {
-            let saveThreadAction = UIAlertAction(title: "Добавить пост в избранное", style: .default) { [weak self] action in
+            let saveThreadAction = UIAlertAction(title: "Сохранить пост в избранное", style: .default) { [weak self] action in
                 self?.dvachService.addToFavourites(.post(post), completion: {})
             }
             actionSheet.addAction(saveThreadAction)
