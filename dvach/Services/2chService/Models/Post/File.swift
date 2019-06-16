@@ -20,6 +20,7 @@ enum FileType: Int {
 }
 
 struct File {
+    var identifier: String
     let displayName: String?
     let fullName: String?
     let height: Int
@@ -54,7 +55,8 @@ extension File: JSONParsable {
         let md5 = json["md5"].string
         let isNSFW = json["nsfw"].int
         
-        return File(displayName: displayName,
+        return File(identifier: name + path,
+                    displayName: displayName,
                     fullName: fullName,
                     height: height,
                     md5: md5,

@@ -99,6 +99,7 @@ extension PostViewPresenter: IPostViewPresenter {
     }
     
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
-        router.postCommentView(view, didTapMoreButton: postNumber, thread: thread, boardId: boardIdentifier)
+        guard let post = posts.first(where: { $0.num == postNumber }) else { return }
+        router.postCommentView(view, didTapMoreButton: post, thread: thread, boardId: boardIdentifier)
     }
 }

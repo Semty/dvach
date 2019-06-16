@@ -132,6 +132,8 @@
 		41D38A6A22B536A6000D1391 /* PostBottomSheetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A6922B536A6000D1391 /* PostBottomSheetFactory.swift */; };
 		41D38A6D22B5434F000D1391 /* FavouriteThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A6C22B5434F000D1391 /* FavouriteThreadView.swift */; };
 		41D38A6F22B54381000D1391 /* FavouriteThreadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D38A6E22B54381000D1391 /* FavouriteThreadView.xib */; };
+		41D38A7122B69689000D1391 /* DBPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A7022B69689000D1391 /* DBPost.swift */; };
+		41D38A7322B69753000D1391 /* DBFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A7222B69753000D1391 /* DBFile.swift */; };
 		D5750AB422AEC0D70058E99D /* Extension+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */; };
 		D5750AB622AEC5050058E99D /* DvachLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB522AEC5050058E99D /* DvachLinkModel.swift */; };
 		D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB922AEC57E0058E99D /* PostParser.swift */; };
@@ -299,6 +301,8 @@
 		41D38A6922B536A6000D1391 /* PostBottomSheetFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBottomSheetFactory.swift; sourceTree = "<group>"; };
 		41D38A6C22B5434F000D1391 /* FavouriteThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteThreadView.swift; sourceTree = "<group>"; };
 		41D38A6E22B54381000D1391 /* FavouriteThreadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouriteThreadView.xib; sourceTree = "<group>"; };
+		41D38A7022B69689000D1391 /* DBPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBPost.swift; sourceTree = "<group>"; };
+		41D38A7222B69753000D1391 /* DBFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBFile.swift; sourceTree = "<group>"; };
 		4274A55E1D343EF270BE19BF /* Pods-dvach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.debug.xcconfig"; sourceTree = "<group>"; };
 		969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.release.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.release.xcconfig"; sourceTree = "<group>"; };
 		BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -581,6 +585,8 @@
 			children = (
 				D5B22BBD22A165AF001EE4F8 /* File.swift */,
 				D5E4733D22A937970055AB92 /* Post.swift */,
+				41D38A7022B69689000D1391 /* DBPost.swift */,
+				41D38A7222B69753000D1391 /* DBFile.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -1335,6 +1341,7 @@
 				4193B1BF22AA9BE300EE25FD /* PostRouter.swift in Sources */,
 				D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */,
 				D5B22BC022A165B7001EE4F8 /* Thread.swift in Sources */,
+				41D38A7322B69753000D1391 /* DBFile.swift in Sources */,
 				4193B1E622B19EB600EE25FD /* FavouritesViewController.swift in Sources */,
 				4193B1D622AD8C4C00EE25FD /* VerticalOvalButton.swift in Sources */,
 				4193B1C122AA9BF600EE25FD /* PostAssembly.swift in Sources */,
@@ -1346,6 +1353,7 @@
 				4117535822A2FF05008EBD2A /* Extension+UICollectionView.swift in Sources */,
 				41BEE766229F04730028EBFB /* ContentContainer.swift in Sources */,
 				D5FC9CF822ACEE8B002E0F79 /* Extension+NSRange.swift in Sources */,
+				41D38A7122B69689000D1391 /* DBPost.swift in Sources */,
 				411902C622A6C1EA008231AC /* UIView+RoundedCorners.swift in Sources */,
 				41BEE724229F043C0028EBFB /* UIView+Tappable.swift in Sources */,
 				D5B22BBC22A16597001EE4F8 /* ThreadAdditionalInfo.swift in Sources */,

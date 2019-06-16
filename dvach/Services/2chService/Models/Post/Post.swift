@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 struct Post {
-    let identifier: String
+    var identifier: String
     let isBanned: Bool
     let isClosed: Bool
     let comment: String
@@ -25,7 +25,7 @@ struct Post {
     let parent: String
     let sticky: Bool
     let subject: String
-    let timestamp: Double
+    let time: TimeInterval
     let trip: String
     let tripType: String?
     let likes: Int?
@@ -84,7 +84,7 @@ extension Post: JSONParsable {
                     parent: parent,
                     sticky: sticky.boolValue,
                     subject: subject,
-                    timestamp: timestamp,
+                    time: timestamp,
                     trip: trip,
                     tripType: tripType,
                     likes: likes,

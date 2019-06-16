@@ -15,9 +15,23 @@ final class PostBottomSheetFactory {
     
     // MARK: - Public
     
-    func createBottomSheet(thread: ThreadShortInfo, boardId: String) -> UIAlertController {
+    func createBottomSheet(post: Post, thread: ThreadShortInfo, boardId: String) -> UIAlertController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
+        // Пост
+        if dvachService.isFavourite(.post(post)) {
+            let removeThreadAction = UIAlertAction(title: "Убрать пост из избранного", style: .destructive) { [weak self] action in
+                self?.dvachService.removeFromFavourites(.post(post))
+            }
+            actionSheet.addAction(removeThreadAction)
+        } else {
+            let saveThreadAction = UIAlertAction(title: "Добавить пост в избранное", style: .default) { [weak self] action in
+                self?.dvachService.addToFavourites(.post(post), completion: {})
+            }
+            actionSheet.addAction(saveThreadAction)
+        }
+        
+        // Тред
         if dvachService.isFavourite(.thread(thread)) {
             let removeThreadAction = UIAlertAction(title: "Убрать тред из избранного", style: .destructive) { [weak self] action in
                 self?.dvachService.removeFromFavourites(.thread(thread))

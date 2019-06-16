@@ -98,7 +98,7 @@ extension DvachService: IDvachService {
             favouriteThread.boardId = boardId
             storage.save(objects: [favouriteThread], completion: completion)
         case .post(let post):
-            break
+            storage.save(objects: [post], completion: completion)
         }
     }
     
@@ -109,7 +109,7 @@ extension DvachService: IDvachService {
         case .thread:
             storage.delete(model: ThreadShortInfo.self, with: item.identifier)
         case .post:
-            break
+            storage.delete(model: Post.self, with: item.identifier)
         }
     }
     
@@ -125,10 +125,11 @@ extension DvachService: IDvachService {
             let board = storage.fetch(model: BoardShortInfo.self, predicate: predicate, sortDescriptors: [])
             return board.first != nil
         case .thread:
-            let board = storage.fetch(model: ThreadShortInfo.self, predicate: predicate, sortDescriptors: [])
-            return board.first != nil
+            let thread = storage.fetch(model: ThreadShortInfo.self, predicate: predicate, sortDescriptors: [])
+            return thread.first != nil
         case .post:
-            break
+            let post = storage.fetch(model: Post.self, predicate: predicate, sortDescriptors: [])
+            return post.first != nil
         }
         return false
     }
