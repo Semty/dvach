@@ -15,7 +15,8 @@ final class PostBottomSheetFactory {
     
     // MARK: - Public
     
-    func createBottomSheet(post: Post, thread: ThreadShortInfo, boardId: String) -> UIAlertController {
+    func createBottomSheet(post: Post,
+                           threadInfo: (thread: ThreadShortInfo, boardId: String)?) -> UIAlertController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // Пост
@@ -32,16 +33,18 @@ final class PostBottomSheetFactory {
         }
         
         // Тред
-        if dvachService.isFavourite(.thread(thread)) {
-            let removeThreadAction = UIAlertAction(title: "Убрать тред из избранного", style: .destructive) { [weak self] action in
-                self?.dvachService.removeFromFavourites(.thread(thread))
+        if let threadInfo = threadInfo {
+            if dvachService.isFavourite(.thread(threadInfo.thread)) {
+                let removeThreadAction = UIAlertAction(title: "Убрать тред из избранного", style: .destructive) { [weak self] action in
+                    self?.dvachService.removeFromFavourites(.thread(threadInfo.thread))
+                }
+                actionSheet.addAction(removeThreadAction)
+            } else {
+                let saveThreadAction = UIAlertAction(title: "Добавить тред в избранное", style: .default) { [weak self] action in
+                    self?.dvachService.addToFavourites(.thread(threadInfo.thread), boardId: threadInfo.boardId, completion: {})
+                }
+                actionSheet.addAction(saveThreadAction)
             }
-            actionSheet.addAction(removeThreadAction)
-        } else {
-            let saveThreadAction = UIAlertAction(title: "Добавить тред в избранное", style: .default) { [weak self] action in
-                self?.dvachService.addToFavourites(.thread(thread), boardId: boardId, completion: {})
-            }
-            actionSheet.addAction(saveThreadAction)
         }
         
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)

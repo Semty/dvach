@@ -28,7 +28,9 @@ final class CategoriesViewController: UIViewController {
 
     private lazy var stackView: StackViewContainer = {
         let stackView = componentsFactory.createStackViewContainer()
-        stackView.alpha = 0.0
+        stackView.alpha = 0
+        stackView.showsVerticalScrollIndicator = false
+        
         return stackView
     }()
     private lazy var searchController = UISearchController(searchResultsController: searchBoardsController)

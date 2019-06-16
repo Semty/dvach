@@ -51,7 +51,8 @@ extension FavouritePostsPresenter: IFavouritePostsPresenter {
     }
     
     func didSelectBoard(index: Int) {
-//        guard let post = favouritePosts[safeIndex: index],
-//            let boardId = thread.boardId else { return }
+        guard let post = favouritePosts[safeIndex: index] else { return }
+        let vc = SinglePostViewController(post: post)
+        view?.present(vc, animated: true)
     }
 }

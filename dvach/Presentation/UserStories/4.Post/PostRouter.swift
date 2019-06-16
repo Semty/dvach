@@ -44,7 +44,7 @@ final class PostRouter: IPostRouter {
     }
     
     func postCommentView(_ view: PostCommentView, didTapMoreButton post: Post, thread: ThreadShortInfo, boardId: String) {
-        let bottomSheet = actionSheetFactory.createBottomSheet(post: post, thread: thread, boardId: boardId)
+        let bottomSheet = actionSheetFactory.createBottomSheet(post: post, threadInfo: (thread, boardId))
         viewHandler?.present(bottomSheet, animated: true)
     }
 }
