@@ -11,6 +11,10 @@ import SwiftyJSON
 
 final class RequestManager: IRequestManager {
     
+    private let queue = DispatchQueue(label: "com.ruslantimchenko.requestQueue",
+                                      qos: .utility,
+                                      attributes: [.concurrent])
+    
     // MARK: - IRequestManager
     
     func execute(_ request: BaseRequest, completion: @escaping (JSON?, Error?) -> Void) {
@@ -26,7 +30,7 @@ final class RequestManager: IRequestManager {
         
         do {
             let request = try URLRequest(url: url, method: .get, headers: request.headers)
-            Alamofire.request(request).responseJSON { response in
+            Alamofire.request(request).response(queue: queue) { response in
                 if let data = response.data {
                     let json = JSON(data)
                     completion(json, nil)

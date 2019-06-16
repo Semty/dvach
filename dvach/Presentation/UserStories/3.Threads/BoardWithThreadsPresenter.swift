@@ -17,6 +17,7 @@ protocol IBoardWithThreadsPresenter {
     func didSelectCell(index: Int)
     func addToFavouritesDidTap()
     func removeFromFavouritesDidTap()
+    func refreshControllDidPull()
 }
 
 final class BoardWithThreadsPresenter {
@@ -53,10 +54,12 @@ final class BoardWithThreadsPresenter {
                 self.dataSource = self.createViewModels(board: board)
                 
                 DispatchQueue.main.async {
-                    self.view?.updateTable()
+                    self.view?.dataWasLoaded()
                 }
             case .failure:
-                break
+                DispatchQueue.main.async {
+                    self.view?.dataWasNotLoaded()
+                }
             }
         }
     }
@@ -94,6 +97,10 @@ extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
         guard let board = board else { return }
         dvachService.removeFromFavourites(.board(board.shortInfo))
         view?.updateNavigationBar()
+    }
+    
+    func refreshControllDidPull() {
+        loadBoardWithThreads()
     }
     
     var isFavourite: Bool {

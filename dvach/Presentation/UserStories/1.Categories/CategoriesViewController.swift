@@ -68,6 +68,7 @@ final class CategoriesViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
+        extendedLayoutIncludesOpaqueBars = true
         
         // blocks
         view.addSubview(stackView)
@@ -107,8 +108,11 @@ extension CategoriesViewController: CategoriesView {
             if viewModels.count == $0.offset + 1 { block.removeBottomSeparator() }
             stackView.addView(block)
         }
-        skeleton.update(state: .nonactive)
-        view.skeletonAnimation(skeletonView: skeleton, mainView: stackView)
+        
+        if !skeleton.isHidden {
+            skeleton.update(state: .nonactive)
+            view.skeletonAnimation(skeletonView: skeleton, mainView: stackView)
+        }
     }
     
     func didLoadBoards(boards: [Board]) {

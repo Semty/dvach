@@ -16,8 +16,9 @@ private extension CGFloat {
 }
 
 protocol BoardWithThreadsView: AnyObject {
-    func updateTable()
     func updateNavigationBar()
+    func dataWasLoaded()
+    func dataWasNotLoaded()
 }
 
 final class ThreadsViewController: UIViewController {
@@ -38,11 +39,26 @@ final class ThreadsViewController: UIViewController {
                                        bottom: 0,
                                        right: 0)
         tableView.alpha = 0.0
+        tableView.refreshControl = refreshControl
         
         return tableView
     }()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self,
+                                 action: #selector(refreshControlDidPull),
+                                 for: .valueChanged)
+        return refreshControl
+    }()
+    
     private lazy var skeleton = SkeletonThreadView.fromNib()
+    
+    // Timing Variables
+    private var timeStart = CFAbsoluteTime()
+    private var timeDiff: CFAbsoluteTime {
+        return CFAbsoluteTimeGetCurrent() - timeStart
+    }
     
     // MARK: - Initialization
     
@@ -77,6 +93,7 @@ final class ThreadsViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
+        extendedLayoutIncludesOpaqueBars = true
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
@@ -102,22 +119,13 @@ final class ThreadsViewController: UIViewController {
         navigationItem.rightBarButtonItem = item
     }
     
-    // MARK: - Actions
-    
-    @objc private func addToFavourites() {
-        presenter.addToFavouritesDidTap()
+    private func endRefreshing() {
+        if self.refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
     }
     
-    @objc private func removeFromFavourites() {
-        presenter.removeFromFavouritesDidTap()
-    }
-}
-
-// MARK: - BoardWithThreadsView
-
-extension ThreadsViewController: BoardWithThreadsView {
-    
-    func updateTable() {
+    private func updateTable() {
         
         var indexPaths = [IndexPath]()
         for row in 0..<presenter.dataSource.count {
@@ -130,19 +138,60 @@ extension ThreadsViewController: BoardWithThreadsView {
                                  with: .fade)
             tableView.endUpdates()
         } else {
+            tableView.setContentOffset(tableView.contentOffset, animated: false)
             tableView.beginUpdates()
             tableView.reloadRows(at: indexPaths,
-                                 with: .automatic)
+                                 with: .fade)
             tableView.endUpdates()
         }
         
-        skeleton.update(state: .nonactive)
+        if !skeleton.isHidden {
+            skeleton.update(state: .nonactive)
+            view.skeletonAnimation(skeletonView: skeleton, mainView: tableView)
+        }
         
-        view.skeletonAnimation(skeletonView: skeleton, mainView: tableView)
+        endRefreshing()
     }
+    
+    // MARK: - Actions
+    
+    @objc private func addToFavourites() {
+        presenter.addToFavouritesDidTap()
+    }
+    
+    @objc private func removeFromFavourites() {
+        presenter.removeFromFavouritesDidTap()
+    }
+    
+    @objc private func refreshControlDidPull() {
+        timeStart = CFAbsoluteTimeGetCurrent()
+        presenter.refreshControllDidPull()
+    }
+}
+
+// MARK: - BoardWithThreadsView
+
+extension ThreadsViewController: BoardWithThreadsView {
     
     func updateNavigationBar() {
         updateNavigationItem()
+    }
+    
+    func dataWasNotLoaded() {
+        endRefreshing()
+    }
+    
+    func dataWasLoaded() {
+        let timeDiff = 1.0 - self.timeDiff
+        
+        if timeDiff > 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + timeDiff) { [weak self] in
+                guard let self = self else { return }
+                self.updateTable()
+            }
+        } else {
+            updateTable()
+        }
     }
 }
 
@@ -181,8 +230,15 @@ extension ThreadsViewController: UITableViewDelegate {
         }
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let model = presenter.dataSource[safeIndex: indexPath.row] else { return .zero }
+        switch model {
+        case .withImage: return .threadWithImageCellHeight
+        case .withoutImage: return .threadWithoutImageCellHeight
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.didSelectCell(index: indexPath.row)
     }
 }
-
