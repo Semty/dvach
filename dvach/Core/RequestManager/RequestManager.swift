@@ -30,7 +30,7 @@ final class RequestManager: IRequestManager {
         
         do {
             let request = try URLRequest(url: url, method: .get, headers: request.headers)
-            Alamofire.request(request).response(queue: queue) { response in
+            Alamofire.request(request).responseJSON(queue: queue) { response in
                 if let data = response.data {
                     let json = JSON(data)
                     completion(json, nil)
