@@ -59,7 +59,8 @@ extension Thread: JSONParsable {
                                         number: num,
                                         comment: comment,
                                         subject: subject,
-                                        thumbnailURL: additionalInfo?.files.first?.thumbnail)
+                                        thumbnailURL: additionalInfo?.files.first?.thumbnail,
+                                        isFavourite: true)
         return Thread(shortInfo: shortInfo,
                       lastHit: lastHit,
                       postsCount: postsCount,

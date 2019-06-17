@@ -16,6 +16,7 @@ struct ThreadShortInfo {
     let comment: String?
     let subject: String?
     let thumbnailURL: String?
+    var isFavourite: Bool
 }
 
 final class DBThreadShortInfo: NSManagedObject {
@@ -26,6 +27,7 @@ final class DBThreadShortInfo: NSManagedObject {
     @NSManaged var subject: String?
     @NSManaged var thumbnailURL: String?
     @NSManaged var timestamp: TimeInterval
+    @NSManaged var isFavourite: Bool // Для того, чтобы тред не попал в избранное при сохранении поста
 }
 
 // MARK: - Persistable
@@ -40,7 +42,8 @@ extension ThreadShortInfo: Persistable {
                                number: dbModel.threadNum,
                                comment: dbModel.comment,
                                subject: dbModel.subject,
-                               thumbnailURL: dbModel.thumbnailURL)
+                               thumbnailURL: dbModel.thumbnailURL,
+                               isFavourite: dbModel.isFavourite)
     }
     
     func dbModel(from context: NSManagedObjectContext) -> DBThreadShortInfo {
@@ -52,6 +55,7 @@ extension ThreadShortInfo: Persistable {
         dbModel.subject = subject
         dbModel.thumbnailURL = thumbnailURL
         dbModel.timestamp = Date().timeIntervalSince1970
+        dbModel.isFavourite = isFavourite
         
         return dbModel
     }

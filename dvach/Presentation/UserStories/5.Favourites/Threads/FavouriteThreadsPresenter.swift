@@ -45,7 +45,7 @@ extension FavouriteThreadsPresenter: IFavouriteThreadsPresenter {
     }
     
     func viewWillAppear() {
-        favouriteThreads = dvachService.favourites(type: ThreadShortInfo.self)
+        favouriteThreads = dvachService.favourites(type: ThreadShortInfo.self).filter { $0.isFavourite }
         dataSource = createViewModels(threads: favouriteThreads)
         view?.updateTable()
     }

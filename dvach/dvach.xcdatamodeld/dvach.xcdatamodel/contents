@@ -49,12 +49,13 @@
         <attribute name="tripType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uniquePosters" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="files" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBFile" inverseName="post" inverseEntity="DBFile" syncable="YES"/>
-        <relationship name="threadInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBThreadShortInfo" inverseName="post" inverseEntity="DBThreadShortInfo" syncable="YES"/>
+        <relationship name="threadInfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="DBThreadShortInfo" inverseName="post" inverseEntity="DBThreadShortInfo" syncable="YES"/>
     </entity>
     <entity name="DBThreadShortInfo" representedClassName="dvach.DBThreadShortInfo" syncable="YES">
         <attribute name="boardId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavourite" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="subject" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="threadNum" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="thumbnailURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -65,6 +66,6 @@
         <element name="DBBoardShortInfo" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="DBFile" positionX="-36" positionY="153" width="128" height="270"/>
         <element name="DBPost" positionX="-54" positionY="54" width="128" height="435"/>
-        <element name="DBThreadShortInfo" positionX="-63" positionY="9" width="128" height="165"/>
+        <element name="DBThreadShortInfo" positionX="-63" positionY="9" width="128" height="180"/>
     </elements>
 </model>

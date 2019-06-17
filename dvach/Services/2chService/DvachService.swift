@@ -100,7 +100,9 @@ extension DvachService: IDvachService {
             thread.boardId = boardId
             storage.save(objects: [thread], completion: completion)
         case .post(var post, var threadShortInfo, let boardId):
+            threadShortInfo?.isFavourite = false
             threadShortInfo?.boardId = boardId
+            threadShortInfo?.identifier = post.identifier // Нужно для того, чтобы тред не попал в избранное вместе с постом
             post.threadInfo = threadShortInfo
             storage.save(objects: [post], completion: completion)
         }
