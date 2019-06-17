@@ -25,7 +25,6 @@ final class CategoriesViewController: UIViewController {
     
     // UI
     private var searchBoardsController: BoardsListViewController?
-
     private lazy var stackView: StackViewContainer = {
         let stackView = componentsFactory.createStackViewContainer()
         stackView.alpha = 0
@@ -54,6 +53,7 @@ final class CategoriesViewController: UIViewController {
         super.viewDidLoad()
         
         definesPresentationContext = true
+        edgesForExtendedLayout = []
         setupUI()
         presenter.viewDidLoad()
     }
