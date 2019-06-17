@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol BaseRequest {
     var payloadKey: String? { get }
@@ -17,6 +18,7 @@ protocol BaseRequest {
     var section: String { get }
     var action: String { get }
     var parameters: [String: String] { get }
+    var httpMethod: HTTPMethod { get }
 }
 
 extension BaseRequest {
@@ -59,5 +61,9 @@ extension BaseRequest {
     
     var parameters: [String: String] {
         return [:]
+    }
+    
+    var httpMethod: HTTPMethod {
+        return .get
     }
 }

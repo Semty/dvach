@@ -44,38 +44,31 @@ final class RequestManager: IRequestManager {
             + request.section
             + request.action
             + request.format
-            + request.parameters.parametersString
         guard let url = URL(string: stringURL) else { return }
         
-        do {
-            let request = try URLRequest(url: url, method: .get, headers: request.headers)
-            
-            let queue: DispatchQueue
-            
-            switch qos {
-            case .userInteractive:
-                queue = userInteractiveQueue
-            case .userInitiated:
-                queue = userInitiatedQueue
-            case .utility:
-                queue = utilityQueue
-            case .background:
-                queue = backgroundQueue
-            default:
-                queue = userInitiatedQueue
+        let queue: DispatchQueue
+        
+        switch qos {
+        case .userInteractive:
+            queue = userInteractiveQueue
+        case .userInitiated:
+            queue = userInitiatedQueue
+        case .utility:
+            queue = utilityQueue
+        case .background:
+            queue = backgroundQueue
+        default:
+            queue = userInitiatedQueue
+        }
+        
+        Alamofire.request(url, method: request.httpMethod, parameters: request.parameters, headers: request.headers).responseJSON(queue: queue) { response in
+            if let data = response.data {
+                let json = JSON(data)
+                completion(json, nil)
+            } else {
+                let error = NSError.defaultError(description: "EXECUTION ERROR")
+                completion(nil, error)
             }
-            
-            Alamofire.request(request).responseJSON(queue: queue) { response in
-                if let data = response.data {
-                    let json = JSON(data)
-                    completion(json, nil)
-                } else {
-                    let error = NSError.defaultError(description: "EXECUTION ERROR")
-                    completion(nil, error)
-                }
-            }
-        } catch {
-            fatalError("BAD EXECUTION")
         }
     }
     
