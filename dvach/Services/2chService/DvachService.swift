@@ -92,15 +92,16 @@ extension DvachService: IDvachService {
     
     // MARK: - Favourites
     
-    func addToFavourites(_ item: DvachItem, boardId: String?, completion: @escaping () -> Void) {
+    func addToFavourites(_ item: DvachItem, completion: @escaping () -> Void) {
         switch item {
         case .board(let board):
             storage.save(objects: [board], completion: completion)
-        case .thread(let thread):
-            var favouriteThread = thread
-            favouriteThread.boardId = boardId
-            storage.save(objects: [favouriteThread], completion: completion)
-        case .post(let post):
+        case .thread(var thread, let boardId):
+            thread.boardId = boardId
+            storage.save(objects: [thread], completion: completion)
+        case .post(var post, var threadShortInfo, let boardId):
+            threadShortInfo?.boardId = boardId
+            post.threadInfo = threadShortInfo
             storage.save(objects: [post], completion: completion)
         }
     }

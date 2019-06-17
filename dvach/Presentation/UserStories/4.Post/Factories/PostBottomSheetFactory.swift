@@ -20,28 +20,30 @@ final class PostBottomSheetFactory {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // Пост
-        if dvachService.isFavourite(.post(post)) {
+        let postItem = DvachItem.post(post, threadInfo: threadInfo?.thread, boardId: threadInfo?.boardId)
+        if dvachService.isFavourite(postItem) {
             let removeThreadAction = UIAlertAction(title: "Удалить пост из избранного", style: .destructive) { [weak self] action in
-                self?.dvachService.removeFromFavourites(.post(post))
+                self?.dvachService.removeFromFavourites(postItem)
             }
             actionSheet.addAction(removeThreadAction)
         } else {
             let saveThreadAction = UIAlertAction(title: "Сохранить пост в избранное", style: .default) { [weak self] action in
-                self?.dvachService.addToFavourites(.post(post), completion: {})
+                self?.dvachService.addToFavourites(postItem, completion: {})
             }
             actionSheet.addAction(saveThreadAction)
         }
         
         // Тред
         if let threadInfo = threadInfo {
-            if dvachService.isFavourite(.thread(threadInfo.thread)) {
+            let threadItem = DvachItem.thread(threadInfo.thread, boardId: threadInfo.boardId)
+            if dvachService.isFavourite(threadItem) {
                 let removeThreadAction = UIAlertAction(title: "Убрать тред из избранного", style: .destructive) { [weak self] action in
-                    self?.dvachService.removeFromFavourites(.thread(threadInfo.thread))
+                    self?.dvachService.removeFromFavourites(threadItem)
                 }
                 actionSheet.addAction(removeThreadAction)
             } else {
                 let saveThreadAction = UIAlertAction(title: "Добавить тред в избранное", style: .default) { [weak self] action in
-                    self?.dvachService.addToFavourites(.thread(threadInfo.thread), boardId: threadInfo.boardId, completion: {})
+                    self?.dvachService.addToFavourites(threadItem, completion: {})
                 }
                 actionSheet.addAction(saveThreadAction)
             }

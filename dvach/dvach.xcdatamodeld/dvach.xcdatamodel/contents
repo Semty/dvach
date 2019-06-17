@@ -49,6 +49,7 @@
         <attribute name="tripType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uniquePosters" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="files" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBFile" inverseName="post" inverseEntity="DBFile" syncable="YES"/>
+        <relationship name="threadInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBThreadShortInfo" inverseName="post" inverseEntity="DBThreadShortInfo" syncable="YES"/>
     </entity>
     <entity name="DBThreadShortInfo" representedClassName="dvach.DBThreadShortInfo" syncable="YES">
         <attribute name="boardId" optional="YES" attributeType="String" syncable="YES"/>
@@ -58,11 +59,12 @@
         <attribute name="threadNum" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="thumbnailURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="post" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBPost" inverseName="threadInfo" inverseEntity="DBPost" syncable="YES"/>
     </entity>
     <elements>
         <element name="DBBoardShortInfo" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="DBThreadShortInfo" positionX="-63" positionY="9" width="128" height="150"/>
-        <element name="DBPost" positionX="-54" positionY="54" width="128" height="420"/>
         <element name="DBFile" positionX="-36" positionY="153" width="128" height="270"/>
+        <element name="DBPost" positionX="-54" positionY="54" width="128" height="435"/>
+        <element name="DBThreadShortInfo" positionX="-63" positionY="9" width="128" height="165"/>
     </elements>
 </model>

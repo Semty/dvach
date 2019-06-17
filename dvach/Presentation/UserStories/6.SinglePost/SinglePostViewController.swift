@@ -20,6 +20,15 @@ final class SinglePostViewController: UIViewController {
 
     // UI
     private lazy var stackView = componentsFactory.createStackViewContainer()
+    private lazy var button: BottomButton = {
+        let button = BottomButton()
+        let model = BottomButton.Model(text: "Открыть в треде", color: .n7Blue)
+        button.configure(with: model)
+        button.enablePressStateAnimation { [weak self] in
+            self?.presenter.didTapOpenThread()
+        }
+        return button
+    }()
     private lazy var postView: PostCommentView = {
         let postView = PostCommentView()
         postView.removeBottomSeparator()
@@ -58,8 +67,9 @@ final class SinglePostViewController: UIViewController {
     
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
-//        stackView.contentInset.top = view.safeAreaInsets.top
-        //.snp.updateConstraints { $0.top.equalToSuperview().offset(view.safeAreaInsets.top) }
+        button.snp.updateConstraints {
+            $0.bottom.equalToSuperview().inset(view.safeAreaInsets.bottom + CGFloat.inset16)
+        }
     }
     
     // MARK: - Private
@@ -68,9 +78,12 @@ final class SinglePostViewController: UIViewController {
         view.addSubview(stackView)
         stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
         stackView.addView(postView)
-
+        
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints { $0.top.trailing.equalToSuperview().inset(CGFloat.inset16) }
+        
+        view.addSubview(button)
+        button.snp.makeConstraints { $0.trailing.leading.bottom.equalToSuperview().inset(CGFloat.inset16) }
     }
 }
 

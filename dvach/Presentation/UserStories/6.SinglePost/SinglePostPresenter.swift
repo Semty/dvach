@@ -10,6 +10,7 @@ import Foundation
 
 protocol ISinglePostPresenter {
     func viewDidLoad()
+    func didTapOpenThread()
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
 }
 
@@ -18,7 +19,8 @@ final class SinglePostPresenter {
     // Dependencies
     weak var view: (SinglePostView & UIViewController)?
     private let actionSheetFactory = PostBottomSheetFactory()
-
+    private let dvachService = Locator.shared.dvachService()
+    
     // Properties
     private let post: Post
     
@@ -51,6 +53,12 @@ extension SinglePostPresenter: ISinglePostPresenter {
     
     func viewDidLoad() {
         view?.configure(model: createModel())
+    }
+    
+    func didTapOpenThread() {
+        guard let threadInfo = post.threadInfo, let boardId = threadInfo.boardId else { return }
+        let vc = PostAssembly.assemble(board: boardId, thread: threadInfo)
+        view?.present(vc, animated: true)
     }
     
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {

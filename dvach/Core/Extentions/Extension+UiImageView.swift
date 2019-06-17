@@ -17,21 +17,14 @@ extension UIImageView {
     
     func loadImage(url: String, defaultImage: UIImage?) {
         image = defaultImage
-        guard let url = URL(string: "\(GlobalUtils.base2chPath)\(url)") else {
-            return
-        }
+        guard let url = URL(string: "\(GlobalUtils.base2chPath)\(url)") else { return }
+        let options = ImageLoadingOptions(transition: .fadeIn(duration: 0.5),
+                                          contentModes: .init(success: .scaleAspectFill, failure: .scaleAspectFit, placeholder: .center))
         
-        Nuke.loadImage(
-            with: url,
-            options: ImageLoadingOptions(
-                transition: .fadeIn(duration: 0.5),
-                contentModes: .init(
-                    success: .scaleAspectFill,
-                    failure: .center,
-                    placeholder: .center
-                )
-            ),
-            into: self
-        )
+        Nuke.loadImage(with: url, options: options, into: self, progress: nil) { [weak self] _, error in
+            if error != nil {
+                self?.image = defaultImage
+            }
+        }
     }
 }

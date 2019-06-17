@@ -60,7 +60,7 @@ protocol IDvachService {
     // MARK: - Избранное
     
     /// Добавить в избранное
-    func addToFavourites(_ item: DvachItem, boardId: String?, completion: @escaping () -> Void)
+    func addToFavourites(_ item: DvachItem, completion: @escaping () -> Void)
     
     /// Убрать из избранного
     func removeFromFavourites(_ item: DvachItem)
@@ -109,9 +109,5 @@ extension IDvachService {
                             location: location,
                             qos: qos,
                             completion: completion)
-    }
-    
-    func addToFavourites(_ item: DvachItem, completion: @escaping () -> Void) {
-        addToFavourites(item, boardId: nil, completion: completion)
     }
 }

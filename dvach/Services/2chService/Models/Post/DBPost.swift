@@ -35,6 +35,7 @@ final class DBPost: NSManagedObject {
     @NSManaged var tags: String?
     @NSManaged var uniquePosters: String?
     @NSManaged var timestamp: TimeInterval
+    @NSManaged var threadInfo: DBThreadShortInfo
 }
 
 // MARK: - Persistable
@@ -68,7 +69,8 @@ extension Post: Persistable {
                     filesCount: dbModel.filesCount,
                     postsCount: dbModel.postsCount,
                     tags: dbModel.tags,
-                    uniquePosters: dbModel.uniquePosters)
+                    uniquePosters: dbModel.uniquePosters,
+                    threadInfo: ThreadShortInfo.from(dbModel.threadInfo))
     }
     
     func dbModel(from context: NSManagedObjectContext) -> DBPost {
@@ -99,6 +101,10 @@ extension Post: Persistable {
         dbModel.tags = tags
         dbModel.uniquePosters = uniquePosters
         dbModel.timestamp = Date().timeIntervalSince1970
+        
+        if let threadInfo = threadInfo {
+            dbModel.threadInfo = threadInfo.dbModel(from: context)
+        }
         
         return dbModel
     }

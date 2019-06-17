@@ -41,7 +41,6 @@
 		4190800122A6E66A003309D9 /* BoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4190800022A6E66A003309D9 /* BoardView.xib */; };
 		4190800422A6EA9A003309D9 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190800322A6EA9A003309D9 /* IconView.swift */; };
 		4190800622A6EAF1003309D9 /* IconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4190800522A6EAF1003309D9 /* IconView.xib */; };
-		4190800922A6F47B003309D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4190800822A6F47B003309D9 /* Assets.xcassets */; };
 		4190800D22A86872003309D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4190800C22A86871003309D9 /* GoogleService-Info.plist */; };
 		4190801122A86A6D003309D9 /* ConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190801022A86A6D003309D9 /* ConfigService.swift */; };
 		4190801322A86EE7003309D9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190801222A86EE7003309D9 /* Config.swift */; };
@@ -136,6 +135,7 @@
 		41D38A7322B69753000D1391 /* DBFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A7222B69753000D1391 /* DBFile.swift */; };
 		41D38A7622B6B72D000D1391 /* SinglePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A7522B6B72D000D1391 /* SinglePostViewController.swift */; };
 		41D38A7822B6B73B000D1391 /* SinglePostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A7722B6B73B000D1391 /* SinglePostPresenter.swift */; };
+		41D38A7C22B81C7F000D1391 /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A7B22B81C7F000D1391 /* BottomButton.swift */; };
 		D5750AB422AEC0D70058E99D /* Extension+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */; };
 		D5750AB622AEC5050058E99D /* DvachLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB522AEC5050058E99D /* DvachLinkModel.swift */; };
 		D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB922AEC57E0058E99D /* PostParser.swift */; };
@@ -207,7 +207,6 @@
 		4190800022A6E66A003309D9 /* BoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoardView.xib; sourceTree = "<group>"; };
 		4190800322A6EA9A003309D9 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		4190800522A6EAF1003309D9 /* IconView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconView.xib; sourceTree = "<group>"; };
-		4190800822A6F47B003309D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4190800C22A86871003309D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4190801022A86A6D003309D9 /* ConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigService.swift; sourceTree = "<group>"; };
 		4190801222A86EE7003309D9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -307,6 +306,7 @@
 		41D38A7222B69753000D1391 /* DBFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBFile.swift; sourceTree = "<group>"; };
 		41D38A7522B6B72D000D1391 /* SinglePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePostViewController.swift; sourceTree = "<group>"; };
 		41D38A7722B6B73B000D1391 /* SinglePostPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePostPresenter.swift; sourceTree = "<group>"; };
+		41D38A7B22B81C7F000D1391 /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
 		4274A55E1D343EF270BE19BF /* Pods-dvach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.debug.xcconfig"; sourceTree = "<group>"; };
 		969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.release.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.release.xcconfig"; sourceTree = "<group>"; };
 		BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -667,7 +667,6 @@
 			isa = PBXGroup;
 			children = (
 				41BEE6D2229EFE720028EBFB /* AppDelegate.swift */,
-				4190800822A6F47B003309D9 /* Assets.xcassets */,
 				41BEE740229F04670028EBFB /* Presentation */,
 				41BEE769229F049A0028EBFB /* Services */,
 				41BEE6F5229F043C0028EBFB /* Core */,
@@ -928,8 +927,9 @@
 		41BEE758229F04730028EBFB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4190800222A6E9CD003309D9 /* IconView */,
+				41D38A7A22B81C6E000D1391 /* BottomButton */,
 				41BEE759229F04730028EBFB /* CloseButton.swift */,
+				4190800222A6E9CD003309D9 /* IconView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -991,6 +991,14 @@
 				41D38A7722B6B73B000D1391 /* SinglePostPresenter.swift */,
 			);
 			path = 6.SinglePost;
+			sourceTree = "<group>";
+		};
+		41D38A7A22B81C6E000D1391 /* BottomButton */ = {
+			isa = PBXGroup;
+			children = (
+				41D38A7B22B81C7F000D1391 /* BottomButton.swift */,
+			);
+			path = BottomButton;
 			sourceTree = "<group>";
 		};
 		CA89EE3F855E333C81DBA6A2 /* Pods */ = {
@@ -1170,7 +1178,6 @@
 				411902BA22A6BE05008231AC /* ShadowCollectionViewCell.xib in Resources */,
 				4117534A22A2E80F008EBD2A /* BlockWithTitle.xib in Resources */,
 				4117535122A2F23B008EBD2A /* CategoriesCardView.xib in Resources */,
-				4190800922A6F47B003309D9 /* Assets.xcassets in Resources */,
 				4193B1D422AD8BBE00EE25FD /* PostCommentButtonsView.xib in Resources */,
 				41BEE761229F04730028EBFB /* StackViewContainer.xib in Resources */,
 			);
@@ -1376,6 +1383,7 @@
 				D5A69D4A22A2FB3400C46E24 /* ThreadWithImageView.swift in Sources */,
 				41D38A6D22B5434F000D1391 /* FavouriteThreadView.swift in Sources */,
 				41BEE765229F04730028EBFB /* TableViewContainerCell.swift in Sources */,
+				41D38A7C22B81C7F000D1391 /* BottomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

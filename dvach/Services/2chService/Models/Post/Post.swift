@@ -34,6 +34,7 @@ struct Post {
     let postsCount: Int?
     let tags: String?
     let uniquePosters: String? // В API видел число 110 один раз в строке
+    var threadInfo: ThreadShortInfo? // Насаживается при кешировании, для того, чтобы открыть этот тред
 }
 
 // MARK: - JSONParsable
@@ -92,6 +93,7 @@ extension Post: JSONParsable {
                     filesCount: filesCount,
                     postsCount: postsCount,
                     tags: tags,
-                    uniquePosters: uniquePosters)
+                    uniquePosters: uniquePosters,
+                    threadInfo: nil)
     }
 }

@@ -46,7 +46,7 @@ final class GalleryView: UIView, ConfigurableView, ReusableView, PressStateAnima
     typealias ConfigurationModel = Model
     
     func configure(with model: GalleryView.Model) {
-        imageView.loadImage(url: model.imageURL)
+        imageView.loadImage(url: model.imageURL, defaultImage: UIImage(named: "placeholder"))
     }
     
     // MARK: - ReusableView

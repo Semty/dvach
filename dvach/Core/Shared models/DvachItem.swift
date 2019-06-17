@@ -10,14 +10,14 @@ import Foundation
 
 enum DvachItem {
     case board(BoardShortInfo)
-    case thread(ThreadShortInfo)
-    case post(Post)
+    case thread(ThreadShortInfo, boardId: String?)
+    case post(Post, threadInfo: ThreadShortInfo?, boardId: String?)
     
     var identifier: String {
         switch self {
         case .board(let board): return board.identifier
-        case .thread(let thread): return thread.identifier
-        case .post(let post): return post.identifier
+        case .thread(let thread, _): return thread.identifier
+        case .post(let post, _, _): return post.identifier
         }
     }
 }
