@@ -11,13 +11,32 @@ import SwiftyJSON
 
 final class RequestManager: IRequestManager {
     
-    private let queue = DispatchQueue(label: "com.ruslantimchenko.requestQueue",
-                                      qos: .utility,
-                                      attributes: [.concurrent])
+    // MARK: - Queues
+    
+    private let userInteractiveQueue =
+        DispatchQueue(label: "com.ruslantimchenko.userInteractiveRequestQueue",
+                      qos: .userInteractive,
+                      attributes: [.concurrent])
+    
+    private let userInitiatedQueue =
+        DispatchQueue(label: "com.ruslantimchenko.userInitiatedRequestQueue",
+                      qos: .userInitiated,
+                      attributes: [.concurrent])
+    
+    private let utilityQueue =
+        DispatchQueue(label: "com.ruslantimchenko.utilityRequestQueue",
+                      qos: .utility,
+                      attributes: [.concurrent])
+    
+    private let backgroundQueue =
+        DispatchQueue(label: "com.ruslantimchenko.backgroundRequestQueue",
+                      qos: .background,
+                      attributes: [.concurrent])
     
     // MARK: - IRequestManager
     
-    func execute(_ request: BaseRequest, completion: @escaping (JSON?, Error?) -> Void) {
+    func execute(_ request: BaseRequest, qos: DispatchQoS,
+                 completion: @escaping (JSON?, Error?) -> Void) {
         let stringURL = request.baseURL
             + request.accessLevel
             + request.version
@@ -30,6 +49,22 @@ final class RequestManager: IRequestManager {
         
         do {
             let request = try URLRequest(url: url, method: .get, headers: request.headers)
+            
+            let queue: DispatchQueue
+            
+            switch qos {
+            case .userInteractive:
+                queue = userInteractiveQueue
+            case .userInitiated:
+                queue = userInitiatedQueue
+            case .utility:
+                queue = utilityQueue
+            case .background:
+                queue = backgroundQueue
+            default:
+                queue = userInitiatedQueue
+            }
+            
             Alamofire.request(request).responseJSON(queue: queue) { response in
                 if let data = response.data {
                     let json = JSON(data)
@@ -44,8 +79,9 @@ final class RequestManager: IRequestManager {
         }
     }
     
-    func loadModel<T: IRequest>(request: T, completion: @escaping (Result<T.Model>) -> Void) {
-        execute(request) { json, _ in
+    func loadModel<T: IRequest>(request: T, qos: DispatchQoS,
+                                completion: @escaping (Result<T.Model>) -> Void) {
+        execute(request, qos: qos) { json, _ in
             if let key = request.payloadKey,
                 let json = json?.dictionary?[key],
                 let model = T.Model.from(json: json) {
@@ -59,8 +95,9 @@ final class RequestManager: IRequestManager {
         }
     }
     
-    func loadModels<T: IRequest>(request: T, completion: @escaping (Result<[T.Model]>) -> Void) {
-        execute(request) { json, _ in
+    func loadModels<T: IRequest>(request: T, qos: DispatchQoS,
+                                 completion: @escaping (Result<[T.Model]>) -> Void) {
+        execute(request, qos: qos) { json, _ in
             if let key = request.payloadKey, let json = json?.dictionary?[key] {
                 let models = json.arrayValue.compactMap(T.Model.from)
                 completion(.success(models))

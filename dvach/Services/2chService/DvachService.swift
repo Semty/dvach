@@ -27,9 +27,9 @@ final class DvachService {
 
 extension DvachService: IDvachService {
     
-    func loadBoards(completion: @escaping (Result<[Board]>) -> Void) {
+    func loadBoards(qos: DispatchQoS, completion: @escaping (Result<[Board]>) -> Void) {
         let request = BoardsRequest()
-        requestManager.loadModel(request: request) { result in
+        requestManager.loadModel(request: request, qos: qos) { result in
             switch result {
             case .success(let categories):
                 // TODO: тут будет кеширование
@@ -41,9 +41,10 @@ extension DvachService: IDvachService {
     }
     
     func loadBoardWithBumpSortingThreadsCatalog(_ board: String,
+                                                qos: DispatchQoS,
                                                 completion: @escaping (Result<Board>) -> Void) {
         let request = BoardWithBumpSortingThreadsCatalogRequest(board)
-        requestManager.loadModel(request: request) { result in
+        requestManager.loadModel(request: request, qos: qos) { result in
             switch result {
             case .success(let board):
                 completion(.success(board))
@@ -55,9 +56,10 @@ extension DvachService: IDvachService {
     
     func loadBoardWithPerPageThreadsRequest(_ board: String,
                                             _ page: Int,
+                                            qos: DispatchQoS,
                                             completion: @escaping (Result<Board>) -> Void) {
         let request = BoardWithPerPageThreadsRequest(board, page)
-        requestManager.loadModel(request: request) { result in
+        requestManager.loadModel(request: request, qos: qos) { result in
             switch result {
             case .success(let board):
                 completion(.success(board))
@@ -71,13 +73,14 @@ extension DvachService: IDvachService {
                              threadNum: Int,
                              postNum: Int?,
                              location: PostNumberLocation?,
+                             qos: DispatchQoS,
                              completion: @escaping (Result<[Post]>) -> Void) {
         
         let request = ThreadWithPostsRequest(board: board,
                                              thread: threadNum,
                                              post: postNum ?? 1,
                                              location: location ?? .inThread)
-        requestManager.loadModels(request: request) { result in
+        requestManager.loadModels(request: request, qos: qos) { result in
             switch result {
             case .success(let posts):
                 completion(.success(posts))
@@ -131,6 +134,5 @@ extension DvachService: IDvachService {
             let post = storage.fetch(model: Post.self, predicate: predicate, sortDescriptors: [])
             return post.first != nil
         }
-        return false
     }
 }

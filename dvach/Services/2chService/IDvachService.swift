@@ -11,15 +11,17 @@ import Foundation
 protocol IDvachService {
     
     /// Загрузка всех досок (без тредов и дополнительной информации)
-    func loadBoards(completion: @escaping (Result<[Board]>) -> Void)
+    func loadBoards(qos: DispatchQoS, completion: @escaping (Result<[Board]>) -> Void)
     
     /// Загрузка конкретной доски (с каталогом тредов, отсортированных по последнему сообщению)
     func loadBoardWithBumpSortingThreadsCatalog(_ board: String,
+                                                qos: DispatchQoS,
                                                 completion: @escaping (Result<Board>) -> Void)
     
     /// Загрузка конкретной доски с тредами по странице
     func loadBoardWithPerPageThreadsRequest(_ board: String,
                                             _ page: Int,
+                                            qos: DispatchQoS,
                                             completion: @escaping (Result<Board>) -> Void)
     
     /*
@@ -52,6 +54,7 @@ protocol IDvachService {
                              threadNum: Int,
                              postNum: Int?,
                              location: PostNumberLocation?,
+                             qos: DispatchQoS,
                              completion: @escaping (Result<[Post]>) -> Void)
     
     // MARK: - Избранное
@@ -70,6 +73,43 @@ protocol IDvachService {
 }
 
 extension IDvachService {
+    
+    func loadBoards(qos: DispatchQoS = .userInitiated,
+                    completion: @escaping (Result<[Board]>) -> Void) {
+        loadBoards(qos: qos, completion: completion)
+    }
+    
+    func loadBoardWithBumpSortingThreadsCatalog(_ board: String,
+                                                qos: DispatchQoS = .userInitiated,
+                                                completion: @escaping (Result<Board>) -> Void) {
+        loadBoardWithBumpSortingThreadsCatalog(board,
+                                               qos: qos,
+                                               completion: completion)
+    }
+    
+    func loadBoardWithPerPageThreadsRequest(_ board: String,
+                                            _ page: Int,
+                                            qos: DispatchQoS = .userInitiated,
+                                            completion: @escaping (Result<Board>) -> Void) {
+        loadBoardWithPerPageThreadsRequest(board,
+                                           page,
+                                           qos: qos,
+                                           completion: completion)
+    }
+    
+    func loadThreadWithPosts(board: String,
+                             threadNum: Int,
+                             postNum: Int?,
+                             location: PostNumberLocation?,
+                             qos: DispatchQoS = .userInitiated,
+                             completion: @escaping (Result<[Post]>) -> Void) {
+        loadThreadWithPosts(board: board,
+                            threadNum: threadNum,
+                            postNum: postNum,
+                            location: location,
+                            qos: qos,
+                            completion: completion)
+    }
     
     func addToFavourites(_ item: DvachItem, completion: @escaping () -> Void) {
         addToFavourites(item, boardId: nil, completion: completion)
