@@ -16,7 +16,8 @@ final class BottomButton: UIView, ConfigurableView, PressStateAnimatable {
     
     struct Model {
         let text: String
-        let color: UIColor
+        let backgroundColor: UIColor
+        let textColor: UIColor
     }
     
     // UI
@@ -55,6 +56,7 @@ final class BottomButton: UIView, ConfigurableView, PressStateAnimatable {
     
     func configure(with model: BottomButton.Model) {
         label.text = model.text
-        backgroundColor = model.color
+        label.textColor = model.textColor
+        backgroundColor = model.backgroundColor
     }
 }

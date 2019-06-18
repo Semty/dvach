@@ -22,7 +22,8 @@ final class SinglePostViewController: UIViewController {
     private lazy var stackView = componentsFactory.createStackViewContainer()
     private lazy var button: BottomButton = {
         let button = BottomButton()
-        let model = BottomButton.Model(text: "Открыть в треде", color: .n7Blue)
+        let model = BottomButton.Model(text: "Открыть в треде",
+                                       backgroundColor: .n7Blue, textColor: .white)
         button.configure(with: model)
         button.enablePressStateAnimation { [weak self] in
             self?.presenter.didTapOpenThread()

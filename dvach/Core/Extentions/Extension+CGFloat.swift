@@ -19,6 +19,7 @@ public extension CGFloat {
     static let radius6: CGFloat = 6
     static let radius10: CGFloat = 10
     static let radius12: CGFloat = 12
+    static let radius38AndAHalf: CGFloat = 38.5 // Близко к закруглению экрана икса
 
     // MARK: - Fonts
 

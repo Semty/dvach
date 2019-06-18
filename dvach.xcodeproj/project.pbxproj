@@ -137,6 +137,10 @@
 		41D38A7822B6B73B000D1391 /* SinglePostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A7722B6B73B000D1391 /* SinglePostPresenter.swift */; };
 		41D38A7C22B81C7F000D1391 /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A7B22B81C7F000D1391 /* BottomButton.swift */; };
 		41D38A7E22B83226000D1391 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41D38A7D22B83226000D1391 /* Assets.xcassets */; };
+		D504B6E922B90F2A007C93B1 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6E822B90F2A007C93B1 /* BannerView.swift */; };
+		D504B6EB22B90F36007C93B1 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D504B6EA22B90F36007C93B1 /* BannerView.xib */; };
+		D504B6ED22B946F9007C93B1 /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */; };
+		D504B6EF22B97CEB007C93B1 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6EE22B97CEB007C93B1 /* BannerViewController.swift */; };
 		D5750AB422AEC0D70058E99D /* Extension+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */; };
 		D5750AB622AEC5050058E99D /* DvachLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB522AEC5050058E99D /* DvachLinkModel.swift */; };
 		D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB922AEC57E0058E99D /* PostParser.swift */; };
@@ -313,6 +317,10 @@
 		969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.release.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.release.xcconfig"; sourceTree = "<group>"; };
 		BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56667501DB5905B423A9582 /* Pods-dvachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D504B6E822B90F2A007C93B1 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		D504B6EA22B90F36007C93B1 /* BannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
+		D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIDevice.swift"; sourceTree = "<group>"; };
+		D504B6EE22B97CEB007C93B1 /* BannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
 		D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSAttributedString.swift"; sourceTree = "<group>"; };
 		D5750AB522AEC5050058E99D /* DvachLinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DvachLinkModel.swift; sourceTree = "<group>"; };
 		D5750AB922AEC57E0058E99D /* PostParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParser.swift; sourceTree = "<group>"; };
@@ -771,6 +779,7 @@
 				D5FC9CF722ACEE8B002E0F79 /* Extension+NSRange.swift */,
 				D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */,
 				4193B1F822B3066400EE25FD /* Extension+UIBarButton.swift */,
+				D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -930,8 +939,9 @@
 		41BEE758229F04730028EBFB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D504B6E722B90F14007C93B1 /* BannerView */,
 				41D38A7A22B81C6E000D1391 /* BottomButton */,
-				41BEE759229F04730028EBFB /* CloseButton.swift */,
+				D504B6E622B90F02007C93B1 /* CloseButton */,
 				4190800222A6E9CD003309D9 /* IconView */,
 			);
 			path = Views;
@@ -1015,6 +1025,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D504B6E622B90F02007C93B1 /* CloseButton */ = {
+			isa = PBXGroup;
+			children = (
+				41BEE759229F04730028EBFB /* CloseButton.swift */,
+			);
+			path = CloseButton;
+			sourceTree = "<group>";
+		};
+		D504B6E722B90F14007C93B1 /* BannerView */ = {
+			isa = PBXGroup;
+			children = (
+				D504B6E822B90F2A007C93B1 /* BannerView.swift */,
+				D504B6EA22B90F36007C93B1 /* BannerView.xib */,
+			);
+			path = BannerView;
+			sourceTree = "<group>";
+		};
 		D58ADB9F22AC271B00A8334B /* TextParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -1027,6 +1054,7 @@
 		D5A69D1D22A2E5DB00C46E24 /* 3.Threads */ = {
 			isa = PBXGroup;
 			children = (
+				D504B6EE22B97CEB007C93B1 /* BannerViewController.swift */,
 				D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */,
 				D5A69D4422A2E83200C46E24 /* BoardWithThreadsPresenter.swift */,
 				D5A69D5122A3165000C46E24 /* Factories */,
@@ -1164,6 +1192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D504B6EB22B90F36007C93B1 /* BannerView.xib in Resources */,
 				4190800D22A86872003309D9 /* GoogleService-Info.plist in Resources */,
 				D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */,
 				4193B1CC22AAA34E00EE25FD /* PostHeaderView.xib in Resources */,
@@ -1265,11 +1294,13 @@
 				4193B1ED22B1A33200EE25FD /* FavouriteBoardsPresenter.swift in Sources */,
 				414408A922A052A800E4E53E /* Categories.swift in Sources */,
 				41BEE728229F043C0028EBFB /* Extension+UITableView.swift in Sources */,
+				D504B6E922B90F2A007C93B1 /* BannerView.swift in Sources */,
 				4193B1D222AD898C00EE25FD /* PostCommentButtonsView.swift in Sources */,
 				4193B1D022AAC8E500EE25FD /* Extension+UiImageView.swift in Sources */,
 				41BEE763229F04730028EBFB /* ImbaTableView.swift in Sources */,
 				411902CA22A6C642008231AC /* HighlightingGestureRecognizer.swift in Sources */,
 				4193B1BB22AA998200EE25FD /* PostViewController.swift in Sources */,
+				D504B6ED22B946F9007C93B1 /* Extension+UIDevice.swift in Sources */,
 				41BEE723229F043C0028EBFB /* UView+NibAwakable.swift in Sources */,
 				4144089F22A04AC400E4E53E /* DvachService.swift in Sources */,
 				41BEE73D229F04550028EBFB /* Locator.swift in Sources */,
@@ -1321,6 +1352,7 @@
 				41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */,
 				D5750AB422AEC0D70058E99D /* Extension+NSAttributedString.swift in Sources */,
 				41BEE72F229F043C0028EBFB /* Extension+TimeInterval.swift in Sources */,
+				D504B6EF22B97CEB007C93B1 /* BannerViewController.swift in Sources */,
 				D5B22BC422A18F31001EE4F8 /* BoardAdditionalInfo.swift in Sources */,
 				4117535622A2FCE8008EBD2A /* CollectionViewContainerCellBase.swift in Sources */,
 				41D38A6A22B536A6000D1391 /* PostBottomSheetFactory.swift in Sources */,

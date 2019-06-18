@@ -8,11 +8,16 @@
 
 import Foundation
 import UIKit
+import SwiftEntryKit
 
 private extension CGFloat {
     static let tableViewContentInset: CGFloat = 16
     static let threadWithImageCellHeight: CGFloat = 185
     static let threadWithoutImageCellHeight: CGFloat = 170
+}
+
+private extension String {
+    static let bannerViewWarning = "BannerView Warning"
 }
 
 protocol BoardWithThreadsView: AnyObject {
@@ -52,12 +57,29 @@ final class ThreadsViewController: UIViewController {
         return refreshControl
     }()
     
+    private lazy var bannerView: BannerView = {
+        let bannerView = BannerView.fromNib()
+        let model = BannerView.Model(image: UIImage(named: "warning") ?? UIImage(),
+                                     imageColor: .n4Red,
+                                     backgroundColor: .white,
+                                     title: "NSFW",
+                                     description: GlobalUtils.boardWarning)
+        bannerView.configure(with: model)
+        bannerView.delegate = self
+        return bannerView
+    }()
+    
     private lazy var skeleton = SkeletonThreadView.fromNib()
     
     // Timing Variables
     private var timeStart = CFAbsoluteTime()
     private var timeDiff: CFAbsoluteTime {
         return CFAbsoluteTimeGetCurrent() - timeStart
+    }
+    
+    // Overridden Variables
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
     }
     
     // MARK: - Initialization
@@ -87,6 +109,7 @@ final class ThreadsViewController: UIViewController {
         super.viewWillAppear(animated)
         updateNavigationItem()
         skeleton.update(state: .active)
+        presentBannerViewWarning()
     }
     
     // MARK: - Private
@@ -153,6 +176,29 @@ final class ThreadsViewController: UIViewController {
         endRefreshing()
     }
     
+    private func presentBannerViewWarning() {
+        //let vc = BannerViewController()
+        var attributes = EKAttributes()
+        attributes.entryBackground = .color(color: .white)
+        attributes.roundCorners = .all(radius: .radius38AndAHalf)
+        attributes.position = .bottom
+        attributes.positionConstraints = .fullWidth
+        attributes.positionConstraints.size = .init(width: .offset(value: 6),
+                                                    height: .intrinsic)
+        attributes.positionConstraints.verticalOffset = 6
+        attributes.positionConstraints.safeArea = .overridden
+        attributes.screenInteraction = .absorbTouches
+        attributes.entryInteraction = .absorbTouches
+        attributes.scroll = .enabled(swipeable: false, pullbackAnimation: .easeOut)
+        attributes.scroll = .enabled(swipeable: false, pullbackAnimation: .easeOut)
+        attributes.screenBackground = .visualEffect(style: .dark)
+        attributes.statusBar = .hidden
+        attributes.displayDuration = .infinity
+        attributes.hapticFeedbackType = .warning
+        attributes.name = .bannerViewWarning
+        SwiftEntryKit.display(entry: bannerView, using: attributes)
+    }
+    
     // MARK: - Actions
     
     @objc private func addToFavourites() {
@@ -166,6 +212,25 @@ final class ThreadsViewController: UIViewController {
     @objc private func refreshControlDidPull() {
         timeStart = CFAbsoluteTimeGetCurrent()
         presenter.refreshControllDidPull()
+    }
+}
+
+// MARK: - BannerViewDelegate
+
+extension ThreadsViewController: BannerViewDelegate {
+    func userAgreedWithBannerWarning() {
+        SwiftEntryKit.dismiss(.specific(entryName: .bannerViewWarning),
+                              with: nil)
+    }
+    
+    func userDisagreedWithBannerWarning() {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            SwiftEntryKit.dismiss(.specific(entryName: .bannerViewWarning),
+                                  with: nil)
+        }
+        navigationController?.popViewController(animated: true)
+        CATransaction.commit()
     }
 }
 
@@ -240,5 +305,11 @@ extension ThreadsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.didSelectCell(index: indexPath.row)
+    }
+}
+
+extension UINavigationController {
+    open override var childForHomeIndicatorAutoHidden: UIViewController? {
+        return topViewController
     }
 }
