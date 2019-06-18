@@ -31,13 +31,15 @@ final class PostViewPresenter {
     private let boardIdentifier: String
     private let thread: ThreadShortInfo
     private var posts = [Post]()
+    private var scrollTo: Int
     
     // MARK: - Initialization
     
-    init(router: IPostRouter, board: String, thread: ThreadShortInfo) {
+    init(router: IPostRouter, board: String, thread: ThreadShortInfo, scrollTo: Int) {
         self.router = router
         self.boardIdentifier = board
         self.thread = thread
+        self.scrollTo = scrollTo
     }
     
     // MARK: - Private
@@ -54,7 +56,7 @@ final class PostViewPresenter {
                 self.viewModels = posts.enumerated().map(self.createViewModel)
                 
                 DispatchQueue.main.async {
-                    self.view?.updateTable()
+                    self.view?.updateTable(scrollTo: self.scrollTo)
                 }
             case .failure(_):
                 break
@@ -74,7 +76,9 @@ final class PostViewPresenter {
                                      text: postParser.attributedText,
                                      fileURLs: imageURLs,
                                      dvachLinkModels: postParser.dvachLinkModels,
-                                     repliedTo: postParser.repliedToPosts)
+                                     repliedTo: postParser.repliedToPosts,
+                                     isAnswerHidden: false,
+                                     isRepliesHidden: false)
     }
 }
 
@@ -99,7 +103,8 @@ extension PostViewPresenter: IPostViewPresenter {
     }
     
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
-        guard let post = posts.first(where: { $0.num == postNumber }) else { return }
-        router.postCommentView(view, didTapMoreButton: post, thread: thread, boardId: boardIdentifier)
+        guard let postIndex = posts.firstIndex(where: { $0.num == postNumber }) else { return }
+        let post = posts[postIndex]
+        router.postCommentView(view, didTapMoreButton: post, thread: thread, boardId: boardIdentifier, row: postIndex)
     }
 }

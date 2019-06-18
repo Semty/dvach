@@ -17,8 +17,8 @@ protocol PostCommentButtonsViewDelegate: AnyObject {
 final class PostCommentButtonsView: UIView, ConfigurableView {
     
     struct Model {
-        let answerButtonModel: VerticalOvalButton.Model
-        let answersButtonModel: VerticalOvalButton.Model
+        let answerButtonModel: VerticalOvalButton.Model?
+        let answersButtonModel: VerticalOvalButton.Model?
         let moreButtonModel: VerticalOvalButton.Model
     }
     
@@ -53,8 +53,19 @@ final class PostCommentButtonsView: UIView, ConfigurableView {
     typealias ConfigurationModel = Model
     
     func configure(with model: PostCommentButtonsView.Model) {
-        answerButton.configure(with: model.answerButtonModel)
-        answersButton.configure(with: model.answersButtonModel)
+        // Ответить
+        answerButton.isHidden = model.answerButtonModel == nil
+        if let answerModel = model.answerButtonModel {
+            answerButton.configure(with: answerModel)
+        }
+        
+        // Ответы
+        answersButton.isHidden = model.answersButtonModel == nil
+        if let repliesModel = model.answersButtonModel {
+            answersButton.configure(with: repliesModel)
+        }
+        
+        // Еще
         moreButton.configure(with: model.moreButtonModel)
     }
 }

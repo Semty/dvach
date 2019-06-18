@@ -28,6 +28,8 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
         let fileURLs: [String]
         let dvachLinkModels: [DvachLinkModel]
         let repliedTo: [String]
+        let isAnswerHidden: Bool
+        let isRepliesHidden: Bool
     }
     
     // Dependencies
@@ -97,13 +99,6 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
     // Кнопки
     private var buttonsView: PostCommentButtonsView = {
         let view = PostCommentButtonsView.fromNib()
-        let answerModel = VerticalOvalButton.Model(color: .n1Gray, icon: UIImage(named: "answer"), text: nil)
-        let answersModel = VerticalOvalButton.Model(color: .n4Red, icon: UIImage(named: "answers"), text: "10")
-        let moreModel = VerticalOvalButton.Model(color: .n9LightGreen, icon: UIImage(named: "more"), text: nil)
-        let model = PostCommentButtonsView.Model(answerButtonModel: answerModel,
-                                                 answersButtonModel: answersModel,
-                                                 moreButtonModel: moreModel)
-        view.configure(with: model)
         view.snp.makeConstraints { $0.height.equalTo(50) }
         
         return view
@@ -153,6 +148,18 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
             let galleryModels = model.fileURLs.map { GalleryView.Model(imageURL: $0) }
             gallery.update(dataSource: galleryModels)
         }
+        
+        let answerModel = model.isAnswerHidden ? nil : VerticalOvalButton.Model(color: .n1Gray,
+                                                                                icon: UIImage(named: "answer"),
+                                                                                text: nil)
+        let answersModel = model.isRepliesHidden ? nil : VerticalOvalButton.Model(color: .n4Red,
+                                                                                  icon: UIImage(named: "answers"),
+                                                                                  text: "10")
+        let moreModel = VerticalOvalButton.Model(color: .n9LightGreen, icon: UIImage(named: "more"), text: nil)
+        let model = PostCommentButtonsView.Model(answerButtonModel: answerModel,
+                                                 answersButtonModel: answersModel,
+                                                 moreButtonModel: moreModel)
+        buttonsView.configure(with: model)
     }
     
     // MARK: - ReusableView

@@ -33,7 +33,7 @@ final class SinglePostPresenter {
     // MARK: - Private
     
     private func createModel() -> PostCommentView.Model {
-        let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: 1)
+        let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.path }
         let postParser = PostParser(text: post.comment)
         
@@ -43,7 +43,9 @@ final class SinglePostPresenter {
                                      text: postParser.attributedText,
                                      fileURLs: imageURLs,
                                      dvachLinkModels: postParser.dvachLinkModels,
-                                     repliedTo: postParser.repliedToPosts)
+                                     repliedTo: postParser.repliedToPosts,
+                                     isAnswerHidden: true,
+                                     isRepliesHidden: true)
     }
 }
 
@@ -57,7 +59,7 @@ extension SinglePostPresenter: ISinglePostPresenter {
     
     func didTapOpenThread() {
         guard let threadInfo = post.threadInfo, let boardId = threadInfo.boardId else { return }
-        let vc = PostAssembly.assemble(board: boardId, thread: threadInfo)
+        let vc = PostAssembly.assemble(board: boardId, thread: threadInfo, scrollTo: post.rowIndex)
         view?.present(vc, animated: true)
     }
     

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol PostView: AnyObject {
-    func updateTable()
+    func updateTable(scrollTo rowIndex: Int)
 }
 
 final class PostViewController: UIViewController {
@@ -84,10 +84,16 @@ final class PostViewController: UIViewController {
 
 extension PostViewController: PostView {
     
-    func updateTable() {
+    func updateTable(scrollTo rowIndex: Int) {
         tableView.reloadData()
         skeleton.update(state: .nonactive)
         view.skeletonAnimation(skeletonView: skeleton, mainView: tableView)
+        
+        if rowIndex > 0 {
+            tableView.scrollToRow(at: IndexPath(row: rowIndex, section: 0),
+                                  at: .middle,
+                                  animated: true)
+        }
     }
 }
 

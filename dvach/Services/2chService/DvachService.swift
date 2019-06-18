@@ -99,11 +99,12 @@ extension DvachService: IDvachService {
         case .thread(var thread, let boardId):
             thread.boardId = boardId
             storage.save(objects: [thread], completion: completion)
-        case .post(var post, var threadShortInfo, let boardId):
+        case .post(var post, var threadShortInfo, let boardId, let rowIndex):
             threadShortInfo?.isFavourite = false
             threadShortInfo?.boardId = boardId
             threadShortInfo?.identifier = post.identifier // Нужно для того, чтобы тред не попал в избранное вместе с постом
             post.threadInfo = threadShortInfo
+            post.rowIndex = rowIndex
             storage.save(objects: [post], completion: completion)
         }
     }
@@ -132,7 +133,7 @@ extension DvachService: IDvachService {
             return board.first != nil
         case .thread:
             let thread = storage.fetch(model: ThreadShortInfo.self, predicate: predicate, sortDescriptors: [])
-            return thread.first != nil
+            return thread.first?.isFavourite == true
         case .post:
             let post = storage.fetch(model: Post.self, predicate: predicate, sortDescriptors: [])
             return post.first != nil

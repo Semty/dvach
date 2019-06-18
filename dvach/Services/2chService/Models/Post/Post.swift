@@ -34,7 +34,9 @@ struct Post {
     let postsCount: Int?
     let tags: String?
     let uniquePosters: String? // В API видел число 110 один раз в строке
+    
     var threadInfo: ThreadShortInfo? // Насаживается при кешировании, для того, чтобы открыть этот тред
+    var rowIndex: Int // Насаживается при кешировании, чтобы вернуться к ячейке этого поста в таблице
 }
 
 // MARK: - JSONParsable
@@ -70,7 +72,7 @@ extension Post: JSONParsable {
         
         let files = filesArray.compactMap(File.from)
         
-        return Post(identifier: UUID().uuidString,
+        return Post(identifier: "\(num)-\(timestamp)",
                     isBanned: isBanned.boolValue,
                     isClosed: isClosed.boolValue,
                     comment: comment,
@@ -94,6 +96,7 @@ extension Post: JSONParsable {
                     postsCount: postsCount,
                     tags: tags,
                     uniquePosters: uniquePosters,
-                    threadInfo: nil)
+                    threadInfo: nil,
+                    rowIndex: 0)
     }
 }
