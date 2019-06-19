@@ -49,6 +49,10 @@
 		4190801322A86EE7003309D9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190801222A86EE7003309D9 /* Config.swift */; };
 		4190801D22A8865D003309D9 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 4190801C22A8865D003309D9 /* config.json */; };
 		419089F822BAB5BF0058907D /* ContentSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 419089F722BAB5BF0058907D /* ContentSettingsView.xib */; };
+		419089FD22BACE280058907D /* LaunchAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419089FC22BACE280058907D /* LaunchAnimationViewController.swift */; };
+		419089FF22BACE6A0058907D /* LaunchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 419089FE22BACE6A0058907D /* LaunchView.xib */; };
+		41908A0122BACE9F0058907D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A0022BACE9F0058907D /* LaunchView.swift */; };
+		41908A0322BAD0B70058907D /* monkey.json in Resources */ = {isa = PBXBuildFile; fileRef = 41908A0222BAD0B70058907D /* monkey.json */; };
 		4193B1B122AA4EF700EE25FD /* CategoriesSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */; };
 		4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */; };
 		4193B1B522AA548200EE25FD /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B422AA548200EE25FD /* UIView+Animations.swift */; };
@@ -225,6 +229,10 @@
 		4190801222A86EE7003309D9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4190801C22A8865D003309D9 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		419089F722BAB5BF0058907D /* ContentSettingsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSettingsView.xib; sourceTree = "<group>"; };
+		419089FC22BACE280058907D /* LaunchAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAnimationViewController.swift; sourceTree = "<group>"; };
+		419089FE22BACE6A0058907D /* LaunchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchView.xib; sourceTree = "<group>"; };
+		41908A0022BACE9F0058907D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		41908A0222BAD0B70058907D /* monkey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = monkey.json; sourceTree = "<group>"; };
 		4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSkeletonView.swift; sourceTree = "<group>"; };
 		4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesSkeletonView.xib; sourceTree = "<group>"; };
 		4193B1B422AA548200EE25FD /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -547,6 +555,17 @@
 			path = ConfigService;
 			sourceTree = "<group>";
 		};
+		419089F922BACD720058907D /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				41BEE6DE229EFE750028EBFB /* LaunchScreen.storyboard */,
+				419089FC22BACE280058907D /* LaunchAnimationViewController.swift */,
+				419089FE22BACE6A0058907D /* LaunchView.xib */,
+				41908A0022BACE9F0058907D /* LaunchView.swift */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		4193B1AF22AA4ED000EE25FD /* Skeleton */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,13 +724,14 @@
 		41BEE6D1229EFE720028EBFB /* dvach */ = {
 			isa = PBXGroup;
 			children = (
+				41908A0222BAD0B70058907D /* monkey.json */,
 				41D38A7D22B83226000D1391 /* Assets.xcassets */,
 				41BEE6D2229EFE720028EBFB /* AppDelegate.swift */,
 				41BEE740229F04670028EBFB /* Presentation */,
 				41BEE769229F049A0028EBFB /* Services */,
 				41BEE6F5229F043C0028EBFB /* Core */,
 				41BEE735229F04450028EBFB /* Helpers */,
-				41BEE6DE229EFE750028EBFB /* LaunchScreen.storyboard */,
+				419089F922BACD720058907D /* LaunchScreen */,
 				41BEE76A229F04C90028EBFB /* dvach-Bridging-Header.h */,
 				41BEE6E1229EFE750028EBFB /* Info.plist */,
 				41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */,
@@ -1237,8 +1257,10 @@
 				4193B1CC22AAA34E00EE25FD /* PostHeaderView.xib in Resources */,
 				4193B1DD22AEF96600EE25FD /* SkeletonPostView.xib in Resources */,
 				41D38A6F22B54381000D1391 /* FavouriteThreadView.xib in Resources */,
+				41908A0322BAD0B70058907D /* monkey.json in Resources */,
 				4190800622A6EAF1003309D9 /* IconView.xib in Resources */,
 				4193B1D822AD8C6800EE25FD /* VerticalOvalButton.xib in Resources */,
+				419089FF22BACE6A0058907D /* LaunchView.xib in Resources */,
 				4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */,
 				419089F822BAB5BF0058907D /* ContentSettingsView.xib in Resources */,
 				D5A69D5022A2FDA800C46E24 /* ThreadWithoutImageView.xib in Resources */,
@@ -1362,6 +1384,7 @@
 				414408A722A050F600E4E53E /* Category.swift in Sources */,
 				4193B1F522B1A90D00EE25FD /* FavouritePostsPresenter.swift in Sources */,
 				4117534822A2E7FF008EBD2A /* BlockWithTitle.swift in Sources */,
+				419089FD22BACE280058907D /* LaunchAnimationViewController.swift in Sources */,
 				41BEE75F229F04730028EBFB /* TapGestureRecognizer.swift in Sources */,
 				41907FFC22A6E355003309D9 /* BoardsListPresenter.swift in Sources */,
 				D5E4733E22A937980055AB92 /* Post.swift in Sources */,
@@ -1426,6 +1449,7 @@
 				41907FF522A6CF8F003309D9 /* UIView+SeparatorAvailable.swift in Sources */,
 				4190801122A86A6D003309D9 /* ConfigService.swift in Sources */,
 				4193B1BD22AA998D00EE25FD /* PostPresenter.swift in Sources */,
+				41908A0122BACE9F0058907D /* LaunchView.swift in Sources */,
 				41BEE71A229F043C0028EBFB /* Storage.swift in Sources */,
 				41BEE72B229F043C0028EBFB /* Extension+Array.swift in Sources */,
 				41BEE760229F04730028EBFB /* ShadowViewContainer.swift in Sources */,
