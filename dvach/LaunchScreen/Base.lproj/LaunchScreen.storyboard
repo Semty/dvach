@@ -17,28 +17,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="mRb-yE-jlo">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EYl-xf-l5M">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                <color key="backgroundColor" red="0.35908114910125732" green="0.55601775646209717" blue="0.86280626058578491" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="EfN-6d-BHv"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
-                        <constraints>
-                            <constraint firstItem="EYl-xf-l5M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7gG-TT-Fep"/>
-                            <constraint firstItem="mRb-yE-jlo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="APT-h9-5wZ"/>
-                            <constraint firstAttribute="bottom" secondItem="mRb-yE-jlo" secondAttribute="bottom" id="CPx-bt-Ej7"/>
-                            <constraint firstItem="EYl-xf-l5M" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Jcg-7Z-XrP"/>
-                            <constraint firstItem="mRb-yE-jlo" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="qc3-Wx-bPJ"/>
-                            <constraint firstItem="mRb-yE-jlo" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="uaw-WH-Dm3"/>
-                            <constraint firstItem="EYl-xf-l5M" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="z0a-re-OJe"/>
-                        </constraints>
+                        <color key="backgroundColor" red="0.3590811491" green="0.55601775649999996" blue="0.86280626059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -47,7 +26,4 @@
             <point key="canvasLocation" x="-175.36231884057972" y="373.66071428571428"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="splash" width="1125" height="2436"/>
-    </resources>
 </document>

@@ -23,9 +23,18 @@ final class LaunchAnimationViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .n7Blue
         view.addSubview(animationView)
-        animationView.snp.makeConstraints { $0.edges.equalToSuperview() }
-        
+        animationView.frame = CGRect(x: view.bounds.width,
+                                     y: view.bounds.origin.y,
+                                     width: view.bounds.width,
+                                     height: view.bounds.height)
         loadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animate(withDuration: 1) {
+            self.animationView.frame = self.view.bounds
+        }
     }
     
     // MARK: - Private
