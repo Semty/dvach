@@ -145,6 +145,7 @@
 		D5750AB622AEC5050058E99D /* DvachLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB522AEC5050058E99D /* DvachLinkModel.swift */; };
 		D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB922AEC57E0058E99D /* PostParser.swift */; };
 		D58ADBA722AC405300A8334B /* Extension+NSRegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58ADBA622AC405300A8334B /* Extension+NSRegularExpression.swift */; };
+		D5955FA922BA6C1700438630 /* Extension+UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5955FA822BA6C1700438630 /* Extension+UIBezierPath.swift */; };
 		D5A69D4322A2E69700C46E24 /* BoardWithThreadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */; };
 		D5A69D4522A2E83200C46E24 /* BoardWithThreadsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4422A2E83200C46E24 /* BoardWithThreadsPresenter.swift */; };
 		D5A69D4A22A2FB3400C46E24 /* ThreadWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4922A2FB3400C46E24 /* ThreadWithImageView.swift */; };
@@ -325,6 +326,7 @@
 		D5750AB522AEC5050058E99D /* DvachLinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DvachLinkModel.swift; sourceTree = "<group>"; };
 		D5750AB922AEC57E0058E99D /* PostParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParser.swift; sourceTree = "<group>"; };
 		D58ADBA622AC405300A8334B /* Extension+NSRegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSRegularExpression.swift"; sourceTree = "<group>"; };
+		D5955FA822BA6C1700438630 /* Extension+UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIBezierPath.swift"; sourceTree = "<group>"; };
 		D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithThreadsViewController.swift; sourceTree = "<group>"; };
 		D5A69D4422A2E83200C46E24 /* BoardWithThreadsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithThreadsPresenter.swift; sourceTree = "<group>"; };
 		D5A69D4922A2FB3400C46E24 /* ThreadWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithImageView.swift; sourceTree = "<group>"; };
@@ -780,6 +782,7 @@
 				D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */,
 				4193B1F822B3066400EE25FD /* Extension+UIBarButton.swift */,
 				D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */,
+				D5955FA822BA6C1700438630 /* Extension+UIBezierPath.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -859,6 +862,7 @@
 		41BEE748229F04730028EBFB /* SharedElements */ = {
 			isa = PBXGroup;
 			children = (
+				D58963E222BA8D0600B73A4B /* Controllers */,
 				411902B522A6BDFB008231AC /* Cells */,
 				41BEE749229F04730028EBFB /* Gestures */,
 				41BEE74B229F04730028EBFB /* Containers */,
@@ -1042,6 +1046,14 @@
 			path = BannerView;
 			sourceTree = "<group>";
 		};
+		D58963E222BA8D0600B73A4B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D504B6EE22B97CEB007C93B1 /* BannerViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		D58ADB9F22AC271B00A8334B /* TextParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -1054,7 +1066,6 @@
 		D5A69D1D22A2E5DB00C46E24 /* 3.Threads */ = {
 			isa = PBXGroup;
 			children = (
-				D504B6EE22B97CEB007C93B1 /* BannerViewController.swift */,
 				D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */,
 				D5A69D4422A2E83200C46E24 /* BoardWithThreadsPresenter.swift */,
 				D5A69D5122A3165000C46E24 /* Factories */,
@@ -1420,6 +1431,7 @@
 				41D38A6D22B5434F000D1391 /* FavouriteThreadView.swift in Sources */,
 				41BEE765229F04730028EBFB /* TableViewContainerCell.swift in Sources */,
 				41D38A7C22B81C7F000D1391 /* BottomButton.swift in Sources */,
+				D5955FA922BA6C1700438630 /* Extension+UIBezierPath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

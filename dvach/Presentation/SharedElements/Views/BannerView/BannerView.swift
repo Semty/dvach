@@ -30,6 +30,9 @@ final class BannerView: UIView, ConfigurableView {
     // Layers
     private var maskLayer: CAShapeLayer?
     
+    // Constraints
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     // MARK: - Outlets
     @IBOutlet weak var iconBackgroundView: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
@@ -88,22 +91,27 @@ final class BannerView: UIView, ConfigurableView {
             make.leading.equalTo(continueButton.snp.trailing).offset(8)
             make.width.equalTo(continueButton.snp.width)
         }
+        
+        if UIDevice.current.hasNotch {
+            bottomConstraint.constant = 20
+        } else {
+            bottomConstraint.constant = 10
+        }
     }
     
     private func addAppleLikeCornerRadius() {
+        let cornerRadius = CGFloat.radiusOfIphoneX(bounds: bounds)
         if maskLayer == nil {
             let maskLayer = CAShapeLayer()
-            maskLayer.path = UIBezierPath(roundedRect: bounds,
-                                          byRoundingCorners: .allCorners,
-                                          cornerRadii: CGSize.init(width: .radius38AndAHalf,
-                                                                   height: .radius38AndAHalf)).cgPath
+            maskLayer.path =
+                UIBezierPath.continuousRoundedRect(bounds,
+                                                   cornerRadius: cornerRadius).cgPath
             layer.mask = maskLayer
             self.maskLayer = maskLayer
         } else {
-            maskLayer?.path = UIBezierPath(roundedRect: bounds,
-                                           byRoundingCorners: .allCorners,
-                                           cornerRadii: CGSize.init(width: .radius38AndAHalf,
-                                                                    height: .radius38AndAHalf)).cgPath
+            maskLayer?.path =
+                UIBezierPath.continuousRoundedRect(bounds,
+                                                   cornerRadius: cornerRadius).cgPath
         }
     }
     

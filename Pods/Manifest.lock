@@ -1,11 +1,11 @@
 PODS:
   - Alamofire (4.8.2)
-  - Firebase/Core (6.1.0):
+  - Firebase/Core (6.2.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.0.1)
-  - Firebase/CoreOnly (6.1.0):
-    - FirebaseCore (= 6.0.1)
-  - Firebase/Database (6.1.0):
+  - Firebase/CoreOnly (6.2.0):
+    - FirebaseCore (= 6.0.2)
+  - Firebase/Database (6.2.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 6.0.0)
   - FirebaseAnalytics (6.0.1):
@@ -18,14 +18,14 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (6.0.1):
+  - FirebaseCore (6.0.2):
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/Logger (~> 6.0)
   - FirebaseDatabase (6.0.0):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
     - leveldb-library (~> 1.18)
-  - FirebaseInstanceID (4.1.0):
+  - FirebaseInstanceID (4.1.1):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
@@ -82,7 +82,7 @@ DEPENDENCIES:
   - Nuke-FLAnimatedImage-Plugin
   - PureLayout
   - SnapKit (= 4.2.0)
-  - SwiftEntryKit (= 1.0.2)
+  - SwiftEntryKit (from `https://github.com/Semty/SwiftEntryKit.git`, branch `support-of-setting-home-indicator-behaviour`)
   - SwiftyJSON (= 4.2.0)
 
 SPEC REPOS:
@@ -104,27 +104,32 @@ SPEC REPOS:
     - PureLayout
     - QuickLayout
     - SnapKit
-    - SwiftEntryKit
     - SwiftyJSON
 
 EXTERNAL SOURCES:
   FLAnimatedImage:
     :git: https://github.com/Flipboard/FLAnimatedImage.git
     :tag: 1.0.14
+  SwiftEntryKit:
+    :branch: support-of-setting-home-indicator-behaviour
+    :git: https://github.com/Semty/SwiftEntryKit.git
 
 CHECKOUT OPTIONS:
   FLAnimatedImage:
     :git: https://github.com/Flipboard/FLAnimatedImage.git
     :tag: 1.0.14
+  SwiftEntryKit:
+    :commit: 2df7ece5966b24ca24d46e9714edf7214bb02f4f
+    :git: https://github.com/Semty/SwiftEntryKit.git
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Firebase: 8d77bb33624ae9b62d745d82ec023de5f70f7e4f
+  Firebase: 5965bac23e7fcb5fa6d926ed429c9ecef8a2014e
   FirebaseAnalytics: 629301c2b9925f3537d4093a17a72751ae5b7084
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 66bdef3b310a026880e2a5bc8aa586ab62ce4543
+  FirebaseCore: b0f0262acebfa540e5f97b3832dbb13186980822
   FirebaseDatabase: f48e067716864be2b855cf716b927ef375d6cfa0
-  FirebaseInstanceID: 27bed93a59b6685f5c3e0c028a878a764fd75c33
+  FirebaseInstanceID: cdb3827746d53ece7ae87a5c51c25c3055443366
   FLAnimatedImage: 58084d75cec819869a5ee8c76463df798dbaa906
   GoogleAppMeasurement: 51d8d9ea48f0ca44484d29cfbdef976fbd4fc336
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
@@ -136,9 +141,9 @@ SPEC CHECKSUMS:
   PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
   QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SwiftEntryKit: 7bcd42b3dbff59c431d60d6513129fd3679e4aaf
+  SwiftEntryKit: 2e20ae0608f50ad8c9cb79341e422c1c374b182f
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 66b774e3166257e52a16f442d2d4002c2bc94ce5
+PODFILE CHECKSUM: ad6eeeab0e2669c6027da1176d15d1d7c90b78ae
 
 COCOAPODS: 1.7.1

@@ -15,11 +15,6 @@ private extension CGFloat {
     static let threadWithImageCellHeight: CGFloat = 185
     static let threadWithoutImageCellHeight: CGFloat = 170
 }
-
-private extension String {
-    static let bannerViewWarning = "BannerView Warning"
-}
-
 protocol BoardWithThreadsView: AnyObject {
     func updateNavigationBar()
     func dataWasLoaded()
@@ -57,18 +52,6 @@ final class ThreadsViewController: UIViewController {
         return refreshControl
     }()
     
-    private lazy var bannerView: BannerView = {
-        let bannerView = BannerView.fromNib()
-        let model = BannerView.Model(image: UIImage(named: "warning") ?? UIImage(),
-                                     imageColor: .n4Red,
-                                     backgroundColor: .white,
-                                     title: "NSFW",
-                                     description: GlobalUtils.boardWarning)
-        bannerView.configure(with: model)
-        bannerView.delegate = self
-        return bannerView
-    }()
-    
     private lazy var skeleton = SkeletonThreadView.fromNib()
     
     // Timing Variables
@@ -77,10 +60,8 @@ final class ThreadsViewController: UIViewController {
         return CFAbsoluteTimeGetCurrent() - timeStart
     }
     
-    // Overridden Variables
-    override var prefersHomeIndicatorAutoHidden: Bool {
-        return true
-    }
+    // Flags
+    private var isBannerWarningWasPresented = false
     
     // MARK: - Initialization
     
@@ -177,26 +158,12 @@ final class ThreadsViewController: UIViewController {
     }
     
     private func presentBannerViewWarning() {
-        //let vc = BannerViewController()
-        var attributes = EKAttributes()
-        attributes.entryBackground = .color(color: .white)
-        attributes.roundCorners = .all(radius: .radius38AndAHalf)
-        attributes.position = .bottom
-        attributes.positionConstraints = .fullWidth
-        attributes.positionConstraints.size = .init(width: .offset(value: 6),
-                                                    height: .intrinsic)
-        attributes.positionConstraints.verticalOffset = 6
-        attributes.positionConstraints.safeArea = .overridden
-        attributes.screenInteraction = .absorbTouches
-        attributes.entryInteraction = .absorbTouches
-        attributes.scroll = .enabled(swipeable: false, pullbackAnimation: .easeOut)
-        attributes.scroll = .enabled(swipeable: false, pullbackAnimation: .easeOut)
-        attributes.screenBackground = .visualEffect(style: .dark)
-        attributes.statusBar = .hidden
-        attributes.displayDuration = .infinity
-        attributes.hapticFeedbackType = .warning
-        attributes.name = .bannerViewWarning
-        SwiftEntryKit.display(entry: bannerView, using: attributes)
+        if !isBannerWarningWasPresented {
+            isBannerWarningWasPresented = true
+            let vc = BannerViewController()
+            let attributes = vc.getAnimationAttributes(presentingVC: self)
+            SwiftEntryKit.display(entry: vc, using: attributes)
+        }
     }
     
     // MARK: - Actions
@@ -212,25 +179,6 @@ final class ThreadsViewController: UIViewController {
     @objc private func refreshControlDidPull() {
         timeStart = CFAbsoluteTimeGetCurrent()
         presenter.refreshControllDidPull()
-    }
-}
-
-// MARK: - BannerViewDelegate
-
-extension ThreadsViewController: BannerViewDelegate {
-    func userAgreedWithBannerWarning() {
-        SwiftEntryKit.dismiss(.specific(entryName: .bannerViewWarning),
-                              with: nil)
-    }
-    
-    func userDisagreedWithBannerWarning() {
-        CATransaction.begin()
-        CATransaction.setCompletionBlock {
-            SwiftEntryKit.dismiss(.specific(entryName: .bannerViewWarning),
-                                  with: nil)
-        }
-        navigationController?.popViewController(animated: true)
-        CATransaction.commit()
     }
 }
 
