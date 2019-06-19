@@ -44,7 +44,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="5Gp-ez-Yxc">
-                    <rect key="frame" x="16" y="110" width="343" height="613"/>
+                    <rect key="frame" x="16" y="115" width="343" height="603"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -59,7 +59,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="wPZ-ze-o9M" firstAttribute="top" secondItem="5Gp-ez-Yxc" secondAttribute="bottom" constant="15" id="4oO-ce-7MZ"/>
+                <constraint firstItem="wPZ-ze-o9M" firstAttribute="top" secondItem="5Gp-ez-Yxc" secondAttribute="bottom" constant="20" id="4oO-ce-7MZ"/>
                 <constraint firstAttribute="bottom" secondItem="wPZ-ze-o9M" secondAttribute="bottom" id="59r-6a-Od0"/>
                 <constraint firstItem="wTb-W2-ubz" firstAttribute="top" secondItem="Chg-id-EUd" secondAttribute="top" constant="14" id="8kr-pq-sAC"/>
                 <constraint firstItem="ocp-RN-lYd" firstAttribute="centerX" secondItem="Chg-id-EUd" secondAttribute="centerX" id="Iqb-gm-nAQ"/>
@@ -69,7 +69,7 @@
                 <constraint firstItem="wPZ-ze-o9M" firstAttribute="leading" secondItem="Chg-id-EUd" secondAttribute="leading" id="ZT6-zg-nTb"/>
                 <constraint firstAttribute="trailing" secondItem="5Gp-ez-Yxc" secondAttribute="trailing" constant="16" id="g6w-kw-2Qg"/>
                 <constraint firstItem="ocp-RN-lYd" firstAttribute="top" secondItem="wTb-W2-ubz" secondAttribute="bottom" constant="10" id="n1o-ag-fR7"/>
-                <constraint firstItem="5Gp-ez-Yxc" firstAttribute="top" secondItem="ocp-RN-lYd" secondAttribute="bottom" constant="10" id="yGL-0M-xL6"/>
+                <constraint firstItem="5Gp-ez-Yxc" firstAttribute="top" secondItem="ocp-RN-lYd" secondAttribute="bottom" constant="15" id="yGL-0M-xL6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
