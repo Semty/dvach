@@ -55,6 +55,7 @@ PODS:
   - GoogleUtilities/UserDefaults (6.2.0):
     - GoogleUtilities/Logger
   - leveldb-library (1.20)
+  - lottie-ios (3.1.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -77,6 +78,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - FLAnimatedImage (from `https://github.com/Flipboard/FLAnimatedImage.git`, tag `1.0.14`)
+  - lottie-ios (= 3.1.0)
   - Nantes
   - Nuke (~> 7.6)
   - Nuke-FLAnimatedImage-Plugin
@@ -97,6 +99,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - leveldb-library
+    - lottie-ios
     - nanopb
     - Nantes
     - Nuke
@@ -134,6 +137,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 51d8d9ea48f0ca44484d29cfbdef976fbd4fc336
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  lottie-ios: 9467723922dfff46f6d4e3019c32594a62440b7c
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Nantes: 85db7af961c30e5116ffa6ac3f74f790b5f23d90
   Nuke: 44130e95e09463f8773ae4b96b90de1eba6b3350
@@ -144,6 +148,6 @@ SPEC CHECKSUMS:
   SwiftEntryKit: 2e20ae0608f50ad8c9cb79341e422c1c374b182f
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: ad6eeeab0e2669c6027da1176d15d1d7c90b78ae
+PODFILE CHECKSUM: 2a9c3268457a0d349f725ade8ccc4cdad206f634
 
 COCOAPODS: 1.7.1

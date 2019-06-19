@@ -18,6 +18,7 @@ target 'dvach' do
    pod 'FLAnimatedImage', :git => 'https://github.com/Flipboard/FLAnimatedImage.git', :tag => "1.0.14"
    pod 'Nantes'
    pod 'SwiftEntryKit', :git => 'https://github.com/Semty/SwiftEntryKit.git', :branch => 'support-of-setting-home-indicator-behaviour'
+   pod 'lottie-ios', '3.1.0'
    
   target 'dvachTests' do
     inherit! :search_paths
