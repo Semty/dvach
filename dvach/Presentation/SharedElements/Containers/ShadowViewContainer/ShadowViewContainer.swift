@@ -16,7 +16,7 @@ private enum Const {
     static let shadowOffset: CGSize = CGSize(width: 1, height: 1)
 }
 
-public final class ShadowViewContainer: UIView {
+public final class ShadowViewContainer: UIView, PressStateAnimatable {
     
     public var contentView: UIView? {
         didSet {
