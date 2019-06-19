@@ -33,6 +33,9 @@
 		414408A522A04BBC00E4E53E /* BoardsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A422A04BBC00E4E53E /* BoardsRequest.swift */; };
 		414408A722A050F600E4E53E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A622A050F600E4E53E /* Category.swift */; };
 		414408A922A052A800E4E53E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A822A052A800E4E53E /* Categories.swift */; };
+		418CB9C022BAA3C7006C9A15 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9BF22BAA3C7006C9A15 /* SettingsViewController.swift */; };
+		418CB9C222BAA42A006C9A15 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9C122BAA42A006C9A15 /* SettingsPresenter.swift */; };
+		418CB9C522BAA5AE006C9A15 /* ContentSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9C422BAA5AE006C9A15 /* ContentSettingsView.swift */; };
 		41907FF522A6CF8F003309D9 /* UIView+SeparatorAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41907FF422A6CF8F003309D9 /* UIView+SeparatorAvailable.swift */; };
 		41907FF722A6CFC8003309D9 /* TCSSeparatorAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41907FF622A6CFC8003309D9 /* TCSSeparatorAvailable.swift */; };
 		41907FFA22A6E222003309D9 /* BoardsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41907FF922A6E222003309D9 /* BoardsListViewController.swift */; };
@@ -45,6 +48,7 @@
 		4190801122A86A6D003309D9 /* ConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190801022A86A6D003309D9 /* ConfigService.swift */; };
 		4190801322A86EE7003309D9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190801222A86EE7003309D9 /* Config.swift */; };
 		4190801D22A8865D003309D9 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 4190801C22A8865D003309D9 /* config.json */; };
+		419089F822BAB5BF0058907D /* ContentSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 419089F722BAB5BF0058907D /* ContentSettingsView.xib */; };
 		4193B1B122AA4EF700EE25FD /* CategoriesSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */; };
 		4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */; };
 		4193B1B522AA548200EE25FD /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B422AA548200EE25FD /* UIView+Animations.swift */; };
@@ -205,6 +209,9 @@
 		414408A422A04BBC00E4E53E /* BoardsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsRequest.swift; sourceTree = "<group>"; };
 		414408A622A050F600E4E53E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		414408A822A052A800E4E53E /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		418CB9BF22BAA3C7006C9A15 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		418CB9C122BAA42A006C9A15 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		418CB9C422BAA5AE006C9A15 /* ContentSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSettingsView.swift; sourceTree = "<group>"; };
 		41907FF422A6CF8F003309D9 /* UIView+SeparatorAvailable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SeparatorAvailable.swift"; sourceTree = "<group>"; };
 		41907FF622A6CFC8003309D9 /* TCSSeparatorAvailable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCSSeparatorAvailable.swift; sourceTree = "<group>"; };
 		41907FF922A6E222003309D9 /* BoardsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsListViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +224,7 @@
 		4190801022A86A6D003309D9 /* ConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigService.swift; sourceTree = "<group>"; };
 		4190801222A86EE7003309D9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4190801C22A8865D003309D9 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		419089F722BAB5BF0058907D /* ContentSettingsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSettingsView.xib; sourceTree = "<group>"; };
 		4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSkeletonView.swift; sourceTree = "<group>"; };
 		4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesSkeletonView.xib; sourceTree = "<group>"; };
 		4193B1B422AA548200EE25FD /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -481,6 +489,25 @@
 				4193B1E122AF049400EE25FD /* Post */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		418CB9BE22BAA3A4006C9A15 /* 7.Settings */ = {
+			isa = PBXGroup;
+			children = (
+				418CB9C322BAA59A006C9A15 /* Views */,
+				418CB9BF22BAA3C7006C9A15 /* SettingsViewController.swift */,
+				418CB9C122BAA42A006C9A15 /* SettingsPresenter.swift */,
+			);
+			path = 7.Settings;
+			sourceTree = "<group>";
+		};
+		418CB9C322BAA59A006C9A15 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				418CB9C422BAA5AE006C9A15 /* ContentSettingsView.swift */,
+				419089F722BAB5BF0058907D /* ContentSettingsView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		41907FF822A6E1EE003309D9 /* 2.BoardsList */ = {
@@ -960,6 +987,7 @@
 				4193B1B922AA996D00EE25FD /* 4.Post */,
 				4193B1E422B19E9500EE25FD /* 5.Favourites */,
 				41D38A7422B6B703000D1391 /* 6.SinglePost */,
+				418CB9BE22BAA3A4006C9A15 /* 7.Settings */,
 				41BEE76B229F05C10028EBFB /* Root */,
 			);
 			path = UserStories;
@@ -1212,6 +1240,7 @@
 				4190800622A6EAF1003309D9 /* IconView.xib in Resources */,
 				4193B1D822AD8C6800EE25FD /* VerticalOvalButton.xib in Resources */,
 				4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */,
+				419089F822BAB5BF0058907D /* ContentSettingsView.xib in Resources */,
 				D5A69D5022A2FDA800C46E24 /* ThreadWithoutImageView.xib in Resources */,
 				4190800122A6E66A003309D9 /* BoardView.xib in Resources */,
 				41BEE764229F04730028EBFB /* ImbaTableView.xib in Resources */,
@@ -1321,6 +1350,7 @@
 				41BEE71B229F043C0028EBFB /* IStorage.swift in Sources */,
 				D5D37B3A22B2835D00CDEBA2 /* SkeletonThreadView.swift in Sources */,
 				41B3E2D522A31298000B3F51 /* CategoriesViewModelFactory.swift in Sources */,
+				418CB9C522BAA5AE006C9A15 /* ContentSettingsView.swift in Sources */,
 				D5A69D4C22A2FB4B00C46E24 /* ThreadWithoutImageView.swift in Sources */,
 				D5A69D4522A2E83200C46E24 /* BoardWithThreadsPresenter.swift in Sources */,
 				41BEE725229F043C0028EBFB /* UIView+NibLoadable.swift in Sources */,
@@ -1360,12 +1390,14 @@
 				41BEE72C229F043C0028EBFB /* Extension+CGFloat.swift in Sources */,
 				41BEE719229F043C0028EBFB /* GlobalUtils.swift in Sources */,
 				4193B1B522AA548200EE25FD /* UIView+Animations.swift in Sources */,
+				418CB9C022BAA3C7006C9A15 /* SettingsViewController.swift in Sources */,
 				41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */,
 				D5750AB422AEC0D70058E99D /* Extension+NSAttributedString.swift in Sources */,
 				41BEE72F229F043C0028EBFB /* Extension+TimeInterval.swift in Sources */,
 				D504B6EF22B97CEB007C93B1 /* BannerViewController.swift in Sources */,
 				D5B22BC422A18F31001EE4F8 /* BoardAdditionalInfo.swift in Sources */,
 				4117535622A2FCE8008EBD2A /* CollectionViewContainerCellBase.swift in Sources */,
+				418CB9C222BAA42A006C9A15 /* SettingsPresenter.swift in Sources */,
 				41D38A6A22B536A6000D1391 /* PostBottomSheetFactory.swift in Sources */,
 				41BEE76D229F05C10028EBFB /* RootTabBarController.swift in Sources */,
 				4193B1F922B3066400EE25FD /* Extension+UIBarButton.swift in Sources */,
@@ -1587,7 +1619,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWGY2HKNAY;
+				DEVELOPMENT_TEAM = ZTRS68H53M;
 				INFOPLIST_FILE = dvach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1608,7 +1640,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWGY2HKNAY;
+				DEVELOPMENT_TEAM = ZTRS68H53M;
 				INFOPLIST_FILE = dvach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

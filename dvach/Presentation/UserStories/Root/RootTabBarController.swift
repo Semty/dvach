@@ -20,9 +20,12 @@ final class RootTabBarController: UITabBarController {
         categoriesViewController.title = "Категории"
         let favouritesViewController = FavouritesViewController()
         favouritesViewController.title = "Избранное"
+        let settingsViewController = SettingsViewController()
+        settingsViewController.title = "Еще"
         
         viewControllers = [categoriesViewController.wrappedInLargeNavigation,
-                           favouritesViewController.wrappedInNavigation]
+                           favouritesViewController.wrappedInNavigation,
+                           settingsViewController]
         tabBar.barTintColor = .white
         tabBar.tintColor = .n1Gray
     }
