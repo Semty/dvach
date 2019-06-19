@@ -67,7 +67,7 @@ final class PostViewPresenter {
     
     private func createViewModel(index: Int, post: Post) -> PostCommentView.Model {
         let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: index + 1)
-        let imageURLs = post.files.map { $0.path }
+        let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
         
         return PostCommentView.Model(postNumber: post.num,

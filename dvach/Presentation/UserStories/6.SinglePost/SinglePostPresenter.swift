@@ -34,7 +34,7 @@ final class SinglePostPresenter {
     
     private func createModel() -> PostCommentView.Model {
         let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: post.rowIndex + 1)
-        let imageURLs = post.files.map { $0.path }
+        let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
         
         return PostCommentView.Model(postNumber: post.num,
