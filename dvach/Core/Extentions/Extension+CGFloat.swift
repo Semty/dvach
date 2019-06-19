@@ -19,11 +19,7 @@ public extension CGFloat {
     static let radius6: CGFloat = 6
     static let radius10: CGFloat = 10
     static let radius12: CGFloat = 12
-    
-    static func radiusOfIphoneX(bounds: CGRect) -> CGFloat {
-        let side = CGFloat.minimum(bounds.height, bounds.width)
-        return side * 0.10266667
-    }
+    static let radiusOfBanner: CGFloat = 36
 
     // MARK: - Fonts
 

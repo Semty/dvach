@@ -100,7 +100,7 @@ final class BannerView: UIView, ConfigurableView {
     }
     
     private func addAppleLikeCornerRadius() {
-        let cornerRadius = CGFloat.radiusOfIphoneX(bounds: bounds)
+        let cornerRadius: CGFloat = .radiusOfBanner
         if maskLayer == nil {
             let maskLayer = CAShapeLayer()
             maskLayer.path =
