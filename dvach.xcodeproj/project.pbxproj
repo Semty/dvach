@@ -149,6 +149,19 @@
 		D504B6EB22B90F36007C93B1 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D504B6EA22B90F36007C93B1 /* BannerView.xib */; };
 		D504B6ED22B946F9007C93B1 /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */; };
 		D504B6EF22B97CEB007C93B1 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6EE22B97CEB007C93B1 /* BannerViewController.swift */; };
+		D528DE4022BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3622BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift */; };
+		D528DE4122BB723B008A27D9 /* DTScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3722BB723B008A27D9 /* DTScrollView.swift */; };
+		D528DE4222BB723B008A27D9 /* DTMediaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3822BB723B008A27D9 /* DTMediaAnimator.swift */; };
+		D528DE4322BB723B008A27D9 /* DTMediaViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3922BB723B008A27D9 /* DTMediaViewerController.swift */; };
+		D528DE4422BB723B008A27D9 /* DTMediaViewerController+UISrcrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3A22BB723B008A27D9 /* DTMediaViewerController+UISrcrollViewDelegate.swift */; };
+		D528DE4522BB723B008A27D9 /* DTImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3B22BB723B008A27D9 /* DTImageView.swift */; };
+		D528DE4622BB723B008A27D9 /* DTCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3C22BB723B008A27D9 /* DTCollectionViewFlowLayout.swift */; };
+		D528DE4722BB723B008A27D9 /* DTPhotoViewerControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3D22BB723B008A27D9 /* DTPhotoViewerControllerDataSource.swift */; };
+		D528DE4822BB723B008A27D9 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3E22BB723B008A27D9 /* Helper.swift */; };
+		D528DE4922BB723B008A27D9 /* DTPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3F22BB723B008A27D9 /* DTPhotoCollectionViewCell.swift */; };
+		D528DE4D22BB9D0A008A27D9 /* PhotoViewerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE4C22BB9D0A008A27D9 /* PhotoViewerCollectionViewCell.swift */; };
+		D528DE4F22BBC05F008A27D9 /* MediaViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE4E22BBC05F008A27D9 /* MediaViewerController.swift */; };
+		D528DE5522BBCD82008A27D9 /* MediaViewerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE5422BBCD82008A27D9 /* MediaViewerPresenter.swift */; };
 		D5750AB422AEC0D70058E99D /* Extension+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */; };
 		D5750AB622AEC5050058E99D /* DvachLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB522AEC5050058E99D /* DvachLinkModel.swift */; };
 		D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB922AEC57E0058E99D /* PostParser.swift */; };
@@ -160,7 +173,7 @@
 		D5A69D4C22A2FB4B00C46E24 /* ThreadWithoutImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4B22A2FB4B00C46E24 /* ThreadWithoutImageView.swift */; };
 		D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5A69D4D22A2FD7600C46E24 /* ThreadWithImageView.xib */; };
 		D5A69D5022A2FDA800C46E24 /* ThreadWithoutImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5A69D4F22A2FDA800C46E24 /* ThreadWithoutImageView.xib */; };
-		D5A69D5322A3167700C46E24 /* ThreadsViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D5222A3167700C46E24 /* ThreadsViewModelFactory.swift */; };
+		D5A69D5322A3167700C46E24 /* BoardWithThreadsViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D5222A3167700C46E24 /* BoardWithThreadsViewModelFactory.swift */; };
 		D5A69D5722A3DCE900C46E24 /* Extension+CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D5622A3DCE900C46E24 /* Extension+CALayer.swift */; };
 		D5B22BBC22A16597001EE4F8 /* ThreadAdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BBB22A16597001EE4F8 /* ThreadAdditionalInfo.swift */; };
 		D5B22BBE22A165AF001EE4F8 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BBD22A165AF001EE4F8 /* File.swift */; };
@@ -338,6 +351,19 @@
 		D504B6EA22B90F36007C93B1 /* BannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
 		D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIDevice.swift"; sourceTree = "<group>"; };
 		D504B6EE22B97CEB007C93B1 /* BannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
+		D528DE3622BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTPhotoViewerControllerDelegate.swift; sourceTree = "<group>"; };
+		D528DE3722BB723B008A27D9 /* DTScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTScrollView.swift; sourceTree = "<group>"; };
+		D528DE3822BB723B008A27D9 /* DTMediaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTMediaAnimator.swift; sourceTree = "<group>"; };
+		D528DE3922BB723B008A27D9 /* DTMediaViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTMediaViewerController.swift; sourceTree = "<group>"; };
+		D528DE3A22BB723B008A27D9 /* DTMediaViewerController+UISrcrollViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DTMediaViewerController+UISrcrollViewDelegate.swift"; sourceTree = "<group>"; };
+		D528DE3B22BB723B008A27D9 /* DTImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTImageView.swift; sourceTree = "<group>"; };
+		D528DE3C22BB723B008A27D9 /* DTCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		D528DE3D22BB723B008A27D9 /* DTPhotoViewerControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTPhotoViewerControllerDataSource.swift; sourceTree = "<group>"; };
+		D528DE3E22BB723B008A27D9 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		D528DE3F22BB723B008A27D9 /* DTPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		D528DE4C22BB9D0A008A27D9 /* PhotoViewerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerCollectionViewCell.swift; sourceTree = "<group>"; };
+		D528DE4E22BBC05F008A27D9 /* MediaViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewerController.swift; sourceTree = "<group>"; };
+		D528DE5422BBCD82008A27D9 /* MediaViewerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewerPresenter.swift; sourceTree = "<group>"; };
 		D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSAttributedString.swift"; sourceTree = "<group>"; };
 		D5750AB522AEC5050058E99D /* DvachLinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DvachLinkModel.swift; sourceTree = "<group>"; };
 		D5750AB922AEC57E0058E99D /* PostParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParser.swift; sourceTree = "<group>"; };
@@ -349,7 +375,7 @@
 		D5A69D4B22A2FB4B00C46E24 /* ThreadWithoutImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithoutImageView.swift; sourceTree = "<group>"; };
 		D5A69D4D22A2FD7600C46E24 /* ThreadWithImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadWithImageView.xib; sourceTree = "<group>"; };
 		D5A69D4F22A2FDA800C46E24 /* ThreadWithoutImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadWithoutImageView.xib; sourceTree = "<group>"; };
-		D5A69D5222A3167700C46E24 /* ThreadsViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsViewModelFactory.swift; sourceTree = "<group>"; };
+		D5A69D5222A3167700C46E24 /* BoardWithThreadsViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithThreadsViewModelFactory.swift; sourceTree = "<group>"; };
 		D5A69D5622A3DCE900C46E24 /* Extension+CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+CALayer.swift"; sourceTree = "<group>"; };
 		D5B22BBB22A16597001EE4F8 /* ThreadAdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadAdditionalInfo.swift; sourceTree = "<group>"; };
 		D5B22BBD22A165AF001EE4F8 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
@@ -754,6 +780,7 @@
 			isa = PBXGroup;
 			children = (
 				41BEE738229F04550028EBFB /* Locator.swift */,
+				D528DE3522BB723B008A27D9 /* DTPhotoViewerController */,
 				D58ADB9F22AC271B00A8334B /* TextParser */,
 				411902BB22A6BE3D008231AC /* Shared models */,
 				41BEE6F6229F043C0028EBFB /* Utils */,
@@ -1008,6 +1035,7 @@
 				4193B1E422B19E9500EE25FD /* 5.Favourites */,
 				41D38A7422B6B703000D1391 /* 6.SinglePost */,
 				418CB9BE22BAA3A4006C9A15 /* 7.Settings */,
+				D528DE4A22BB737C008A27D9 /* 8.MediaViewer */,
 				41BEE76B229F05C10028EBFB /* Root */,
 			);
 			path = UserStories;
@@ -1094,6 +1122,73 @@
 			path = BannerView;
 			sourceTree = "<group>";
 		};
+		D528DE3522BB723B008A27D9 /* DTPhotoViewerController */ = {
+			isa = PBXGroup;
+			children = (
+				D528DE5322BBC4F0008A27D9 /* Public Delegate & Data Source */,
+				D528DE5222BBC4D5008A27D9 /* Custom Animation */,
+				D528DE5122BBC46B008A27D9 /* Helpers and Extensions */,
+				D528DE5022BBC451008A27D9 /* Views */,
+				D528DE3922BB723B008A27D9 /* DTMediaViewerController.swift */,
+				D528DE3A22BB723B008A27D9 /* DTMediaViewerController+UISrcrollViewDelegate.swift */,
+			);
+			path = DTPhotoViewerController;
+			sourceTree = "<group>";
+		};
+		D528DE4A22BB737C008A27D9 /* 8.MediaViewer */ = {
+			isa = PBXGroup;
+			children = (
+				D528DE4B22BB9CD2008A27D9 /* Views */,
+				D528DE4E22BBC05F008A27D9 /* MediaViewerController.swift */,
+				D528DE5422BBCD82008A27D9 /* MediaViewerPresenter.swift */,
+			);
+			path = 8.MediaViewer;
+			sourceTree = "<group>";
+		};
+		D528DE4B22BB9CD2008A27D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D528DE4C22BB9D0A008A27D9 /* PhotoViewerCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D528DE5022BBC451008A27D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D528DE3C22BB723B008A27D9 /* DTCollectionViewFlowLayout.swift */,
+				D528DE3F22BB723B008A27D9 /* DTPhotoCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D528DE5122BBC46B008A27D9 /* Helpers and Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D528DE3B22BB723B008A27D9 /* DTImageView.swift */,
+				D528DE3722BB723B008A27D9 /* DTScrollView.swift */,
+				D528DE3E22BB723B008A27D9 /* Helper.swift */,
+			);
+			path = "Helpers and Extensions";
+			sourceTree = "<group>";
+		};
+		D528DE5222BBC4D5008A27D9 /* Custom Animation */ = {
+			isa = PBXGroup;
+			children = (
+				D528DE3822BB723B008A27D9 /* DTMediaAnimator.swift */,
+			);
+			path = "Custom Animation";
+			sourceTree = "<group>";
+		};
+		D528DE5322BBC4F0008A27D9 /* Public Delegate & Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				D528DE3622BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift */,
+				D528DE3D22BB723B008A27D9 /* DTPhotoViewerControllerDataSource.swift */,
+			);
+			path = "Public Delegate & Data Source";
+			sourceTree = "<group>";
+		};
 		D58963E222BA8D0600B73A4B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1153,7 +1248,7 @@
 		D5A69D5122A3165000C46E24 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
-				D5A69D5222A3167700C46E24 /* ThreadsViewModelFactory.swift */,
+				D5A69D5222A3167700C46E24 /* BoardWithThreadsViewModelFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -1378,12 +1473,14 @@
 				41BEE725229F043C0028EBFB /* UIView+NibLoadable.swift in Sources */,
 				D5D37B3522B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift in Sources */,
 				414408A522A04BBC00E4E53E /* BoardsRequest.swift in Sources */,
+				D528DE4422BB723B008A27D9 /* DTMediaViewerController+UISrcrollViewDelegate.swift in Sources */,
 				4190800422A6EA9A003309D9 /* IconView.swift in Sources */,
 				411902BD22A6BE53008231AC /* Shadow.swift in Sources */,
 				4193B1E822B19EC600EE25FD /* FavouritesPresenter.swift in Sources */,
 				414408A722A050F600E4E53E /* Category.swift in Sources */,
 				4193B1F522B1A90D00EE25FD /* FavouritePostsPresenter.swift in Sources */,
 				4117534822A2E7FF008EBD2A /* BlockWithTitle.swift in Sources */,
+				D528DE4022BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift in Sources */,
 				419089FD22BACE280058907D /* LaunchAnimationViewController.swift in Sources */,
 				41BEE75F229F04730028EBFB /* TapGestureRecognizer.swift in Sources */,
 				41907FFC22A6E355003309D9 /* BoardsListPresenter.swift in Sources */,
@@ -1392,12 +1489,15 @@
 				D58ADBA722AC405300A8334B /* Extension+NSRegularExpression.swift in Sources */,
 				41BEE71D229F043C0028EBFB /* RequestManager.swift in Sources */,
 				411902B422A6B8AA008231AC /* Extension+UIEdgeInsets.swift in Sources */,
+				D528DE5522BBCD82008A27D9 /* MediaViewerPresenter.swift in Sources */,
 				41BEE75C229F04730028EBFB /* ConfigurableView.swift in Sources */,
 				4117534522A2E500008EBD2A /* CategoriesPresenter.swift in Sources */,
 				41BEE767229F04730028EBFB /* CloseButton.swift in Sources */,
+				D528DE4822BB723B008A27D9 /* Helper.swift in Sources */,
 				41BEE72D229F043C0028EBFB /* Extension+String.swift in Sources */,
 				41D38A6522B51968000D1391 /* DvachItem.swift in Sources */,
 				41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */,
+				D528DE4222BB723B008A27D9 /* DTMediaAnimator.swift in Sources */,
 				411902B922A6BE05008231AC /* ShadowCollectionViewCell.swift in Sources */,
 				4193B1EB22B1A32000EE25FD /* FavouriteBoardsViewController.swift in Sources */,
 				411902CF22A6C6F2008231AC /* NonScrollableGestureRecognizer.swift in Sources */,
@@ -1409,6 +1509,7 @@
 				411902CD22A6C6AC008231AC /* HighlightingNonScrollableGestureRecognizer.swift in Sources */,
 				41BEE727229F043C0028EBFB /* Extension+UIView.swift in Sources */,
 				D5750AB622AEC5050058E99D /* DvachLinkModel.swift in Sources */,
+				D528DE4522BB723B008A27D9 /* DTImageView.swift in Sources */,
 				41BEE72E229F043C0028EBFB /* Extension+NSObject.swift in Sources */,
 				41BEE72C229F043C0028EBFB /* Extension+CGFloat.swift in Sources */,
 				41BEE719229F043C0028EBFB /* GlobalUtils.swift in Sources */,
@@ -1426,7 +1527,8 @@
 				4193B1F922B3066400EE25FD /* Extension+UIBarButton.swift in Sources */,
 				41D38A7622B6B72D000D1391 /* SinglePostViewController.swift in Sources */,
 				41907FFF22A6E646003309D9 /* BoardView.swift in Sources */,
-				D5A69D5322A3167700C46E24 /* ThreadsViewModelFactory.swift in Sources */,
+				D528DE4122BB723B008A27D9 /* DTScrollView.swift in Sources */,
+				D5A69D5322A3167700C46E24 /* BoardWithThreadsViewModelFactory.swift in Sources */,
 				41BEE71F229F043C0028EBFB /* IRequestManager.swift in Sources */,
 				4193B1B722AA56ED00EE25FD /* Extension+CAAnimation.swift in Sources */,
 				4193B1CE22AAC13900EE25FD /* GalleryView.swift in Sources */,
@@ -1436,6 +1538,7 @@
 				4193B1F722B1A92000EE25FD /* FavouritePostsViewController.swift in Sources */,
 				41BEE721229F043C0028EBFB /* Extension+UIViewController.swift in Sources */,
 				4193B1F222B1A8E100EE25FD /* FavouriteThreadsPresenter.swift in Sources */,
+				D528DE4722BB723B008A27D9 /* DTPhotoViewerControllerDataSource.swift in Sources */,
 				41907FF722A6CFC8003309D9 /* TCSSeparatorAvailable.swift in Sources */,
 				4193B1DB22AEF94200EE25FD /* SkeletonPostView.swift in Sources */,
 				41BEE73F229F04550028EBFB /* FireBaseService.swift in Sources */,
@@ -1472,14 +1575,18 @@
 				4193B1D622AD8C4C00EE25FD /* VerticalOvalButton.swift in Sources */,
 				4193B1C122AA9BF600EE25FD /* PostAssembly.swift in Sources */,
 				41BEE762229F04730028EBFB /* StackViewContainer.swift in Sources */,
+				D528DE4922BB723B008A27D9 /* DTPhotoCollectionViewCell.swift in Sources */,
 				D5B22BC222A187A0001EE4F8 /* BoardWithBumpSortingThreadsCatalogRequest.swift in Sources */,
+				D528DE4322BB723B008A27D9 /* DTMediaViewerController.swift in Sources */,
 				D5B22BBE22A165AF001EE4F8 /* File.swift in Sources */,
 				41BEE726229F043C0028EBFB /* RecognizerDeletable.swift in Sources */,
 				41BEE71E229F043C0028EBFB /* BaseRequest.swift in Sources */,
 				4117535822A2FF05008EBD2A /* Extension+UICollectionView.swift in Sources */,
+				D528DE4D22BB9D0A008A27D9 /* PhotoViewerCollectionViewCell.swift in Sources */,
 				41BEE766229F04730028EBFB /* ContentContainer.swift in Sources */,
 				D5FC9CF822ACEE8B002E0F79 /* Extension+NSRange.swift in Sources */,
 				41D38A7122B69689000D1391 /* DBPost.swift in Sources */,
+				D528DE4622BB723B008A27D9 /* DTCollectionViewFlowLayout.swift in Sources */,
 				411902C622A6C1EA008231AC /* UIView+RoundedCorners.swift in Sources */,
 				41BEE724229F043C0028EBFB /* UIView+Tappable.swift in Sources */,
 				D5B22BBC22A16597001EE4F8 /* ThreadAdditionalInfo.swift in Sources */,
@@ -1488,6 +1595,7 @@
 				41BEE765229F04730028EBFB /* TableViewContainerCell.swift in Sources */,
 				41D38A7C22B81C7F000D1391 /* BottomButton.swift in Sources */,
 				D5955FA922BA6C1700438630 /* Extension+UIBezierPath.swift in Sources */,
+				D528DE4F22BBC05F008A27D9 /* MediaViewerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
