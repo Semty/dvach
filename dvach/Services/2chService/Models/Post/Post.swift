@@ -35,8 +35,8 @@ struct Post {
     let tags: String?
     let uniquePosters: String? // В API видел число 110 один раз в строке
     
-    var threadInfo: ThreadShortInfo? // Насаживается при кешировании, для того, чтобы открыть этот тред
-    var rowIndex: Int // Насаживается при кешировании, чтобы вернуться к ячейке этого поста в таблице
+    var threadInfo: ThreadShortInfo? // Насаживается ( ͡° ͜ʖ ͡°) при кешировании, для того, чтобы открыть этот тред
+    var rowIndex: Int // Насаживается ( ͡° ͜ʖ ͡°) при кешировании, чтобы вернуться к ячейке этого поста в таблице
 }
 
 // MARK: - JSONParsable

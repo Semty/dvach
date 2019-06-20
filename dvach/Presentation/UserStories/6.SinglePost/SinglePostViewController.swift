@@ -37,7 +37,7 @@ final class SinglePostViewController: UIViewController {
         
         return postView
     }()
-    private lazy var closeButton = componentsFactory.createCloseButton { [weak self] in
+    private lazy var closeButton = componentsFactory.createCloseButton(nil, nil) { [weak self] in
         self?.dismiss(animated: true)
     }
     

@@ -53,7 +53,7 @@ extension FavouriteBoardsPresenter: IFavouriteBoardsPresenter {
     
     func didSelectBoard(index: Int) {
         guard let board = favouriteBoards[safeIndex: index] else { return }
-        let viewController = ThreadsViewController(boardID: board.identifier)
+        let viewController = BoardWithThreadsViewController(boardID: board.identifier)
         viewController.title = board.name
         view?.navigationController?.pushViewController(viewController, animated: true)
     }
