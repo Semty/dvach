@@ -30,7 +30,7 @@ final class BoardWithThreadsPresenter {
     // Dependencies
     weak var view: (BoardWithThreadsView & UIViewController)?
     private let dvachService = Locator.shared.dvachService()
-    private let viewModelFactory = ThreadsViewModelFactory()
+    private let viewModelFactory = BoardWithThreadsViewModelFactory()
     
     // Properties
     private let boardID: String

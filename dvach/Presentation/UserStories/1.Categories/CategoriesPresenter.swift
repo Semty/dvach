@@ -109,7 +109,7 @@ extension CategoriesPresenter: ICategoriesPresenter {
     func didSelectCell(indexPath: IndexPath, category: Category) {
         let boards = models.first(where: { $0.1 == category })?.0 ?? []
         let board = boards[indexPath.row]
-        let viewController = ThreadsViewController(boardID: board.shortInfo.identifier)
+        let viewController = BoardWithThreadsViewController(boardID: board.shortInfo.identifier)
         viewController.title = board.shortInfo.name
         view?.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -122,7 +122,7 @@ extension CategoriesPresenter: ICategoriesPresenter {
     }
     
     func didTap(board: Board) {
-        let viewController = ThreadsViewController(boardID: board.shortInfo.identifier)
+        let viewController = BoardWithThreadsViewController(boardID: board.shortInfo.identifier)
         viewController.title = board.shortInfo.name
         view?.navigationController?.pushViewController(viewController, animated: true)
     }

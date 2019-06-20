@@ -1,5 +1,5 @@
 //
-//  ThreadsViewModelFactory.swift
+//  BoardWithThreadsViewModelFactory.swift
 //  dvach
 //
 //  Created by Ruslan Timchenko on 01/06/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ThreadsViewModelFactory {
+final class BoardWithThreadsViewModelFactory {
     
     // MARK: - Public Interface
     

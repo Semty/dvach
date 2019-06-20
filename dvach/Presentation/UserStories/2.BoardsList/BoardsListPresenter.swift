@@ -55,7 +55,7 @@ extension BoardsListPresenter: IBoardsListPresenter {
         let board = filteredBoards.isEmpty ? boards[index] : filteredBoards[index]
         view?.didSelectBoard(board)
         
-        let viewController = ThreadsViewController(boardID: board.shortInfo.identifier)
+        let viewController = BoardWithThreadsViewController(boardID: board.shortInfo.identifier)
         viewController.title = board.shortInfo.name
         view?.navigationController?.pushViewController(viewController, animated: true)
     }

@@ -1,5 +1,5 @@
 //
-//  ThreadsViewController.swift
+//  BoardWithThreadsViewController.swift
 //  dvach
 //
 //  Created by Ruslan Timchenko on 01/06/2019.
@@ -21,7 +21,7 @@ protocol BoardWithThreadsView: AnyObject {
     func dataWasNotLoaded()
 }
 
-final class ThreadsViewController: UIViewController {
+final class BoardWithThreadsViewController: UIViewController {
     
     // Dependencies
     private let presenter: IBoardWithThreadsPresenter
@@ -184,7 +184,7 @@ final class ThreadsViewController: UIViewController {
 
 // MARK: - BoardWithThreadsView
 
-extension ThreadsViewController: BoardWithThreadsView {
+extension BoardWithThreadsViewController: BoardWithThreadsView {
     
     func updateNavigationBar() {
         updateNavigationItem()
@@ -210,7 +210,7 @@ extension ThreadsViewController: BoardWithThreadsView {
 
 // MARK: - UITableViewDataSource
 
-extension ThreadsViewController: UITableViewDataSource {
+extension BoardWithThreadsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.dataSource.count
@@ -233,7 +233,7 @@ extension ThreadsViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension ThreadsViewController: UITableViewDelegate {
+extension BoardWithThreadsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let model = presenter.dataSource[safeIndex: indexPath.row] else { return .zero }
@@ -253,11 +253,5 @@ extension ThreadsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.didSelectCell(index: indexPath.row)
-    }
-}
-
-extension UINavigationController {
-    open override var childForHomeIndicatorAutoHidden: UIViewController? {
-        return topViewController
     }
 }
