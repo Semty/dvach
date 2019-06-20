@@ -16,10 +16,6 @@ private extension CGFloat {
     static let buttonSize: CGFloat = 25
 }
 
-private extension UIColor {
-    static let buttonDefaultColor: UIColor = .n5LightGray
-}
-
 final public class CloseButton: UIView, Tappable {
     
     // Variables
