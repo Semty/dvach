@@ -18,7 +18,7 @@ final class GalleryView: UIView, ConfigurableView, ReusableView, PressStateAnima
     }
     
     // UI
-    private lazy var imageView = UIImageView()
+    public lazy var imageView = UIImageView()
     
     // MARK: - Initialization
     

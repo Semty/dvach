@@ -91,7 +91,7 @@ final class CategoriesViewController: UIViewController {
         let horizontalList = HorizontalList<CategoriesCardCell>()
         block.addView(horizontalList)
         horizontalList.update(dataSource: model.collectionModels)
-        horizontalList.selectionHandler = { [weak self] indexPath in
+        horizontalList.selectionHandler = { [weak self] indexPath, _ in
             self?.presenter.didSelectCell(indexPath: indexPath, category: model.category)
         }
         

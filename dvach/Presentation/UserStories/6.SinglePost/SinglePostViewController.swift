@@ -101,7 +101,8 @@ extension SinglePostViewController: SinglePostView {
 
 extension SinglePostViewController: PostCommentViewDelegate {
     
-    func postCommentView(_ view: PostCommentView, didTapFile index: Int) {
+    func postCommentView(_ view: PostCommentView, didTapFile index: Int,
+                         post: Int, imageView: UIImageView) {
         
     }
     

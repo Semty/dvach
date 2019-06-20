@@ -8,8 +8,8 @@
 
 import Foundation
 
-private extension UIEdgeInsets {
-    static let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+private extension CGFloat {
+    static let buttonSize: CGFloat = 25
 }
 
 final public class HorizontalMoreButton: UIView, Tappable {
@@ -21,7 +21,7 @@ final public class HorizontalMoreButton: UIView, Tappable {
                                      color: imageColor)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .center
-        imageView.snp.makeConstraints { $0.height.width.equalTo(50) }
+        imageView.snp.makeConstraints { $0.height.width.equalTo(CGFloat.buttonSize) }
         
         return imageView
     }()
@@ -30,7 +30,7 @@ final public class HorizontalMoreButton: UIView, Tappable {
         imageColor = color
         super.init(frame: .zero)
         addSubview(image)
-        image.snp.makeConstraints { $0.edges.equalToSuperview().inset(UIEdgeInsets.insets) }
+        image.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
     
     required init?(coder aDecoder: NSCoder) {

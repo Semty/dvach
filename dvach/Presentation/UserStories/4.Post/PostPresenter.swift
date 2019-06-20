@@ -9,10 +9,13 @@
 import Foundation
 
 protocol IPostViewPresenter {
+    var files: [File] { get }
+    var posts: [Post] { get }
     var viewModels: [PostCommentView.Model] { get }
     
     func viewDidLoad()
-    func postCommentView(_ view: PostCommentView, didTapFile index: Int)
+    func postCommentView(_ view: PostCommentView, didTapFile index: Int,
+                         post: Int, imageView: UIImageView)
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
     func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
@@ -30,8 +33,10 @@ final class PostViewPresenter {
 
     private let boardIdentifier: String
     private let thread: ThreadShortInfo
-    private var posts = [Post]()
     private var scrollTo: Int
+    
+    public var files = [File]()
+    public var posts = [Post]()
     
     // MARK: - Initialization
     
@@ -53,6 +58,7 @@ final class PostViewPresenter {
             switch result {
             case .success(let posts):
                 self.posts = posts
+                self.files = []
                 self.viewModels = posts.enumerated().map(self.createViewModel)
                 
                 DispatchQueue.main.async {
@@ -68,6 +74,7 @@ final class PostViewPresenter {
     private func createViewModel(index: Int, post: Post) -> PostCommentView.Model {
         let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: index + 1)
         let imageURLs = post.files.map { $0.thumbnail }
+        post.files.forEach { self.files.append($0) }
         let postParser = PostParser(text: post.comment)
         
         return PostCommentView.Model(postNumber: post.num,
@@ -90,8 +97,16 @@ extension PostViewPresenter: IPostViewPresenter {
         loadPost()
     }
     
-    func postCommentView(_ view: PostCommentView, didTapFile index: Int) {
-        router.postCommentView(view, didTapFile: index)
+    func postCommentView(_ view: PostCommentView, didTapFile index: Int,
+                         post: Int, imageView: UIImageView) {
+        
+        let mediaPresenter = MediaViewerPresenter()
+        let mediaViewer = MediaViewerController(mediaPresenter,
+                                                imageView,
+                                                imageView.image)
+        
+        //router.postCommentView(view, didTapFile: index)
+        self.view?.presentMediaController(vc: mediaViewer)
     }
     
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {

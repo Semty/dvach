@@ -10,7 +10,7 @@ import UIKit
 
 private extension CGFloat {
     static let initialSpringVelocity: CGFloat = 2.0
-    static let dampingRatio: CGFloat = 0.7
+    static let dampingRatio: CGFloat = 0.9
 }
 
 /// If you wish to provide a custom transition animator, you just need to create a new class

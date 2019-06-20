@@ -30,6 +30,10 @@ final class MediaViewerController: DTMediaViewerController {
         return true
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     // MARK: - Initialization
     
     init(_ presenter: IMediaViewerPresenter, _ referencedView: UIView?, _ image: UIImage?) {
@@ -52,13 +56,19 @@ final class MediaViewerController: DTMediaViewerController {
     // MARK: - Private Setup
     private func setupUI() {
         view.addSubview(closeButton)
+        var topInset: CGFloat = .inset16
+        if UIDevice.current.hasNotch {
+            topInset += .inset16
+        }
         closeButton.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().inset(CGFloat.inset16)
+            make.top.equalToSuperview().inset(topInset)
+            make.leading.equalToSuperview().inset(CGFloat.inset16)
         }
         
         view.addSubview(horizontalMoreButton)
         horizontalMoreButton.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview().inset(CGFloat.inset16)
+            make.top.equalToSuperview().inset(topInset)
+            make.trailing.equalToSuperview().inset(CGFloat.inset16)
         }
         
         registerClassPhotoViewer(PhotoViewerCollectionViewCell.self)

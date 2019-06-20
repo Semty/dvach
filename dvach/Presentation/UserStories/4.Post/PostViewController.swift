@@ -10,6 +10,7 @@ import Foundation
 
 protocol PostView: AnyObject {
     func updateTable(scrollTo rowIndex: Int)
+    func presentMediaController(vc: MediaViewerController)
 }
 
 final class PostViewController: UIViewController {
@@ -95,6 +96,10 @@ extension PostViewController: PostView {
                                   animated: true)
         }
     }
+    
+    func presentMediaController(vc: MediaViewerController) {
+        present(vc, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -123,8 +128,10 @@ extension PostViewController: UITableViewDataSource {
 
 extension PostViewController: PostCommentViewDelegate {
     
-    func postCommentView(_ view: PostCommentView, didTapFile index: Int) {
-        presenter.postCommentView(view, didTapFile: index)
+    func postCommentView(_ view: PostCommentView, didTapFile index: Int,
+                         post: Int, imageView: UIImageView) {
+        presenter.postCommentView(view, didTapFile: index,
+                                  post: post, imageView: imageView)
     }
     
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {

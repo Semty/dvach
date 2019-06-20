@@ -267,10 +267,11 @@ open class DTMediaViewerController: UIViewController {
     }
     
     open override var prefersStatusBarHidden : Bool {
-        if shouldHideStatusBarOnPresent {
-            return _shouldHideStatusBar
-        }
-        return false
+        return true
+    }
+    
+    open override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
     }
     
     open override var preferredStatusBarUpdateAnimation : UIStatusBarAnimation {
