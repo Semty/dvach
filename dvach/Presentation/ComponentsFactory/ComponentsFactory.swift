@@ -33,8 +33,16 @@ public final class ComponentsFactory: IComponentsFactory {
         return view
     }
     
-    public func createCloseButton(completion: @escaping () -> Void) -> CloseButton {
-        let button = CloseButton()
+    public func createCloseButton(_ imageColor: UIColor?,
+                                  _ backgroundColor: UIColor?,
+                                  completion: @escaping () -> Void) -> CloseButton {
+        let button = CloseButton(imageColor, backgroundColor: backgroundColor)
+        button.enableTapping(completion)
+        return button
+    }
+    
+    public func createHorizontalMoreButton(_ color: UIColor?, completion: @escaping () -> Void) -> HorizontalMoreButton {
+        let button = HorizontalMoreButton(color)
         button.enableTapping(completion)
         return button
     }

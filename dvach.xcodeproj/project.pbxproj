@@ -162,6 +162,7 @@
 		D528DE4D22BB9D0A008A27D9 /* PhotoViewerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE4C22BB9D0A008A27D9 /* PhotoViewerCollectionViewCell.swift */; };
 		D528DE4F22BBC05F008A27D9 /* MediaViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE4E22BBC05F008A27D9 /* MediaViewerController.swift */; };
 		D528DE5522BBCD82008A27D9 /* MediaViewerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE5422BBCD82008A27D9 /* MediaViewerPresenter.swift */; };
+		D528DE5822BBD532008A27D9 /* HorizontalMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE5722BBD532008A27D9 /* HorizontalMoreButton.swift */; };
 		D5750AB422AEC0D70058E99D /* Extension+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */; };
 		D5750AB622AEC5050058E99D /* DvachLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB522AEC5050058E99D /* DvachLinkModel.swift */; };
 		D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB922AEC57E0058E99D /* PostParser.swift */; };
@@ -364,6 +365,7 @@
 		D528DE4C22BB9D0A008A27D9 /* PhotoViewerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerCollectionViewCell.swift; sourceTree = "<group>"; };
 		D528DE4E22BBC05F008A27D9 /* MediaViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewerController.swift; sourceTree = "<group>"; };
 		D528DE5422BBCD82008A27D9 /* MediaViewerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewerPresenter.swift; sourceTree = "<group>"; };
+		D528DE5722BBD532008A27D9 /* HorizontalMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMoreButton.swift; sourceTree = "<group>"; };
 		D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSAttributedString.swift"; sourceTree = "<group>"; };
 		D5750AB522AEC5050058E99D /* DvachLinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DvachLinkModel.swift; sourceTree = "<group>"; };
 		D5750AB922AEC57E0058E99D /* PostParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParser.swift; sourceTree = "<group>"; };
@@ -1017,6 +1019,7 @@
 		41BEE758229F04730028EBFB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D528DE5622BBD4D7008A27D9 /* HorizontalMoreButton */,
 				D504B6E722B90F14007C93B1 /* BannerView */,
 				41D38A7A22B81C6E000D1391 /* BottomButton */,
 				D504B6E622B90F02007C93B1 /* CloseButton */,
@@ -1187,6 +1190,14 @@
 				D528DE3D22BB723B008A27D9 /* DTPhotoViewerControllerDataSource.swift */,
 			);
 			path = "Public Delegate & Data Source";
+			sourceTree = "<group>";
+		};
+		D528DE5622BBD4D7008A27D9 /* HorizontalMoreButton */ = {
+			isa = PBXGroup;
+			children = (
+				D528DE5722BBD532008A27D9 /* HorizontalMoreButton.swift */,
+			);
+			path = HorizontalMoreButton;
 			sourceTree = "<group>";
 		};
 		D58963E222BA8D0600B73A4B /* Controllers */ = {
@@ -1461,6 +1472,7 @@
 				41BEE723229F043C0028EBFB /* UView+NibAwakable.swift in Sources */,
 				4144089F22A04AC400E4E53E /* DvachService.swift in Sources */,
 				41BEE73D229F04550028EBFB /* Locator.swift in Sources */,
+				D528DE5822BBD532008A27D9 /* HorizontalMoreButton.swift in Sources */,
 				4193B1C622AAA29C00EE25FD /* PostCommentView.swift in Sources */,
 				41BEE722229F043C0028EBFB /* Extension+UIImage.swift in Sources */,
 				4117534F22A2F22B008EBD2A /* CategoriesCardView.swift in Sources */,
