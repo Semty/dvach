@@ -9,6 +9,7 @@
 import UIKit
 
 @objc public protocol DTMediaViewerControllerDelegate {
+    
     @objc optional func photoViewerController(_ photoViewerController: DTMediaViewerController, didScrollToPhotoAt index: Int)
     
     @objc optional func photoViewerController(_ photoViewerController: DTMediaViewerController, didZoomOnPhotoAtIndex: Int, atScale scale: CGFloat)
@@ -27,5 +28,5 @@ import UIKit
     
     @objc optional func photoViewerControllerDidEndPresentingAnimation(_ photoViewerController: DTMediaViewerController)
     
-    @objc optional func photoViewerController(_ photoViewerController: DTMediaViewerController, scrollViewDidScroll: UIScrollView)
+    @objc optional func photoViewerController(_ photoViewerController: DTMediaViewerController, scrollViewDidScroll: UIScrollView)    
 }

@@ -100,7 +100,7 @@ final class MediaViewerController: DTMediaViewerController {
     
     // MARK: - Hide/Unhide Secondary Views Behaviour
     
-    private func configureSecondaryViews(hidden: Bool, animated: Bool) {
+    public func configureSecondaryViews(hidden: Bool, animated: Bool) {
         if hidden != closeButton.isHidden {
             let duration: TimeInterval = animated ? 0.2 : 0
             let alpha: CGFloat = hidden ? 0 : 1

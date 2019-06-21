@@ -9,6 +9,10 @@
 import Foundation
 import FLAnimatedImage
 
+extension CGFloat {
+    static let contentInsetToClose: CGFloat = 100
+}
+
 final class MediaViewerManager {
     
     struct Source {
@@ -87,7 +91,18 @@ extension MediaViewerManager: DTMediaViewerControllerDelegate {
     }
     
     func photoViewerController(_ photoViewerController: DTMediaViewerController, didScrollToPhotoAt index: Int) {
-        imageIndex = index
+        if imageViews.count == index {
+            photoViewerController.dismiss(animated: true)
+        } else {
+            imageIndex = index
+        }
+    }
+    
+    func photoViewerController(_ photoViewerController: DTMediaViewerController, scrollViewDidScroll: UIScrollView) {
+        if scrollViewDidScroll.contentOffset.x > scrollViewDidScroll.contentSize.width - scrollViewDidScroll.bounds.width + .contentInsetToClose {
+            (photoViewerController as? MediaViewerController)?.configureSecondaryViews(hidden: true, animated: false)
+            photoViewerController.dismiss(animated: true)
+        }
     }
 }
 

@@ -773,8 +773,10 @@ extension DTMediaViewerController {
     }
 }
 
-//MARK: DTPhotoCollectionViewCellDelegate
+// MARK: - DTPhotoCollectionViewCellDelegate
+
 extension DTMediaViewerController: DTPhotoCollectionViewCellDelegate {
+    
     open func collectionViewCellDidZoomOnPhoto(_ cell: DTPhotoCollectionViewCell, atScale scale: CGFloat) {
         if let indexPath = collectionView.indexPath(for: cell) {
             // Method to override
