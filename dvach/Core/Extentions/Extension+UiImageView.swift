@@ -23,7 +23,7 @@ extension UIImageView {
                                 transition: transition ? .fadeIn(duration: 0.5) : nil,
                                 contentModes: .init(success: .scaleAspectFill,
                                                     failure: .scaleAspectFit,
-                                                    placeholder: .center))
+                                                    placeholder: .scaleAspectFill))
         
         Nuke.loadImage(with: url, options: options, into: self, progress: nil) { [weak self] _, error in
             if error != nil {
