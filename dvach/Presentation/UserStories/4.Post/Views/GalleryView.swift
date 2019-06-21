@@ -48,6 +48,7 @@ final class GalleryView: UIView, ConfigurableView, ReusableView, PressStateAnima
     func configure(with model: GalleryView.Model) {
         imageView.loadImage(url: model.imageURL,
                             defaultImage: UIImage(named: "placeholder"),
+                            placeholder: nil,
                             transition: true)
     }
     

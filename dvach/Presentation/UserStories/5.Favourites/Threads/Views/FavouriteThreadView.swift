@@ -46,6 +46,7 @@ final class FavouriteThreadView: UIView, SeparatorAvailable, ConfigurableView, R
         subtitleLabel.text = model.subtitle
         image.loadImage(url: model.iconURL ?? "",
                         defaultImage: UIImage(named: "placeholder"),
+                        placeholder: nil,
                         transition: true)
     }
     
