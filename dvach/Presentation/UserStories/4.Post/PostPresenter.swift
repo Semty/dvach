@@ -148,10 +148,17 @@ extension PostViewPresenter: DTMediaViewerControllerDataSource {
                                configurePhotoAt index: Int,
                                withImageView imageView: FLAnimatedImageView) {
         let file = activeFiles[index]
-        ImagePipeline.Configuration.isAnimatedImageDataEnabled = true
-        imageView.loadImage(url: file.path,
-                            defaultImage: activeImageViews[safeIndex: index]?.image,
-                            transition: false)
+        if file.type == .gif
+            || file.type == .jpg
+            || file.type == .png
+            || file.type == .sticker {
+            ImagePipeline.Configuration.isAnimatedImageDataEnabled = true
+            imageView.loadImage(url: file.path,
+                                defaultImage: activeImageViews[safeIndex: index]?.image,
+                                transition: false)
+        } else {
+            imageView.image = activeImageViews[safeIndex: index]?.image
+        }
     }
 }
 

@@ -56,6 +56,12 @@ final class MediaViewerController: DTMediaViewerController {
         presenter.viewDidLoad()
         configureSecondaryViews(hidden: true, animated: false)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue),
+                                  forKey: "orientation")
+    }
         
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
