@@ -25,13 +25,18 @@ final class MediaViewerController: DTMediaViewerController {
         self?.presenter.didTapMoreButton()
     }
     
-    // Override Variables
+    // Overridden UIViewController Variables
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
     
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    // Overridden DTMediaViewController Variables
+    override var scaleWhileDragging: Bool {
+        return false
     }
     
     // MARK: - Initialization
@@ -52,22 +57,28 @@ final class MediaViewerController: DTMediaViewerController {
         presenter.viewDidLoad()
         configureSecondaryViews(hidden: true, animated: false)
     }
+        
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        closeButton.snp.updateConstraints { make in
+            make.top.equalToSuperview().inset(CGFloat.inset2 + view.safeAreaInsets.top)
+        }
+        horizontalMoreButton.snp.updateConstraints { make in
+            make.top.equalToSuperview().inset(CGFloat.inset12 + view.safeAreaInsets.top)
+        }
+    }
     
     // MARK: - Private Setup
     private func setupUI() {
         view.addSubview(closeButton)
-        var topInset: CGFloat = .inset16
-        if UIDevice.current.hasNotch {
-            topInset += .inset16
-        }
         closeButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(topInset)
+            make.top.equalToSuperview().inset(CGFloat.inset2)
             make.leading.equalToSuperview().inset(CGFloat.inset16)
         }
         
         view.addSubview(horizontalMoreButton)
         horizontalMoreButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(topInset)
+            make.top.equalToSuperview().inset(CGFloat.inset12)
             make.trailing.equalToSuperview().inset(CGFloat.inset16)
         }
         

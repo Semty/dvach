@@ -42,6 +42,7 @@ public extension CGFloat {
     static let inset2: CGFloat = 2
     static let inset4: CGFloat = 4
     static let inset8: CGFloat = 8
+    static let inset12: CGFloat = 12
     static let inset16: CGFloat = 16
 }
 

@@ -70,7 +70,9 @@ open class DTMediaViewerController: UIViewController {
     
     /// Indicates where image should be scaled smaller when being dragged.
     /// Default value is true.
-    open var scaleWhileDragging = true
+    open var scaleWhileDragging: Bool {
+        return true
+    }
     
     /// This variable sets original frame of image view to animate from
     open fileprivate(set) var referenceSize: CGSize = CGSize.zero
@@ -321,6 +323,32 @@ open class DTMediaViewerController: UIViewController {
         
         // Delegate method
         delegate?.photoViewerControllerDidReceiveTapGesture?(self)
+        
+        let indexPath: IndexPath
+        
+        if scrollDirection == .horizontal {
+            let index = Int(scrollView.contentOffset.x / scrollView.bounds.size.width)
+            indexPath = IndexPath(item: index, section: 0)
+        }
+        else {
+            let index = Int(scrollView.contentOffset.y / scrollView.bounds.size.height)
+            indexPath = IndexPath(item: index, section: 0)
+        }
+        
+        if let cell = collectionView.cellForItem(at: indexPath) as? DTPhotoCollectionViewCell {
+            
+            let minimumZoomScale: CGFloat = 1.0
+            let maximumZoomScale: CGFloat = cell.scrollView.maximumZoomScale
+            let currentZoomScale = cell.scrollView.zoomScale
+            
+            if currentZoomScale > minimumZoomScale
+                && currentZoomScale <= maximumZoomScale {
+                // Zoom out
+                cell.minimumZoomScale = minimumZoomScale
+                cell.scrollView.setZoomScale(cell.scrollView.minimumZoomScale,
+                                             animated: true)
+            }
+        }
     }
     
     @objc func _handleDoubleTapGesture(_ gesture: UITapGestureRecognizer) {
@@ -345,17 +373,23 @@ open class DTMediaViewerController: UIViewController {
             // Double tap
             // imageViewerControllerDidDoubleTapImageView()
             
-            if (cell.scrollView.zoomScale == cell.scrollView.maximumZoomScale) {
+            let minimumZoomScale: CGFloat = 1.0
+            let maximumZoomScale: CGFloat = cell.scrollView.maximumZoomScale
+            let currentZoomScale = cell.scrollView.zoomScale
+            
+            if currentZoomScale > minimumZoomScale
+                && currentZoomScale <= maximumZoomScale {
                 // Zoom out
-                cell.minimumZoomScale = 1.0
-                cell.scrollView.setZoomScale(cell.scrollView.minimumZoomScale, animated: true)
+                cell.minimumZoomScale = minimumZoomScale
+                cell.scrollView.setZoomScale(cell.scrollView.minimumZoomScale,
+                                             animated: true)
                 
             } else {
                 let location = gesture.location(in: view)
                 let center = cell.imageView.convert(location, from: view)
                 
                 // Zoom in
-                cell.minimumZoomScale = 1.0
+                cell.minimumZoomScale = minimumZoomScale
                 let rect = zoomRect(for: cell.imageView, withScale: cell.scrollView.maximumZoomScale, withCenter: center)
                 cell.scrollView.zoom(to: rect, animated: true)
             }
@@ -431,7 +465,8 @@ open class DTMediaViewerController: UIViewController {
                 
             case .changed:
                 let translation = gesture.translation(in: gestureView)
-                imageView.center = CGPoint(x: view.center.x + translation.x, y: view.center.y + translation.y)
+                imageView.center = CGPoint(x: view.center.x + translation.x,
+                                           y: view.center.y + translation.y)
                 
                 //Change opacity of background view based on vertical distance from center
                 let yDistance = CGFloat(abs(imageView.center.y - view.center.y))
@@ -551,7 +586,7 @@ open class DTMediaViewerController: UIViewController {
     }
     
     
-    //MARK: Public behavior methods
+    // MARK: - Public behavior methods
     open func didScrollToPhoto(at index: Int) {
         
     }
