@@ -1,5 +1,5 @@
 //
-//  DTPhotoViewerControllerDelegate.swift
+//  DTMediaViewerControllerDelegate.swift
 //  dvach
 //
 //  Created by Ruslan Timchenko on 18/06/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public protocol DTPhotoViewerControllerDelegate: NSObjectProtocol {
+@objc public protocol DTMediaViewerControllerDelegate {
     @objc optional func photoViewerController(_ photoViewerController: DTMediaViewerController, didScrollToPhotoAt index: Int)
     
     @objc optional func photoViewerController(_ photoViewerController: DTMediaViewerController, didZoomOnPhotoAtIndex: Int, atScale scale: CGFloat)

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import FLAnimatedImage
 
-class DTImageView: UIImageView {    
+class DTImageView: FLAnimatedImageView {
     override var image: UIImage? {
         didSet {
             imageChangeBlock?(image)

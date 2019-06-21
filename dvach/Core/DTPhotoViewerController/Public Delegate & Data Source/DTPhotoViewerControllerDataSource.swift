@@ -1,5 +1,5 @@
 //
-//  DTPhotoViewerControllerDataSource.swift
+//  DTMediaViewerControllerDataSource.swift
 //  dvach
 //
 //  Created by Ruslan Timchenko on 18/06/2019.
@@ -7,15 +7,16 @@
 //
 
 import UIKit
+import FLAnimatedImage
 
-@objc public protocol DTPhotoViewerControllerDataSource: NSObjectProtocol {
+@objc public protocol DTMediaViewerControllerDataSource {
     /// Total number of photo in viewer.
     func numberOfItems(in photoViewerController: DTMediaViewerController) -> Int
     
     /// Configure each photo in viewer
     /// Implementation for photoViewerController:configurePhotoAt:withImageView is mandatory.
     /// Not implementing this method will cause viewer not to work properly.
-    func photoViewerController(_ photoViewerController: DTMediaViewerController, configurePhotoAt index: Int, withImageView imageView: UIImageView)
+    func photoViewerController(_ photoViewerController: DTMediaViewerController, configurePhotoAt index: Int, withImageView imageView: FLAnimatedImageView)
     
     /// This is usually used if you have custom DTPhotoCollectionViewCell and configure each photo differently.
     /// Remember this method cannot be a replacement of photoViewerController:configurePhotoAt:withImageView

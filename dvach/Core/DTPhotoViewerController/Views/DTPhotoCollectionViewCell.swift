@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FLAnimatedImage
 
 public protocol DTPhotoCollectionViewCellDelegate: NSObjectProtocol {
     func collectionViewCellDidZoomOnPhoto(_ cell: DTPhotoCollectionViewCell, atScale scale: CGFloat)
@@ -16,7 +17,7 @@ public protocol DTPhotoCollectionViewCellDelegate: NSObjectProtocol {
 
 open class DTPhotoCollectionViewCell: UICollectionViewCell {
     public private(set) var scrollView: DTScrollView!
-    public private(set) var imageView: UIImageView!
+    public private(set) var imageView: FLAnimatedImageView!
     
     // default is 1.0
     open var minimumZoomScale: CGFloat = 1.0 {
@@ -69,7 +70,7 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
         
         let imageView = DTImageView(frame: CGRect.zero)
         // Layout subviews every time getting new image
-        imageView.imageChangeBlock = {[weak self](image: UIImage?) -> Void in
+        imageView.imageChangeBlock = { [weak self] (image: UIImage?) -> Void in
             // Update image frame whenever image changes
             if let strongSelf = self {
                 if image == nil {

@@ -12,7 +12,8 @@ import Nantes
 typealias PostCommentCell = TableViewContainerCellBase<PostCommentView>
 
 protocol PostCommentViewDelegate: AnyObject {
-    func postCommentView(_ view: PostCommentView, didTapFile index: Int, post: Int, imageView: UIImageView)
+    func postCommentView(_ view: PostCommentView, didTapFile index: Int,
+                         post: Int, imageView: UIImageView, imageViews: [UIImageView])
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
     func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
@@ -38,6 +39,9 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
     
     // Properties
     private var postNumber = 0
+    private var indexNumber: Int {
+        return headerView.serialNumber - 1
+    }
     
     // UI
     private lazy var stackView = UIStackView(axis: .vertical)
@@ -50,14 +54,17 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
                                                         insets: .defaultInsets)
         let list = HorizontalList<GalleryCell>(configuration: configuration)
         list.snp.makeConstraints { $0.height.equalTo(80) }
-        list.selectionHandler = { [weak self] index, cell in
+        list.selectionHandler = { [weak self] index, cells in
             guard let self = self else { return }
-            guard let galleryCell = cell as? GalleryCell else { return }
-            let galleryView = galleryCell.containedView
+            guard let galleryCells = cells as? [GalleryCell] else { return }
+            let imageViews = galleryCells.map({ galleryCell in
+                return galleryCell.containedView.imageView
+            })
             
             self.delegate?.postCommentView(self, didTapFile: index.row,
-                                           post: self.postNumber,
-                                           imageView: galleryView.imageView)
+                                           post: self.indexNumber,
+                                           imageView: imageViews[index.row],
+                                           imageViews: imageViews)
         }
         return list
     }()

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 final class MediaViewerController: DTMediaViewerController {
     
     // Dependencies
@@ -145,4 +144,8 @@ final class MediaViewerController: DTMediaViewerController {
     override func didReceiveDoubleTapGesture() {
         configureSecondaryViews(hidden: true, animated: false)
     }
+    
+    // MARK: - Rotation Handling
+
+    @objc func canRotate() -> Void {}
 }

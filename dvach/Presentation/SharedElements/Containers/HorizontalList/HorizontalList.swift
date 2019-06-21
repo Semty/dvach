@@ -31,7 +31,7 @@ final class HorizontalList<Cell>: UIView, UICollectionViewDataSource, UICollecti
 where Cell: UICollectionViewCell, Cell: ConfigurableView {
     
     // Public properties
-    var selectionHandler: ((_ indexPath: IndexPath, _ cell: UICollectionViewCell?) -> Void)?
+    var selectionHandler: ((_ indexPath: IndexPath, _ cells: [UICollectionViewCell?]) -> Void)?
     
     // Private properties
     private let configuration: HorizontalListConfiguration
@@ -128,8 +128,12 @@ where Cell: UICollectionViewCell, Cell: ConfigurableView {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        selectionHandler?(indexPath, cell)
+        var cells: [UICollectionViewCell?] = [UICollectionViewCell]()
+        for (index, _) in dataSource.enumerated() {
+            cells.append(collectionView.cellForItem(at: IndexPath.init(row: index,
+                                                                       section: 0)))
+        }
+        selectionHandler?(indexPath, cells)
     }
     
     // MARK: - UIScrollViewDelegate

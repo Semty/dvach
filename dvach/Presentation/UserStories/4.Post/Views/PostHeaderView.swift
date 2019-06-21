@@ -16,6 +16,8 @@ final class PostHeaderView: UIView, ConfigurableView, ReusableView {
         let number: Int
     }
     
+    public var serialNumber = 1
+    
     // Outlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
@@ -39,6 +41,7 @@ final class PostHeaderView: UIView, ConfigurableView, ReusableView {
     typealias ConfigurationModel = Model
     
     func configure(with model: PostHeaderView.Model) {
+        serialNumber = model.number
         titleLabel.text = model.title
         subtitleLabel.text = "№ \(model.subtitle)"
         numberLabel.text = "#\(model.number)"

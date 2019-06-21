@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import FLAnimatedImage
 import Photos
 
 private extension String {
@@ -26,10 +27,10 @@ open class DTMediaViewerController: UIViewController {
     
     /// Datasource
     /// Providing number of image items to controller and how to confiure image for each image view in it.
-    public weak var dataSource: DTPhotoViewerControllerDataSource?
+    public weak var dataSource: DTMediaViewerControllerDataSource?
     
     /// Delegate
-    public weak var delegate: DTPhotoViewerControllerDelegate?
+    public weak var delegate: DTMediaViewerControllerDelegate?
     
     /// Indicates if status bar should be hidden after photo viewer controller is presented.
     /// Default value is true
@@ -80,7 +81,7 @@ open class DTMediaViewerController: UIViewController {
     
     /// This is the image view that is mainly used for the presentation and dismissal effect.
     /// How it animates from the original view to fullscreen and vice versa.
-    public fileprivate(set) var imageView: UIImageView
+    public fileprivate(set) var imageView: FLAnimatedImageView
     
     /// The view where photo viewer originally animates from.
     /// Provide this correctly so that you can have a nice effect.
@@ -685,6 +686,7 @@ extension DTMediaViewerController: UICollectionViewDataSource {
         }
         
         cell.imageView.image = imageView.image
+        
         return cell
     }
 }

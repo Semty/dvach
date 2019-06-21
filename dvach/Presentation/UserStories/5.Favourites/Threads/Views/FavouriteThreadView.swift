@@ -44,7 +44,9 @@ final class FavouriteThreadView: UIView, SeparatorAvailable, ConfigurableView, R
     func configure(with model: FavouriteThreadView.Model) {
         titleLabel.text = model.title
         subtitleLabel.text = model.subtitle
-        image.loadImage(url: model.iconURL ?? "", defaultImage: UIImage(named: "placeholder"))
+        image.loadImage(url: model.iconURL ?? "",
+                        defaultImage: UIImage(named: "placeholder"),
+                        transition: true)
     }
     
     // MARK: - Reusable

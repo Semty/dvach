@@ -129,9 +129,10 @@ extension PostViewController: UITableViewDataSource {
 extension PostViewController: PostCommentViewDelegate {
     
     func postCommentView(_ view: PostCommentView, didTapFile index: Int,
-                         post: Int, imageView: UIImageView) {
+                         post: Int, imageView: UIImageView, imageViews: [UIImageView]) {
         presenter.postCommentView(view, didTapFile: index,
-                                  post: post, imageView: imageView)
+                                  post: post, imageView: imageView,
+                                  imageViews: imageViews)
     }
     
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {
