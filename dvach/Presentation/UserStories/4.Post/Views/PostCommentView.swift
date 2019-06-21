@@ -12,8 +12,10 @@ import Nantes
 typealias PostCommentCell = TableViewContainerCellBase<PostCommentView>
 
 protocol PostCommentViewDelegate: AnyObject {
-    func postCommentView(_ view: PostCommentView, didTapFile index: Int,
-                         post: Int, imageView: UIImageView, imageViews: [UIImageView])
+    func postCommentView(_ view: PostCommentView,
+                         didTapFile index: Int,
+                         postIndex: Int,
+                         imageViews: [UIImageView])
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
     func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
@@ -57,13 +59,11 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
         list.selectionHandler = { [weak self] index, cells in
             guard let self = self else { return }
             guard let galleryCells = cells as? [GalleryCell] else { return }
-            let imageViews = galleryCells.map({ galleryCell in
-                return galleryCell.containedView.imageView
-            })
+            let imageViews = galleryCells.map { $0.containedView.imageView }
             
-            self.delegate?.postCommentView(self, didTapFile: index.row,
-                                           post: self.indexNumber,
-                                           imageView: imageViews[index.row],
+            self.delegate?.postCommentView(self,
+                                           didTapFile: index.row,
+                                           postIndex: self.indexNumber,
                                            imageViews: imageViews)
         }
         return list

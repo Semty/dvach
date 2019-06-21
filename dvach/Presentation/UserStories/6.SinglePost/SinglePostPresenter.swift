@@ -12,6 +12,9 @@ protocol ISinglePostPresenter {
     func viewDidLoad()
     func didTapOpenThread()
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
+    func didTapFile(index: Int,
+                    postIndex: Int,
+                    imageViews: [UIImageView])
 }
 
 final class SinglePostPresenter {
@@ -20,6 +23,7 @@ final class SinglePostPresenter {
     weak var view: (SinglePostView & UIViewController)?
     private let actionSheetFactory = PostBottomSheetFactory()
     private let dvachService = Locator.shared.dvachService()
+    private let mediaViewerManager = MediaViewerManager()
     
     // Properties
     private let post: Post
@@ -66,5 +70,15 @@ extension SinglePostPresenter: ISinglePostPresenter {
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
         let bottomSheet = actionSheetFactory.createBottomSheet(post: post, threadInfo: nil)
         self.view?.present(bottomSheet, animated: true)
+    }
+    
+    func didTapFile(index: Int,
+                    postIndex: Int,
+                    imageViews: [UIImageView]) {
+        let mediaViewerSource = MediaViewerManager.Source(imageViews: imageViews,
+                                                          files: post.files,
+                                                          imageIndex: index)
+        guard let mediaController = mediaViewerManager.mediaViewer(source: mediaViewerSource) else { return }
+        view?.present(mediaController, animated: true, completion: nil)
     }
 }

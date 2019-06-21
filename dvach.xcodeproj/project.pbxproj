@@ -53,6 +53,7 @@
 		419089FF22BACE6A0058907D /* LaunchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 419089FE22BACE6A0058907D /* LaunchView.xib */; };
 		41908A0122BACE9F0058907D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A0022BACE9F0058907D /* LaunchView.swift */; };
 		41908A0322BAD0B70058907D /* monkey.json in Resources */ = {isa = PBXBuildFile; fileRef = 41908A0222BAD0B70058907D /* monkey.json */; };
+		41908A0522BD72B80058907D /* MediaViewerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A0422BD72B80058907D /* MediaViewerManager.swift */; };
 		4193B1B122AA4EF700EE25FD /* CategoriesSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */; };
 		4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */; };
 		4193B1B522AA548200EE25FD /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B422AA548200EE25FD /* UIView+Animations.swift */; };
@@ -247,6 +248,7 @@
 		419089FE22BACE6A0058907D /* LaunchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchView.xib; sourceTree = "<group>"; };
 		41908A0022BACE9F0058907D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		41908A0222BAD0B70058907D /* monkey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = monkey.json; sourceTree = "<group>"; };
+		41908A0422BD72B80058907D /* MediaViewerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewerManager.swift; sourceTree = "<group>"; };
 		4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSkeletonView.swift; sourceTree = "<group>"; };
 		4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesSkeletonView.xib; sourceTree = "<group>"; };
 		4193B1B422AA548200EE25FD /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -1144,6 +1146,7 @@
 				D528DE4B22BB9CD2008A27D9 /* Views */,
 				D528DE4E22BBC05F008A27D9 /* MediaViewerController.swift */,
 				D528DE5422BBCD82008A27D9 /* MediaViewerPresenter.swift */,
+				41908A0422BD72B80058907D /* MediaViewerManager.swift */,
 			);
 			path = 8.MediaViewer;
 			sourceTree = "<group>";
@@ -1496,6 +1499,7 @@
 				419089FD22BACE280058907D /* LaunchAnimationViewController.swift in Sources */,
 				41BEE75F229F04730028EBFB /* TapGestureRecognizer.swift in Sources */,
 				41907FFC22A6E355003309D9 /* BoardsListPresenter.swift in Sources */,
+				41908A0522BD72B80058907D /* MediaViewerManager.swift in Sources */,
 				D5E4733E22A937980055AB92 /* Post.swift in Sources */,
 				41BEE71C229F043C0028EBFB /* Persistable.swift in Sources */,
 				D58ADBA722AC405300A8334B /* Extension+NSRegularExpression.swift in Sources */,
@@ -1763,7 +1767,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWGY2HKNAY;
+				DEVELOPMENT_TEAM = ZTRS68H53M;
 				INFOPLIST_FILE = dvach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1784,7 +1788,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWGY2HKNAY;
+				DEVELOPMENT_TEAM = ZTRS68H53M;
 				INFOPLIST_FILE = dvach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

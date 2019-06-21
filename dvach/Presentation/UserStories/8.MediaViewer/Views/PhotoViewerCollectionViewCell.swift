@@ -36,7 +36,7 @@ final class PhotoViewerCollectionViewCell: DTPhotoCollectionViewCell {
         addSubview(numberLabel)
         numberLabel.snp.makeConstraints { make in
             make.center.equalTo(snp.center)
-            make.top.equalToSuperview().inset(16)
+            make.top.equalToSuperview().inset(CGFloat.inset16)
         }
     }
 }

@@ -25,6 +25,8 @@ protocol IPostRouter {
                          thread: ThreadShortInfo,
                          boardId: String,
                          row: Int)
+    
+    func presentMediaController(source: MediaViewerManager.Source)
 }
 
 final class PostRouter: IPostRouter {
@@ -32,6 +34,7 @@ final class PostRouter: IPostRouter {
     // Dependencies
     weak var viewHandler: UIViewController?
     private let actionSheetFactory = PostBottomSheetFactory()
+    private let mediaViewerManager = MediaViewerManager()
     
     // MARK: - IPostRouter
     
@@ -54,5 +57,10 @@ final class PostRouter: IPostRouter {
                          row: Int) {
         let bottomSheet = actionSheetFactory.createBottomSheet(post: post, threadInfo: (thread, boardId, row))
         viewHandler?.present(bottomSheet, animated: true)
+    }
+    
+    func presentMediaController(source: MediaViewerManager.Source) {
+        guard let mediaController = mediaViewerManager.mediaViewer(source: source) else { return }
+        viewHandler?.present(mediaController, animated: true, completion: nil)
     }
 }

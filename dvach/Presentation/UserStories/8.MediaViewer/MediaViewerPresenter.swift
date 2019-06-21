@@ -15,9 +15,12 @@ public protocol IMediaViewerPresenter {
 
 final class MediaViewerPresenter {
     
+    weak var view: MediaViewer?
+    
 }
 
 extension MediaViewerPresenter: IMediaViewerPresenter {
+    
     func viewDidLoad() {
         
     }

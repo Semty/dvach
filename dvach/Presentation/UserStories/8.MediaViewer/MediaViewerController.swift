@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol MediaViewer: AnyObject {
+    
+}
+
 final class MediaViewerController: DTMediaViewerController {
     
     // Dependencies
@@ -40,9 +44,12 @@ final class MediaViewerController: DTMediaViewerController {
     
     // MARK: - Initialization
     
-    init(_ presenter: IMediaViewerPresenter, _ referencedView: UIView?, _ image: UIImage?) {
+    override init(referencedView: UIView?, image: UIImage?) {
+        let presenter = MediaViewerPresenter()
         self.presenter = presenter
         super.init(referencedView: referencedView, image: image)
+        
+        presenter.view = self
     }
     
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -74,6 +81,7 @@ final class MediaViewerController: DTMediaViewerController {
     }
     
     // MARK: - Private Setup
+    
     private func setupUI() {
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints { make in
@@ -94,8 +102,8 @@ final class MediaViewerController: DTMediaViewerController {
     
     private func configureSecondaryViews(hidden: Bool, animated: Bool) {
         if hidden != closeButton.isHidden {
-            let duration: TimeInterval = animated ? 0.2 : 0.0
-            let alpha: CGFloat = hidden ? 0.0 : 1.0
+            let duration: TimeInterval = animated ? 0.2 : 0
+            let alpha: CGFloat = hidden ? 0 : 1
             
             // Always unhide view before animation
             closeButton.isHidden = false
@@ -114,7 +122,7 @@ final class MediaViewerController: DTMediaViewerController {
     
     // Hide & Show info layer view
     private func hideUnhideViewsWithZoom() {
-        if zoomScale == 1.0 {
+        if zoomScale == 1 {
             if closeButton.isHidden == true {
                 configureSecondaryViews(hidden: false, animated: true)
             } else {
@@ -154,4 +162,10 @@ final class MediaViewerController: DTMediaViewerController {
     // MARK: - Rotation Handling
 
     @objc func canRotate() -> Void {}
+}
+
+// MARK: - MediaViewer
+
+extension MediaViewerController: MediaViewer {
+    
 }
