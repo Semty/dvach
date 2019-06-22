@@ -8,7 +8,8 @@
 
 import UIKit
 
-//MARK: - UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegateFlowLayout
+
 extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
     
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -36,7 +37,7 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
     open func scrollViewDidZoom(_ scrollView: UIScrollView) {
         updateFrameFor(view.frame.size)
         
-        //Disable pan gesture if zoom scale is not 1
+        // Disable pan gesture if zoom scale is not 1
         if scrollView.zoomScale != 1 {
             panGestureRecognizer.isEnabled = false
         }
@@ -63,7 +64,8 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
         delegate?.photoViewerController?(self, didScrollToPhotoAt: index)
     }
     
-    //MARK: Helpers
+    // MARK: - Helpers
+    
     fileprivate func _updateZoomScaleForSize(_ size: CGSize) {
         let widthScale = size.width / imageView.bounds.width
         let heightScale = size.height / imageView.bounds.height
@@ -104,12 +106,25 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
         
         // Update image view before pan gesture happens
         if let dataSource = dataSource, dataSource.numberOfItems(in: self) > 0 {
-            dataSource.photoViewerController(self, configurePhotoAt: index, withImageView: imageView)
+            dataSource.photoViewerController(self,
+                                             configurePhotoAt: index,
+                                             withImageView: imageView)
+            imageView.image = getScaledSnapshot()
         }
         
         // Change referenced image view
-        if let view = dataSource?.photoViewerController?(self, referencedViewForPhotoAt: index) {
+        if let view = dataSource?.photoViewerController?(self,
+                                                         referencedViewForPhotoAt: index) {
             referencedView = view
+        }
+    }
+    
+    func updateImageViewDismissalAnimationWillStart() {
+        if let dataSource = dataSource, dataSource.numberOfItems(in: self) > 0 {
+            let index = currentPhotoIndex
+            dataSource.photoViewerController(self,
+                                             configurePhotoAt: index,
+                                             withImageView: imageView)
         }
     }
 }

@@ -37,6 +37,12 @@ extension UIView {
         
         return nil
     }
+    
+    public func snapshot(size: CGSize? = nil, rect: CGRect? = nil) -> UIImage {
+        return UIGraphicsImageRenderer(size: size ?? bounds.size).image { _ in
+            drawHierarchy(in: rect ?? bounds, afterScreenUpdates: true)
+        }
+    }
 
     private func layoutAttribute(for dimension: ALDimension) -> NSLayoutConstraint.Attribute {
         switch dimension {
