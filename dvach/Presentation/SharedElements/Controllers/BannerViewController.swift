@@ -26,8 +26,16 @@ private extension String {
     }
 }
 
+protocol BannerViewControllerDelegate: AnyObject {
+    func didTapAgree()
+    func didTapDisagree()
+}
+
 final class BannerViewController: UIViewController {
 
+    // Dependencies
+    weak var delegate: BannerViewControllerDelegate?
+    
     // UI
     private lazy var bannerView: BannerView = {
         let bannerView = BannerView.fromNib()
@@ -98,9 +106,11 @@ final class BannerViewController: UIViewController {
 }
 
 extension BannerViewController: BannerViewDelegate {
+    
     func userAgreedWithBannerWarning() {
         SwiftEntryKit.dismiss(.specific(entryName: .bannerViewWarning),
                               with: nil)
+        delegate?.didTapAgree()
     }
     
     func userDisagreedWithBannerWarning() {
@@ -116,5 +126,6 @@ extension BannerViewController: BannerViewDelegate {
             SwiftEntryKit.dismiss(.specific(entryName: .bannerViewWarning),
                                   with: nil)
         }
+        delegate?.didTapDisagree()
     }
 }

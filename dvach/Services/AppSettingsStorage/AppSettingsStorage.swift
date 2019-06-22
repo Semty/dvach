@@ -10,10 +10,12 @@ import Foundation
 
 protocol IAppSettingsStorage: class {
     var lastUpdatedConfigDate: TimeInterval { get set }
+    var nsfwBannersAllowed: Bool { get set }
 }
 
 private extension String {
     static let lastUpdatedConfigDateKey = "lastUpdatedConfigDate"
+    static let nsfwBannersAllowed = "nsfwBannersAllowed"
 }
 
 final class AppSettingsStorage: IAppSettingsStorage {
@@ -24,6 +26,15 @@ final class AppSettingsStorage: IAppSettingsStorage {
         }
         set {
             self[.lastUpdatedConfigDateKey] = newValue
+        }
+    }
+    
+    var nsfwBannersAllowed: Bool {
+        get {
+            return self[.nsfwBannersAllowed] as? Bool ?? true
+        }
+        set {
+            self[.nsfwBannersAllowed] = newValue
         }
     }
     

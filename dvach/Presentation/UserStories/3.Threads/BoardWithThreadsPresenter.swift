@@ -14,6 +14,8 @@ protocol IBoardWithThreadsPresenter {
     var isFavourite: Bool { get }
     
     func viewDidLoad()
+    func viewWillAppear()
+    func userDidAgreeWithNSFWTerms()
     func didSelectCell(index: Int)
     func addToFavouritesDidTap()
     func removeFromFavouritesDidTap()
@@ -31,11 +33,13 @@ final class BoardWithThreadsPresenter {
     weak var view: (BoardWithThreadsView & UIViewController)?
     private let dvachService = Locator.shared.dvachService()
     private let viewModelFactory = BoardWithThreadsViewModelFactory()
+    private let appSettingsStorage = Locator.shared.appSettingsStorage()
     
     // Properties
     private let boardID: String
     var dataSource = [BoardWithThreadsPresenter.CellType]()
     private var board: Board?
+    private var isBannerWarningWasPresented = false
     
     // MARK: - Initialization
     
@@ -68,6 +72,20 @@ final class BoardWithThreadsPresenter {
         guard let threads = board.additionalInfo?.threads else { return [] }
         return viewModelFactory.createThreadsViewModels(threads: threads)
     }
+    
+    private var shouldPresentBannerViewWarning: Bool {
+        let shouldPresent: Bool
+        if !appSettingsStorage.nsfwBannersAllowed {
+            shouldPresent = !isBannerWarningWasPresented
+        } else {
+            shouldPresent = !dvachService.isBoardShown(identifier: boardID) && !isBannerWarningWasPresented
+        }
+        
+        // Для того, чтобы баннер не показался лишни раз при viewWillAppear
+        isBannerWarningWasPresented = true
+        
+        return shouldPresent
+    }
 }
 
 // MARK: - IBoardWithThreadsPresenter
@@ -76,6 +94,16 @@ extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
     
     func viewDidLoad() {
         loadBoardWithThreads()
+    }
+    
+    func viewWillAppear() {
+        if shouldPresentBannerViewWarning {
+            view?.showNSFWBanner()
+        }
+    }
+    
+    func userDidAgreeWithNSFWTerms() {
+        dvachService.markBoardAsShown(identifier: boardID)
     }
     
     func didSelectCell(index: Int) {

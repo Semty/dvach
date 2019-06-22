@@ -57,6 +57,17 @@ protocol IDvachService {
                              qos: DispatchQoS,
                              completion: @escaping (Result<[Post]>) -> Void)
     
+    // MARK: - Shown Boards
+    
+    /// Отметить все доски как непросмотренные
+    func dropAllShownBoards()
+    
+    /// Отметить доску как уже просмотренную
+    func markBoardAsShown(identifier: String)
+    
+    /// Проверить открывал ли юзер уже эту доску
+    func isBoardShown(identifier: String) -> Bool
+    
     // MARK: - Избранное
     
     /// Добавить в избранное

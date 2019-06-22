@@ -52,6 +52,9 @@
         <relationship name="files" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBFile" inverseName="post" inverseEntity="DBFile" syncable="YES"/>
         <relationship name="threadInfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="DBThreadShortInfo" inverseName="post" inverseEntity="DBThreadShortInfo" syncable="YES"/>
     </entity>
+    <entity name="DBShownBoard" representedClassName="dvach.DBShownBoard" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="DBThreadShortInfo" representedClassName="dvach.DBThreadShortInfo" syncable="YES">
         <attribute name="boardId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
@@ -68,5 +71,6 @@
         <element name="DBFile" positionX="-36" positionY="153" width="128" height="270"/>
         <element name="DBPost" positionX="-54" positionY="54" width="128" height="450"/>
         <element name="DBThreadShortInfo" positionX="-63" positionY="9" width="128" height="180"/>
+        <element name="DBShownBoard" positionX="-54" positionY="135" width="128" height="60"/>
     </elements>
 </model>

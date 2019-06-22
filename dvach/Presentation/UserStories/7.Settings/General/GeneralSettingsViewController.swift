@@ -80,6 +80,6 @@ extension GeneralSettingsViewController: GeneralSettingsView {
 extension GeneralSettingsViewController: SettingsSwitcherViewDelegate {
     
     func settingsSwitcherView(_ view: SettingsSwitcherView, didChangeSwitchValue value: Bool) {
-        
+        presenter.didChangeNSFWSwitchValue(value)
     }
 }

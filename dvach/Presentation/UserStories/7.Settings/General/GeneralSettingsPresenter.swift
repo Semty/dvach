@@ -10,12 +10,15 @@ import Foundation
 
 protocol IGeneralSettingsPresenter {
     func viewDidLoad()
+    func didChangeNSFWSwitchValue(_ value: Bool)
 }
 
 final class GeneralSettingsPresenter {
     
     // Dependencies
     weak var view: GeneralSettingsView?
+    private let appSettingsStorage = Locator.shared.appSettingsStorage()
+    private let dvachService = Locator.shared.dvachService()
     
     // MARK: - Private
     
@@ -23,7 +26,7 @@ final class GeneralSettingsPresenter {
         let subtitle = "Баннер, предупреждающий об эротическом/оскорбляющем контенте будет появляться однократно для каждой доски"
         return SettingsSwitcherView.Model(title: "Отключить предупреждения о NSFW",
                                           subtitle: subtitle,
-                                          isSwitcherOn: false)
+                                          isSwitcherOn: appSettingsStorage.nsfwBannersAllowed)
     }
 }
 
@@ -34,5 +37,10 @@ extension GeneralSettingsPresenter: IGeneralSettingsPresenter {
     func viewDidLoad() {
         let model = GeneralSettingsViewController.Model(nsfwViewModel: nsfwViewModel)
         view?.update(model: model)
+    }
+    
+    func didChangeNSFWSwitchValue(_ value: Bool) {
+        dvachService.dropAllShownBoards()
+        appSettingsStorage.nsfwBannersAllowed = value
     }
 }

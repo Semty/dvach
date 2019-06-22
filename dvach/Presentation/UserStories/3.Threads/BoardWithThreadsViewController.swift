@@ -16,6 +16,7 @@ private extension CGFloat {
     static let threadWithoutImageCellHeight: CGFloat = 170
 }
 protocol BoardWithThreadsView: AnyObject {
+    func showNSFWBanner()
     func updateNavigationBar()
     func dataWasLoaded()
     func dataWasNotLoaded()
@@ -60,9 +61,6 @@ final class BoardWithThreadsViewController: UIViewController {
         return CFAbsoluteTimeGetCurrent() - timeStart
     }
     
-    // Flags
-    private var isBannerWarningWasPresented = false
-    
     // MARK: - Initialization
     
     init(boardID: String) {
@@ -90,7 +88,7 @@ final class BoardWithThreadsViewController: UIViewController {
         super.viewWillAppear(animated)
         updateNavigationItem()
         skeleton.update(state: .active)
-        presentBannerViewWarning()
+        presenter.viewWillAppear()
     }
     
     // MARK: - Private
@@ -157,15 +155,6 @@ final class BoardWithThreadsViewController: UIViewController {
         endRefreshing()
     }
     
-    private func presentBannerViewWarning() {
-        if !isBannerWarningWasPresented {
-            isBannerWarningWasPresented = true
-            let vc = BannerViewController()
-            let attributes = vc.getAnimationAttributes(presentingVC: self)
-            SwiftEntryKit.display(entry: vc, using: attributes)
-        }
-    }
-    
     // MARK: - Actions
     
     @objc private func addToFavourites() {
@@ -185,6 +174,13 @@ final class BoardWithThreadsViewController: UIViewController {
 // MARK: - BoardWithThreadsView
 
 extension BoardWithThreadsViewController: BoardWithThreadsView {
+    
+    func showNSFWBanner() {
+        let vc = BannerViewController()
+        vc.delegate = self
+        let attributes = vc.getAnimationAttributes(presentingVC: self)
+        SwiftEntryKit.display(entry: vc, using: attributes)
+    }
     
     func updateNavigationBar() {
         updateNavigationItem()
@@ -254,4 +250,16 @@ extension BoardWithThreadsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.didSelectCell(index: indexPath.row)
     }
+}
+
+// MARK: - BannerViewControllerDelegate
+
+extension BoardWithThreadsViewController: BannerViewControllerDelegate {
+    
+    func didTapAgree() {
+        presenter.userDidAgreeWithNSFWTerms()
+    }
+    
+    func didTapDisagree() {}
+
 }

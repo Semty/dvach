@@ -90,6 +90,22 @@ extension DvachService: IDvachService {
         }
     }
     
+    // MARK: - Shown Boards
+    
+    func dropAllShownBoards() {
+        storage.deleteAll(objects: ShownBoard.self)
+    }
+    
+    func markBoardAsShown(identifier: String) {
+        let shownBoard = ShownBoard(identifier: identifier)
+        storage.save(objects: [shownBoard])
+    }
+    
+    func isBoardShown(identifier: String) -> Bool {
+        let shownBoards = storage.fetch(model: ShownBoard.self)
+        return shownBoards.contains(where: { $0.identifier == identifier })
+    }
+    
     // MARK: - Favourites
     
     func addToFavourites(_ item: DvachItem, completion: @escaping () -> Void) {

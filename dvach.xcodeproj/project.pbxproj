@@ -66,6 +66,7 @@
 		41908A2022BE815F0058907D /* AppInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41908A1F22BE815F0058907D /* AppInfoView.xib */; };
 		41908A2222BE8F550058907D /* ConnectUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A2122BE8F550058907D /* ConnectUsView.swift */; };
 		41908A2422BE8F6C0058907D /* ConnectUsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41908A2322BE8F6C0058907D /* ConnectUsView.xib */; };
+		41908A2622BEA3100058907D /* ShownBoards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A2522BEA3100058907D /* ShownBoards.swift */; };
 		4193B1B122AA4EF700EE25FD /* CategoriesSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */; };
 		4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */; };
 		4193B1B522AA548200EE25FD /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B422AA548200EE25FD /* UIView+Animations.swift */; };
@@ -273,6 +274,7 @@
 		41908A1F22BE815F0058907D /* AppInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppInfoView.xib; sourceTree = "<group>"; };
 		41908A2122BE8F550058907D /* ConnectUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectUsView.swift; sourceTree = "<group>"; };
 		41908A2322BE8F6C0058907D /* ConnectUsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectUsView.xib; sourceTree = "<group>"; };
+		41908A2522BEA3100058907D /* ShownBoards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShownBoards.swift; sourceTree = "<group>"; };
 		4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSkeletonView.swift; sourceTree = "<group>"; };
 		4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesSkeletonView.xib; sourceTree = "<group>"; };
 		4193B1B422AA548200EE25FD /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -725,6 +727,7 @@
 				414408A222A04BA200E4E53E /* Board.swift */,
 				D5B22BC322A18F31001EE4F8 /* BoardAdditionalInfo.swift */,
 				4193B1E222AF04B600EE25FD /* FavouriteBoard.swift */,
+				41908A2522BEA3100058907D /* ShownBoards.swift */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -1545,6 +1548,7 @@
 				414408A922A052A800E4E53E /* Categories.swift in Sources */,
 				41BEE728229F043C0028EBFB /* Extension+UITableView.swift in Sources */,
 				D504B6E922B90F2A007C93B1 /* BannerView.swift in Sources */,
+				41908A2622BEA3100058907D /* ShownBoards.swift in Sources */,
 				4193B1D222AD898C00EE25FD /* PostCommentButtonsView.swift in Sources */,
 				4193B1D022AAC8E500EE25FD /* Extension+UiImageView.swift in Sources */,
 				41BEE763229F04730028EBFB /* ImbaTableView.swift in Sources */,
