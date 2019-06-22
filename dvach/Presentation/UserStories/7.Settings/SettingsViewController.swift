@@ -13,6 +13,10 @@ private extension CGFloat {
     static let contentInset: CGFloat = 70
 }
 
+protocol SettingsView: AnyObject {
+    
+}
+
 final class SettingsViewController: UIViewController {
     
     // Dependencies
@@ -48,8 +52,11 @@ final class SettingsViewController: UIViewController {
     // MARK: - Initialization
     
     init() {
-        self.presenter = SettingsPresenter()
+        let presenter = SettingsPresenter()
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+        
+        presenter.view = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -60,8 +67,19 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         presenter.blocks.forEach(stackView.addView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     // MARK: - Private
@@ -80,4 +98,10 @@ final class SettingsViewController: UIViewController {
         stackView.isScrollEnabled = false
         stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
+}
+
+// MARK: - SettingsView
+
+extension SettingsViewController: SettingsView {
+    
 }

@@ -25,7 +25,7 @@ final class RootTabBarController: UITabBarController {
         
         viewControllers = [categoriesViewController.wrappedInLargeNavigation,
                            favouritesViewController.wrappedInNavigation,
-                           settingsViewController]
+                           settingsViewController.wrappedInLargeNavigation]
         tabBar.barTintColor = .white
         tabBar.tintColor = .n1Gray
     }

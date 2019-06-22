@@ -14,26 +14,36 @@ protocol ISettingsPresenter {
 
 final class SettingsPresenter: ISettingsPresenter {
     
+    // Dependencies
+    weak var view: (SettingsView & UIViewController)?
+    
+    // MARK: - Initialization
+    
+    init() {}
+    
     // MARK: - ISettingsPresenter
     
     var blocks: [UIView] {
         let generalModel = ContentSettingsView.Model(title: "Общие настройки", subtitle: "Всякое")
         let generalBlock = createBlock(model: generalModel)
-        generalBlock.enablePressStateAnimation {
-            
+        generalBlock.enablePressStateAnimation { [weak self] in
+            let general = GeneralSettingsViewController()
+            self?.view?.navigationController?.pushViewController(general, animated: true)
         }
         
         let subscribesModel = ContentSettingsView.Model(title: "Подписки",
                                                         subtitle: "Отключить рекламу, открыть доступ ко всем доскам")
         let subscribesBlock = createBlock(model: subscribesModel)
-        subscribesBlock.enablePressStateAnimation {
-            
+        subscribesBlock.enablePressStateAnimation { [weak self] in
+            let subscribes = SubscribesViewController()
+            self?.view?.navigationController?.pushViewController(subscribes, animated: true)
         }
         
         let aboutModel = ContentSettingsView.Model(title: "О приложении", subtitle: "Новости проекта, написать разработчикам")
         let aboutBlock = createBlock(model: aboutModel)
-        aboutBlock.enablePressStateAnimation {
-            
+        aboutBlock.enablePressStateAnimation { [weak self] in
+            let about = AboutViewController()
+            self?.view?.navigationController?.pushViewController(about, animated: true)
         }
         
         return [generalBlock, subscribesBlock, aboutBlock]

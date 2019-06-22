@@ -54,6 +54,14 @@
 		41908A0122BACE9F0058907D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A0022BACE9F0058907D /* LaunchView.swift */; };
 		41908A0322BAD0B70058907D /* monkey.json in Resources */ = {isa = PBXBuildFile; fileRef = 41908A0222BAD0B70058907D /* monkey.json */; };
 		41908A0522BD72B80058907D /* MediaViewerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A0422BD72B80058907D /* MediaViewerManager.swift */; };
+		41908A0A22BE72620058907D /* GeneralSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A0922BE72620058907D /* GeneralSettingsViewController.swift */; };
+		41908A0C22BE72DA0058907D /* GeneralSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A0B22BE72DA0058907D /* GeneralSettingsPresenter.swift */; };
+		41908A1022BE74120058907D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A0F22BE74120058907D /* AboutViewController.swift */; };
+		41908A1222BE74210058907D /* AboutPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A1122BE74210058907D /* AboutPresenter.swift */; };
+		41908A1422BE74380058907D /* SubscribesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A1322BE74380058907D /* SubscribesViewController.swift */; };
+		41908A1622BE74410058907D /* SubscribesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A1522BE74410058907D /* SubscribesPresenter.swift */; };
+		41908A1922BE793E0058907D /* SettingsSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A1822BE793E0058907D /* SettingsSwitcherView.swift */; };
+		41908A1B22BE79590058907D /* SettingsSwitcherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41908A1A22BE79590058907D /* SettingsSwitcherView.xib */; };
 		4193B1B122AA4EF700EE25FD /* CategoriesSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */; };
 		4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */; };
 		4193B1B522AA548200EE25FD /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B422AA548200EE25FD /* UIView+Animations.swift */; };
@@ -249,6 +257,14 @@
 		41908A0022BACE9F0058907D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		41908A0222BAD0B70058907D /* monkey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = monkey.json; sourceTree = "<group>"; };
 		41908A0422BD72B80058907D /* MediaViewerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewerManager.swift; sourceTree = "<group>"; };
+		41908A0922BE72620058907D /* GeneralSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsViewController.swift; sourceTree = "<group>"; };
+		41908A0B22BE72DA0058907D /* GeneralSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsPresenter.swift; sourceTree = "<group>"; };
+		41908A0F22BE74120058907D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		41908A1122BE74210058907D /* AboutPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPresenter.swift; sourceTree = "<group>"; };
+		41908A1322BE74380058907D /* SubscribesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribesViewController.swift; sourceTree = "<group>"; };
+		41908A1522BE74410058907D /* SubscribesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribesPresenter.swift; sourceTree = "<group>"; };
+		41908A1822BE793E0058907D /* SettingsSwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitcherView.swift; sourceTree = "<group>"; };
+		41908A1A22BE79590058907D /* SettingsSwitcherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsSwitcherView.xib; sourceTree = "<group>"; };
 		4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSkeletonView.swift; sourceTree = "<group>"; };
 		4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesSkeletonView.xib; sourceTree = "<group>"; };
 		4193B1B422AA548200EE25FD /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -532,6 +548,9 @@
 		418CB9BE22BAA3A4006C9A15 /* 7.Settings */ = {
 			isa = PBXGroup;
 			children = (
+				41908A0E22BE73FA0058907D /* About */,
+				41908A0D22BE73F40058907D /* Subscribes */,
+				41908A0822BE72500058907D /* General */,
 				418CB9C322BAA59A006C9A15 /* Views */,
 				418CB9BF22BAA3C7006C9A15 /* SettingsViewController.swift */,
 				418CB9C122BAA42A006C9A15 /* SettingsPresenter.swift */,
@@ -594,6 +613,43 @@
 				41908A0022BACE9F0058907D /* LaunchView.swift */,
 			);
 			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		41908A0822BE72500058907D /* General */ = {
+			isa = PBXGroup;
+			children = (
+				41908A1722BE791D0058907D /* Views */,
+				41908A0922BE72620058907D /* GeneralSettingsViewController.swift */,
+				41908A0B22BE72DA0058907D /* GeneralSettingsPresenter.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		41908A0D22BE73F40058907D /* Subscribes */ = {
+			isa = PBXGroup;
+			children = (
+				41908A1322BE74380058907D /* SubscribesViewController.swift */,
+				41908A1522BE74410058907D /* SubscribesPresenter.swift */,
+			);
+			path = Subscribes;
+			sourceTree = "<group>";
+		};
+		41908A0E22BE73FA0058907D /* About */ = {
+			isa = PBXGroup;
+			children = (
+				41908A0F22BE74120058907D /* AboutViewController.swift */,
+				41908A1122BE74210058907D /* AboutPresenter.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		41908A1722BE791D0058907D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				41908A1822BE793E0058907D /* SettingsSwitcherView.swift */,
+				41908A1A22BE79590058907D /* SettingsSwitcherView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		4193B1AF22AA4ED000EE25FD /* Skeleton */ = {
@@ -1361,6 +1417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D504B6EB22B90F36007C93B1 /* BannerView.xib in Resources */,
+				41908A1B22BE79590058907D /* SettingsSwitcherView.xib in Resources */,
 				4190800D22A86872003309D9 /* GoogleService-Info.plist in Resources */,
 				D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */,
 				4193B1CC22AAA34E00EE25FD /* PostHeaderView.xib in Resources */,
@@ -1470,6 +1527,7 @@
 				4193B1D022AAC8E500EE25FD /* Extension+UiImageView.swift in Sources */,
 				41BEE763229F04730028EBFB /* ImbaTableView.swift in Sources */,
 				411902CA22A6C642008231AC /* HighlightingGestureRecognizer.swift in Sources */,
+				41908A1422BE74380058907D /* SubscribesViewController.swift in Sources */,
 				4193B1BB22AA998200EE25FD /* PostViewController.swift in Sources */,
 				D504B6ED22B946F9007C93B1 /* Extension+UIDevice.swift in Sources */,
 				41BEE723229F043C0028EBFB /* UView+NibAwakable.swift in Sources */,
@@ -1477,6 +1535,7 @@
 				41BEE73D229F04550028EBFB /* Locator.swift in Sources */,
 				D528DE5822BBD532008A27D9 /* HorizontalMoreButton.swift in Sources */,
 				4193B1C622AAA29C00EE25FD /* PostCommentView.swift in Sources */,
+				41908A1022BE74120058907D /* AboutViewController.swift in Sources */,
 				41BEE722229F043C0028EBFB /* Extension+UIImage.swift in Sources */,
 				4117534F22A2F22B008EBD2A /* CategoriesCardView.swift in Sources */,
 				41BEE71B229F043C0028EBFB /* IStorage.swift in Sources */,
@@ -1492,6 +1551,7 @@
 				4190800422A6EA9A003309D9 /* IconView.swift in Sources */,
 				411902BD22A6BE53008231AC /* Shadow.swift in Sources */,
 				4193B1E822B19EC600EE25FD /* FavouritesPresenter.swift in Sources */,
+				41908A1222BE74210058907D /* AboutPresenter.swift in Sources */,
 				414408A722A050F600E4E53E /* Category.swift in Sources */,
 				4193B1F522B1A90D00EE25FD /* FavouritePostsPresenter.swift in Sources */,
 				4117534822A2E7FF008EBD2A /* BlockWithTitle.swift in Sources */,
@@ -1546,6 +1606,7 @@
 				D528DE4122BB723B008A27D9 /* DTScrollView.swift in Sources */,
 				D5A69D5322A3167700C46E24 /* BoardWithThreadsViewModelFactory.swift in Sources */,
 				41BEE71F229F043C0028EBFB /* IRequestManager.swift in Sources */,
+				41908A1922BE793E0058907D /* SettingsSwitcherView.swift in Sources */,
 				4193B1B722AA56ED00EE25FD /* Extension+CAAnimation.swift in Sources */,
 				4193B1CE22AAC13900EE25FD /* GalleryView.swift in Sources */,
 				411902C422A6C1EA008231AC /* UIView+PressStateAnimatable.swift in Sources */,
@@ -1557,6 +1618,7 @@
 				D528DE4722BB723B008A27D9 /* DTPhotoViewerControllerDataSource.swift in Sources */,
 				41907FF722A6CFC8003309D9 /* TCSSeparatorAvailable.swift in Sources */,
 				4193B1DB22AEF94200EE25FD /* SkeletonPostView.swift in Sources */,
+				41908A0A22BE72620058907D /* GeneralSettingsViewController.swift in Sources */,
 				41BEE73F229F04550028EBFB /* FireBaseService.swift in Sources */,
 				D5E4734022A941990055AB92 /* ThreadWithPostsRequest.swift in Sources */,
 				41BEE76F229F06970028EBFB /* ModelRequest.swift in Sources */,
@@ -1582,6 +1644,8 @@
 				411902C522A6C1EA008231AC /* UIView+Shadow.swift in Sources */,
 				4193B1F022B1A8BF00EE25FD /* FavouriteThreadsViewController.swift in Sources */,
 				41BEE75D229F04730028EBFB /* ReusableView.swift in Sources */,
+				41908A1622BE74410058907D /* SubscribesPresenter.swift in Sources */,
+				41908A0C22BE72DA0058907D /* GeneralSettingsPresenter.swift in Sources */,
 				41BEE720229F043C0028EBFB /* Extension+UIFont.swift in Sources */,
 				4193B1BF22AA9BE300EE25FD /* PostRouter.swift in Sources */,
 				D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */,
