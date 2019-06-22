@@ -205,7 +205,8 @@ open class DTMediaViewerController: UIViewController {
         singleTapGestureRecognizer.numberOfTouchesRequired = 1
         
         //Pan gesture recognizer
-        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(_handlePanGesture))
+        panGestureRecognizer = UIPanGestureRecognizer(target: self,
+                                                      action: #selector(_handlePanGesture))
         panGestureRecognizer.maximumNumberOfTouches = 1
         view.isUserInteractionEnabled = true
         
@@ -446,6 +447,7 @@ open class DTMediaViewerController: UIViewController {
     
     @objc func _handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         if let gestureView = gesture.view {
+            
             switch gesture.state {
             case .began:
                 

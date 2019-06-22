@@ -10,7 +10,7 @@ import Foundation
 import FLAnimatedImage
 
 extension CGFloat {
-    static let contentInsetToClose: CGFloat = 100
+    static let contentInsetToClose: CGFloat = 60
 }
 
 final class MediaViewerManager {

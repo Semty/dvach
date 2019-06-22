@@ -104,11 +104,14 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
         
         // Update image view before pan gesture happens
         if let dataSource = dataSource, dataSource.numberOfItems(in: self) > 0 {
-            dataSource.photoViewerController(self, configurePhotoAt: index, withImageView: imageView)
+            dataSource.photoViewerController(self,
+                                             configurePhotoAt: index,
+                                             withImageView: imageView)
         }
         
         // Change referenced image view
-        if let view = dataSource?.photoViewerController?(self, referencedViewForPhotoAt: index) {
+        if let view = dataSource?.photoViewerController?(self,
+                                                         referencedViewForPhotoAt: index) {
             referencedView = view
         }
     }
