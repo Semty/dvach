@@ -36,14 +36,14 @@ final class AboutPresenter {
     
     private var rulesBlockModel: (BlockWithTitle.Model, String) {
         let rulesBlockModel = BlockWithTitle.Model(title: "Правила", buttonTitle: nil)
-        let text = "- Рекламные баннеры будут появляться при постинге, также в тредах вы можете встретить контекстную рекламу. Отключить все это можно купив полную версию либо оформив подписку.\n\n- Политика Apple обязывает нас показывать баннер с предупреждениями об опасном контенте, без него это приложение бы не смогло существовать в сторе. Просим отнестись с пониманием (сами бы его с удовольствем выпилили).\n\n- Все просьбы и предложения можно обсудить в нашем телеграм-канале"
+        let text = Config.rules
         
         return (rulesBlockModel, text)
     }
     
     private var newsBlockModel: (BlockWithTitle.Model, String) {
         let rulesBlockModel = BlockWithTitle.Model(title: "Новости проекта", buttonTitle: nil)
-        let text = "Всем привет, мы наконец выкатили первую версию.\n\nНадеемся вам понравится. Проект только в начале пути, скоро будут новые фичи, которых мы все очень ждем."
+        let text = Config.news
         
         return (rulesBlockModel, text)
     }

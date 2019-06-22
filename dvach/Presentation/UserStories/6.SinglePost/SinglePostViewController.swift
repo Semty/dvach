@@ -77,6 +77,7 @@ final class SinglePostViewController: UIViewController {
     
     private func setupUI() {
         view.addSubview(stackView)
+        stackView.contentInset.bottom = 60
         stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
         stackView.addView(postView)
         

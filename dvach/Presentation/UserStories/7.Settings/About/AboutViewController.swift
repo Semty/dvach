@@ -94,13 +94,16 @@ final class AboutViewController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(stackView)
+        stackView.contentInset.bottom = .inset20
         stackView.shouldFillRemainingSpace = false
         stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
         stackView.addView(appInfoView)
         stackView.addView(rulesBlock)
         stackView.addView(newsBlock)
         stackView.addView(contactUsView)
-        stackView.addView(rateUs.wrappedInContantContainer)
+        
+        // TODO: - Добавить со след версии
+//        stackView.addView(rateUs.wrappedInContantContainer)
         
         rulesBlock.addView(rulesLabel.wrappedInContantContainer)
         newsBlock.addView(newsLabel.wrappedInContantContainer)

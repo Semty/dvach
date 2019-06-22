@@ -17,7 +17,9 @@ final class ConfigHandler {
     private let configService = Locator.shared.configService()
     
     // Properties
-    private lazy var json = configService.readLocalConfig()["config"]
+    private var json: JSON {
+        return configService.readLocalConfig()["config"]
+    }
     
     // MARK: - Public
     
@@ -30,5 +32,13 @@ final class ConfigHandler {
         guard !items.isEmpty else { return nil }
         
         return items.sorted(by: { $0.1 < $1.1 }).map { $0.0 }
+    }
+    
+    var news: String {
+        return json["news"].stringValue.replacingOccurrences(of: "\\n", with: "\n")
+    }
+    
+    var rules: String {
+        return json["rules"].stringValue.replacingOccurrences(of: "\\n", with: "\n")
     }
 }
