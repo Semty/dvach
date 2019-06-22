@@ -20,8 +20,10 @@ final class GeneralSettingsViewController: UIViewController {
     
     // Dependencies
     private let presenter: IGeneralSettingsPresenter
+    private let componentsFactory = Locator.shared.componentsFactory()
     
     // UI
+    private lazy var stackView = componentsFactory.createStackViewContainer()
     private lazy var nsfwView: SettingsSwitcherView = {
         let view = SettingsSwitcherView.fromNib()
         view.delegate = self
@@ -56,9 +58,11 @@ final class GeneralSettingsViewController: UIViewController {
     private func setupUI() {
         title = "Основные"
         view.backgroundColor = .white
+        stackView.shouldFillRemainingSpace = false
         
-        view.addSubview(nsfwView)
-        nsfwView.snp.makeConstraints { $0.top.leading.trailing.equalToSuperview() }
+        view.addSubview(stackView)
+        stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        stackView.addView(nsfwView)
     }
 }
 

@@ -95,7 +95,7 @@ final class SettingsViewController: UIViewController {
         stackView.backgroundColor = .clear
         stackView.showsVerticalScrollIndicator = false
         stackView.contentInset.top = .contentInset
-        stackView.isScrollEnabled = false
+        stackView.shouldFillRemainingSpace = false
         stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
 }
