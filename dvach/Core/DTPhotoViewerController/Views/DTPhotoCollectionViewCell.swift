@@ -110,7 +110,7 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
         scrollView.zoomScale = 1.0
         scrollView.frame = bounds
         
-        //Set the aspect ration of the image
+        // Set the aspect ratio of the image
         if let image = imageView.image {
             let size = image.size
             let horizontalScale = size.width / scrollView.frame.width
@@ -130,7 +130,8 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
     }
 }
 
-//MARK: - UIScrollViewDelegate
+// MARK: - UIScrollViewDelegate
+
 extension DTPhotoCollectionViewCell: UIScrollViewDelegate {
     public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView

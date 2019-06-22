@@ -102,6 +102,12 @@ open class DTMediaViewerController: UIViewController {
         return collectionView
     }
     
+    /// Currently Visible Cell
+    public var currentCell: DTPhotoCollectionViewCell? {
+        return collectionView.cellForItem(at: IndexPath(row: currentPhotoIndex,
+                                                        section: 0)) as? DTPhotoCollectionViewCell
+    }
+    
     /// View used for fading effect during presentation and dismissal animation or when controller is being dragged.
     public internal(set) var backgroundView: UIView
     
@@ -578,6 +584,8 @@ open class DTMediaViewerController: UIViewController {
     }
     
     func dismissalAnimationWillStart() {
+        // Update Image View (It could be resized for scaled form
+        updateImageViewDismissalAnimationWillStart()
         // Hide collection view and show image view
         _hideImageView(false)
     }
@@ -588,8 +596,22 @@ open class DTMediaViewerController: UIViewController {
         }
     }
     
+    // MARK: - Get Cropped Snapshot from Current Scale State
+    
+    public func getScaledSnapshot() -> UIImage? {
+        guard let scrollView = currentCell?.scrollView else { return imageView.image }
+        guard let image = currentCell?.imageView.image else { return imageView.image }
+        
+        let ratio = image.size.height / scrollView.contentSize.height
+        let origin = CGPoint(x: scrollView.contentOffset.x * ratio, y: scrollView.contentOffset.y * ratio)
+        let size = CGSize(width: scrollView.bounds.size.width * ratio,
+                          height: scrollView.bounds.size.height * ratio)
+        let cropFrame = CGRect(origin: origin, size: size)
+        return image.croppedInRect(rect: cropFrame)
+    }
     
     // MARK: - Public behavior methods
+    
     open func didScrollToPhoto(at index: Int) {
         
     }
@@ -627,7 +649,8 @@ open class DTMediaViewerController: UIViewController {
     }
 }
 
-//MARK: - UIViewControllerTransitioningDelegate
+// MARK: - UIViewControllerTransitioningDelegate
+
 extension DTMediaViewerController: UIViewControllerTransitioningDelegate {
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return animator
@@ -638,9 +661,12 @@ extension DTMediaViewerController: UIViewControllerTransitioningDelegate {
     }
 }
 
-//MARK: UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
+
 extension DTMediaViewerController: UICollectionViewDataSource {
-    //MARK: Public methods
+    
+    // MARK: - Public methods
+    
     public var currentPhotoIndex: Int {
         if scrollDirection == .horizontal {
             if scrollView.frame.width == 0 {
@@ -667,14 +693,16 @@ extension DTMediaViewerController: UICollectionViewDataSource {
         return 1.0
     }
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView,
+                               numberOfItemsInSection section: Int) -> Int {
         if let dataSource = dataSource {
             return dataSource.numberOfItems(in: self)
         }
         return 1
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView,
+                               cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .photoCollectionViewCellIdentifier, for: indexPath) as! DTPhotoCollectionViewCell
         cell.delegate = self
         
