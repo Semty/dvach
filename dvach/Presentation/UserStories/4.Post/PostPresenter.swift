@@ -80,7 +80,8 @@ final class PostViewPresenter {
                                      dvachLinkModels: postParser.dvachLinkModels,
                                      repliedTo: postParser.repliedToPosts,
                                      isAnswerHidden: false,
-                                     isRepliesHidden: false)
+                                     isRepliesHidden: false,
+                                     adView: nil)
     }
 }
 

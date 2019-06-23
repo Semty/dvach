@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Appodeal
 
 protocol ISinglePostPresenter {
     func viewDidLoad()
@@ -17,16 +18,23 @@ protocol ISinglePostPresenter {
                     imageViews: [UIImageView])
 }
 
-final class SinglePostPresenter {
+final class SinglePostPresenter: NSObject {
     
     // Dependencies
     weak var view: (SinglePostView & UIViewController)?
     private let actionSheetFactory = PostBottomSheetFactory()
     private let dvachService = Locator.shared.dvachService()
     private let mediaViewerManager = MediaViewerManager()
+    private lazy var adManager: IAdManager = {
+        let manager = Locator.shared.createAdManager(viewController: view)
+        manager.delegate = self
+        return manager
+    }()
     
     // Properties
     private let post: Post
+    private lazy var adQueue = APDNativeAdQueue()
+    private var queueLoaded = false
     
     // MARK: - Initialization
     
@@ -36,8 +44,10 @@ final class SinglePostPresenter {
     
     // MARK: - Private
     
-    private func createModel() -> PostCommentView.Model {
-        let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: post.rowIndex + 1)
+    private func createModel(adView: (UIView & APDNativeAdView)?) -> PostCommentView.Model {
+        let headerViewModel = PostHeaderView.Model(title: post.name,
+                                                   subtitle: post.num,
+                                                   number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
         
@@ -49,7 +59,8 @@ final class SinglePostPresenter {
                                      dvachLinkModels: postParser.dvachLinkModels,
                                      repliedTo: postParser.repliedToPosts,
                                      isAnswerHidden: true,
-                                     isRepliesHidden: true)
+                                     isRepliesHidden: true,
+                                     adView: adView)
     }
 }
 
@@ -58,7 +69,8 @@ final class SinglePostPresenter {
 extension SinglePostPresenter: ISinglePostPresenter {
     
     func viewDidLoad() {
-        view?.configure(model: createModel())
+        adManager.loadNativeAd()
+        view?.configure(model: createModel(adView: nil))
     }
     
     func didTapOpenThread() {
@@ -80,5 +92,14 @@ extension SinglePostPresenter: ISinglePostPresenter {
                                                           imageIndex: index)
         guard let mediaController = mediaViewerManager.mediaViewer(source: mediaViewerSource) else { return }
         view?.present(mediaController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - AdManagerDelegate
+
+extension SinglePostPresenter: AdManagerDelegate {
+    
+    func adManagerDidCreateNativeAdViews(_ views: [(UIView & APDNativeAdView)]) {
+        view?.configure(model: createModel(adView: views.first))
     }
 }
