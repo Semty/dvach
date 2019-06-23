@@ -135,8 +135,10 @@ open class DTMediaViewerController: UIViewController {
         flowLayout.minimumInteritemSpacing = 0
         
         // Collection view
-        collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+        collectionView = UICollectionView(frame: CGRect.zero,
+                                          collectionViewLayout: flowLayout)
         collectionView.register(DTPhotoCollectionViewCell.self, forCellWithReuseIdentifier: .photoCollectionViewCellIdentifier)
+        
         collectionView.backgroundColor = UIColor.clear
         collectionView.isPagingEnabled = true
         
@@ -157,11 +159,7 @@ open class DTMediaViewerController: UIViewController {
         modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         modalPresentationCapturesStatusBarAppearance = true
         
-        if #available(iOS 11.0, *) {
-            collectionView.contentInsetAdjustmentBehavior = .never
-        } else {
-            automaticallyAdjustsScrollViewInsets = false
-        }
+        collectionView.contentInsetAdjustmentBehavior = .never
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -234,7 +232,7 @@ open class DTMediaViewerController: UIViewController {
         backgroundView.frame = view.bounds
         scrollView.frame = view.bounds
         
-        // Update iamge view frame everytime view changes frame
+        // Update image view frame everytime view changes frame
         (imageView as? DTImageView)?.imageChangeBlock?(imageView.image)
     }
     
@@ -602,7 +600,13 @@ open class DTMediaViewerController: UIViewController {
         guard let scrollView = currentCell?.scrollView else { return imageView.image }
         guard let image = currentCell?.imageView.image else { return imageView.image }
         
-        let ratio = image.size.height / scrollView.contentSize.height
+        var scrollViewHeight = scrollView.contentSize.height
+        
+        if scrollViewHeight > UIScreen.main.bounds.height {
+            scrollViewHeight = UIScreen.main.bounds.height
+        }
+        
+        let ratio = image.size.height / scrollViewHeight
         let origin = CGPoint(x: scrollView.contentOffset.x * ratio, y: scrollView.contentOffset.y * ratio)
         let size = CGSize(width: scrollView.bounds.size.width * ratio,
                           height: scrollView.bounds.size.height * ratio)

@@ -100,8 +100,10 @@ extension MediaViewerManager: DTMediaViewerControllerDelegate {
     
     func photoViewerController(_ photoViewerController: DTMediaViewerController, scrollViewDidScroll: UIScrollView) {
         if scrollViewDidScroll.contentOffset.x > scrollViewDidScroll.contentSize.width - scrollViewDidScroll.bounds.width + .contentInsetToClose {
-            (photoViewerController as? MediaViewerController)?.configureSecondaryViews(hidden: true, animated: false)
-            photoViewerController.dismiss(animated: true)
+            if UIDevice.current.isPortrait {
+                (photoViewerController as? MediaViewerController)?.configureSecondaryViews(hidden: true, animated: false)
+                photoViewerController.dismiss(animated: true)
+            }
         }
     }
 }

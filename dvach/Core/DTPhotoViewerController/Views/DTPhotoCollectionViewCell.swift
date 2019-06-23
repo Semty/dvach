@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 import FLAnimatedImage
 
 public protocol DTPhotoCollectionViewCellDelegate: NSObjectProtocol {
@@ -18,6 +19,8 @@ public protocol DTPhotoCollectionViewCellDelegate: NSObjectProtocol {
 open class DTPhotoCollectionViewCell: UICollectionViewCell {
     public private(set) var scrollView: DTScrollView!
     public private(set) var imageView: FLAnimatedImageView!
+    
+    private var xOffset: CGFloat = -1
     
     // default is 1.0
     open var minimumZoomScale: CGFloat = 1.0 {
@@ -49,7 +52,10 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // Delegate
     weak var delegate: DTPhotoCollectionViewCellDelegate?
+    
+    // MARK: - Initialization
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -90,9 +96,9 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
         addSubview(scrollView)
         scrollView.addSubview(imageView)
         
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .automatic
-        }
+        scrollView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        
+        scrollView.contentInsetAdjustmentBehavior = .never
     }
     
     private func correctCurrentZoomScaleIfNeeded() {
@@ -107,25 +113,30 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
     
     override open func layoutSubviews() {
         super.layoutSubviews()
-        scrollView.zoomScale = 1.0
-        scrollView.frame = bounds
+        
+        resizeUI()
+    }
+    
+    private func resizeUI() {
+        
+        if !UIDevice.current.isPortrait
+            && scrollView.zoomScale != minimumZoomScale
+            && xOffset == frame.origin.x {
+            return
+        }
         
         // Set the aspect ratio of the image
         if let image = imageView.image {
-            let size = image.size
-            let horizontalScale = size.width / scrollView.frame.width
-            let verticalScale = size.height / scrollView.frame.height
-            let factor = max(horizontalScale, verticalScale)
             
-            //Divide the size by the greater of the vertical or horizontal shrinkage factor
-            let width = size.width / factor
-            let height = size.height / factor
+            scrollView.zoomScale = 1.0
+            xOffset = frame.origin.x
             
+            let rect = AVMakeRect(aspectRatio: image.size, insideRect: bounds)
             //Then figure out offset to center vertically or horizontally
-            let x = (scrollView.frame.width - width) / 2
-            let y = (scrollView.frame.height - height) / 2
+            let x = (scrollView.frame.width - rect.width) / 2
+            let y = (scrollView.frame.height - rect.height) / 2
             
-            imageView.frame = CGRect(x: x, y: y, width: width, height: height)
+            imageView.frame = CGRect(x: x, y: y, width: rect.width, height: rect.height)
         }
     }
 }

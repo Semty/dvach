@@ -13,4 +13,13 @@ extension UIDevice {
         let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
         return bottom > 0
     }
+    
+    var isPortrait: Bool {
+        let size = UIScreen.main.bounds.size
+        if size.width < size.height {
+            return true
+        } else {
+            return false
+        }
+    }
 }
