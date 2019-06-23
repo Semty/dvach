@@ -21,6 +21,7 @@ final class GeneralSettingsViewController: UIViewController {
     // Dependencies
     private let presenter: IGeneralSettingsPresenter
     private let componentsFactory = Locator.shared.componentsFactory()
+    private lazy var adManager = Locator.shared.createAdManager(viewController: self)
     
     // UI
     private lazy var stackView = componentsFactory.createStackViewContainer()
@@ -80,6 +81,7 @@ extension GeneralSettingsViewController: GeneralSettingsView {
 extension GeneralSettingsViewController: SettingsSwitcherViewDelegate {
     
     func settingsSwitcherView(_ view: SettingsSwitcherView, didChangeSwitchValue value: Bool) {
+        adManager.showInterstitialAd()
         presenter.didChangeNSFWSwitchValue(value)
     }
 }

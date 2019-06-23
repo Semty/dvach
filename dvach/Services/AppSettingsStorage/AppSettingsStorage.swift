@@ -31,7 +31,7 @@ final class AppSettingsStorage: IAppSettingsStorage {
     
     var nsfwBannersAllowed: Bool {
         get {
-            return self[.nsfwBannersAllowed] as? Bool ?? true
+            return self[.nsfwBannersAllowed] as? Bool ?? false
         }
         set {
             self[.nsfwBannersAllowed] = newValue

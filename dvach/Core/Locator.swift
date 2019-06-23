@@ -48,4 +48,9 @@ final class Locator {
         return ConfigService(firebaseService: firebaseService(),
                              appSettingsStorage: appSettingsStorage())
     }
+    
+    /// менеджер для показа рекламы
+    func createAdManager(viewController: UIViewController?) -> IAdManager {
+        return AdManager(viewController: viewController)
+    }
 }

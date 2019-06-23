@@ -8,6 +8,7 @@
 
 import Foundation
 import Nantes
+import Appodeal
 
 typealias PostCommentCell = TableViewContainerCellBase<PostCommentView>
 
@@ -33,6 +34,7 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
         let repliedTo: [String]
         let isAnswerHidden: Bool
         let isRepliesHidden: Bool
+        let adView: (UIView & APDNativeAdView)?
     }
     
     // Dependencies
@@ -109,12 +111,15 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
     }()
     
     // Кнопки
-    private var buttonsView: PostCommentButtonsView = {
+    private lazy var buttonsView: PostCommentButtonsView = {
         let view = PostCommentButtonsView.fromNib()
         view.snp.makeConstraints { $0.height.equalTo(50) }
         
         return view
     }()
+    
+    // Реклама
+    private var adView: ContextAddView?
     
     // MARK: - Initialization
     
@@ -168,10 +173,16 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
                                                                                   icon: UIImage(named: "answers"),
                                                                                   text: "10")
         let moreModel = VerticalOvalButton.Model(color: .n9LightGreen, icon: UIImage(named: "more"), text: nil)
-        let model = PostCommentButtonsView.Model(answerButtonModel: answerModel,
-                                                 answersButtonModel: answersModel,
-                                                 moreButtonModel: moreModel)
-        buttonsView.configure(with: model)
+        let buttonsModel = PostCommentButtonsView.Model(answerButtonModel: answerModel,
+                                                        answersButtonModel: answersModel,
+                                                        moreButtonModel: moreModel)
+        buttonsView.configure(with: buttonsModel)
+        
+        // Добавляем блок с рекламой
+        if let nativeAdView = model.adView as? ContextAddView {
+            adView = nativeAdView
+            stackView.addArrangedSubview(nativeAdView)
+        }
     }
     
     // MARK: - ReusableView
@@ -181,6 +192,9 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
         dateLabel.text = nil
         text.attributedText = nil
         gallery.isHidden = true
+        if let adView = adView {
+            stackView.removeArrangedSubview(adView)
+        }
     }
 }
 

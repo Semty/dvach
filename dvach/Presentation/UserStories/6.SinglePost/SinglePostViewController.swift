@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Appodeal
 
 protocol SinglePostView: AnyObject {
     func configure(model: PostCommentView.Model)

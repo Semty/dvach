@@ -67,6 +67,10 @@
 		41908A2222BE8F550058907D /* ConnectUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A2122BE8F550058907D /* ConnectUsView.swift */; };
 		41908A2422BE8F6C0058907D /* ConnectUsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41908A2322BE8F6C0058907D /* ConnectUsView.xib */; };
 		41908A2622BEA3100058907D /* ShownBoards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A2522BEA3100058907D /* ShownBoards.swift */; };
+		41908A2822BF91DA0058907D /* Extension+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A2722BF91DA0058907D /* Extension+UIApplication.swift */; };
+		41908A2A22BF9C190058907D /* ContextAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A2922BF9C190058907D /* ContextAddView.swift */; };
+		41908A2C22BF9EE80058907D /* ContextAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41908A2B22BF9EE80058907D /* ContextAddView.xib */; };
+		41908A3122BFFA6F0058907D /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A3022BFFA6F0058907D /* AdManager.swift */; };
 		4193B1B122AA4EF700EE25FD /* CategoriesSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */; };
 		4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */; };
 		4193B1B522AA548200EE25FD /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B422AA548200EE25FD /* UIView+Animations.swift */; };
@@ -275,6 +279,10 @@
 		41908A2122BE8F550058907D /* ConnectUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectUsView.swift; sourceTree = "<group>"; };
 		41908A2322BE8F6C0058907D /* ConnectUsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectUsView.xib; sourceTree = "<group>"; };
 		41908A2522BEA3100058907D /* ShownBoards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShownBoards.swift; sourceTree = "<group>"; };
+		41908A2722BF91DA0058907D /* Extension+UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIApplication.swift"; sourceTree = "<group>"; };
+		41908A2922BF9C190058907D /* ContextAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextAddView.swift; sourceTree = "<group>"; };
+		41908A2B22BF9EE80058907D /* ContextAddView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextAddView.xib; sourceTree = "<group>"; };
+		41908A3022BFFA6F0058907D /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSkeletonView.swift; sourceTree = "<group>"; };
 		4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesSkeletonView.xib; sourceTree = "<group>"; };
 		4193B1B422AA548200EE25FD /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -674,6 +682,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		41908A2D22BFFA460058907D /* AdManager */ = {
+			isa = PBXGroup;
+			children = (
+				41908A3022BFFA6F0058907D /* AdManager.swift */,
+			);
+			path = AdManager;
+			sourceTree = "<group>";
+		};
 		4193B1AF22AA4ED000EE25FD /* Skeleton */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,6 +724,8 @@
 				4193B1D322AD8BBE00EE25FD /* PostCommentButtonsView.xib */,
 				4193B1D522AD8C4C00EE25FD /* VerticalOvalButton.swift */,
 				4193B1D722AD8C6800EE25FD /* VerticalOvalButton.xib */,
+				41908A2922BF9C190058907D /* ContextAddView.swift */,
+				41908A2B22BF9EE80058907D /* ContextAddView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -863,6 +881,7 @@
 			isa = PBXGroup;
 			children = (
 				41BEE738229F04550028EBFB /* Locator.swift */,
+				41908A2D22BFFA460058907D /* AdManager */,
 				D528DE3522BB723B008A27D9 /* DTPhotoViewerController */,
 				D58ADB9F22AC271B00A8334B /* TextParser */,
 				411902BB22A6BE3D008231AC /* Shared models */,
@@ -914,32 +933,33 @@
 		41BEE702229F043C0028EBFB /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				41BEE706229F043C0028EBFB /* UIView */,
+				41BEE70F229F043C0028EBFB /* Extension+Array.swift */,
+				4193B1B622AA56ED00EE25FD /* Extension+CAAnimation.swift */,
+				D5A69D5622A3DCE900C46E24 /* Extension+CALayer.swift */,
+				41BEE710229F043C0028EBFB /* Extension+CGFloat.swift */,
+				41BEE70D229F043C0028EBFB /* Extension+Dictionary.swift */,
+				41BEE715229F043C0028EBFB /* Extension+Int.swift */,
+				D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */,
+				41BEE70E229F043C0028EBFB /* Extension+NSError.swift */,
+				41BEE712229F043C0028EBFB /* Extension+NSObject.swift */,
+				D5FC9CF722ACEE8B002E0F79 /* Extension+NSRange.swift */,
+				D58ADBA622AC405300A8334B /* Extension+NSRegularExpression.swift */,
+				41BEE711229F043C0028EBFB /* Extension+String.swift */,
+				41BEE713229F043C0028EBFB /* Extension+TimeInterval.swift */,
+				41908A2722BF91DA0058907D /* Extension+UIApplication.swift */,
+				4193B1F822B3066400EE25FD /* Extension+UIBarButton.swift */,
+				D5955FA822BA6C1700438630 /* Extension+UIBezierPath.swift */,
+				4117535722A2FF05008EBD2A /* Extension+UICollectionView.swift */,
+				D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */,
+				411902B322A6B8AA008231AC /* Extension+UIEdgeInsets.swift */,
 				41BEE703229F043C0028EBFB /* Extension+UIFont.swift */,
-				41BEE704229F043C0028EBFB /* Extension+UIViewController.swift */,
 				41BEE705229F043C0028EBFB /* Extension+UIImage.swift */,
 				4193B1CF22AAC8E500EE25FD /* Extension+UiImageView.swift */,
-				41BEE70C229F043C0028EBFB /* Extension+UITableView.swift */,
-				41BEE70D229F043C0028EBFB /* Extension+Dictionary.swift */,
-				41BEE70E229F043C0028EBFB /* Extension+NSError.swift */,
-				41BEE70F229F043C0028EBFB /* Extension+Array.swift */,
-				41BEE710229F043C0028EBFB /* Extension+CGFloat.swift */,
-				41BEE711229F043C0028EBFB /* Extension+String.swift */,
-				41BEE712229F043C0028EBFB /* Extension+NSObject.swift */,
-				41BEE713229F043C0028EBFB /* Extension+TimeInterval.swift */,
-				41BEE714229F043C0028EBFB /* Extention+UIColor.swift */,
-				41BEE715229F043C0028EBFB /* Extension+Int.swift */,
 				41BEE718229F043C0028EBFB /* Extension+UIStackView.swift */,
-				4117535722A2FF05008EBD2A /* Extension+UICollectionView.swift */,
-				411902B322A6B8AA008231AC /* Extension+UIEdgeInsets.swift */,
-				D5A69D5622A3DCE900C46E24 /* Extension+CALayer.swift */,
-				4193B1B622AA56ED00EE25FD /* Extension+CAAnimation.swift */,
-				D58ADBA622AC405300A8334B /* Extension+NSRegularExpression.swift */,
-				D5FC9CF722ACEE8B002E0F79 /* Extension+NSRange.swift */,
-				D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */,
-				4193B1F822B3066400EE25FD /* Extension+UIBarButton.swift */,
-				D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */,
-				D5955FA822BA6C1700438630 /* Extension+UIBezierPath.swift */,
+				41BEE70C229F043C0028EBFB /* Extension+UITableView.swift */,
+				41BEE704229F043C0028EBFB /* Extension+UIViewController.swift */,
+				41BEE714229F043C0028EBFB /* Extention+UIColor.swift */,
+				41BEE706229F043C0028EBFB /* UIView */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -1367,6 +1387,7 @@
 				41BEE6CC229EFE720028EBFB /* Frameworks */,
 				41BEE6CD229EFE720028EBFB /* Resources */,
 				8F41E6E7C2CBB23C75C112C7 /* [CP] Embed Pods Frameworks */,
+				A5D021B04AE37AC869B3AE74 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1451,6 +1472,7 @@
 				4193B1D822AD8C6800EE25FD /* VerticalOvalButton.xib in Resources */,
 				419089FF22BACE6A0058907D /* LaunchView.xib in Resources */,
 				41908A2422BE8F6C0058907D /* ConnectUsView.xib in Resources */,
+				41908A2C22BF9EE80058907D /* ContextAddView.xib in Resources */,
 				4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */,
 				419089F822BAB5BF0058907D /* ContentSettingsView.xib in Resources */,
 				D5A69D5022A2FDA800C46E24 /* ThreadWithoutImageView.xib in Resources */,
@@ -1514,6 +1536,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dvach/Pods-dvach-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A5D021B04AE37AC869B3AE74 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dvach/Pods-dvach-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dvach/Pods-dvach-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dvach/Pods-dvach-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A7A2F2DAB59B53BE346D2F22 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1557,12 +1596,14 @@
 				4193B1BB22AA998200EE25FD /* PostViewController.swift in Sources */,
 				D504B6ED22B946F9007C93B1 /* Extension+UIDevice.swift in Sources */,
 				41BEE723229F043C0028EBFB /* UView+NibAwakable.swift in Sources */,
+				41908A3122BFFA6F0058907D /* AdManager.swift in Sources */,
 				4144089F22A04AC400E4E53E /* DvachService.swift in Sources */,
 				41BEE73D229F04550028EBFB /* Locator.swift in Sources */,
 				D528DE5822BBD532008A27D9 /* HorizontalMoreButton.swift in Sources */,
 				4193B1C622AAA29C00EE25FD /* PostCommentView.swift in Sources */,
 				41908A1022BE74120058907D /* AboutViewController.swift in Sources */,
 				41BEE722229F043C0028EBFB /* Extension+UIImage.swift in Sources */,
+				41908A2A22BF9C190058907D /* ContextAddView.swift in Sources */,
 				4117534F22A2F22B008EBD2A /* CategoriesCardView.swift in Sources */,
 				41BEE71B229F043C0028EBFB /* IStorage.swift in Sources */,
 				D5D37B3A22B2835D00CDEBA2 /* SkeletonThreadView.swift in Sources */,
@@ -1687,6 +1728,7 @@
 				D5B22BC222A187A0001EE4F8 /* BoardWithBumpSortingThreadsCatalogRequest.swift in Sources */,
 				D528DE4322BB723B008A27D9 /* DTMediaViewerController.swift in Sources */,
 				D5B22BBE22A165AF001EE4F8 /* File.swift in Sources */,
+				41908A2822BF91DA0058907D /* Extension+UIApplication.swift in Sources */,
 				41BEE726229F043C0028EBFB /* RecognizerDeletable.swift in Sources */,
 				41BEE71E229F043C0028EBFB /* BaseRequest.swift in Sources */,
 				4117535822A2FF05008EBD2A /* Extension+UICollectionView.swift in Sources */,
