@@ -95,10 +95,10 @@ where Cell: UICollectionViewCell, Cell: ConfigurableView {
     
     private func setupUI() {
         backgroundColor = .clear
+        snp.makeConstraints { $0.height.equalTo(configuration.height) }
         addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-            $0.height.equalTo(configuration.height)
         }
         
         guard configuration.shadow != nil else { return }

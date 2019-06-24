@@ -9,8 +9,10 @@
 import Foundation
 import Appodeal
 
+public typealias AdView = (UIView & APDNativeAdView)
+
 protocol AdManagerDelegate: AnyObject {
-    func adManagerDidCreateNativeAdViews(_ views: [(UIView & APDNativeAdView)])
+    func adManagerDidCreateNativeAdViews(_ views: [AdView])
 }
 
 protocol IAdManager: AnyObject {

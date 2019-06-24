@@ -34,7 +34,7 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
         let repliedTo: [String]
         let isAnswerHidden: Bool
         let isRepliesHidden: Bool
-        let adView: (UIView & APDNativeAdView)?
+        let adView: AdView?
     }
     
     // Dependencies
@@ -57,7 +57,6 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
                                                         itemSpacing: .inset8,
                                                         insets: .defaultInsets)
         let list = HorizontalList<GalleryCell>(configuration: configuration)
-        list.snp.makeConstraints { $0.height.equalTo(80) }
         list.selectionHandler = { [weak self] index, cells in
             guard let self = self else { return }
             guard let galleryCells = cells as? [GalleryCell] else { return }
@@ -160,10 +159,12 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
         dateLabel.text = model.date
         text.attributedText = model.text
         
-        gallery.isHidden = model.fileURLs.isEmpty
+//        gallery.isHidden = model.fileURLs.isEmpty
         if !model.fileURLs.isEmpty {
             let galleryModels = model.fileURLs.map { GalleryView.Model(imageURL: $0) }
             gallery.update(dataSource: galleryModels)
+        } else {
+            gallery.update(dataSource: [])
         }
         
         let answerModel = model.isAnswerHidden ? nil : VerticalOvalButton.Model(color: .n1Gray,
@@ -191,7 +192,7 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
         headerView.prepareForReuse()
         dateLabel.text = nil
         text.attributedText = nil
-        gallery.isHidden = true
+//        gallery.isHidden = true
         if let adView = adView {
             stackView.removeArrangedSubview(adView)
         }

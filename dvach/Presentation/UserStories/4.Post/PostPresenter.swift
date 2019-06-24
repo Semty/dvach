@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Appodeal
 
 protocol IPostViewPresenter {
     var viewModels: [PostCommentView.Model] { get }
@@ -23,10 +24,15 @@ protocol IPostViewPresenter {
 final class PostViewPresenter {
     
     // Dependencies
-    weak var view: PostView?
+    weak var view: (PostView & UIViewController)?
     private let router: IPostRouter
     private let dvachService = Locator.shared.dvachService()
-
+    private lazy var adManager: IAdManager = {
+        let manager = Locator.shared.createAdManager(viewController: view)
+        manager.delegate = self
+        return manager
+    }()
+    
     // Properties
     var viewModels = [PostCommentView.Model]()
 
@@ -55,7 +61,9 @@ final class PostViewPresenter {
             switch result {
             case .success(let posts):
                 self.posts = posts
-                self.viewModels = posts.enumerated().map(self.createViewModel)
+                self.viewModels = posts.enumerated().map { index, item in
+                    self.createViewModel(index: index, post: item, adView: nil)
+                }
                 
                 DispatchQueue.main.async {
                     self.view?.updateTable(scrollTo: self.scrollTo)
@@ -67,7 +75,7 @@ final class PostViewPresenter {
         }
     }
     
-    private func createViewModel(index: Int, post: Post) -> PostCommentView.Model {
+    private func createViewModel(index: Int, post: Post, adView: AdView?) -> PostCommentView.Model {
         let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: index + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
@@ -81,7 +89,7 @@ final class PostViewPresenter {
                                      repliedTo: postParser.repliedToPosts,
                                      isAnswerHidden: false,
                                      isRepliesHidden: false,
-                                     adView: nil)
+                                     adView: adView)
     }
 }
 
@@ -91,6 +99,7 @@ extension PostViewPresenter: IPostViewPresenter {
     
     func viewDidLoad() {
         loadPost()
+//        adManager.loadNativeAd()
     }
     
     func didTapFile(index: Int,
@@ -115,5 +124,24 @@ extension PostViewPresenter: IPostViewPresenter {
         guard let postIndex = posts.firstIndex(where: { $0.num == postNumber }) else { return }
         let post = posts[postIndex]
         router.postCommentView(view, didTapMoreButton: post, thread: thread, boardId: boardIdentifier, row: postIndex)
+    }
+}
+
+// MARK: - AdManagerDelegate
+
+extension PostViewPresenter: AdManagerDelegate {
+    
+    func adManagerDidCreateNativeAdViews(_ views: [AdView]) {
+        DispatchQueue.global().async {
+            self.viewModels = self.posts.enumerated().map { index, item in
+                let adView = views[safeIndex: index]
+                print(adView)
+                return self.createViewModel(index: index, post: item, adView: adView)
+            }
+            
+            DispatchQueue.main.async {
+                self.view?.updateTable(scrollTo: self.scrollTo)
+            }
+        }
     }
 }

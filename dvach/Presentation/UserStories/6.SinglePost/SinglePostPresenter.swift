@@ -44,7 +44,7 @@ final class SinglePostPresenter: NSObject {
     
     // MARK: - Private
     
-    private func createModel(adView: (UIView & APDNativeAdView)?) -> PostCommentView.Model {
+    private func createModel(adView: AdView?) -> PostCommentView.Model {
         let headerViewModel = PostHeaderView.Model(title: post.name,
                                                    subtitle: post.num,
                                                    number: post.rowIndex + 1)
@@ -99,7 +99,7 @@ extension SinglePostPresenter: ISinglePostPresenter {
 
 extension SinglePostPresenter: AdManagerDelegate {
     
-    func adManagerDidCreateNativeAdViews(_ views: [(UIView & APDNativeAdView)]) {
+    func adManagerDidCreateNativeAdViews(_ views: [AdView]) {
         view?.configure(model: createModel(adView: views.first))
     }
 }
