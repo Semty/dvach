@@ -11,6 +11,7 @@ import Appodeal
 
 protocol SinglePostView: AnyObject {
     func configure(model: PostCommentView.Model)
+    func addAdvertisingView(_ view: AdView)
 }
 
 final class SinglePostViewController: UIViewController {
@@ -96,6 +97,10 @@ extension SinglePostViewController: SinglePostView {
     
     func configure(model: PostCommentView.Model) {
         postView.configure(with: model)
+    }
+    
+    func addAdvertisingView(_ view: AdView) {
+        stackView.addView(view)
     }
 }
 

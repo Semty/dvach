@@ -27,6 +27,7 @@ final class PostViewController: UIViewController {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.register(PostCommentCell.self)
+        tableView.register(ContextAdCell.self)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
         tableView.tableFooterView = UIView()
@@ -103,20 +104,28 @@ extension PostViewController: PostView {
 extension PostViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.viewModels.count
+        return presenter.dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: PostCommentCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.prepareForReuse()
-        let viewModel = presenter.viewModels[indexPath.row]
-        cell.configure(with: viewModel)
-        cell.containedView.delegate = self
-        if indexPath.row == presenter.viewModels.count - 1 {
-            cell.containedView.removeBottomSeparator()
-        }
 
-        return cell
+        switch presenter.dataSource[indexPath.row] {
+        case .post(let viewModel):
+            let cell: PostCommentCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.prepareForReuse()
+            cell.configure(with: viewModel)
+            cell.containedView.delegate = self
+            if indexPath.row == presenter.dataSource.count - 1 {
+                cell.containedView.removeBottomSeparator()
+            }
+            
+            return cell
+        case .ad(let adView):
+            let cell: ContextAdCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.containedView.addSubview(adView)
+            adView.snp.makeConstraints { $0.edges.equalToSuperview() }
+            return cell
+        }
     }
 }
 

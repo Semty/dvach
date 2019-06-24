@@ -25,6 +25,7 @@ final class AdManager: NSObject, IAdManager {
     
     // Dependencies
     weak var delegate: AdManagerDelegate?
+    private let numberOfAds: Int
     private weak var viewController: UIViewController?
     
     // Properties
@@ -37,7 +38,8 @@ final class AdManager: NSObject, IAdManager {
     
     // MARK: - Initialization
     
-    init(viewController: UIViewController?) {
+    init(numberOfNativeAds: Int, viewController: UIViewController?) {
+        self.numberOfAds = numberOfNativeAds
         self.viewController = viewController
     }
     
@@ -73,7 +75,7 @@ final class AdManager: NSObject, IAdManager {
 extension AdManager: APDNativeAdQueueDelegate {
     
     func adQueueAdIsAvailable(_ adQueue: APDNativeAdQueue, ofCount count: UInt) {
-        if nativeAds.count > 0 {
+        if nativeAds.count > numberOfAds {
             _ = queueLoaded
             return
         } else {

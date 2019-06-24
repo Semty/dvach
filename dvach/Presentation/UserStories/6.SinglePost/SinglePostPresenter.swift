@@ -26,7 +26,7 @@ final class SinglePostPresenter: NSObject {
     private let dvachService = Locator.shared.dvachService()
     private let mediaViewerManager = MediaViewerManager()
     private lazy var adManager: IAdManager = {
-        let manager = Locator.shared.createAdManager(viewController: view)
+        let manager = Locator.shared.createAdManager(numberOfNativeAds: 1, viewController: view)
         manager.delegate = self
         return manager
     }()
@@ -44,7 +44,7 @@ final class SinglePostPresenter: NSObject {
     
     // MARK: - Private
     
-    private func createModel(adView: AdView?) -> PostCommentView.Model {
+    private func createModel() -> PostCommentView.Model {
         let headerViewModel = PostHeaderView.Model(title: post.name,
                                                    subtitle: post.num,
                                                    number: post.rowIndex + 1)
@@ -59,8 +59,7 @@ final class SinglePostPresenter: NSObject {
                                      dvachLinkModels: postParser.dvachLinkModels,
                                      repliedTo: postParser.repliedToPosts,
                                      isAnswerHidden: true,
-                                     isRepliesHidden: true,
-                                     adView: adView)
+                                     isRepliesHidden: true)
     }
 }
 
@@ -70,7 +69,7 @@ extension SinglePostPresenter: ISinglePostPresenter {
     
     func viewDidLoad() {
         adManager.loadNativeAd()
-        view?.configure(model: createModel(adView: nil))
+        view?.configure(model: createModel())
     }
     
     func didTapOpenThread() {
@@ -100,6 +99,7 @@ extension SinglePostPresenter: ISinglePostPresenter {
 extension SinglePostPresenter: AdManagerDelegate {
     
     func adManagerDidCreateNativeAdViews(_ views: [AdView]) {
-        view?.configure(model: createModel(adView: views.first))
+        guard let adView = views.first else { return }
+        view?.addAdvertisingView(adView)
     }
 }

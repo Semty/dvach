@@ -10,7 +10,7 @@ import Foundation
 import Appodeal
 
 protocol IPostViewPresenter {
-    var viewModels: [PostCommentView.Model] { get }
+    var dataSource: [PostViewPresenter.CellType] { get }
     
     func viewDidLoad()
     func didTapFile(index: Int,
@@ -23,18 +23,23 @@ protocol IPostViewPresenter {
 
 final class PostViewPresenter {
     
+    enum CellType {
+        case post(PostCommentView.Model)
+        case ad(ContextAddView)
+    }
+    
     // Dependencies
     weak var view: (PostView & UIViewController)?
     private let router: IPostRouter
     private let dvachService = Locator.shared.dvachService()
     private lazy var adManager: IAdManager = {
-        let manager = Locator.shared.createAdManager(viewController: view)
+        let manager = Locator.shared.createAdManager(numberOfNativeAds: 10, viewController: view)
         manager.delegate = self
         return manager
     }()
     
     // Properties
-    var viewModels = [PostCommentView.Model]()
+    var dataSource = [CellType]()
 
     private let boardIdentifier: String
     private let thread: ThreadShortInfo
@@ -52,7 +57,7 @@ final class PostViewPresenter {
     
     // MARK: - Private
     
-    private func loadPost() {
+    private func loadPost(completion: @escaping () -> Void) {
         dvachService.loadThreadWithPosts(board: boardIdentifier,
                                          threadNum: thread.number,
                                          postNum: nil,
@@ -61,21 +66,24 @@ final class PostViewPresenter {
             switch result {
             case .success(let posts):
                 self.posts = posts
-                self.viewModels = posts.enumerated().map { index, item in
-                    self.createViewModel(index: index, post: item, adView: nil)
+                self.dataSource = posts.enumerated().map { index, item in
+                    let model = self.createPostViewModel(index: index, post: item)
+                    return .post(model)
                 }
                 
                 DispatchQueue.main.async {
                     self.view?.updateTable(scrollTo: self.scrollTo)
                 }
+                completion()
             case .failure(_):
+                completion()
                 break
                 // TODO: - показать ошибку
             }
         }
     }
     
-    private func createViewModel(index: Int, post: Post, adView: AdView?) -> PostCommentView.Model {
+    private func createPostViewModel(index: Int, post: Post) -> PostCommentView.Model {
         let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: index + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
@@ -88,8 +96,7 @@ final class PostViewPresenter {
                                      dvachLinkModels: postParser.dvachLinkModels,
                                      repliedTo: postParser.repliedToPosts,
                                      isAnswerHidden: false,
-                                     isRepliesHidden: false,
-                                     adView: adView)
+                                     isRepliesHidden: false)
     }
 }
 
@@ -98,8 +105,9 @@ final class PostViewPresenter {
 extension PostViewPresenter: IPostViewPresenter {
     
     func viewDidLoad() {
-        loadPost()
-//        adManager.loadNativeAd()
+        loadPost { [weak self] in
+            self?.adManager.loadNativeAd()
+        }
     }
     
     func didTapFile(index: Int,
@@ -132,16 +140,21 @@ extension PostViewPresenter: IPostViewPresenter {
 extension PostViewPresenter: AdManagerDelegate {
     
     func adManagerDidCreateNativeAdViews(_ views: [AdView]) {
-        DispatchQueue.global().async {
-            self.viewModels = self.posts.enumerated().map { index, item in
-                let adView = views[safeIndex: index]
-                print(adView)
-                return self.createViewModel(index: index, post: item, adView: adView)
+        var ads: [CellType] = views.compactMap {
+            guard let adView = $0 as? ContextAddView else { return nil }
+            return CellType.ad(adView)
+        }
+        var newDataSource = dataSource
+        dataSource.enumerated().forEach { index, item in
+            if index != 0, index % .adPeriod == 0, let ad = ads.first {
+                ads = Array(ads.dropFirst())
+                newDataSource.insert(ad, at: index)
             }
-            
-            DispatchQueue.main.async {
-                self.view?.updateTable(scrollTo: self.scrollTo)
-            }
+        }
+        
+        DispatchQueue.main.async {
+            self.dataSource = newDataSource
+            self.view?.updateTable(scrollTo: self.scrollTo)
         }
     }
 }

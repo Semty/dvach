@@ -50,7 +50,7 @@ final class Locator {
     }
     
     /// менеджер для показа рекламы
-    func createAdManager(viewController: UIViewController?) -> IAdManager {
-        return AdManager(viewController: viewController)
+    func createAdManager(numberOfNativeAds: Int, viewController: UIViewController?) -> IAdManager {
+        return AdManager(numberOfNativeAds: numberOfNativeAds, viewController: viewController)
     }
 }
