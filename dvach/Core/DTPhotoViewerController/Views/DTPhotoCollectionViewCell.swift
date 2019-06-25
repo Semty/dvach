@@ -137,6 +137,7 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
             let y = (scrollView.frame.height - rect.height) / 2
             
             imageView.frame = CGRect(x: x, y: y, width: rect.width, height: rect.height)
+            scrollView.contentSize = imageView.frame.size
         }
     }
 }
