@@ -44,7 +44,7 @@ final class MediaViewerController: DTMediaViewerController {
     
     // MARK: - Initialization
     
-    override init(referencedView: UIView?, image: UIImage?) {
+    override init(referencedView: UIImageView?, image: UIImage?) {
         let presenter = MediaViewerPresenter()
         self.presenter = presenter
         super.init(referencedView: referencedView, image: image)

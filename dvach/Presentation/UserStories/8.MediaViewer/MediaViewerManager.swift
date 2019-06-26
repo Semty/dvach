@@ -54,7 +54,7 @@ final class MediaViewerManager {
 extension MediaViewerManager: DTMediaViewerControllerDataSource {
     
     func photoViewerController(_ photoViewerController: DTMediaViewerController,
-                               referencedViewForPhotoAt index: Int) -> UIView? {
+                               referencedViewForPhotoAt index: Int) -> UIImageView? {
         return imageViews[safeIndex: index]
     }
     

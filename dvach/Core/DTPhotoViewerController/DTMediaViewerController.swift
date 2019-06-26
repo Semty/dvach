@@ -85,7 +85,7 @@ open class DTMediaViewerController: UIViewController {
     
     /// The view where photo viewer originally animates from.
     /// Provide this correctly so that you can have a nice effect.
-    public weak internal(set) var referencedView: UIView? {
+    public weak internal(set) var referencedView: UIImageView? {
         didSet {
             // Unhide old referenced view and hide the new one
             oldValue?.isHidden = false
@@ -127,7 +127,7 @@ open class DTMediaViewerController: UIViewController {
     /// Customizable if you wish to provide your own transitions.
     open lazy var animator: DTMediaViewerBaseAnimator = DTMediaAnimator()
     
-    public init(referencedView: UIView?, image: UIImage?) {
+    public init(referencedView: UIImageView?, image: UIImage?) {
         let flowLayout = DTCollectionViewFlowLayout()
         flowLayout.scrollDirection = scrollDirection
         flowLayout.sectionInset = UIEdgeInsets.zero
@@ -614,6 +614,7 @@ open class DTMediaViewerController: UIViewController {
     
     func dismissalAnimationDidFinish() {
         if automaticallyUpdateReferencedViewVisibility {
+            referencedView?.image = imageView.image
             referencedView?.isHidden = false
         }
     }
