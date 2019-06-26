@@ -74,7 +74,7 @@ extension SinglePostPresenter: ISinglePostPresenter {
     
     func didTapOpenThread() {
         guard let threadInfo = post.threadInfo, let boardId = threadInfo.boardId else { return }
-        let vc = PostAssembly.assemble(board: boardId, thread: threadInfo, scrollTo: post.rowIndex)
+        let vc = PostAssembly.assemble(board: boardId, thread: threadInfo, postNumber: post.num)
         view?.present(vc, animated: true)
     }
     

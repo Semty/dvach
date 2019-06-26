@@ -26,6 +26,15 @@ final class PostViewPresenter {
     enum CellType {
         case post(PostCommentView.Model)
         case ad(ContextAddView)
+        
+        var postNumber: Int? {
+            switch self {
+            case .post(let model):
+                return model.postNumber
+            default:
+                return nil
+            }
+        }
     }
     
     // Dependencies
@@ -43,16 +52,16 @@ final class PostViewPresenter {
 
     private let boardIdentifier: String
     private let thread: ThreadShortInfo
-    private var scrollTo: Int // Post
+    private let postNumber: Int?
     public var posts = [Post]()
     
     // MARK: - Initialization
     
-    init(router: IPostRouter, board: String, thread: ThreadShortInfo, scrollTo: Int) {
+    init(router: IPostRouter, board: String, thread: ThreadShortInfo, postNumber: Int?) {
         self.router = router
         self.boardIdentifier = board
         self.thread = thread
-        self.scrollTo = scrollTo
+        self.postNumber = postNumber
     }
     
     // MARK: - Private
@@ -65,14 +74,20 @@ final class PostViewPresenter {
             guard let self = self else { return }
             switch result {
             case .success(let posts):
-                self.posts = posts
-                self.dataSource = posts.enumerated().map { index, item in
-                    let model = self.createPostViewModel(index: index, post: item)
+                var enrichedPosts = [Post]()
+                let dataSource: [CellType] = posts.enumerated().map { index, item in
+                    var post = item
+                    post.rowIndex = index // Проставляем индекс здесь, чтобы он не сбился из-за рекламы
+                    enrichedPosts.append(post)
+                    let model = self.createPostViewModel(post: post)
                     return .post(model)
                 }
+                self.posts = enrichedPosts
+                self.dataSource = dataSource
+                let scrollIndexPath = self.scrollIndexPath(for: dataSource)
                 
                 DispatchQueue.main.async {
-                    self.view?.updateTable(scrollTo: self.scrollTo)
+                    self.view?.updateTable(scrollTo: scrollIndexPath)
                 }
                 completion()
             case .failure(_):
@@ -83,8 +98,8 @@ final class PostViewPresenter {
         }
     }
     
-    private func createPostViewModel(index: Int, post: Post) -> PostCommentView.Model {
-        let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: index + 1)
+    private func createPostViewModel(post: Post) -> PostCommentView.Model {
+        let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
         
@@ -97,6 +112,19 @@ final class PostViewPresenter {
                                      repliedTo: postParser.repliedToPosts,
                                      isAnswerHidden: false,
                                      isRepliesHidden: false)
+    }
+    
+    private func scrollIndexPath(for dataSource: [CellType]) -> IndexPath? {
+        guard let postNumber = postNumber else { return nil }
+        var row = 0
+        dataSource.enumerated().forEach {
+            if $0.element.postNumber == postNumber {
+                row = $0.offset
+                return
+            }
+        }
+
+        return IndexPath(row: row, section: 0)
     }
 }
 
@@ -131,7 +159,11 @@ extension PostViewPresenter: IPostViewPresenter {
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
         guard let postIndex = posts.firstIndex(where: { $0.num == postNumber }) else { return }
         let post = posts[postIndex]
-        router.postCommentView(view, didTapMoreButton: post, thread: thread, boardId: boardIdentifier, row: postIndex)
+        router.postCommentView(view,
+                               didTapMoreButton: post,
+                               thread: thread,
+                               boardId: boardIdentifier,
+                               row: post.rowIndex)
     }
 }
 
@@ -151,10 +183,11 @@ extension PostViewPresenter: AdManagerDelegate {
                 newDataSource.insert(ad, at: index)
             }
         }
+        let scrollIndexPath = self.scrollIndexPath(for: newDataSource)
         
         DispatchQueue.main.async {
             self.dataSource = newDataSource
-            self.view?.updateTable(scrollTo: self.scrollTo)
+            self.view?.updateTable(scrollTo: scrollIndexPath)
         }
     }
 }

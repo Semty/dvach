@@ -20,12 +20,9 @@ final class PostBottomSheetFactory {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // Пост
-        let row = threadInfo?.rowIndex ?? 0
-        let countedRow = abs((row) / .adPeriod) + row // высчитываем строку с учетом возможной рекламы
         let postItem = DvachItem.post(post,
                                       threadInfo: threadInfo?.thread,
-                                      boardId: threadInfo?.boardId,
-                                      rowIndex: countedRow)
+                                      boardId: threadInfo?.boardId)
         if dvachService.isFavourite(postItem) {
             let removeThreadAction = UIAlertAction(title: "Удалить пост из избранного", style: .destructive) { [weak self] action in
                 self?.dvachService.removeFromFavourites(postItem)
