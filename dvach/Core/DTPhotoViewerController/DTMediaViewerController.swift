@@ -234,6 +234,7 @@ open class DTMediaViewerController: UIViewController {
         
         // Update image view frame everytime view changes frame
         (imageView as? DTImageView)?.imageChangeBlock?(imageView.image)
+        updateImageViewFrameDuringRotation()
     }
     
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -241,6 +242,18 @@ open class DTMediaViewerController: UIViewController {
         
         // Update layout
         (collectionView.collectionViewLayout as? DTCollectionViewFlowLayout)?.currentIndex = currentPhotoIndex
+        
+        let cell = currentCell
+        
+        cell?.scrollView.zoomScale = 1.0
+        imageView.image = cell?.imageView.image
+        _hideImageView(false)
+
+        coordinator.animate(alongsideTransition: { (context) in
+            
+        }) { (context) in
+            self._hideImageView(true)
+        }
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -447,6 +460,17 @@ open class DTMediaViewerController: UIViewController {
         zoomRect.origin.y = center.y - (zoomRect.size.height / 2.0)
         
         return zoomRect
+    }
+    
+    fileprivate func updateImageViewFrameDuringRotation() {
+        if let image = imageView.image {
+            let rect = AVMakeRect(aspectRatio: image.size, insideRect: view.bounds)
+            //Then figure out offset to center vertically or horizontally
+            let x = (view.frame.width - rect.width) / 2
+            let y = (view.frame.height - rect.height) / 2
+            
+            imageView.frame = CGRect(x: x, y: y, width: rect.width, height: rect.height)
+        }
     }
     
     @objc func _handlePanGesture(_ gesture: UIPanGestureRecognizer) {
@@ -781,8 +805,7 @@ extension DTMediaViewerController {
             
             if scrollDirection == .vertical {
                 position = .bottom
-            }
-            else {
+            } else {
                 position = .right
             }
             
