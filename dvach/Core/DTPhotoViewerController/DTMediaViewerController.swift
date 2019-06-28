@@ -16,6 +16,19 @@ private extension String {
 }
 
 open class DTMediaViewerController: UIViewController {
+    
+    public struct MediaFile {
+        let type: MediaType
+        
+        let image: UIImage?
+        let urlPath: String?
+        
+        enum MediaType {
+            case image
+            case video
+        }
+    }
+    
     /// Scroll direction
     /// Default value is UICollectionViewScrollDirectionVertical
     public var scrollDirection: UICollectionView.ScrollDirection = UICollectionView.ScrollDirection.horizontal {
@@ -27,10 +40,10 @@ open class DTMediaViewerController: UIViewController {
     
     /// Datasource
     /// Providing number of image items to controller and how to confiure image for each image view in it.
-    public weak var dataSource: DTMediaViewerControllerDataSource?
+    public weak var mediaViewControllerDataSource: DTMediaViewerControllerDataSource?
     
     /// Delegate
-    public weak var delegate: DTMediaViewerControllerDelegate?
+    public weak var mediaViewControllerDelegate: DTMediaViewerControllerDelegate?
     
     /// Indicates if status bar should be hidden after photo viewer controller is presented.
     /// Default value is true
@@ -78,6 +91,8 @@ open class DTMediaViewerController: UIViewController {
     /// This variable sets original frame of image view to animate from
     open fileprivate(set) var referenceSize: CGSize = CGSize.zero
     
+    fileprivate var referencedViews: [UIImageView]?
+    fileprivate var mediaFiles: [MediaFile]?
     
     /// This is the image view that is mainly used for the presentation and dismissal effect.
     /// How it animates from the original view to fullscreen and vice versa.
@@ -127,7 +142,11 @@ open class DTMediaViewerController: UIViewController {
     /// Customizable if you wish to provide your own transitions.
     open lazy var animator: DTMediaViewerBaseAnimator = DTMediaAnimator()
     
-    public init(referencedView: UIImageView?, image: UIImage?) {
+    // MARK: - Initialization
+    
+    public init(referencedViews: [UIImageView]?,
+                files: [MediaFile]?,
+                index: Int?) {
         let flowLayout = DTCollectionViewFlowLayout()
         flowLayout.scrollDirection = scrollDirection
         flowLayout.sectionInset = UIEdgeInsets.zero
@@ -148,11 +167,15 @@ open class DTMediaViewerController: UIViewController {
         let newImageView = DTImageView(frame: CGRect.zero)
         imageView = newImageView
         
+        mediaFiles = files
+        
         super.init(nibName: nil, bundle: nil)
         
         transitioningDelegate = self
         
-        imageView.image = image
+        let referencedView = referencedViews?[safeIndex: index ?? 0]
+        
+        imageView.image = referencedView?.image
         self.referencedView = referencedView
         collectionView.dataSource = self
         
@@ -165,6 +188,8 @@ open class DTMediaViewerController: UIViewController {
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Lifecycle
     
     override open func viewDidLoad() {
         if let view = referencedView {
@@ -188,7 +213,7 @@ open class DTMediaViewerController: UIViewController {
                 strongSelf.imageView.center = strongSelf.view.center
                 
                 // No datasource, only 1 item in collection view --> reloadData
-                guard let _ = strongSelf.dataSource else {
+                guard let _ = strongSelf.mediaViewControllerDataSource else {
                     strongSelf.collectionView.reloadData()
                     return
                 }
@@ -287,6 +312,8 @@ open class DTMediaViewerController: UIViewController {
         }
     }
     
+    // MARK: - Overridden Variables
+    
     open override var prefersStatusBarHidden : Bool {
         return true
     }
@@ -306,7 +333,8 @@ open class DTMediaViewerController: UIViewController {
         return statusBarStyleOnDismissing
     }
     
-    //MARK: Private methods
+    //MARK: - Private methods
+    
     fileprivate func startAnimation() {
         //Hide reference image view
         if automaticallyUpdateReferencedViewVisibility {
@@ -341,7 +369,7 @@ open class DTMediaViewerController: UIViewController {
         didReceiveTapGesture()
         
         // Delegate method
-        delegate?.photoViewerControllerDidReceiveTapGesture?(self)
+        mediaViewControllerDelegate?.photoViewerControllerDidReceiveTapGesture?(self)
         
         let indexPath: IndexPath
         
@@ -375,7 +403,7 @@ open class DTMediaViewerController: UIViewController {
         didReceiveDoubleTapGesture()
         
         // Delegate method
-        delegate?.photoViewerControllerDidReceiveDoubleTapGesture?(self)
+        mediaViewControllerDelegate?.photoViewerControllerDidReceiveDoubleTapGesture?(self)
         
         let indexPath: IndexPath
         
@@ -480,7 +508,7 @@ open class DTMediaViewerController: UIViewController {
             case .began:
                 
                 // Delegate method
-                delegate?.photoViewerController?(self, willBeginPanGestureRecognizer: panGestureRecognizer)
+                mediaViewControllerDelegate?.photoViewerController?(self, willBeginPanGestureRecognizer: panGestureRecognizer)
                 
                 // Update image view when starting to drag
                 updateImageView(scrollView: scrollView)
@@ -543,7 +571,7 @@ open class DTMediaViewerController: UIViewController {
                 didEnd(panGestureRecognizer: panGestureRecognizer)
                 
                 // Delegate method
-                delegate?.photoViewerController?(self, didEndPanGestureRecognizer: panGestureRecognizer)
+                mediaViewControllerDelegate?.photoViewerController?(self, didEndPanGestureRecognizer: panGestureRecognizer)
             }
         }
     }
@@ -594,7 +622,7 @@ open class DTMediaViewerController: UIViewController {
         didEndPresentingAnimation()
         
         // Delegate method
-        delegate?.photoViewerControllerDidEndPresentingAnimation?(self)
+        mediaViewControllerDelegate?.photoViewerControllerDidEndPresentingAnimation?(self)
         
         // Hide animating image view and show collection view
         _hideImageView(true)
@@ -694,7 +722,7 @@ extension DTMediaViewerController: UIViewControllerTransitioningDelegate {
 
 extension DTMediaViewerController: UICollectionViewDataSource {
     
-    // MARK: - Public methods
+    // MARK: - Public Helpers
     
     public var currentPhotoIndex: Int {
         if scrollDirection == .horizontal {
@@ -722,31 +750,30 @@ extension DTMediaViewerController: UICollectionViewDataSource {
         return 1.0
     }
     
+    // MARK: - Genuine Data Source Methods
+    
     public func collectionView(_ collectionView: UICollectionView,
                                numberOfItemsInSection section: Int) -> Int {
-        if let dataSource = dataSource {
-            return dataSource.numberOfItems(in: self)
-        }
-        return 1
+        return mediaFiles?.count ?? 0
     }
     
     public func collectionView(_ collectionView: UICollectionView,
                                cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .photoCollectionViewCellIdentifier, for: indexPath) as! DTPhotoCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .photoCollectionViewCellIdentifier,
+                                                      for: indexPath) as! DTPhotoCollectionViewCell
         cell.delegate = self
         
-        if let dataSource = dataSource {
-            if dataSource.numberOfItems(in: self) > 0 {
-                dataSource.photoViewerController(self, configurePhotoAt: indexPath.row, withImageView: cell.imageView)
-                dataSource.photoViewerController?(self, configureCell: cell, forPhotoAt: indexPath.row)
-                
-                return cell
-            }
+        if let dataSource = mediaViewControllerDataSource,
+            dataSource.numberOfItems(in: self) > 0 {
+            dataSource.photoViewerController?(self,
+                                              configureCell: cell,
+                                              forPhotoAt: indexPath.row)
+            return cell
+            
+        } else {
+            cell.imageView.image = imageView.image
+            return cell
         }
-        
-        cell.imageView.image = imageView.image
-        
-        return cell
     }
 }
 
@@ -818,7 +845,7 @@ extension DTMediaViewerController {
                 didScrollToPhoto(at: index)
                 
                 // Call delegate
-                delegate?.photoViewerController?(self, didScrollToPhotoAt: index)
+                mediaViewControllerDelegate?.photoViewerController?(self, didScrollToPhotoAt: index)
             }
         }
     }
@@ -841,7 +868,7 @@ extension DTMediaViewerController: DTPhotoCollectionViewCellDelegate {
             didZoomOnPhoto(at: indexPath.row, atScale: scale)
             
             // Call delegate
-            delegate?.photoViewerController?(self, didZoomOnPhotoAtIndex: indexPath.row, atScale: scale)
+            mediaViewControllerDelegate?.photoViewerController?(self, didZoomOnPhotoAtIndex: indexPath.row, atScale: scale)
         }
     }
     
@@ -851,7 +878,7 @@ extension DTMediaViewerController: DTPhotoCollectionViewCellDelegate {
             didEndZoomingOnPhoto(at: indexPath.row, atScale: scale)
             
             // Call delegate
-            delegate?.photoViewerController?(self, didEndZoomingOnPhotoAtIndex: indexPath.row, atScale: scale)
+            mediaViewControllerDelegate?.photoViewerController?(self, didEndZoomingOnPhotoAtIndex: indexPath.row, atScale: scale)
         }
     }
     
@@ -861,7 +888,7 @@ extension DTMediaViewerController: DTPhotoCollectionViewCellDelegate {
             willZoomOnPhoto(at: indexPath.row)
             
             // Call delegate
-            delegate?.photoViewerController?(self, willZoomOnPhotoAtIndex: indexPath.row)
+            mediaViewControllerDelegate?.photoViewerController?(self, willZoomOnPhotoAtIndex: indexPath.row)
         }
     }
 }

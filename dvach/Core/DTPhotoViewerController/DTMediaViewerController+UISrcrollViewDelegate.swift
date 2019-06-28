@@ -13,7 +13,7 @@ import UIKit
 extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
     
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        delegate?.photoViewerController?(self, scrollViewDidScroll: scrollView)
+        mediaViewControllerDelegate?.photoViewerController?(self, scrollViewDidScroll: scrollView)
     }
     
     open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
@@ -23,7 +23,7 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
         didScrollToPhoto(at: index)
         
         // Call delegate
-        delegate?.photoViewerController?(self, didScrollToPhotoAt: index)
+        mediaViewControllerDelegate?.photoViewerController?(self, didScrollToPhotoAt: index)
     }
     
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -52,7 +52,7 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
             didScrollToPhoto(at: index)
             
             // Call delegate
-            delegate?.photoViewerController?(self, didScrollToPhotoAt: index)
+            mediaViewControllerDelegate?.photoViewerController?(self, didScrollToPhotoAt: index)
         }
     }
     
@@ -61,7 +61,7 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
         didScrollToPhoto(at: index)
         
         // Call delegate
-        delegate?.photoViewerController?(self, didScrollToPhotoAt: index)
+        mediaViewControllerDelegate?.photoViewerController?(self, didScrollToPhotoAt: index)
     }
     
     // MARK: - Helpers
@@ -105,7 +105,7 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
         let index = currentPhotoIndex
         
         // Update image view before pan gesture happens
-        if let dataSource = dataSource, dataSource.numberOfItems(in: self) > 0 {
+        if let dataSource = mediaViewControllerDataSource, dataSource.numberOfItems(in: self) > 0 {
             dataSource.photoViewerController(self,
                                              configurePhotoAt: index,
                                              withImageView: imageView)
@@ -113,14 +113,14 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
         }
         
         // Change referenced image view
-        if let view = dataSource?.photoViewerController?(self,
+        if let view = mediaViewControllerDataSource?.photoViewerController?(self,
                                                          referencedViewForPhotoAt: index) {
             referencedView = view
         }
     }
     
     func updateImageViewDismissalAnimationWillStart() {
-        if let dataSource = dataSource, dataSource.numberOfItems(in: self) > 0 {
+        if let dataSource = mediaViewControllerDataSource, dataSource.numberOfItems(in: self) > 0 {
             let index = currentPhotoIndex
             dataSource.photoViewerController(self,
                                              configurePhotoAt: index,

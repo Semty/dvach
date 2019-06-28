@@ -167,6 +167,7 @@
 		D504B6EB22B90F36007C93B1 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D504B6EA22B90F36007C93B1 /* BannerView.xib */; };
 		D504B6ED22B946F9007C93B1 /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */; };
 		D504B6EF22B97CEB007C93B1 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6EE22B97CEB007C93B1 /* BannerViewController.swift */; };
+		D51ACED522C68EC3002B1C26 /* MediaViewerViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51ACED422C68EC3002B1C26 /* MediaViewerViewModelFactory.swift */; };
 		D528DE4022BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3622BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift */; };
 		D528DE4122BB723B008A27D9 /* DTScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3722BB723B008A27D9 /* DTScrollView.swift */; };
 		D528DE4222BB723B008A27D9 /* DTMediaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3822BB723B008A27D9 /* DTMediaAnimator.swift */; };
@@ -388,6 +389,7 @@
 		D504B6EA22B90F36007C93B1 /* BannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
 		D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIDevice.swift"; sourceTree = "<group>"; };
 		D504B6EE22B97CEB007C93B1 /* BannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
+		D51ACED422C68EC3002B1C26 /* MediaViewerViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewerViewModelFactory.swift; sourceTree = "<group>"; };
 		D528DE3622BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTPhotoViewerControllerDelegate.swift; sourceTree = "<group>"; };
 		D528DE3722BB723B008A27D9 /* DTScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTScrollView.swift; sourceTree = "<group>"; };
 		D528DE3822BB723B008A27D9 /* DTMediaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTMediaAnimator.swift; sourceTree = "<group>"; };
@@ -1246,6 +1248,7 @@
 				D528DE4E22BBC05F008A27D9 /* MediaViewerController.swift */,
 				D528DE5422BBCD82008A27D9 /* MediaViewerPresenter.swift */,
 				41908A0422BD72B80058907D /* MediaViewerManager.swift */,
+				D51ACED422C68EC3002B1C26 /* MediaViewerViewModelFactory.swift */,
 			);
 			path = 8.MediaViewer;
 			sourceTree = "<group>";
@@ -1715,6 +1718,7 @@
 				41BEE75D229F04730028EBFB /* ReusableView.swift in Sources */,
 				41908A1622BE74410058907D /* SubscribesPresenter.swift in Sources */,
 				41908A0C22BE72DA0058907D /* GeneralSettingsPresenter.swift in Sources */,
+				D51ACED522C68EC3002B1C26 /* MediaViewerViewModelFactory.swift in Sources */,
 				41BEE720229F043C0028EBFB /* Extension+UIFont.swift in Sources */,
 				4193B1BF22AA9BE300EE25FD /* PostRouter.swift in Sources */,
 				D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */,

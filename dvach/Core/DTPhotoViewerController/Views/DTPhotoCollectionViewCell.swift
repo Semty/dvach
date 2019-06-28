@@ -140,6 +140,20 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
             scrollView.contentSize = imageView.frame.size
         }
     }
+    
+    // MARK: - Configuration
+    
+    public func configure(_ image: UIImage?, urlPath: String?) {
+        if let urlPath = urlPath {
+            ImagePipeline.Configuration.isAnimatedImageDataEnabled = true
+            imageView.loadImage(url: urlPath,
+                                defaultImage: image,
+                                placeholder: image,
+                                transition: false)
+        } else {
+            imageView.image = image
+        }
+    }
 }
 
 // MARK: - UIScrollViewDelegate

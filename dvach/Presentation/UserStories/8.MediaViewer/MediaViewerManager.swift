@@ -21,19 +21,26 @@ final class MediaViewerManager {
         let imageIndex: Int
     }
     
+    // Dependencies
+    private let viewModelFactory = MediaViewerViewModelFactory()
+    
     // Properties
     private var imageViews = [UIImageView]()
     private var imageIndex = 0
     private var files = [File]()
+    private var mediaFiles = [DTMediaViewerController.MediaFile]()
     
     // UI
     private var mediaViewer: MediaViewerController? {
-        guard let imageView = imageViews[safeIndex: imageIndex] else { return nil }
-        let mediaViewer = MediaViewerController(referencedView: imageView,
-                                                image: imageView.image)
+        let mediaFiles = viewModelFactory.createMediaFileViewModels(files,
+                                                                    imageViews: imageViews)
+        let mediaViewer = MediaViewerController(referencedViews: imageViews,
+                                                files: mediaFiles,
+                                                index: imageIndex)
         
-        mediaViewer.dataSource = self
-        mediaViewer.delegate = self
+        mediaViewer.mediaViewControllerDataSource = self
+        mediaViewer.mediaViewControllerDelegate = self
+        self.mediaFiles = mediaFiles
         
         return mediaViewer
     }
@@ -59,25 +66,30 @@ extension MediaViewerManager: DTMediaViewerControllerDataSource {
     }
     
     func numberOfItems(in photoViewerController: DTMediaViewerController) -> Int {
-        return imageViews.count
+        return mediaFiles.count
     }
     
     func photoViewerController(_ photoViewerController: DTMediaViewerController,
                                configurePhotoAt index: Int,
                                withImageView imageView: FLAnimatedImageView) {
-        let file = files[index]
-        let thumbnailImage = imageViews[safeIndex: index]?.image
-        if file.type == .gif
-            || file.type == .jpg
-            || file.type == .png
-            || file.type == .sticker {
+        let file = mediaFiles[index]
+        if file.type == .image {
             ImagePipeline.Configuration.isAnimatedImageDataEnabled = true
-            imageView.loadImage(url: file.path,
-                                defaultImage: thumbnailImage,
-                                placeholder: thumbnailImage,
+            imageView.loadImage(url: file.urlPath ?? "",
+                                defaultImage: file.image,
+                                placeholder: file.image,
                                 transition: false)
         } else {
-            imageView.image = thumbnailImage
+            imageView.image = file.image
+        }
+    }
+    
+    func photoViewerController(_ photoViewerController: DTMediaViewerController, configureCell cell: DTPhotoCollectionViewCell, forPhotoAt index: Int) {
+        let file = mediaFiles[index]
+        if file.type == .image {
+            cell.configure(file.image, urlPath: file.urlPath)
+        } else {
+            cell.configure(file.image, urlPath: nil)
         }
     }
 }
