@@ -54,6 +54,8 @@ extension UIImage {
             return CGFloat(degree / 180.0 * .pi)
         }
         
+        var rect = rect
+        
         var rectTransform: CGAffineTransform
         switch imageOrientation {
         case .left:
@@ -61,7 +63,8 @@ extension UIImage {
         case .right:
             rectTransform = CGAffineTransform(rotationAngle: rad(-90)).translatedBy(x: -self.size.width, y: 0)
         case .down:
-            rectTransform = CGAffineTransform(rotationAngle: rad(-180)).translatedBy(x: -self.size.width, y: -self.size.height)
+            rectTransform = CGAffineTransform.identity
+            rect.origin.x = self.size.width - (rect.size.width + rect.origin.x)
         default:
             rectTransform = .identity
         }
