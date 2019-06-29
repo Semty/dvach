@@ -12,7 +12,8 @@ import FLAnimatedImage
 import Photos
 
 private extension String {
-    static let photoCollectionViewCellIdentifier = "cell"
+    static let photoCollectionViewCellIdentifier = "photoCollectionViewCell"
+    static let videoCollectionViewCellIdentifier = "videoCollectionViewCell"
 }
 
 open class DTMediaViewerController: UIViewController {
@@ -117,10 +118,16 @@ open class DTMediaViewerController: UIViewController {
         return collectionView
     }
     
-    /// Currently Visible Cell
-    public var currentCell: DTPhotoCollectionViewCell? {
+    /// Currently Visible Photo Cell (if any)
+    public var currentPhotoCell: DTPhotoCollectionViewCell? {
         return collectionView.cellForItem(at: IndexPath(row: currentPhotoIndex,
                                                         section: 0)) as? DTPhotoCollectionViewCell
+    }
+    
+    /// Currently Visible Video Container (if any)
+    public var currentVideoContainer: VideoContainer? {
+        return collectionView.cellForItem(at: IndexPath(row: currentPhotoIndex,
+                                                        section: 0)) as? VideoContainer
     }
     
     /// View used for fading effect during presentation and dismissal animation or when controller is being dragged.
@@ -157,6 +164,7 @@ open class DTMediaViewerController: UIViewController {
         collectionView = UICollectionView(frame: CGRect.zero,
                                           collectionViewLayout: flowLayout)
         collectionView.register(DTPhotoCollectionViewCell.self, forCellWithReuseIdentifier: .photoCollectionViewCellIdentifier)
+        collectionView.register(DTVideoCollectionViewCell.self, forCellWithReuseIdentifier: .videoCollectionViewCellIdentifier)
         
         collectionView.backgroundColor = UIColor.clear
         collectionView.isPagingEnabled = true
@@ -178,6 +186,7 @@ open class DTMediaViewerController: UIViewController {
         imageView.image = referencedView?.image
         self.referencedView = referencedView
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         modalPresentationCapturesStatusBarAppearance = true
@@ -268,7 +277,7 @@ open class DTMediaViewerController: UIViewController {
         // Update layout
         (collectionView.collectionViewLayout as? DTCollectionViewFlowLayout)?.currentIndex = currentPhotoIndex
         
-        let cell = currentCell
+        let cell = currentPhotoCell
         
         cell?.scrollView.zoomScale = 1.0
         imageView.image = cell?.imageView.image
@@ -300,6 +309,10 @@ open class DTMediaViewerController: UIViewController {
     open override func viewWillDisappear(_ animated: Bool) {
         // Update image view before animation
         updateImageView(scrollView: scrollView)
+        
+        if let videoContainer = currentVideoContainer {
+            videoContainer.pause()
+        }
         
         super.viewWillDisappear(animated)
         
@@ -650,8 +663,8 @@ open class DTMediaViewerController: UIViewController {
     // MARK: - Get Cropped Snapshot from Current Scale State
     
     public func getScaledSnapshot() -> UIImage? {
-        guard let scrollView = currentCell?.scrollView else { return imageView.image }
-        guard let image = currentCell?.imageView.image else { return imageView.image }
+        guard let scrollView = currentPhotoCell?.scrollView else { return imageView.image }
+        guard let image = currentPhotoCell?.imageView.image else { return imageView.image }
         
         var scrollViewHeight = scrollView.contentSize.height
         
@@ -759,21 +772,46 @@ extension DTMediaViewerController: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView,
                                cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .photoCollectionViewCellIdentifier,
-                                                      for: indexPath) as! DTPhotoCollectionViewCell
-        cell.delegate = self
+        guard let file = mediaFiles?[safeIndex: indexPath.row] else { return UICollectionViewCell() }
         
-        if let dataSource = mediaViewControllerDataSource,
-            dataSource.numberOfItems(in: self) > 0 {
-            dataSource.photoViewerController?(self,
-                                              configureCell: cell,
-                                              forPhotoAt: indexPath.row)
-            return cell
+        switch file.type {
+        case .image:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .photoCollectionViewCellIdentifier,
+                                                          for: indexPath) as! DTPhotoCollectionViewCell
+            cell.delegate = self
             
-        } else {
-            cell.imageView.image = imageView.image
-            return cell
+            if let dataSource = mediaViewControllerDataSource,
+                dataSource.numberOfItems(in: self) > 0 {
+                dataSource.photoViewerController?(self,
+                                                  configureCell: cell,
+                                                  forPhotoAt: indexPath.row)
+                return cell
+                
+            } else {
+                cell.imageView.image = imageView.image
+                return cell
+            }
+        case .video:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .videoCollectionViewCellIdentifier,
+                                                          for: indexPath) as! DTVideoCollectionViewCell
+            if let dataSource = mediaViewControllerDataSource,
+                dataSource.numberOfItems(in: self) > 0 {
+                dataSource.mediaViewerController?(self,
+                                                  configureCell: cell,
+                                                  forVideoAt: indexPath.row)
+                return cell
+                
+            } else {
+                return cell
+            }
         }
+    }
+}
+
+extension DTMediaViewerController: UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? VideoContainer else { return }
+        cell.pause()
     }
 }
 

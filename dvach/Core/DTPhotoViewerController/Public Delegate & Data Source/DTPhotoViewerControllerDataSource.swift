@@ -22,6 +22,8 @@ import FLAnimatedImage
     /// Remember this method cannot be a replacement of photoViewerController:configurePhotoAt:withImageView
     @objc optional func photoViewerController(_ photoViewerController: DTMediaViewerController, configureCell cell: DTPhotoCollectionViewCell, forPhotoAt index: Int)
     
+    @objc optional func mediaViewerController(_ mediaViewerController: DTMediaViewerController, configureCell cell: DTVideoCollectionViewCell, forVideoAt index: Int)
+    
     /// This method provide the specific referenced view for each photo item in viewer that will be used for smoother dismissal transition.
     @objc optional func photoViewerController(_ photoViewerController: DTMediaViewerController, referencedViewForPhotoAt index: Int) -> UIImageView?
 }

@@ -86,11 +86,17 @@ extension MediaViewerManager: DTMediaViewerControllerDataSource {
     
     func photoViewerController(_ photoViewerController: DTMediaViewerController, configureCell cell: DTPhotoCollectionViewCell, forPhotoAt index: Int) {
         let file = mediaFiles[index]
-        if file.type == .image {
-            cell.configure(file.image, urlPath: file.urlPath)
-        } else {
-            cell.configure(file.image, urlPath: nil)
+        cell.configure(file.image, urlPath: file.urlPath)
+    }
+    
+    func mediaViewerController(_ mediaViewerController: DTMediaViewerController, configureCell cell: DTVideoCollectionViewCell, forVideoAt index: Int) {
+        let file = mediaFiles[index]
+        if files[index].type == .webm {
+            print("WEBM!!!!!!!!")
+        } else if files[index].type == .mp4 {
+            print("MP4!!!!!!!!")
         }
+        cell.configure(urlPath: file.urlPath)
     }
 }
 

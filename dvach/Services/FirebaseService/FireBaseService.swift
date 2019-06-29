@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseDatabase
 import SwiftyJSON
 
 protocol IFirebaseService {
