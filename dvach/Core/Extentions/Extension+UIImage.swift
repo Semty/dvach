@@ -65,6 +65,7 @@ extension UIImage {
         case .down:
             rectTransform = CGAffineTransform.identity
             rect.origin.x = self.size.width - (rect.size.width + rect.origin.x)
+            rect.origin.y = self.size.height - (rect.size.height + rect.origin.y)
         default:
             rectTransform = .identity
         }
