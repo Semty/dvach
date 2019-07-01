@@ -10,6 +10,7 @@ import Foundation
 
 protocol PostView: AnyObject {
     func updateTable(scrollTo indexPath: IndexPath?)
+    func showPlaceholder(text: String)
 }
 
 final class PostViewController: UIViewController {
@@ -37,6 +38,7 @@ final class PostViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var placeholder = PlaceholderView()
     private lazy var skeleton = SkeletonPostView.fromNib()
     
     override var prefersStatusBarHidden: Bool {
@@ -73,12 +75,20 @@ final class PostViewController: UIViewController {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
         
-        view.addSubview(closeButton)
-        closeButton.snp.makeConstraints { $0.top.trailing.equalToSuperview().inset(CGFloat.inset16) }
-        
         view.addSubview(skeleton)
         skeleton.snp.makeConstraints { $0.edges.equalToSuperview() }
         
+        view.addSubview(placeholder)
+        placeholder.snp.makeConstraints { $0.edges.equalToSuperview() }
+        placeholder.isHidden = true
+        
+        view.addSubview(closeButton)
+        closeButton.snp.makeConstraints { $0.top.trailing.equalToSuperview().inset(CGFloat.inset16) }
+    }
+    
+    private func hideSkeleton() {
+        skeleton.update(state: .nonactive)
+        view.skeletonAnimation(skeletonView: skeleton, mainView: tableView)
     }
 }
 
@@ -93,8 +103,13 @@ extension PostViewController: PostView {
                                   at: .middle,
                                   animated: false)
         }
-        skeleton.update(state: .nonactive)
-        view.skeletonAnimation(skeletonView: skeleton, mainView: tableView)
+        hideSkeleton()
+    }
+    
+    func showPlaceholder(text: String) {
+        placeholder.configure(with: text)
+        placeholder.isHidden = false
+        hideSkeleton()
     }
 }
 
@@ -117,7 +132,6 @@ extension PostViewController: UITableViewDataSource {
             if indexPath.row == presenter.dataSource.count - 1 {
                 cell.containedView.removeBottomSeparator()
             }
-            
             return cell
         case .ad(let adView):
             let cell: ContextAdCell = tableView.dequeueReusableCell(forIndexPath: indexPath)

@@ -34,6 +34,7 @@ final class CategoriesSkeletonView: UIView {
         switch state {
         case .active:
             elements.forEach { $0.addPulseAnimation() }
+            alpha = 1
         case .nonactive:
             elements.forEach { $0.removePulseAnimation() }
         }

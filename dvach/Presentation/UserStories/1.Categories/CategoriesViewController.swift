@@ -8,13 +8,16 @@
 
 import Foundation
 
-protocol CategoriesView: AnyObject {
+protocol CategoriesView {
     
     // Обновление вью-моделей
     func update(viewModels: [CategoriesPresenter.BlockModel])
     
     // Метод необходимый для поиска
     func didLoadBoards(boards: [Board])
+    
+    // Показывает плейсхолдер при незагрузке бордов
+    func showPlaceholder(text: String)
 }
 
 final class CategoriesViewController: UIViewController {
@@ -34,6 +37,8 @@ final class CategoriesViewController: UIViewController {
     }()
     private lazy var searchController = UISearchController(searchResultsController: searchBoardsController)
     private lazy var skeleton = CategoriesSkeletonView.fromNib()
+    private lazy var placeholder = PlaceholderView()
+    private lazy var updateButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateBoards))
     
     // MARK: - Initialization
     
@@ -80,6 +85,11 @@ final class CategoriesViewController: UIViewController {
         view.addSubview(skeleton)
         skeleton.snp.makeConstraints { $0.edges.equalToSuperview() }
         skeleton.update(state: .active)
+        
+        // placeholder
+        view.addSubview(placeholder)
+        placeholder.snp.makeConstraints { $0.edges.equalToSuperview() }
+        placeholder.isHidden = true
     }
     
     private func createBlock(model: CategoriesPresenter.BlockModel) -> BlockWithTitle {
@@ -97,6 +107,29 @@ final class CategoriesViewController: UIViewController {
         
         return block
     }
+    
+    private func hideSkeleton() {
+        skeleton.update(state: .nonactive)
+        view.skeletonAnimation(skeletonView: skeleton, mainView: stackView)
+    }
+    
+    private func hideUpdateButton(_ isHidden: Bool) {
+        if isHidden {
+            navigationItem.rightBarButtonItem = nil
+        } else {
+            navigationItem.rightBarButtonItem = updateButton
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @objc func updateBoards() {
+        placeholder.isHidden = true
+        skeleton.isHidden = false
+        skeleton.update(state: .active)
+        hideUpdateButton(true)
+        presenter.didTapUpdate()
+    }
 }
 
 // MARK: - CategoriesView
@@ -111,10 +144,8 @@ extension CategoriesViewController: CategoriesView {
             stackView.addView(block)
         }
         
-        if !skeleton.isHidden {
-            skeleton.update(state: .nonactive)
-            view.skeletonAnimation(skeletonView: skeleton, mainView: stackView)
-        }
+        if !skeleton.isHidden { hideSkeleton() }
+        hideUpdateButton(true)
     }
     
     func didLoadBoards(boards: [Board]) {
@@ -122,6 +153,13 @@ extension CategoriesViewController: CategoriesView {
         boardsListViewController.delegate = self
         searchBoardsController = boardsListViewController
         setupSearch()
+    }
+    
+    func showPlaceholder(text: String) {
+        placeholder.configure(with: text + "\nПроверьте наличие интернета")
+        placeholder.isHidden = false
+        hideSkeleton()
+        hideUpdateButton(false)
     }
 }
 
