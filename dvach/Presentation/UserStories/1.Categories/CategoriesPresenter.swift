@@ -13,6 +13,7 @@ protocol ICategoriesPresenter {
     func didSelectCell(indexPath: IndexPath, category: Category)
     func didTapAllBoards(category: Category)
     func didTap(board: Board)
+    func didTapUpdate()
 }
 
 final class CategoriesPresenter {
@@ -46,8 +47,9 @@ final class CategoriesPresenter {
                     self?.view?.update(viewModels: models)
                 }
             case .failure(let error):
-                print(error)
-                // TODO: показать ошибку
+                DispatchQueue.main.async {
+                    self?.view?.showPlaceholder(text: error.localizedDescription)
+                }
             }
         }
     }
@@ -125,5 +127,10 @@ extension CategoriesPresenter: ICategoriesPresenter {
         let viewController = BoardWithThreadsViewController(boardID: board.shortInfo.identifier)
         viewController.title = board.shortInfo.name
         view?.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func didTapUpdate() {
+        loadCategories()
+//        Analytics.logEvent("UpdateBoardsTapped", parameters: [:])
     }
 }
