@@ -210,7 +210,7 @@ DEPENDENCIES:
   - Nantes
   - Nuke (~> 7.6)
   - Nuke-FLAnimatedImage-Plugin
-  - OGVKit/WebM (from `https://github.com/Semty/OGVKit`, branch `lanscape-orientation-video-fix`)
+  - OGVKit/WebM (from `https://github.com/Semty/WebM`)
   - PureLayout
   - SnapKit (= 4.2.0)
   - SwiftEntryKit (from `https://github.com/Semty/SwiftEntryKit.git`, branch `support-of-setting-home-indicator-behaviour`)
@@ -250,8 +250,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/Flipboard/FLAnimatedImage.git
     :tag: 1.0.14
   OGVKit:
-    :branch: lanscape-orientation-video-fix
-    :git: https://github.com/Semty/OGVKit
+    :git: https://github.com/Semty/WebM
   SwiftEntryKit:
     :branch: support-of-setting-home-indicator-behaviour
     :git: https://github.com/Semty/SwiftEntryKit.git
@@ -261,8 +260,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Flipboard/FLAnimatedImage.git
     :tag: 1.0.14
   OGVKit:
-    :commit: c0d8e047f171052d788ef06a9e8afbc21fc32d78
-    :git: https://github.com/Semty/OGVKit
+    :commit: 1752caa1a04a368efeb4f06e0e90e847c767d1a3
+    :git: https://github.com/Semty/WebM
   SwiftEntryKit:
     :commit: 2df7ece5966b24ca24d46e9714edf7214bb02f4f
     :git: https://github.com/Semty/SwiftEntryKit.git
@@ -297,6 +296,6 @@ SPEC CHECKSUMS:
   SwiftEntryKit: 2e20ae0608f50ad8c9cb79341e422c1c374b182f
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: a82b20446ef85e4c09de0ae1e0e531f054b941c5
+PODFILE CHECKSUM: d4339f7474aa2f0f68ee92bdbdbd4a08675f8226
 
 COCOAPODS: 1.7.3
