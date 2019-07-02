@@ -66,7 +66,7 @@ final class PostViewPresenter {
     
     // MARK: - Private
     
-    private func loadPost(completion: @escaping () -> Void) {
+    private func loadPost(completion: @escaping (Error?) -> Void) {
         dvachService.loadThreadWithPosts(board: boardIdentifier,
                                          threadNum: thread.number,
                                          postNum: nil,
@@ -89,11 +89,9 @@ final class PostViewPresenter {
                 DispatchQueue.main.async {
                     self.view?.updateTable(scrollTo: scrollIndexPath)
                 }
-                completion()
-            case .failure(_):
-                completion()
-                break
-                // TODO: - показать ошибку
+                completion(nil)
+            case .failure(let error):
+                completion(error)
             }
         }
     }
@@ -133,8 +131,14 @@ final class PostViewPresenter {
 extension PostViewPresenter: IPostViewPresenter {
     
     func viewDidLoad() {
-        loadPost { [weak self] in
-            self?.adManager.loadNativeAd()
+        loadPost { [weak self] error in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self?.view?.showPlaceholder(text: error.localizedDescription)
+                }
+            } else {
+                self?.adManager.loadNativeAd()
+            }
         }
     }
     

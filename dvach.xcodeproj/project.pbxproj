@@ -163,6 +163,8 @@
 		41D38A7822B6B73B000D1391 /* SinglePostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A7722B6B73B000D1391 /* SinglePostPresenter.swift */; };
 		41D38A7C22B81C7F000D1391 /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D38A7B22B81C7F000D1391 /* BottomButton.swift */; };
 		41D38A7E22B83226000D1391 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41D38A7D22B83226000D1391 /* Assets.xcassets */; };
+		65AED6E222C814BC0054EE59 /* AlertDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AED6E122C814BC0054EE59 /* AlertDisplayable.swift */; };
+		65AED6E522C819620054EE59 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AED6E422C819620054EE59 /* PlaceholderView.swift */; };
 		D504B6E922B90F2A007C93B1 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6E822B90F2A007C93B1 /* BannerView.swift */; };
 		D504B6EB22B90F36007C93B1 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D504B6EA22B90F36007C93B1 /* BannerView.xib */; };
 		D504B6ED22B946F9007C93B1 /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */; };
@@ -382,6 +384,8 @@
 		41D38A7B22B81C7F000D1391 /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
 		41D38A7D22B83226000D1391 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4274A55E1D343EF270BE19BF /* Pods-dvach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.debug.xcconfig"; sourceTree = "<group>"; };
+		65AED6E122C814BC0054EE59 /* AlertDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDisplayable.swift; sourceTree = "<group>"; };
+		65AED6E422C819620054EE59 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.release.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.release.xcconfig"; sourceTree = "<group>"; };
 		BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56667501DB5905B423A9582 /* Pods-dvachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1034,6 +1038,7 @@
 				41BEE745229F04730028EBFB /* ConfigurableView.swift */,
 				41BEE746229F04730028EBFB /* ReusableView.swift */,
 				41BEE747229F04730028EBFB /* ChildViewController.swift */,
+				65AED6E122C814BC0054EE59 /* AlertDisplayable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1122,6 +1127,7 @@
 		41BEE758229F04730028EBFB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				65AED6E322C819440054EE59 /* Placeholder */,
 				D528DE5622BBD4D7008A27D9 /* HorizontalMoreButton */,
 				D504B6E722B90F14007C93B1 /* BannerView */,
 				41D38A7A22B81C6E000D1391 /* BottomButton */,
@@ -1198,6 +1204,14 @@
 				41D38A7B22B81C7F000D1391 /* BottomButton.swift */,
 			);
 			path = BottomButton;
+			sourceTree = "<group>";
+		};
+		65AED6E322C819440054EE59 /* Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				65AED6E422C819620054EE59 /* PlaceholderView.swift */,
+			);
+			path = Placeholder;
 			sourceTree = "<group>";
 		};
 		CA89EE3F855E333C81DBA6A2 /* Pods */ = {
@@ -1654,6 +1668,7 @@
 				41BEE75B229F04730028EBFB /* IComponentsFactory.swift in Sources */,
 				411902CD22A6C6AC008231AC /* HighlightingNonScrollableGestureRecognizer.swift in Sources */,
 				41BEE727229F043C0028EBFB /* Extension+UIView.swift in Sources */,
+				65AED6E222C814BC0054EE59 /* AlertDisplayable.swift in Sources */,
 				D5750AB622AEC5050058E99D /* DvachLinkModel.swift in Sources */,
 				41908A1E22BE81420058907D /* AppInfoView.swift in Sources */,
 				D528DE4522BB723B008A27D9 /* DTImageView.swift in Sources */,
@@ -1688,6 +1703,7 @@
 				4193B1F222B1A8E100EE25FD /* FavouriteThreadsPresenter.swift in Sources */,
 				D528DE4722BB723B008A27D9 /* DTPhotoViewerControllerDataSource.swift in Sources */,
 				41907FF722A6CFC8003309D9 /* TCSSeparatorAvailable.swift in Sources */,
+				65AED6E522C819620054EE59 /* PlaceholderView.swift in Sources */,
 				4193B1DB22AEF94200EE25FD /* SkeletonPostView.swift in Sources */,
 				41908A0A22BE72620058907D /* GeneralSettingsViewController.swift in Sources */,
 				41BEE73F229F04550028EBFB /* FireBaseService.swift in Sources */,
