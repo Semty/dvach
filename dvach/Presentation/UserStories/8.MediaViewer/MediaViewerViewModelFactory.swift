@@ -19,8 +19,10 @@ final class MediaViewerViewModelFactory {
             switch file.type {
             case .gif, .jpg, .png, .sticker, .unknown:
                 type = .image
-            case .webm, .mp4:
-                type = .video
+            case .webm:
+                type = .webm
+            case .mp4:
+                type = .mp4
             }
             
             let image = imageViews[safeIndex: index]?.image
