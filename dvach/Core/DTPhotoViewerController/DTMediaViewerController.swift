@@ -13,7 +13,7 @@ import Photos
 
 private extension String {
     static let photoCollectionViewCellIdentifier = "photoCollectionViewCell"
-    static let videoCollectionViewCellIdentifier = "videoCollectionViewCell"
+    static let webmCollectionViewCellIdentifier = "webmCollectionViewCell"
 }
 
 open class DTMediaViewerController: UIViewController {
@@ -26,7 +26,8 @@ open class DTMediaViewerController: UIViewController {
         
         enum MediaType {
             case image
-            case video
+            case webm
+            case mp4
         }
     }
     
@@ -164,7 +165,7 @@ open class DTMediaViewerController: UIViewController {
         collectionView = UICollectionView(frame: CGRect.zero,
                                           collectionViewLayout: flowLayout)
         collectionView.register(DTPhotoCollectionViewCell.self, forCellWithReuseIdentifier: .photoCollectionViewCellIdentifier)
-        collectionView.register(DTVideoCollectionViewCell.self, forCellWithReuseIdentifier: .videoCollectionViewCellIdentifier)
+        collectionView.register(DTWebMCollectionViewCell.self, forCellWithReuseIdentifier: .webmCollectionViewCellIdentifier)
         
         collectionView.backgroundColor = UIColor.clear
         collectionView.isPagingEnabled = true
@@ -278,6 +279,7 @@ open class DTMediaViewerController: UIViewController {
         (collectionView.collectionViewLayout as? DTCollectionViewFlowLayout)?.currentIndex = currentPhotoIndex
         
         let cell = currentPhotoCell
+        let container = currentVideoContainer
         
         cell?.scrollView.zoomScale = 1.0
         imageView.image = cell?.imageView.image
@@ -287,6 +289,7 @@ open class DTMediaViewerController: UIViewController {
             
         }) { (context) in
             self._hideImageView(true)
+            container?.updateLayout()
         }
     }
     
@@ -662,7 +665,7 @@ open class DTMediaViewerController: UIViewController {
     
     // MARK: - Get Cropped Snapshot from Current Scale State
     
-    public func getScaledSnapshot() -> UIImage? {
+    public func getScaledPhotoSnapshot() -> UIImage? {
         guard let scrollView = currentPhotoCell?.scrollView else { return imageView.image }
         guard let image = currentPhotoCell?.imageView.image else { return imageView.image }
         
@@ -678,6 +681,14 @@ open class DTMediaViewerController: UIViewController {
                           height: scrollView.bounds.size.height * ratio)
         let cropFrame = CGRect(origin: origin, size: size)
         return image.croppedInRect(rect: cropFrame)
+    }
+    
+    public func getVideoSnapshot() -> UIImage? {
+        guard let container = currentVideoContainer else { return imageView.image }
+        
+        let snapshot = container.snapshot(pauseVideo: true)
+
+        return snapshot.croppedInRect(rect: imageView.frame)
     }
     
     // MARK: - Public behavior methods
@@ -775,7 +786,7 @@ extension DTMediaViewerController: UICollectionViewDataSource {
         guard let file = mediaFiles?[safeIndex: indexPath.row] else { return UICollectionViewCell() }
         
         switch file.type {
-        case .image:
+        case .image, .mp4:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .photoCollectionViewCellIdentifier,
                                                           for: indexPath) as! DTPhotoCollectionViewCell
             cell.delegate = self
@@ -791,9 +802,9 @@ extension DTMediaViewerController: UICollectionViewDataSource {
                 cell.imageView.image = imageView.image
                 return cell
             }
-        case .video:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .videoCollectionViewCellIdentifier,
-                                                          for: indexPath) as! DTVideoCollectionViewCell
+        case .webm:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .webmCollectionViewCellIdentifier,
+                                                          for: indexPath) as! DTWebMCollectionViewCell
             if let dataSource = mediaViewControllerDataSource,
                 dataSource.numberOfItems(in: self) > 0 {
                 dataSource.mediaViewerController?(self,

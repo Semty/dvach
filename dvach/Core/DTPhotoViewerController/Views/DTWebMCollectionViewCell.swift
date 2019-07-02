@@ -11,11 +11,13 @@ import OGVKit
 
 public protocol VideoContainer {
     func pause()
+    func updateLayout()
+    func snapshot(pauseVideo: Bool) -> UIImage
 }
 
-open class DTVideoCollectionViewCell: UICollectionViewCell, VideoContainer {
+open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
     
-    // Player View (WebM and MP4)
+    // Player View (WebM Only!)
     public private(set) weak var playerView: OGVPlayerView!
     
     // MARK: - Initialization
@@ -48,7 +50,7 @@ open class DTVideoCollectionViewCell: UICollectionViewCell, VideoContainer {
             playerView.sourceURL = url
             playerView.play()
         } else {
-            print("DTVideoCollectionViewCell, URL PATH IS INCORRECT")
+            print("DTWebMCollectionViewCell, URL PATH IS INCORRECT")
         }
     }
     
@@ -59,8 +61,19 @@ open class DTVideoCollectionViewCell: UICollectionViewCell, VideoContainer {
             playerView.pause()
         }
     }
+    
+    public func updateLayout() {
+        playerView.frameView.frame = bounds
+    }
+    
+    public func snapshot(pauseVideo: Bool) -> UIImage {
+        if pauseVideo {
+            playerView.pause()
+        }
+        return playerView.frameView.snapshot
+    }
 }
 
-extension DTVideoCollectionViewCell: OGVPlayerDelegate {
+extension DTWebMCollectionViewCell: OGVPlayerDelegate {
     
 }

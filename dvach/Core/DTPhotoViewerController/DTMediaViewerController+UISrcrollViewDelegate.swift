@@ -109,7 +109,11 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
             dataSource.photoViewerController(self,
                                              configurePhotoAt: index,
                                              withImageView: imageView)
-            imageView.image = getScaledSnapshot()
+            if let _ = currentVideoContainer {
+                imageView.image = getVideoSnapshot()
+            } else {
+                imageView.image = getScaledPhotoSnapshot()
+            }
         }
         
         // Change referenced image view

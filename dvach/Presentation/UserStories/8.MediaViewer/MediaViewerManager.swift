@@ -89,13 +89,8 @@ extension MediaViewerManager: DTMediaViewerControllerDataSource {
         cell.configure(file.image, urlPath: file.urlPath)
     }
     
-    func mediaViewerController(_ mediaViewerController: DTMediaViewerController, configureCell cell: DTVideoCollectionViewCell, forVideoAt index: Int) {
+    func mediaViewerController(_ mediaViewerController: DTMediaViewerController, configureCell cell: DTWebMCollectionViewCell, forVideoAt index: Int) {
         let file = mediaFiles[index]
-        if files[index].type == .webm {
-            print("WEBM!!!!!!!!")
-        } else if files[index].type == .mp4 {
-            print("MP4!!!!!!!!")
-        }
         cell.configure(urlPath: file.urlPath)
     }
 }
