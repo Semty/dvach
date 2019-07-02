@@ -1056,7 +1056,7 @@
 		D5728F24F8DA5E45D3C7F039DBD98174 /* StarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1EEA429D510B4A3DA003E7D5755EB /* StarNode.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D5829406E285B52A3467FDC30DA2AA70 /* levinsondurbin_FLP.c in Sources */ = {isa = PBXBuildFile; fileRef = B6335970316E1ACF0CADBF1E1EA30DF6 /* levinsondurbin_FLP.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D584FFE9228F39F972A7E2DCB2B9A544 /* find_pitch_lags_FLP.c in Sources */ = {isa = PBXBuildFile; fileRef = E0B5190AA6979EBADEF3FC9C94FEB68B /* find_pitch_lags_FLP.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		D598030B22CB8B450095A3D7 /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491C8F0DE252F0164B296E91E8ACBA84 /* VPX.framework */; };
+		D598030C22CB9CAB0095A3D7 /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491C8F0DE252F0164B296E91E8ACBA84 /* VPX.framework */; };
 		D5B557C13006CF82A9DA3516DC606289 /* FTuplePathValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E5AF437E1D5E0D19E0E6A18173858C /* FTuplePathValue.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D5BF12BC7B1608EAAD90612DA4122011 /* GroupNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E39D5DC2D80004A0E58452CA5131DBF /* GroupNode.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D5C5F56EC4199CFE83EA258967D0090E /* encode_frame_FLP.c in Sources */ = {isa = PBXBuildFile; fileRef = 006F8812FF7EE7CD0B96252A7D91A0F2 /* encode_frame_FLP.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -3130,7 +3130,7 @@
 				12D0CCA028FAC7223068E08756B2FDEE /* libopus.framework in Frameworks */,
 				70161E39F6CE8B67794775CF5ED17E02 /* nestegg.framework in Frameworks */,
 				A27F23CE776DE3424379F0E316F4AC92 /* vorbis.framework in Frameworks */,
-				D598030B22CB8B450095A3D7 /* VPX.framework in Frameworks */,
+				D598030C22CB9CAB0095A3D7 /* VPX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
