@@ -193,6 +193,10 @@ extension PostViewController: PostCommentViewDelegate {
                              imageViews: imageViews)
     }
     
+    func postCommentView(_ view: PostCommentView, didTapURL url: URL) {
+        presenter.postCommentView(view, didTapURL: url)
+    }
+    
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {
         presenter.postCommentView(view, didTapAnswerButton: postNumber)
     }

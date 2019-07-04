@@ -17,6 +17,7 @@ protocol IPostViewPresenter {
     func didTapFile(index: Int,
                     postIndex: Int,
                     imageViews: [UIImageView])
+    func postCommentView(_ view: PostCommentView, didTapURL url: URL)
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
     func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
@@ -164,6 +165,11 @@ extension PostViewPresenter: IPostViewPresenter {
                                                           imageIndex: index)
 
         router.presentMediaController(source: mediaViewerSource)
+    }
+    
+    func postCommentView(_ view: PostCommentView, didTapURL url: URL) {
+        guard UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {
