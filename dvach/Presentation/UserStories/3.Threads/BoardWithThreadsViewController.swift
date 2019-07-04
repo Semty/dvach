@@ -15,6 +15,7 @@ private extension CGFloat {
     static let threadWithImageCellHeight: CGFloat = 185
     static let threadWithoutImageCellHeight: CGFloat = 170
 }
+
 protocol BoardWithThreadsView: AnyObject {
     func showNSFWBanner()
     func updateNavigationBar()

@@ -13,6 +13,7 @@ protocol IPostViewPresenter {
     var dataSource: [PostViewPresenter.CellType] { get }
     
     func viewDidLoad()
+    func refresh()
     func didTapFile(index: Int,
                     postIndex: Int,
                     imageViews: [UIImageView])
@@ -52,8 +53,8 @@ final class PostViewPresenter {
 
     private let boardIdentifier: String
     private let thread: ThreadShortInfo
-    private let postNumber: Int?
-    public var posts = [Post]()
+    private var postNumber: Int?
+    private var posts = [Post]()
     
     // MARK: - Initialization
     
@@ -84,11 +85,7 @@ final class PostViewPresenter {
                 }
                 self.posts = enrichedPosts
                 self.dataSource = dataSource
-                let scrollIndexPath = self.scrollIndexPath(for: dataSource)
                 
-                DispatchQueue.main.async {
-                    self.view?.updateTable(scrollTo: scrollIndexPath)
-                }
                 completion(nil)
             case .failure(let error):
                 completion(error)
@@ -121,7 +118,7 @@ final class PostViewPresenter {
                 return
             }
         }
-
+ 
         return IndexPath(row: row, section: 0)
     }
 }
@@ -132,12 +129,29 @@ extension PostViewPresenter: IPostViewPresenter {
     
     func viewDidLoad() {
         loadPost { [weak self] error in
+            guard let self = self else { return }
             if let error = error {
                 DispatchQueue.main.async {
-                    self?.view?.showPlaceholder(text: error.localizedDescription)
+                    self.view?.showPlaceholder(text: error.localizedDescription)
                 }
             } else {
-                self?.adManager.loadNativeAd()
+                let scrollIndexPath = self.scrollIndexPath(for: self.dataSource)
+                DispatchQueue.main.async {
+                    self.view?.updateTable(scrollTo: scrollIndexPath)
+                }
+                self.adManager.loadNativeAd()
+            }
+        }
+    }
+    
+    func refresh() {
+        postNumber = posts.last?.num
+
+        loadPost { [weak self] _ in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                let scrollIndexPath = self.scrollIndexPath(for: self.dataSource)
+                self.view?.endRefreshing(indexPath: scrollIndexPath)
             }
         }
     }
