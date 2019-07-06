@@ -23,7 +23,7 @@ target 'dvach' do
    pod 'SwiftEntryKit', :git => 'https://github.com/Semty/SwiftEntryKit.git', :branch => 'support-of-setting-home-indicator-behaviour'
    pod 'lottie-ios', '3.1.0'
    pod 'Appodeal', '~> 2.4.10'
-   pod 'OGVKit/WebM', :git => 'https://github.com/Semty/WebM'
+   pod 'OGVKit/WebM', :git => 'https://github.com/Semty/WebM', :branch => 'dev'
    
   target 'dvachTests' do
     inherit! :search_paths
