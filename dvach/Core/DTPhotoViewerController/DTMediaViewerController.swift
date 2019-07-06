@@ -16,7 +16,7 @@ private extension String {
     static let webmCollectionViewCellIdentifier = "webmCollectionViewCell"
 }
 
-open class DTMediaViewerController: UIViewController {
+open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     
     public struct MediaFile {
         let type: MediaType
@@ -380,6 +380,12 @@ open class DTMediaViewerController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - Handle Different Types of Gestures and Pans
+    
+    public func handleVideoTapGesture(hideControls hide: Bool) {
+        didReceiveTapGesture(hideControls: hide)
+    }
+    
     @objc func _handleTapGesture(_ gesture: UITapGestureRecognizer) {
         // Method to override
         didReceiveTapGesture()
@@ -415,6 +421,7 @@ open class DTMediaViewerController: UIViewController {
     }
     
     @objc func _handleDoubleTapGesture(_ gesture: UITapGestureRecognizer) {
+        if currentVideoContainer != nil { return }
         // Method to override
         didReceiveDoubleTapGesture()
         
@@ -539,6 +546,9 @@ open class DTMediaViewerController: UIViewController {
                 willBegin(panGestureRecognizer: panGestureRecognizer)
                 
             case .changed:
+                // Just need that method to ensure that controls will be hidden
+                didReceiveDoubleTapGesture()
+                
                 let translation = gesture.translation(in: gestureView)
                 imageView.center = CGPoint(x: view.center.x + translation.x,
                                            y: view.center.y + translation.y)
@@ -709,7 +719,7 @@ open class DTMediaViewerController: UIViewController {
         
     }
     
-    open func didReceiveTapGesture() {
+    open func didReceiveTapGesture(hideControls hide: Bool? = nil) {
         
     }
     
@@ -805,6 +815,7 @@ extension DTMediaViewerController: UICollectionViewDataSource {
         case .webm:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .webmCollectionViewCellIdentifier,
                                                           for: indexPath) as! DTWebMCollectionViewCell
+            cell.delegate = self
             if let dataSource = mediaViewControllerDataSource,
                 dataSource.numberOfItems(in: self) > 0 {
                 dataSource.mediaViewerController?(self,

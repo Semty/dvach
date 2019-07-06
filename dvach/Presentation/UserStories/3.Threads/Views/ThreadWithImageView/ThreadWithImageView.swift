@@ -76,6 +76,15 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, PressSt
         postsCountLabel.text = model.postsCountTitle
         threadImageView.loadImage(url: model.threadImageThumbnail)
     }
+    
+    // MARK: - ReusableView
+    
+    func prepareForReuse() {
+        subjectLabel.text = nil
+        commentLabel.text = nil
+        postsCountLabel.text = nil
+        threadImageView.image = nil
+    }
 }
 
 // MARK: - Constraints Configuration

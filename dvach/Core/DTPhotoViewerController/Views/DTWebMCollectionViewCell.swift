@@ -15,10 +15,17 @@ public protocol VideoContainer {
     func snapshot(pauseVideo: Bool) -> UIImage
 }
 
+public protocol VideoContainerDelegate: class {
+    func handleVideoTapGesture(hideControls hide: Bool)
+}
+
 open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
     
     // Player View (WebM Only!)
     public private(set) weak var playerView: OGVPlayerView!
+    
+    // Delegate
+    public weak var delegate: VideoContainerDelegate?
     
     // MARK: - Initialization
     
@@ -76,4 +83,11 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
 
 extension DTWebMCollectionViewCell: OGVPlayerDelegate {
     
+    public func ogvPlayerControlsWillHide(_ sender: OGVPlayerView!) {
+        delegate?.handleVideoTapGesture(hideControls: true)
+    }
+    
+    public func ogvPlayerControlsWillShow(_ sender: OGVPlayerView!) {
+        delegate?.handleVideoTapGesture(hideControls: false)
+    }
 }

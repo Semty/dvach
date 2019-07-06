@@ -66,6 +66,13 @@ final class ThreadWithoutImageView: UIView, ConfigurableView, ReusableView, Pres
         postsCountLabel.text = model.postsCountTitle
     }
 
+    // MARK: - ReusableView
+    
+    func prepareForReuse() {
+        subjectLabel.text = nil
+        commentLabel.text = nil
+        postsCountLabel.text = nil
+    }
 }
 
 // MARK: - Constraints Configuration

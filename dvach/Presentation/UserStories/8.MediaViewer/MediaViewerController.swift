@@ -125,20 +125,24 @@ final class MediaViewerController: DTMediaViewerController {
     }
     
     // Hide & Show info layer view
-    private func hideUnhideViewsWithZoom() {
+    private func hideUnhideViewsWithZoom(hide: Bool? = nil) {
         if zoomScale == 1 {
-            if closeButton.isHidden == true {
-                configureSecondaryViews(hidden: false, animated: true)
+            if let hide = hide {
+                configureSecondaryViews(hidden: hide, animated: true)
             } else {
-                configureSecondaryViews(hidden: true, animated: true)
+                if closeButton.isHidden == true {
+                    configureSecondaryViews(hidden: false, animated: true)
+                } else {
+                    configureSecondaryViews(hidden: true, animated: true)
+                }
             }
         }
     }
     
     // MARK: - Overridden DTMediaViewerController Methods
     
-    override func didReceiveTapGesture() {
-        hideUnhideViewsWithZoom()
+    override func didReceiveTapGesture(hideControls hide: Bool?) {
+        hideUnhideViewsWithZoom(hide: hide)
     }
     
     override func willZoomOnPhoto(at index: Int) {
@@ -160,7 +164,9 @@ final class MediaViewerController: DTMediaViewerController {
     }
     
     override func didReceiveDoubleTapGesture() {
-        configureSecondaryViews(hidden: true, animated: false)
+        if !closeButton.isHidden {
+            configureSecondaryViews(hidden: true, animated: false)
+        }
     }
     
     // MARK: - Rotation Handling
