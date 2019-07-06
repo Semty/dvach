@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import KafkaRefresh
 
 protocol PostView: AnyObject {
     func updateTable(scrollTo indexPath: IndexPath?)
     func showPlaceholder(text: String)
+    func endRefreshing(indexPath: IndexPath?)
 }
 
 final class PostViewController: UIViewController {
@@ -18,6 +20,12 @@ final class PostViewController: UIViewController {
     // Dependencies
     private let presenter: IPostViewPresenter
     private let componentsFactory = Locator.shared.componentsFactory()
+    
+    // Properties
+    private var startRefreshTime = Date().timeIntervalSince1970
+    private var deltaRefreshTime: TimeInterval {
+        return Date().timeIntervalSince1970 - startRefreshTime
+    }
     
     // UI
     private lazy var closeButton = componentsFactory.createCloseButton(nil, nil) { [weak self] in
@@ -34,10 +42,18 @@ final class PostViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.alpha = 0.0
+        tableView.footRefreshControl = refreshControll
         
         return tableView
     }()
-    
+    private lazy var refreshControll: KafkaReplicatorFooter = {
+        let refresh = KafkaReplicatorFooter()
+        refresh.themeColor = .n7Blue
+        refresh.refreshHandler = { [weak self] in
+            self?.refreshThread()
+        }
+        return refresh
+    }()
     private lazy var placeholder = PlaceholderView()
     private lazy var skeleton = SkeletonPostView.fromNib()
     
@@ -90,13 +106,8 @@ final class PostViewController: UIViewController {
         skeleton.update(state: .nonactive)
         view.skeletonAnimation(skeletonView: skeleton, mainView: tableView)
     }
-}
-
-// MARK: - PostView
-
-extension PostViewController: PostView {
     
-    func updateTable(scrollTo indexPath: IndexPath?) {
+    private func updateTable(indexPath: IndexPath?) {
         tableView.reloadData()
         if let indexPath = indexPath, indexPath.row > 0 {
             tableView.scrollToRow(at: indexPath,
@@ -106,10 +117,36 @@ extension PostViewController: PostView {
         hideSkeleton()
     }
     
+    @objc private func refreshThread() {
+        startRefreshTime = Date().timeIntervalSince1970
+        presenter.refresh()
+    }
+}
+
+// MARK: - PostView
+
+extension PostViewController: PostView {
+    
+    func updateTable(scrollTo indexPath: IndexPath?) {
+        updateTable(indexPath: indexPath)
+    }
+    
     func showPlaceholder(text: String) {
         placeholder.configure(with: text)
         placeholder.isHidden = false
         hideSkeleton()
+    }
+    
+    func endRefreshing(indexPath: IndexPath?) {
+        if deltaRefreshTime < 2 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.updateTable(scrollTo: indexPath)
+                self.refreshControll.endRefreshing()
+            }
+        } else {
+            updateTable(scrollTo: indexPath)
+            refreshControll.endRefreshing()
+        }
     }
 }
 
@@ -133,6 +170,7 @@ extension PostViewController: UITableViewDataSource {
                 cell.containedView.removeBottomSeparator()
             }
             return cell
+            
         case .ad(let adView):
             let cell: ContextAdCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.containedView.addSubview(adView)
@@ -153,6 +191,10 @@ extension PostViewController: PostCommentViewDelegate {
         presenter.didTapFile(index: index,
                              postIndex: postIndex,
                              imageViews: imageViews)
+    }
+    
+    func postCommentView(_ view: PostCommentView, didTapURL url: URL) {
+        presenter.postCommentView(view, didTapURL: url)
     }
     
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {

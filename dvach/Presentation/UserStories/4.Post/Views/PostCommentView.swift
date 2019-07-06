@@ -17,6 +17,7 @@ protocol PostCommentViewDelegate: AnyObject {
                          didTapFile index: Int,
                          postIndex: Int,
                          imageViews: [UIImageView])
+    func postCommentView(_ view: PostCommentView, didTapURL url: URL)
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
     func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
@@ -188,7 +189,7 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
 extension PostCommentView: NantesLabelDelegate {
     
     func attributedLabel(_ label: NantesLabel, didSelectLink link: URL) {
-        print(link.absoluteString)
+        delegate?.postCommentView(self, didTapURL: link)
     }
 }
 

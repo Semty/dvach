@@ -13,6 +13,7 @@ protocol ISinglePostPresenter {
     func viewDidLoad()
     func didTapOpenThread()
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
+    func postCommentView(_ view: PostCommentView, didTapURL url: URL)
     func didTapFile(index: Int,
                     postIndex: Int,
                     imageViews: [UIImageView])
@@ -81,6 +82,11 @@ extension SinglePostPresenter: ISinglePostPresenter {
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
         let bottomSheet = actionSheetFactory.createBottomSheet(post: post, threadInfo: nil)
         self.view?.present(bottomSheet, animated: true)
+    }
+    
+    func postCommentView(_ view: PostCommentView, didTapURL url: URL) {
+        guard UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     func didTapFile(index: Int,
