@@ -89,7 +89,7 @@ extension MediaViewerManager: DTMediaViewerControllerDataSource {
         cell.configure(file.image, urlPath: file.urlPath)
     }
     
-    func mediaViewerController(_ mediaViewerController: DTMediaViewerController, configureCell cell: DTWebMCollectionViewCell, forVideoAt index: Int) {
+    func mediaViewerController(_ mediaViewerController: DTMediaViewerController, configureCell cell: VideoContainer, forVideoAt index: Int) {
         let file = mediaFiles[index]
         cell.configure(urlPath: file.urlPath)
     }

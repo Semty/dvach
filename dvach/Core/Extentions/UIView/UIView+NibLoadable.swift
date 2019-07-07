@@ -20,8 +20,8 @@ extension UIViewLoading where Self: UIView {
         return bundle.path(forResource: nibName(), ofType: "nib") != nil
     }
     
-    static func fromNib() -> Self {
-        let bundle = Bundle(for: self)
+    static func fromNib(_ bundle: Bundle? = nil) -> Self {
+        let bundle = bundle ?? Bundle(for: self)
         
         guard let viewFromNib = bundle.loadNibNamed(nibName(), owner: self, options: nil)?.first as? Self else {
             fatalError("Can't load Nib with name \(String(describing: nibName))")

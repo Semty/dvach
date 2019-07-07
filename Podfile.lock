@@ -309,7 +309,7 @@ CHECKOUT OPTIONS:
     :commit: 2df7ece5966b24ca24d46e9714edf7214bb02f4f
     :git: https://github.com/Semty/SwiftEntryKit.git
   VersaPlayer:
-    :commit: f95ae326f5145671366793ac47bc618486ba2917
+    :commit: 669ce814525dbe8585493fd300372c9e1b806e19
     :git: https://github.com/Semty/MP4
 
 SPEC CHECKSUMS:
