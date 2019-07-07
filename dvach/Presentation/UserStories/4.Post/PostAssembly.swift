@@ -10,7 +10,7 @@ import Foundation
 
 final class PostAssembly {
     
-    static func assemble(board: String, thread: ThreadShortInfo, postNumber: Int? = nil) -> UIViewController {
+    static func assemble(board: String, thread: ThreadShortInfo, postNumber: String? = nil) -> UIViewController {
         let router = PostRouter()
         let presenter = PostViewPresenter(router: router, board: board, thread: thread, postNumber: postNumber)
         let viewController = PostViewController(presenter: presenter)

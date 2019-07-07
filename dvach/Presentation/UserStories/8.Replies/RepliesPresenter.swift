@@ -16,9 +16,9 @@ protocol IRepliesPresenter {
                     postIndex: Int,
                     imageViews: [UIImageView])
     func postCommentView(_ view: PostCommentView, didTapURL url: URL)
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
+    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String)
+    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String)
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String)
 }
 
 final class RepliesPresenter {
@@ -56,17 +56,17 @@ final class RepliesPresenter {
     
     private func createModels() -> [PostCommentView.Model] {
         guard let repliesIds = replies[postId] else { return [] }
-        let repliedPosts = posts.filter { repliesIds.contains("\($0.num)") }
+        let repliedPosts = posts.filter { repliesIds.contains($0.number) }
         return repliedPosts.map(createPostViewModel)
     }
     
     private func createPostViewModel(post: Post) -> PostCommentView.Model {
-        let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: post.rowIndex + 1)
+        let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.number, number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
-        let repliesCount = replies["\(post.num)"]?.count ?? 0
+        let repliesCount = replies[post.number]?.count ?? 0
         
-        return PostCommentView.Model(postNumber: post.num,
+        return PostCommentView.Model(postNumber: post.number,
                                      headerModel: headerViewModel,
                                      date: post.date,
                                      text: postParser.attributedText,
@@ -101,11 +101,11 @@ extension RepliesPresenter: IRepliesPresenter {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {
+    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String) {
         router.postCommentView(view, didTapAnswerButton: postNumber)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int) {
+    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String) {
         router.postCommentView(view,
                                didTapAnswersButton: postNumber,
                                posts: posts,
@@ -114,8 +114,8 @@ extension RepliesPresenter: IRepliesPresenter {
                                thread: threadShortInfo)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
-        guard let postIndex = posts.firstIndex(where: { $0.num == postNumber }) else { return }
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String) {
+        guard let postIndex = posts.firstIndex(where: { $0.number == postNumber }) else { return }
         let post = posts[postIndex]
         router.postCommentView(view,
                                didTapMoreButton: post,

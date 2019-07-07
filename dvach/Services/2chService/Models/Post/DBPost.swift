@@ -11,6 +11,7 @@ import CoreData
 
 final class DBPost: NSManagedObject {
     @NSManaged var identifier: String
+    @NSManaged var number: String
     @NSManaged var isBanned: Bool
     @NSManaged var isClosed: Bool
     @NSManaged var comment: String
@@ -20,7 +21,6 @@ final class DBPost: NSManagedObject {
     @NSManaged var files: Set<DBFile>
     @NSManaged var lastHit: Int
     @NSManaged var name: String
-    @NSManaged var num: Int
     @NSManaged var isOp: Bool
     @NSManaged var parent: String
     @NSManaged var sticky: Bool
@@ -48,6 +48,7 @@ extension Post: Persistable {
     static func from(_ dbModel: DBPost) -> Post {
         let files = dbModel.files.map(File.from)
         return Post(identifier: dbModel.identifier,
+                    number: dbModel.number,
                     isBanned: dbModel.isBanned,
                     isClosed: dbModel.isClosed,
                     comment: dbModel.comment,
@@ -57,7 +58,6 @@ extension Post: Persistable {
                     files: files,
                     lastHit: dbModel.lastHit,
                     name: dbModel.name,
-                    num: dbModel.num,
                     isOp: dbModel.isOp,
                     parent: dbModel.parent,
                     sticky: dbModel.sticky,
@@ -88,7 +88,7 @@ extension Post: Persistable {
         dbModel.files = Set(dbFiles)
         dbModel.lastHit = lastHit
         dbModel.name = name
-        dbModel.num = num
+        dbModel.number = number
         dbModel.isOp = isOp
         dbModel.parent = parent
         dbModel.sticky = sticky

@@ -37,7 +37,7 @@
         <attribute name="lastHit" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="likes" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="num" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parent" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postsCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rowIndex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -70,7 +70,7 @@
         <element name="DBBoardShortInfo" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="DBFile" positionX="-36" positionY="153" width="128" height="270"/>
         <element name="DBPost" positionX="-54" positionY="54" width="128" height="450"/>
-        <element name="DBThreadShortInfo" positionX="-63" positionY="9" width="128" height="180"/>
         <element name="DBShownBoard" positionX="-54" positionY="135" width="128" height="60"/>
+        <element name="DBThreadShortInfo" positionX="-63" positionY="9" width="128" height="180"/>
     </elements>
 </model>

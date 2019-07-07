@@ -11,6 +11,7 @@ import SwiftyJSON
 
 struct Post {
     var identifier: String
+    let number: String
     let isBanned: Bool
     let isClosed: Bool
     let comment: String
@@ -20,7 +21,6 @@ struct Post {
     let files: [File]
     let lastHit: Int
     let name: String
-    let num: Int
     let isOp: Bool
     let parent: String
     let sticky: Bool
@@ -53,8 +53,7 @@ extension Post: JSONParsable {
             let filesArray = json["files"].array,
             let lastHit = json["lasthit"].int,
             let name = json["name"].string,
-            let numString = json["num"].string,
-            let num = Int(numString),
+            let number = json["num"].string,
             let isOp = json["op"].int,
             let parent = json["parent"].string,
             let sticky = json["sticky"].int,
@@ -72,7 +71,8 @@ extension Post: JSONParsable {
         
         let files = filesArray.compactMap(File.from)
         
-        return Post(identifier: "\(num)-\(timestamp)",
+        return Post(identifier: "\(number)-\(timestamp)",
+                    number: number,
                     isBanned: isBanned.boolValue,
                     isClosed: isClosed.boolValue,
                     comment: comment,
@@ -82,7 +82,6 @@ extension Post: JSONParsable {
                     files: files,
                     lastHit: lastHit,
                     name: name,
-                    num: num,
                     isOp: isOp.boolValue,
                     parent: parent,
                     sticky: sticky.boolValue,

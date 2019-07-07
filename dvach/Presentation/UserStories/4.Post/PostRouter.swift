@@ -13,11 +13,11 @@ import Foundation
 protocol IPostRouter {
     
     /// Нажали на "Ответить"
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
+    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String)
     
     /// Нажали на "Ответы"
     func postCommentView(_ view: PostCommentView,
-                         didTapAnswersButton postNumber: Int,
+                         didTapAnswersButton postNumber: String,
                          posts: [Post],
                          replies: Replies,
                          board: String,
@@ -43,17 +43,17 @@ final class PostRouter: IPostRouter {
     
     // MARK: - IPostRouter
     
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {
+    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String) {
         print("didTapAnswerButton")
     }
     
     func postCommentView(_ view: PostCommentView,
-                         didTapAnswersButton postNumber: Int,
+                         didTapAnswersButton postNumber: String,
                          posts: [Post],
                          replies: Replies,
                          board: String,
                          thread: ThreadShortInfo) {
-        let viewController = RepliesAssembly.assemble(postId: "\(postNumber)", posts: posts, replies: replies, board: board, thread: thread)
+        let viewController = RepliesAssembly.assemble(postId: postNumber, posts: posts, replies: replies, board: board, thread: thread)
         viewController.title = ">> \(postNumber)"
 
         viewHandler?.navigationController?.pushViewController(viewController, animated: true)

@@ -55,6 +55,6 @@ extension FavouriteThreadsPresenter: IFavouriteThreadsPresenter {
             let boardId = thread.boardId else { return }
         
         let viewController = PostAssembly.assemble(board: boardId, thread: thread)
-        view?.present(viewController, animated: true)
+        view?.navigationController?.pushViewController(viewController, animated: true)
     }
 }

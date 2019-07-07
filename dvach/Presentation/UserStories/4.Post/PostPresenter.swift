@@ -20,9 +20,9 @@ protocol IPostViewPresenter {
                     postIndex: Int,
                     imageViews: [UIImageView])
     func postCommentView(_ view: PostCommentView, didTapURL url: URL)
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
+    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String)
+    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String)
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String)
 }
 
 final class PostViewPresenter {
@@ -31,7 +31,7 @@ final class PostViewPresenter {
         case post(PostCommentView.Model)
         case ad(ContextAddView)
         
-        var postNumber: Int? {
+        var postNumber: String? {
             switch self {
             case .post(let model):
                 return model.postNumber
@@ -56,13 +56,13 @@ final class PostViewPresenter {
 
     private let boardIdentifier: String
     private let thread: ThreadShortInfo
-    private var postNumber: Int?
+    private var postNumber: String?
     private var posts = [Post]()
     private var replies = Replies()
     
     // MARK: - Initialization
     
-    init(router: IPostRouter, board: String, thread: ThreadShortInfo, postNumber: Int?) {
+    init(router: IPostRouter, board: String, thread: ThreadShortInfo, postNumber: String?) {
         self.router = router
         self.boardIdentifier = board
         self.thread = thread
@@ -107,19 +107,19 @@ final class PostViewPresenter {
             // Берем предыдущее значение массива реплаев
             var repliesArray = replies[$0] ?? []
             // Добавляем текущй номер поста
-            repliesArray.append("\(post.num)")
+            repliesArray.append(post.number)
             // Перезаписываем массив реплаев для нужного номера поста
             replies[$0] = repliesArray
         }
     }
     
     private func createPostViewModel(post: Post) -> PostCommentView.Model {
-        let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: post.rowIndex + 1)
+        let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.number, number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
-        let repliesCount = replies["\(post.num)"]?.count ?? 0
+        let repliesCount = replies[post.number]?.count ?? 0
         
-        return PostCommentView.Model(postNumber: post.num,
+        return PostCommentView.Model(postNumber: post.number,
                                      headerModel: headerViewModel,
                                      date: post.date,
                                      text: postParser.attributedText,
@@ -165,7 +165,7 @@ extension PostViewPresenter: IPostViewPresenter {
     }
     
     func refresh() {
-        postNumber = posts.last?.num
+        postNumber = posts.last?.number
 
         loadPost { [weak self] _ in
             guard let self = self else { return }
@@ -191,11 +191,11 @@ extension PostViewPresenter: IPostViewPresenter {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {
+    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String) {
         router.postCommentView(view, didTapAnswerButton: postNumber)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int) {
+    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String) {
         router.postCommentView(view,
                                didTapAnswersButton: postNumber,
                                posts: posts,
@@ -204,8 +204,8 @@ extension PostViewPresenter: IPostViewPresenter {
                                thread: thread)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
-        guard let postIndex = posts.firstIndex(where: { $0.num == postNumber }) else { return }
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String) {
+        guard let postIndex = posts.firstIndex(where: { $0.number == postNumber }) else { return }
         let post = posts[postIndex]
         router.postCommentView(view,
                                didTapMoreButton: post,

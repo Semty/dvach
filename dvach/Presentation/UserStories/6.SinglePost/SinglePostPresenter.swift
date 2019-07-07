@@ -12,7 +12,7 @@ import Appodeal
 protocol ISinglePostPresenter {
     func viewDidLoad()
     func didTapOpenThread()
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String)
     func postCommentView(_ view: PostCommentView, didTapURL url: URL)
     func didTapFile(index: Int,
                     postIndex: Int,
@@ -47,12 +47,12 @@ final class SinglePostPresenter: NSObject {
     
     private func createModel() -> PostCommentView.Model {
         let headerViewModel = PostHeaderView.Model(title: post.name,
-                                                   subtitle: post.num,
+                                                   subtitle: post.number,
                                                    number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
         
-        return PostCommentView.Model(postNumber: post.num,
+        return PostCommentView.Model(postNumber: post.number,
                                      headerModel: headerViewModel,
                                      date: post.date,
                                      text: postParser.attributedText,
@@ -74,11 +74,11 @@ extension SinglePostPresenter: ISinglePostPresenter {
     
     func didTapOpenThread() {
         guard let threadInfo = post.threadInfo, let boardId = threadInfo.boardId else { return }
-        let vc = PostAssembly.assemble(board: boardId, thread: threadInfo, postNumber: post.num)
+        let vc = PostAssembly.assemble(board: boardId, thread: threadInfo, postNumber: post.number)
         view?.present(vc, animated: true)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String) {
         let bottomSheet = actionSheetFactory.createBottomSheet(post: post, threadInfo: nil)
         self.view?.present(bottomSheet, animated: true)
     }

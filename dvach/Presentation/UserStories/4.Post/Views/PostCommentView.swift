@@ -18,15 +18,15 @@ protocol PostCommentViewDelegate: AnyObject {
                          postIndex: Int,
                          imageViews: [UIImageView])
     func postCommentView(_ view: PostCommentView, didTapURL url: URL)
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int)
+    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String)
+    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String)
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String)
 }
 
 final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAvailable {
     
     struct Model {
-        let postNumber: Int
+        let postNumber: String
         let headerModel: PostHeaderView.Model
         let date: String
         let text: NSAttributedString
@@ -41,7 +41,7 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
     private let componentsFactory = Locator.shared.componentsFactory()
     
     // Properties
-    private var postNumber = 0
+    private var postNumber = ""
     private var indexNumber: Int {
         return headerView.serialNumber - 1
     }

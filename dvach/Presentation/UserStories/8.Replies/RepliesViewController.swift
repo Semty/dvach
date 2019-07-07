@@ -113,15 +113,15 @@ extension RepliesViewController: PostCommentViewDelegate {
         presenter.postCommentView(view, didTapURL: url)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {
+    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String) {
         presenter.postCommentView(view, didTapAnswerButton: postNumber)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int) {
+    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String) {
         presenter.postCommentView(view, didTapAnswersButton: postNumber)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {
+    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String) {
         presenter.postCommentView(view, didTapMoreButton: postNumber)
     }
 }

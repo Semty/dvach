@@ -12,7 +12,7 @@ final class PostHeaderView: UIView, ConfigurableView, ReusableView {
     
     struct Model {
         let title: String
-        let subtitle: Int
+        let subtitle: String
         let number: Int
     }
     
