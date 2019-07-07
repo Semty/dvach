@@ -18,10 +18,15 @@ final class RootTabBarController: UITabBarController {
         
         let categoriesViewController = CategoriesViewController()
         categoriesViewController.title = "Категории"
+        categoriesViewController.tabBarItem.image = #imageLiteral(resourceName: "boldLight.png").withRenderingMode(.alwaysTemplate)
+        
         let favouritesViewController = FavouritesViewController()
         favouritesViewController.title = "Избранное"
+        favouritesViewController.tabBarItem.image = #imageLiteral(resourceName: "star.png").withRenderingMode(.alwaysTemplate)
+        
         let settingsViewController = SettingsViewController()
         settingsViewController.title = "Еще"
+        settingsViewController.tabBarItem.image = #imageLiteral(resourceName: "moreTab").withRenderingMode(.alwaysTemplate)
         
         viewControllers = [categoriesViewController.wrappedInLargeNavigation,
                            favouritesViewController.wrappedInNavigation,
