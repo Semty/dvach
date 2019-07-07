@@ -29,7 +29,7 @@ final class PostViewController: UIViewController {
     
     // UI
     private lazy var closeButton = componentsFactory.createCloseButton(nil, nil) { [weak self] in
-        self?.dismiss(animated: true)
+        self?.navigationController?.popViewController(animated: true)
     }
     
     private lazy var tableView: UITableView = {
@@ -56,7 +56,8 @@ final class PostViewController: UIViewController {
     }()
     private lazy var placeholder = PlaceholderView()
     private lazy var skeleton = SkeletonPostView.fromNib()
-    
+    private var popRecognizer: SwipeToBackRecognizer?
+
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -75,13 +76,20 @@ final class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupPopRecognizer()
         setupUI()
         presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         skeleton.update(state: .active)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     // MARK: - Private
@@ -100,6 +108,12 @@ final class PostViewController: UIViewController {
         
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints { $0.top.trailing.equalToSuperview().inset(CGFloat.inset16) }
+    }
+    
+    private func setupPopRecognizer() {
+        guard let controller = navigationController else { return }
+        popRecognizer = SwipeToBackRecognizer(controller: controller)
+        controller.interactivePopGestureRecognizer?.delegate = popRecognizer
     }
     
     private func hideSkeleton() {

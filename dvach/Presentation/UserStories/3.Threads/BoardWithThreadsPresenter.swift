@@ -109,7 +109,7 @@ extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
     func didSelectCell(index: Int) {
         guard let thread = board?.additionalInfo?.threads[index] else { return }
         let viewController = PostAssembly.assemble(board: boardID, thread: thread.shortInfo)
-        view?.present(viewController, animated: true)
+        view?.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func addToFavouritesDidTap() {

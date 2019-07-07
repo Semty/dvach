@@ -8,16 +8,20 @@
 
 import Foundation
 
+// Используется как для 4 экрана с постами, так и для экрана 8 с реплаями
+
 protocol IPostRouter {
-    
-    /// Нажали на миниатюру прикрепленого файла
-    func postCommentView(_ view: PostCommentView, didTapFile index: Int)
     
     /// Нажали на "Ответить"
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int)
     
     /// Нажали на "Ответы"
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int)
+    func postCommentView(_ view: PostCommentView,
+                         didTapAnswersButton postNumber: Int,
+                         posts: [Post],
+                         replies: Replies,
+                         board: String,
+                         thread: ThreadShortInfo)
     
     /// Нажали на "Еще"
     func postCommentView(_ view: PostCommentView,
@@ -26,6 +30,7 @@ protocol IPostRouter {
                          boardId: String,
                          row: Int)
     
+    /// Нажали на миниатюру прикрепленого файла
     func presentMediaController(source: MediaViewerManager.Source)
 }
 
@@ -38,16 +43,20 @@ final class PostRouter: IPostRouter {
     
     // MARK: - IPostRouter
     
-    func postCommentView(_ view: PostCommentView, didTapFile index: Int) {
-        print("didTapFile")
-    }
-    
     func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: Int) {
         print("didTapAnswerButton")
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int) {
-        print("didTapAnswersButton")
+    func postCommentView(_ view: PostCommentView,
+                         didTapAnswersButton postNumber: Int,
+                         posts: [Post],
+                         replies: Replies,
+                         board: String,
+                         thread: ThreadShortInfo) {
+        let viewController = RepliesAssembly.assemble(postId: "\(postNumber)", posts: posts, replies: replies, board: board, thread: thread)
+        viewController.title = ">> \(postNumber)"
+
+        viewHandler?.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func postCommentView(_ view: PostCommentView,

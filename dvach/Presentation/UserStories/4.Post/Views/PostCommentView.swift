@@ -31,8 +31,7 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
         let date: String
         let text: NSAttributedString
         let fileURLs: [String]
-        let dvachLinkModels: [DvachLinkModel]
-        let repliedTo: [String]
+        let numberOfReplies: Int
         let isAnswerHidden: Bool
         let isRepliesHidden: Bool
     }
@@ -165,9 +164,10 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
         let answerModel = model.isAnswerHidden ? nil : VerticalOvalButton.Model(color: .n1Gray,
                                                                                 icon: UIImage(named: "answer"),
                                                                                 text: nil)
-        let answersModel = model.isRepliesHidden ? nil : VerticalOvalButton.Model(color: .n4Red,
+        let hideReplies = model.isRepliesHidden || model.numberOfReplies == 0
+        let answersModel = hideReplies ? nil : VerticalOvalButton.Model(color: .n4Red,
                                                                                   icon: UIImage(named: "answers"),
-                                                                                  text: "10")
+                                                                                  text: "\(model.numberOfReplies)")
         let moreModel = VerticalOvalButton.Model(color: .n9LightGreen, icon: UIImage(named: "more"), text: nil)
         let buttonsModel = PostCommentButtonsView.Model(answerButtonModel: answerModel,
                                                         answersButtonModel: answersModel,

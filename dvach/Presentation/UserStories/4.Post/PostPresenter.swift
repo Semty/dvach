@@ -9,6 +9,8 @@
 import Foundation
 import Appodeal
 
+typealias Replies = [String: [String]]
+
 protocol IPostViewPresenter {
     var dataSource: [PostViewPresenter.CellType] { get }
     
@@ -56,6 +58,7 @@ final class PostViewPresenter {
     private let thread: ThreadShortInfo
     private var postNumber: Int?
     private var posts = [Post]()
+    private var replies = Replies()
     
     // MARK: - Initialization
     
@@ -69,6 +72,7 @@ final class PostViewPresenter {
     // MARK: - Private
     
     private func loadPost(completion: @escaping (Error?) -> Void) {
+        replies = [:]
         dvachService.loadThreadWithPosts(board: boardIdentifier,
                                          threadNum: thread.number,
                                          postNum: nil,
@@ -77,11 +81,13 @@ final class PostViewPresenter {
             switch result {
             case .success(let posts):
                 var enrichedPosts = [Post]()
+                posts.forEach(self.updateReplies) // Приходится два раза пробегать по массиву с постами :(
                 let dataSource: [CellType] = posts.enumerated().map { index, item in
                     var post = item
                     post.rowIndex = index // Проставляем индекс здесь, чтобы он не сбился из-за рекламы
                     enrichedPosts.append(post)
                     let model = self.createPostViewModel(post: post)
+                    
                     return .post(model)
                 }
                 self.posts = enrichedPosts
@@ -94,18 +100,31 @@ final class PostViewPresenter {
         }
     }
     
+    private func updateReplies(post: Post) {
+        let parser = PostParser(text: post.comment)
+        let repliesIds = parser.dvachLinkModels.repliesIdentifiers
+        repliesIds.forEach {
+            // Берем предыдущее значение массива реплаев
+            var repliesArray = replies[$0] ?? []
+            // Добавляем текущй номер поста
+            repliesArray.append("\(post.num)")
+            // Перезаписываем массив реплаев для нужного номера поста
+            replies[$0] = repliesArray
+        }
+    }
+    
     private func createPostViewModel(post: Post) -> PostCommentView.Model {
         let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.num, number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
+        let repliesCount = replies["\(post.num)"]?.count ?? 0
         
         return PostCommentView.Model(postNumber: post.num,
                                      headerModel: headerViewModel,
                                      date: post.date,
                                      text: postParser.attributedText,
                                      fileURLs: imageURLs,
-                                     dvachLinkModels: postParser.dvachLinkModels,
-                                     repliedTo: postParser.repliedToPosts,
+                                     numberOfReplies: repliesCount,
                                      isAnswerHidden: false,
                                      isRepliesHidden: false)
     }
@@ -177,7 +196,12 @@ extension PostViewPresenter: IPostViewPresenter {
     }
     
     func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: Int) {
-        router.postCommentView(view, didTapAnswersButton: postNumber)
+        router.postCommentView(view,
+                               didTapAnswersButton: postNumber,
+                               posts: posts,
+                               replies: replies,
+                               board: boardIdentifier,
+                               thread: thread)
     }
     
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: Int) {

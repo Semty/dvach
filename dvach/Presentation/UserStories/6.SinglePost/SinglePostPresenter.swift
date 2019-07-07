@@ -57,8 +57,7 @@ final class SinglePostPresenter: NSObject {
                                      date: post.date,
                                      text: postParser.attributedText,
                                      fileURLs: imageURLs,
-                                     dvachLinkModels: postParser.dvachLinkModels,
-                                     repliedTo: postParser.repliedToPosts,
+                                     numberOfReplies: 0,
                                      isAnswerHidden: true,
                                      isRepliesHidden: true)
     }
