@@ -76,6 +76,7 @@ final class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupBackBarButton()
         setupPopRecognizer()
         setupUI()
         presenter.viewDidLoad()
@@ -108,6 +109,12 @@ final class PostViewController: UIViewController {
         
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints { $0.top.trailing.equalToSuperview().inset(CGFloat.inset16) }
+    }
+    
+    private func setupBackBarButton() {
+        let backItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        backItem.tintColor = .n1Gray
+        navigationItem.backBarButtonItem = backItem
     }
     
     private func setupPopRecognizer() {

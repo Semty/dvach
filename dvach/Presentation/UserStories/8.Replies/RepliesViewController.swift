@@ -46,18 +46,9 @@ final class RepliesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupBackBarButton()
         setupUI()
         presenter.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     // MARK: - Private
@@ -66,6 +57,12 @@ final class RepliesViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(tableView)
         tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
+    }
+    
+    private func setupBackBarButton() {
+        let backItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        backItem.tintColor = .n1Gray
+        navigationItem.backBarButtonItem = backItem
     }
 }
 
