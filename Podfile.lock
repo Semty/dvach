@@ -234,6 +234,7 @@ PODS:
   - SwiftEntryKit (1.0.2):
     - QuickLayout (= 3.0.0)
   - SwiftyJSON (4.2.0)
+  - VersaPlayer (2.2.3)
 
 DEPENDENCIES:
   - Alamofire
@@ -251,6 +252,7 @@ DEPENDENCIES:
   - SnapKit (= 4.2.0)
   - SwiftEntryKit (from `https://github.com/Semty/SwiftEntryKit.git`, branch `support-of-setting-home-indicator-behaviour`)
   - SwiftyJSON (= 4.2.0)
+  - VersaPlayer (from `https://github.com/Semty/MP4`, branch `dev`)
 
 SPEC REPOS:
   https://github.com/brion/OGVKit-Specs.git:
@@ -292,6 +294,9 @@ EXTERNAL SOURCES:
   SwiftEntryKit:
     :branch: support-of-setting-home-indicator-behaviour
     :git: https://github.com/Semty/SwiftEntryKit.git
+  VersaPlayer:
+    :branch: dev
+    :git: https://github.com/Semty/MP4
 
 CHECKOUT OPTIONS:
   FLAnimatedImage:
@@ -303,6 +308,9 @@ CHECKOUT OPTIONS:
   SwiftEntryKit:
     :commit: 2df7ece5966b24ca24d46e9714edf7214bb02f4f
     :git: https://github.com/Semty/SwiftEntryKit.git
+  VersaPlayer:
+    :commit: f95ae326f5145671366793ac47bc618486ba2917
+    :git: https://github.com/Semty/MP4
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -334,7 +342,8 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftEntryKit: 2e20ae0608f50ad8c9cb79341e422c1c374b182f
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  VersaPlayer: 4c078dfd2c99c7c934b456cf6d47aefd747afa52
 
-PODFILE CHECKSUM: 69200d4ec08093ed5a88443a80ba35396389df16
+PODFILE CHECKSUM: 1d5fc1b843524d83cd4f1a5006205df124c86e6c
 
 COCOAPODS: 1.7.3

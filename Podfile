@@ -24,6 +24,7 @@ target 'dvach' do
    pod 'lottie-ios', '3.1.0'
    pod 'Appodeal', '~> 2.4.10'
    pod 'OGVKit/WebM', :git => 'https://github.com/Semty/WebM', :branch => 'dev'
+   pod 'VersaPlayer', :git => 'https://github.com/Semty/MP4', :branch => 'dev'
    pod 'KafkaRefresh'
    
   target 'dvachTests' do
