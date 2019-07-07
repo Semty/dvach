@@ -94,6 +94,7 @@ extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
     
     func viewDidLoad() {
         loadBoardWithThreads()
+        Analytics.logEvent("BoardShown", parameters: ["boardId": boardID])
     }
     
     func viewWillAppear() {

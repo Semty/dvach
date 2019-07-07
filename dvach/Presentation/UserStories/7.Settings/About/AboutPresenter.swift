@@ -61,12 +61,14 @@ extension AboutPresenter: IAboutPresenter {
         guard let url = URL(string: "tg://resolve?domain=dvachios") else { return }
         
         if UIApplication.shared.canOpenURL(url) {
+            Analytics.logEvent("TelegramLinkTapped", parameters: [:])
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
             let alert = UIAlertController(title: "Ошибочка вышла", message: "Установим телеграм?", preferredStyle: .alert)
             let action = UIAlertAction(title: "Да", style: .default, handler: { (UIAlertAction) in
                 if let urlAppStore = URL(string: "itms-apps://itunes.apple.com/app/id686449807"),
                     UIApplication.shared.canOpenURL(urlAppStore) {
+                    Analytics.logEvent("DownloadTelegramLinkTapped", parameters: [:])
                     UIApplication.shared.open(urlAppStore, options: [:], completionHandler: nil)
                 }
                 

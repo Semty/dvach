@@ -75,7 +75,8 @@ extension SinglePostPresenter: ISinglePostPresenter {
     func didTapOpenThread() {
         guard let threadInfo = post.threadInfo, let boardId = threadInfo.boardId else { return }
         let vc = PostAssembly.assemble(board: boardId, thread: threadInfo, postNumber: post.number)
-        view?.present(vc, animated: true)
+        Analytics.logEvent("OpenThreadButtonTapped", parameters: [:])
+        view?.navigationController?.pushViewController(vc, animated: true)
     }
     
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String) {

@@ -112,15 +112,18 @@ extension DvachService: IDvachService {
         switch item {
         case .board(let board):
             storage.save(objects: [board], completion: completion)
+            Analytics.logEvent("BoardDidAdToFavourites", parameters: [:])
         case .thread(var thread, let boardId):
             thread.boardId = boardId
             storage.save(objects: [thread], completion: completion)
+            Analytics.logEvent("ThreadDidAdToFavourites", parameters: [:])
         case .post(var post, var threadShortInfo, let boardId):
             threadShortInfo?.isFavourite = false
             threadShortInfo?.boardId = boardId
             threadShortInfo?.identifier = post.identifier // Нужно для того, чтобы тред не попал в избранное вместе с постом
             post.threadInfo = threadShortInfo
             storage.save(objects: [post], completion: completion)
+            Analytics.logEvent("PostDidAdToFavourites", parameters: [:])
         }
     }
     

@@ -162,6 +162,7 @@ extension PostViewPresenter: IPostViewPresenter {
                 self.adManager.loadNativeAd()
             }
         }
+        Analytics.logEvent("PostsShown", parameters: [:])
     }
     
     func refresh() {
