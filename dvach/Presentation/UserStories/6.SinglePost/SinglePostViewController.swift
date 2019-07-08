@@ -39,13 +39,11 @@ final class SinglePostViewController: UIViewController {
         
         return postView
     }()
-    private lazy var closeButton = componentsFactory.createCloseButton(nil, nil) { [weak self] in
+    private lazy var closeButton = componentsFactory.createCloseButton(imageColor: nil, backgroundColor: nil) { [weak self] in
         self?.dismiss(animated: true)
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+    override var prefersStatusBarHidden: Bool { return true }
     
     // MARK: - Initialization
     

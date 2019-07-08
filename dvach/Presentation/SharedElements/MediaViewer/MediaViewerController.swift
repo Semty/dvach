@@ -19,7 +19,7 @@ final class MediaViewerController: DTMediaViewerController {
     private let componentsFactory = Locator.shared.componentsFactory()
     
     // UI
-    private lazy var closeButton = componentsFactory.createCloseButton(.black, .white) { [weak self] in
+    private lazy var closeButton = componentsFactory.createCloseButton(imageColor: .black, backgroundColor: .white) { [weak self] in
         self?.configureSecondaryViews(hidden: true, animated: false)
         self?.dismiss(animated: true)
     }

@@ -28,7 +28,7 @@ final class PostViewController: UIViewController {
     }
     
     // UI
-    private lazy var closeButton = componentsFactory.createCloseButton(nil, nil) { [weak self] in
+    private lazy var closeButton = componentsFactory.createCloseButton(imageColor: nil, backgroundColor: nil) { [weak self] in
         self?.navigationController?.popViewController(animated: true)
     }
     

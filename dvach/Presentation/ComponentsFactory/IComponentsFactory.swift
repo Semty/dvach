@@ -24,8 +24,8 @@ public protocol IComponentsFactory {
     func createEmptyView(height: CGFloat) -> UIView
     
     /// Кнопка закрыть
-    func createCloseButton(_ imageColor: UIColor?,
-                           _ backgroundColor: UIColor?,
+    func createCloseButton(imageColor: UIColor?,
+                           backgroundColor: UIColor?,
                            completion: @escaping () -> Void) -> CloseButton
     
     /// Горизонтальная кнопка с тремя точками

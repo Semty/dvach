@@ -33,8 +33,8 @@ public final class ComponentsFactory: IComponentsFactory {
         return view
     }
     
-    public func createCloseButton(_ imageColor: UIColor?,
-                                  _ backgroundColor: UIColor?,
+    public func createCloseButton(imageColor: UIColor?,
+                                  backgroundColor: UIColor?,
                                   completion: @escaping () -> Void) -> CloseButton {
         let button = CloseButton(imageColor, backgroundColor: backgroundColor)
         button.enableTapping(completion)
