@@ -9,10 +9,12 @@
 import Foundation
 import OGVKit
 
-public protocol VideoContainer {
+@objc public protocol VideoContainer {
+    var snapshotCropNeeded: Bool { get }
     func pause()
-    func updateLayout()
-    func snapshot(pauseVideo: Bool) -> UIImage
+    func snapshot(pauseVideo: Bool) -> UIImage?
+    func configure(urlPath: String?)
+    @objc optional func updateLayout()
 }
 
 public protocol VideoContainerDelegate: class {
@@ -20,6 +22,8 @@ public protocol VideoContainerDelegate: class {
 }
 
 open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
+    
+    public var snapshotCropNeeded = true
     
     // Player View (WebM Only!)
     public private(set) weak var playerView: OGVPlayerView!
@@ -73,9 +77,9 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
         playerView.frameView.frame = bounds
     }
     
-    public func snapshot(pauseVideo: Bool) -> UIImage {
+    public func snapshot(pauseVideo: Bool) -> UIImage? {
         if pauseVideo {
-            playerView.pause()
+            pause()
         }
         return playerView.frameView.snapshot
     }

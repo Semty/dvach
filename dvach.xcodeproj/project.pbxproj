@@ -213,6 +213,9 @@
 		D5D37B3A22B2835D00CDEBA2 /* SkeletonThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */; };
 		D5E4733E22A937980055AB92 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E4733D22A937970055AB92 /* Post.swift */; };
 		D5E4734022A941990055AB92 /* ThreadWithPostsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */; };
+		D5F72FFF22D240FD008F7CB8 /* DTMP4CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F72FFE22D240FD008F7CB8 /* DTMP4CollectionViewCell.swift */; };
+		D5F7300922D2600C008F7CB8 /* VersaPlayerControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F7300822D2600C008F7CB8 /* VersaPlayerControls.xib */; };
+		D5F7300B22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F7300A22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift */; };
 		D5FC9CF822ACEE8B002E0F79 /* Extension+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC9CF722ACEE8B002E0F79 /* Extension+NSRange.swift */; };
 		FEB9BA536773581D988B192D /* Pods_dvach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */; };
 /* End PBXBuildFile section */
@@ -443,6 +446,9 @@
 		D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonThreadView.swift; sourceTree = "<group>"; };
 		D5E4733D22A937970055AB92 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithPostsRequest.swift; sourceTree = "<group>"; };
+		D5F72FFE22D240FD008F7CB8 /* DTMP4CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMP4CollectionViewCell.swift; sourceTree = "<group>"; };
+		D5F7300822D2600C008F7CB8 /* VersaPlayerControls.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VersaPlayerControls.xib; sourceTree = "<group>"; };
+		D5F7300A22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+VersaPlayerControls.swift"; sourceTree = "<group>"; };
 		D5FC9CF722ACEE8B002E0F79 /* Extension+NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSRange.swift"; sourceTree = "<group>"; };
 		EBF848D3DEFEF1DDEC1C29B2 /* Pods_dvachTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvachTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1020,6 +1026,7 @@
 				41BEE704229F043C0028EBFB /* Extension+UIViewController.swift */,
 				41BEE714229F043C0028EBFB /* Extention+UIColor.swift */,
 				41BEE706229F043C0028EBFB /* UIView */,
+				D5F7300A22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -1334,6 +1341,7 @@
 		D528DE5022BBC451008A27D9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D5F7300122D242DD008F7CB8 /* DTMP4CollectionViewCell */,
 				D528DE3C22BB723B008A27D9 /* DTCollectionViewFlowLayout.swift */,
 				D528DE3F22BB723B008A27D9 /* DTPhotoCollectionViewCell.swift */,
 				D51F1BBA22C7D58F007040AA /* DTWebMCollectionViewCell.swift */,
@@ -1450,6 +1458,15 @@
 			path = Skeleton;
 			sourceTree = "<group>";
 		};
+		D5F7300122D242DD008F7CB8 /* DTMP4CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D5F72FFE22D240FD008F7CB8 /* DTMP4CollectionViewCell.swift */,
+				D5F7300822D2600C008F7CB8 /* VersaPlayerControls.xib */,
+			);
+			path = DTMP4CollectionViewCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1556,6 +1573,7 @@
 				D5D37B3822B2790C00CDEBA2 /* SkeletonThreadView.xib in Resources */,
 				41BEE6E0229EFE750028EBFB /* LaunchScreen.storyboard in Resources */,
 				4190801D22A8865D003309D9 /* config.json in Resources */,
+				D5F7300922D2600C008F7CB8 /* VersaPlayerControls.xib in Resources */,
 				41D38A7E22B83226000D1391 /* Assets.xcassets in Resources */,
 				41908A2022BE815F0058907D /* AppInfoView.xib in Resources */,
 				411902BA22A6BE05008231AC /* ShadowCollectionViewCell.xib in Resources */,
@@ -1712,6 +1730,7 @@
 				41BEE75C229F04730028EBFB /* ConfigurableView.swift in Sources */,
 				4117534522A2E500008EBD2A /* CategoriesPresenter.swift in Sources */,
 				41BEE767229F04730028EBFB /* CloseButton.swift in Sources */,
+				D5F7300B22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift in Sources */,
 				D528DE4822BB723B008A27D9 /* Helper.swift in Sources */,
 				41BEE72D229F043C0028EBFB /* Extension+String.swift in Sources */,
 				41D38A6522B51968000D1391 /* DvachItem.swift in Sources */,
@@ -1807,6 +1826,7 @@
 				4193B1D622AD8C4C00EE25FD /* VerticalOvalButton.swift in Sources */,
 				4193B1C122AA9BF600EE25FD /* PostAssembly.swift in Sources */,
 				41BEE762229F04730028EBFB /* StackViewContainer.swift in Sources */,
+				D5F72FFF22D240FD008F7CB8 /* DTMP4CollectionViewCell.swift in Sources */,
 				D528DE4922BB723B008A27D9 /* DTPhotoCollectionViewCell.swift in Sources */,
 				D5B22BC222A187A0001EE4F8 /* BoardWithBumpSortingThreadsCatalogRequest.swift in Sources */,
 				D528DE4322BB723B008A27D9 /* DTMediaViewerController.swift in Sources */,

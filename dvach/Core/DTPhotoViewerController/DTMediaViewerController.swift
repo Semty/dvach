@@ -14,6 +14,7 @@ import Photos
 private extension String {
     static let photoCollectionViewCellIdentifier = "photoCollectionViewCell"
     static let webmCollectionViewCellIdentifier = "webmCollectionViewCell"
+    static let mp4CollectionViewCellIdentifier = "mp4CollectionViewCell"
 }
 
 open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
@@ -166,6 +167,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
                                           collectionViewLayout: flowLayout)
         collectionView.register(DTPhotoCollectionViewCell.self, forCellWithReuseIdentifier: .photoCollectionViewCellIdentifier)
         collectionView.register(DTWebMCollectionViewCell.self, forCellWithReuseIdentifier: .webmCollectionViewCellIdentifier)
+        collectionView.register(DTMP4CollectionViewCell.self, forCellWithReuseIdentifier: .mp4CollectionViewCellIdentifier)
         
         collectionView.backgroundColor = UIColor.clear
         collectionView.isPagingEnabled = true
@@ -289,7 +291,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
             
         }) { (context) in
             self._hideImageView(true)
-            container?.updateLayout()
+            container?.updateLayout?()
         }
     }
     
@@ -697,8 +699,12 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
         guard let container = currentVideoContainer else { return imageView.image }
         
         let snapshot = container.snapshot(pauseVideo: true)
-
-        return snapshot.croppedInRect(rect: imageView.frame)
+        
+        if container.snapshotCropNeeded {
+            return snapshot?.croppedInRect(rect: imageView.frame)
+        } else {
+            return snapshot
+        }
     }
     
     // MARK: - Public behavior methods
@@ -796,7 +802,7 @@ extension DTMediaViewerController: UICollectionViewDataSource {
         guard let file = mediaFiles?[safeIndex: indexPath.row] else { return UICollectionViewCell() }
         
         switch file.type {
-        case .image, .mp4:
+        case .image:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .photoCollectionViewCellIdentifier,
                                                           for: indexPath) as! DTPhotoCollectionViewCell
             cell.delegate = self
@@ -810,6 +816,22 @@ extension DTMediaViewerController: UICollectionViewDataSource {
                 
             } else {
                 cell.imageView.image = imageView.image
+                return cell
+            }
+            
+        case .mp4:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .mp4CollectionViewCellIdentifier,
+                                                          for: indexPath) as! DTMP4CollectionViewCell
+            cell.delegate = self
+            
+            if let dataSource = mediaViewControllerDataSource,
+                dataSource.numberOfItems(in: self) > 0 {
+                dataSource.mediaViewerController?(self,
+                                                  configureCell: cell,
+                                                  forVideoAt: indexPath.row)
+                return cell
+                
+            } else {
                 return cell
             }
         case .webm:
