@@ -124,7 +124,7 @@ extension UIImage {
     }
     
     /// Cancel X icon. Aspect ratio 1:1
-    static func cancelIcon(size: CGSize, color fillColor: UIColor!) -> UIImage {
+    static func cancelIcon(size: CGSize, color fillColor: UIColor) -> UIImage {
         let aspectRatio: CGFloat = 1.0
         let preferredSize = UIImage.preferredImageSize(for: size, with: aspectRatio)
         let frame = CGRect(x: 0, y: 0, width: preferredSize.width, height: preferredSize.height)
@@ -162,6 +162,34 @@ extension UIImage {
         fillColor.setFill()
         bezierPath.fill()
         
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
+    static func backIcon(size: CGSize, color fillColor: UIColor) -> UIImage {
+        let aspectRatio: CGFloat = 1.0
+        let preferredSize = UIImage.preferredImageSize(for: size, with: aspectRatio)
+        let frame = CGRect(x: 0, y: 0, width: preferredSize.width, height: preferredSize.height)
+
+        UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
+        
+        let bezierPath = UIBezierPath()
+        bezierPath.move(to: CGPoint(x: 12, y: 3))
+        bezierPath.addCurve(to: CGPoint(x: 6, y: 10), controlPoint1: CGPoint(x: 6, y: 10), controlPoint2: CGPoint(x: 6, y: 10))
+        bezierPath.move(to: CGPoint(x: 6, y: 10))
+        bezierPath.addCurve(to: CGPoint(x: 13, y: 16), controlPoint1: CGPoint(x: 13, y: 16), controlPoint2: CGPoint(x: 13, y: 16))
+        UIColor.black.setStroke()
+        bezierPath.lineWidth = 1.5
+        bezierPath.lineCapStyle = .round
+        bezierPath.lineJoinStyle = .round
+        bezierPath.stroke()
+        
+        bezierPath.usesEvenOddFillRule = true
+        fillColor.setFill()
+        bezierPath.fill()
+
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         

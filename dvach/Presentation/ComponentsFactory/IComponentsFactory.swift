@@ -24,7 +24,8 @@ public protocol IComponentsFactory {
     func createEmptyView(height: CGFloat) -> UIView
     
     /// Кнопка закрыть
-    func createCloseButton(imageColor: UIColor?,
+    func createCloseButton(style: CloseButton.Style,
+                           imageColor: UIColor?,
                            backgroundColor: UIColor?,
                            completion: @escaping () -> Void) -> CloseButton
     

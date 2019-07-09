@@ -55,6 +55,7 @@ final class BoardWithThreadsViewController: UIViewController {
     }()
     
     private lazy var skeleton = SkeletonThreadView.fromNib()
+    private var popRecognizer: SwipeToBackRecognizer?
     
     // Timing Variables
     private var timeStart = CFAbsoluteTime()
@@ -87,6 +88,7 @@ final class BoardWithThreadsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupPopRecognizer()
         updateNavigationItem()
         skeleton.update(state: .active)
         presenter.viewWillAppear()
@@ -105,6 +107,12 @@ final class BoardWithThreadsViewController: UIViewController {
         
         view.addSubview(skeleton)
         skeleton.snp.makeConstraints { $0.edges.equalToSuperview() }
+    }
+    
+    private func setupPopRecognizer() {
+        guard let controller = navigationController else { return }
+        popRecognizer = SwipeToBackRecognizer(controller: controller)
+        controller.interactivePopGestureRecognizer?.delegate = popRecognizer
     }
     
     private func updateNavigationItem() {
@@ -129,7 +137,7 @@ final class BoardWithThreadsViewController: UIViewController {
     }
     
     private func updateTable() {
-        
+        updateNavigationItem()
         var indexPaths = [IndexPath]()
         for row in 0..<presenter.dataSource.count {
             indexPaths.append(IndexPath(row: row, section: 0))

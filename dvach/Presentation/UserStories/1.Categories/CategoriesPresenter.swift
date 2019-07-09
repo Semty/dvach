@@ -131,6 +131,6 @@ extension CategoriesPresenter: ICategoriesPresenter {
     
     func didTapUpdate() {
         loadCategories()
-//        Analytics.logEvent("UpdateBoardsTapped", parameters: [:])
+        Analytics.logEvent("UpdateBoardsTapped", parameters: [:])
     }
 }
