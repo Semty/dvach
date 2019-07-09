@@ -26,10 +26,17 @@ final class PostViewController: UIViewController {
     private var deltaRefreshTime: TimeInterval {
         return Date().timeIntervalSince1970 - startRefreshTime
     }
+    private var closeButtonStyle: CloseButton.Style {
+        return (navigationController?.viewControllers.count ?? 0 > 1) ? .pop : .dismiss
+    }
     
     // UI
-    private lazy var closeButton = componentsFactory.createCloseButton(imageColor: nil, backgroundColor: nil) { [weak self] in
-        self?.navigationController?.popViewController(animated: true)
+    private lazy var closeButton = componentsFactory.createCloseButton(style: .pop, imageColor: nil, backgroundColor: nil) { [weak self] in
+        guard let self = self else { return }
+        switch self.closeButtonStyle {
+        case .pop: self.navigationController?.popViewController(animated: true)
+        case .dismiss: self.dismiss(animated: true, completion: nil)
+        }
     }
     
     private lazy var tableView: UITableView = {

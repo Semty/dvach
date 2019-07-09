@@ -9,16 +9,31 @@
 import Foundation
 
 extension Int {
-    static let maxModelsCount = 10
+    static let maxModelsCountForIphone = 10
+    static let maxModelsCountForIpad = 20
 }
 
 final class CategoriesViewModelFactory {
+    
+    private var maxModelsCount: Int {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return .max
+        } else {
+            return .maxModelsCountForIphone
+        }
+    }
     
     // MARK: - Public
     
     func createViewModels(category: Category, boards: [Board]) -> CategoriesPresenter.BlockModel? {
         guard !boards.isEmpty else { return nil }
-        let buttonTitle = boards.count > 5 ? "Все" : nil
+        
+        let buttonTitle: String?
+        if category == .user || category == .theme {
+            buttonTitle = "Все"
+        } else {
+            buttonTitle = (boards.count > 5 && UIDevice.current.userInterfaceIdiom != .pad) ? "Все" : nil
+        }
         let blockModel = BlockWithTitle.Model(title: category.rawValue, buttonTitle: buttonTitle)
         let cardsModels = collectionModels(category: category, boards: boards)
         
@@ -30,7 +45,7 @@ final class CategoriesViewModelFactory {
     // MARK: - Private
     
     private func collectionModels(category: Category, boards: [Board]) -> [CategoriesCardView.Model] {
-        return boards.prefix(.maxModelsCount).map {
+        return boards.prefix(maxModelsCount).map {
             let icon: UIImage
             if let assetsIcon = UIImage(named: $0.shortInfo.identifier) {
                 icon = assetsIcon

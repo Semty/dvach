@@ -18,14 +18,25 @@ private extension CGFloat {
 
 final public class CloseButton: UIView, Tappable {
     
+    public enum Style {
+        case dismiss
+        case pop
+    }
+    
     // Variables
-    private var imageColor: UIColor?
+    private let style: Style
+    private let imageColor: UIColor?
     
     // UI
     private lazy var image: UIImageView = {
-        let image = UIImage.cancelIcon(size: CGSize(width: .buttonSize/2.4,
-                                                    height: .buttonSize/2.4),
-                                       color: imageColor ?? .white)
+        let size = CGSize(width: .buttonSize/2.4, height: .buttonSize/2.4)
+        let image: UIImage
+        switch style {
+        case .dismiss:
+            image = .cancelIcon(size: size, color: imageColor ?? .white)
+        case .pop:
+            image = .backIcon(size: size, color: imageColor ?? .white)
+        }
         let imageView = UIImageView(image: image)
         imageView.contentMode = .center
         imageView.snp.makeConstraints { $0.height.width.equalTo(CGFloat.buttonSize) }
@@ -50,12 +61,14 @@ final public class CloseButton: UIView, Tappable {
         return view
     }()
     
-    init(_ imageColor: UIColor? = nil, backgroundColor: UIColor? = nil) {
-        super.init(frame: .zero)
-        addSubview(backgroundView)
-        
+    init(style: Style, imageColor: UIColor? = nil, backgroundColor: UIColor? = nil) {
+        self.style = style
         self.imageColor = imageColor
         
+        super.init(frame: .zero)
+        
+        addSubview(backgroundView)
+
         if let backgroundColor = backgroundColor {
             backgroundView.backgroundColor = backgroundColor
         } else {
