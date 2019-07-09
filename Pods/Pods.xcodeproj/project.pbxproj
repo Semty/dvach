@@ -1099,7 +1099,7 @@
 		D4094FD5D67ADCC7C3478B7370EF9D59 /* LP_variable_cutoff.c in Sources */ = {isa = PBXBuildFile; fileRef = A66C3500393759E290BBA285B507A4E4 /* LP_variable_cutoff.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D41F196B37E9B098F0B9F6CE036868A9 /* Image.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1D09FE153DF5D44F5EB94B75F9BCF4B7 /* Image.bundle */; };
 		D4F58F22AA127711713A06B44CB265C5 /* OGVAudioFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = D82CC758EB26F3B10FF394AF5EF2CEFF /* OGVAudioFormat.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		D50C7F9F22D4A4D70078E2A3 /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FFEEF2559918AE7868C80221B13E7A /* VPX.framework */; };
+		D50C7FA322D4CA6D0078E2A3 /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FFEEF2559918AE7868C80221B13E7A /* VPX.framework */; };
 		D50FDA53BDA74A95934993BE0900ACB7 /* PathOutputNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83DA5369433A81B3A5E4D28CA51D6D8 /* PathOutputNode.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D5728F24F8DA5E45D3C7F039DBD98174 /* StarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661872F9258F0740C306F3A943261B22 /* StarNode.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D5829406E285B52A3467FDC30DA2AA70 /* levinsondurbin_FLP.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A624BFBFF7056F319CCF117E9B6B1A /* levinsondurbin_FLP.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -3294,7 +3294,7 @@
 				12D0CCA028FAC7223068E08756B2FDEE /* libopus.framework in Frameworks */,
 				70161E39F6CE8B67794775CF5ED17E02 /* nestegg.framework in Frameworks */,
 				A27F23CE776DE3424379F0E316F4AC92 /* vorbis.framework in Frameworks */,
-				D50C7F9F22D4A4D70078E2A3 /* VPX.framework in Frameworks */,
+				D50C7FA322D4CA6D0078E2A3 /* VPX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

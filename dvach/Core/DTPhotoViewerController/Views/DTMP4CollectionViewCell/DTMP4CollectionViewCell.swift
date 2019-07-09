@@ -101,6 +101,14 @@ open class DTMP4CollectionViewCell: UICollectionViewCell, VideoContainer {
             return nil
         }
     }
+    
+    public func controlsViewFrame() -> CGRect {
+        if let controls = playerView.controls, !controls.isHidden {
+            return controls.frame
+        } else {
+            return .zero
+        }
+    }
 }
 
 extension DTMP4CollectionViewCell: VersaPlayerPlaybackDelegate {

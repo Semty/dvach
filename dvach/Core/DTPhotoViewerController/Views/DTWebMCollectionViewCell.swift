@@ -11,6 +11,7 @@ import OGVKit
 
 @objc public protocol VideoContainer {
     var snapshotCropNeeded: Bool { get }
+    func controlsViewFrame() -> CGRect
     func pause()
     func play()
     func snapshot(pauseVideo: Bool) -> UIImage?
@@ -91,6 +92,14 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
             pause()
         }
         return playerView.frameView.snapshot
+    }
+    
+    public func controlsViewFrame() -> CGRect {
+        if !playerView.controlBar.isHidden {
+            return playerView.controlBar.frame
+        } else {
+            return .zero
+        }
     }
 }
 

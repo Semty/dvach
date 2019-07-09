@@ -393,6 +393,8 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     }
     
     @objc func _handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        if currentVideoContainer != nil { return }
+        
         // Method to override
         didReceiveTapGesture()
         
@@ -615,6 +617,17 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
         }
         
         return CGSize.zero
+    }
+    
+    public func isNeededToCancelDragging(_ gesture: UIPanGestureRecognizer) -> Bool {
+        guard let container = currentVideoContainer else { return false }
+        let controlsFrame = container.controlsViewFrame()
+        let gesturePoint = gesture.location(in: view)
+        if controlsFrame.contains(gesturePoint) {
+            return true
+        } else {
+            return false
+        }
     }
     
     func presentingAnimation() {

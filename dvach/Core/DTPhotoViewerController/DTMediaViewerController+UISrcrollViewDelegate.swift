@@ -46,6 +46,13 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
         }
     }
     
+    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if isNeededToCancelDragging(scrollView.panGestureRecognizer) {
+            scrollView.panGestureRecognizer.isEnabled = false
+            scrollView.panGestureRecognizer.isEnabled = true
+        }
+    }
+    
     open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             let index = currentIndex

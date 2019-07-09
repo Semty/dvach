@@ -23,8 +23,8 @@ target 'dvach' do
    pod 'SwiftEntryKit', :git => 'https://github.com/Semty/SwiftEntryKit.git', :branch => 'support-of-setting-home-indicator-behaviour'
    pod 'lottie-ios', '3.1.0'
    pod 'Appodeal', '~> 2.4.10'
-   pod 'OGVKit/WebM', :git => 'https://github.com/Semty/WebM', :branch => 'super-dev'
-   pod 'VersaPlayer', :git => 'https://github.com/Semty/MP4', :branch => 'dev'
+   pod 'OGVKit/WebM', :git => 'https://github.com/Semty/WebM'
+   pod 'VersaPlayer', :git => 'https://github.com/Semty/MP4'
    pod 'KafkaRefresh'
    
   target 'dvachTests' do
