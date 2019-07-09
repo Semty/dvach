@@ -58,10 +58,10 @@ extension UIImage {
         
         var rectTransform: CGAffineTransform
         switch imageOrientation {
-        case .left:
-            rectTransform = CGAffineTransform(rotationAngle: rad(90)).translatedBy(x: 0, y: -self.size.height)
-        case .right:
-            rectTransform = CGAffineTransform(rotationAngle: rad(-90)).translatedBy(x: -self.size.width, y: 0)
+        case .right, .left:
+            rectTransform = .identity
+            rect.size.height = self.size.width
+            rect.size.width = self.size.height
         case .down:
             rectTransform = CGAffineTransform.identity
             rect.origin.x = self.size.width - (rect.size.width + rect.origin.x)

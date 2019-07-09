@@ -303,7 +303,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Flipboard/FLAnimatedImage.git
     :tag: 1.0.14
   OGVKit:
-    :commit: 0cb19b6f5f4d21d223c070921faea0b31e1b2504
+    :commit: 8be656f159be06c838610eb51cea67331b9488ab
     :git: https://github.com/Semty/WebM
   SwiftEntryKit:
     :commit: 2df7ece5966b24ca24d46e9714edf7214bb02f4f
