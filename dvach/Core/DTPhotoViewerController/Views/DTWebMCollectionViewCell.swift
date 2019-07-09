@@ -33,8 +33,6 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
     // Delegate
     public weak var delegate: VideoContainerDelegate?
     
-    private var sourceURL = ""
-    
     // MARK: - Initialization
     
     public override init(frame: CGRect) {
@@ -63,7 +61,6 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
         
         if let urlPath = urlPath, let url = URL(string: "\(GlobalUtils.base2chPath)\(urlPath)") {
             if let delegate = delegate, !delegate.isRotating {
-                sourceURL = urlPath
                 playerView.sourceURL = url
             }
         } else {
