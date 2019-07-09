@@ -64,9 +64,12 @@ open class DTMP4CollectionViewCell: UICollectionViewCell, VideoContainer {
     public func configure(urlPath: String?) {
         
         if let urlPath = urlPath, let url = URL(string: "\(GlobalUtils.base2chPath)\(urlPath)") {
-            let item = VersaPlayerItem(url: url)
-            playerView.set(item: item)
-            playerItemView = item
+            if let delegate = delegate, !delegate.isRotating {
+                let item = VersaPlayerItem(url: url)
+                playerView.autoplay = false
+                playerView.set(item: item)
+                playerItemView = item
+            }
         } else {
             print("DTWebMCollectionViewCell, URL PATH IS INCORRECT")
         }
@@ -80,6 +83,12 @@ open class DTMP4CollectionViewCell: UICollectionViewCell, VideoContainer {
         }
     }
     
+    public func play() {
+        if !playerView.isPlaying {
+            playerView.play()
+        }
+    }
+    
     public func snapshot(pauseVideo: Bool) -> UIImage? {
         if pauseVideo {
             pause()
@@ -90,6 +99,14 @@ open class DTMP4CollectionViewCell: UICollectionViewCell, VideoContainer {
         } catch let error {
             print("MP4 SNAPSHOT ERROR = \(error)")
             return nil
+        }
+    }
+    
+    public func controlsViewFrame() -> CGRect {
+        if let controls = playerView.controls, !controls.isHidden {
+            return controls.frame
+        } else {
+            return .zero
         }
     }
 }

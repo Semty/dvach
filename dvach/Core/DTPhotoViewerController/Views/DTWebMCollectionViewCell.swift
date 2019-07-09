@@ -11,13 +11,16 @@ import OGVKit
 
 @objc public protocol VideoContainer {
     var snapshotCropNeeded: Bool { get }
+    func controlsViewFrame() -> CGRect
     func pause()
+    func play()
     func snapshot(pauseVideo: Bool) -> UIImage?
     func configure(urlPath: String?)
     @objc optional func updateLayout()
 }
 
 public protocol VideoContainerDelegate: class {
+    var isRotating: Bool { get }
     func handleVideoTapGesture(hideControls hide: Bool)
 }
 
@@ -58,8 +61,9 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
     public func configure(urlPath: String?) {
         
         if let urlPath = urlPath, let url = URL(string: "\(GlobalUtils.base2chPath)\(urlPath)") {
-            playerView.sourceURL = url
-            playerView.play()
+            if let delegate = delegate, !delegate.isRotating {
+                playerView.sourceURL = url
+            }
         } else {
             print("DTWebMCollectionViewCell, URL PATH IS INCORRECT")
         }
@@ -73,6 +77,12 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
         }
     }
     
+    public func play() {
+        if playerView.paused {
+            playerView.play()
+        }
+    }
+    
     public func updateLayout() {
         playerView.frameView.frame = bounds
     }
@@ -82,6 +92,14 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
             pause()
         }
         return playerView.frameView.snapshot
+    }
+    
+    public func controlsViewFrame() -> CGRect {
+        if !playerView.controlBar.isHidden {
+            return playerView.controlBar.frame
+        } else {
+            return .zero
+        }
     }
 }
 

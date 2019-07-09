@@ -17,7 +17,7 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
     }
     
     open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        let index = currentPhotoIndex
+        let index = currentIndex
         
         // Method to override
         didScrollToPhoto(at: index)
@@ -46,9 +46,16 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
         }
     }
     
+    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if isNeededToCancelDragging(scrollView.panGestureRecognizer) {
+            scrollView.panGestureRecognizer.isEnabled = false
+            scrollView.panGestureRecognizer.isEnabled = true
+        }
+    }
+    
     open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            let index = currentPhotoIndex
+            let index = currentIndex
             didScrollToPhoto(at: index)
             
             // Call delegate
@@ -57,7 +64,7 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
     }
     
     open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let index = currentPhotoIndex
+        let index = currentIndex
         didScrollToPhoto(at: index)
         
         // Call delegate
@@ -102,7 +109,7 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
     
     // Update image view image
     func updateImageView(scrollView: UIScrollView) {
-        let index = currentPhotoIndex
+        let index = currentIndex
         
         // Update image view before pan gesture happens
         if let dataSource = mediaViewControllerDataSource, dataSource.numberOfItems(in: self) > 0 {
@@ -125,7 +132,7 @@ extension DTMediaViewerController: UICollectionViewDelegateFlowLayout {
     
     func updateImageViewDismissalAnimationWillStart() {
         if let dataSource = mediaViewControllerDataSource, dataSource.numberOfItems(in: self) > 0 {
-            let index = currentPhotoIndex
+            let index = currentIndex
             dataSource.photoViewerController(self,
                                              configurePhotoAt: index,
                                              withImageView: imageView)

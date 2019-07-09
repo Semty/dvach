@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+ platform :ios, '11.0'
 
 target 'dvach' do
   source 'https://github.com/CocoaPods/Specs.git'
@@ -23,8 +23,8 @@ target 'dvach' do
    pod 'SwiftEntryKit', :git => 'https://github.com/Semty/SwiftEntryKit.git', :branch => 'support-of-setting-home-indicator-behaviour'
    pod 'lottie-ios', '3.1.0'
    pod 'Appodeal', '~> 2.4.10'
-   pod 'OGVKit/WebM', :git => 'https://github.com/Semty/WebM', :branch => 'dev'
-   pod 'VersaPlayer', :git => 'https://github.com/Semty/MP4', :branch => 'dev'
+   pod 'OGVKit/WebM', :git => 'https://github.com/Semty/WebM'
+   pod 'VersaPlayer', :git => 'https://github.com/Semty/MP4'
    pod 'KafkaRefresh'
    
   target 'dvachTests' do
@@ -37,6 +37,7 @@ target 'dvach' do
       target.build_configurations.each do |config|
         config.build_settings['ENABLE_BITCODE'] = 'NO'
         config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', 'USE_ALLOCA', 'OPUS_BUILD']
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
       end
     end
   end
