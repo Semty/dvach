@@ -122,13 +122,13 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     
     /// Currently Visible Photo Cell (if any)
     public var currentPhotoCell: DTPhotoCollectionViewCell? {
-        return collectionView.cellForItem(at: IndexPath(row: currentPhotoIndex,
+        return collectionView.cellForItem(at: IndexPath(row: currentIndex,
                                                         section: 0)) as? DTPhotoCollectionViewCell
     }
     
     /// Currently Visible Video Container (if any)
     public var currentVideoContainer: VideoContainer? {
-        return collectionView.cellForItem(at: IndexPath(row: currentPhotoIndex,
+        return collectionView.cellForItem(at: IndexPath(row: currentIndex,
                                                         section: 0)) as? VideoContainer
     }
     
@@ -146,6 +146,8 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     
     fileprivate var _shouldHideStatusBar = false
     fileprivate var _shouldUseStatusBarStyle = false
+    
+    public var isRotating = false
     
     /// Transition animator
     /// Customizable if you wish to provide your own transitions.
@@ -278,7 +280,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
         super.viewWillTransition(to: size, with: coordinator)
         
         // Update layout
-        (collectionView.collectionViewLayout as? DTCollectionViewFlowLayout)?.currentIndex = currentPhotoIndex
+        (collectionView.collectionViewLayout as? DTCollectionViewFlowLayout)?.currentIndex = currentIndex
         
         let cell = currentPhotoCell
         let container = currentVideoContainer
@@ -286,12 +288,14 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
         cell?.scrollView.zoomScale = 1.0
         imageView.image = cell?.imageView.image
         _hideImageView(false)
+        isRotating = true
 
         coordinator.animate(alongsideTransition: { (context) in
             
         }) { (context) in
             self._hideImageView(true)
             container?.updateLayout?()
+            self.isRotating = false
         }
     }
     
@@ -764,7 +768,7 @@ extension DTMediaViewerController: UICollectionViewDataSource {
     
     // MARK: - Public Helpers
     
-    public var currentPhotoIndex: Int {
+    public var currentIndex: Int {
         if scrollDirection == .horizontal {
             if scrollView.frame.width == 0 {
                 return 0
@@ -780,7 +784,7 @@ extension DTMediaViewerController: UICollectionViewDataSource {
     }
     
     public var zoomScale: CGFloat {
-        let index = currentPhotoIndex
+        let index = currentIndex
         let indexPath = IndexPath(item: index, section: 0)
         
         if let cell = collectionView.cellForItem(at: indexPath) as? DTPhotoCollectionViewCell {
@@ -853,6 +857,13 @@ extension DTMediaViewerController: UICollectionViewDataSource {
 }
 
 extension DTMediaViewerController: UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? VideoContainer else { return }
+        if !isRotating {
+            cell.play()
+        }
+    }
+    
     public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? VideoContainer else { return }
         cell.pause()
