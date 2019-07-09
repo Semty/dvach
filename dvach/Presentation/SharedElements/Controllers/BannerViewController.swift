@@ -77,12 +77,16 @@ final class BannerViewController: UIViewController {
     public func getAnimationAttributes(presentingVC: UIViewController) -> EKAttributes {
         self.presentingVC = presentingVC
         var attributes = EKAttributes()
-        attributes.position = .bottom
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            attributes.position = .center
+        } else {
+            attributes.position = .bottom
+        }
         attributes.positionConstraints = .fullWidth
         attributes.positionConstraints.size = .init(width: .offset(value: 6),
                                                     height: .intrinsic)
         attributes.positionConstraints.verticalOffset = 6
-        attributes.positionConstraints.maxSize = .init(width: .intrinsic,
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: 414),
                                                        height: .constant(value: 556))
         attributes.homeIndicatorBehaviour = .autoHidden
         attributes.positionConstraints.safeArea = .overridden
