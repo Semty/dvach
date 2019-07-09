@@ -538,6 +538,12 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
             switch gesture.state {
             case .began:
                 
+                // Cancel gesture if tap was in a controls zone
+                if isNeededToCancelDragging(gesture) {
+                    gesture.state = .cancelled
+                    return
+                }
+                
                 // Delegate method
                 mediaViewControllerDelegate?.photoViewerController?(self, willBeginPanGestureRecognizer: panGestureRecognizer)
                 
