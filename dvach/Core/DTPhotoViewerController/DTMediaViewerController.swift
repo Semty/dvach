@@ -149,6 +149,9 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     
     public var isRotating = false
     
+    private var isOpening = true
+    private var openingIndex = 0
+    
     /// Transition animator
     /// Customizable if you wish to provide your own transitions.
     open lazy var animator: DTMediaViewerBaseAnimator = DTMediaAnimator()
@@ -158,6 +161,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     public init(referencedViews: [UIImageView]?,
                 files: [MediaFile]?,
                 index: Int?) {
+        openingIndex = index ?? 0
         let flowLayout = DTCollectionViewFlowLayout()
         flowLayout.scrollDirection = scrollDirection
         flowLayout.sectionInset = UIEdgeInsets.zero
@@ -313,6 +317,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        isOpening = false
     }
     
     open override func viewWillDisappear(_ animated: Bool) {
@@ -878,8 +883,10 @@ extension DTMediaViewerController: UICollectionViewDataSource {
 extension DTMediaViewerController: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? VideoContainer else { return }
-        if !isRotating {
-            cell.play()
+        if (!isRotating) {
+            if !isOpening || openingIndex == indexPath.row {
+                cell.play()
+            }
         }
     }
     
