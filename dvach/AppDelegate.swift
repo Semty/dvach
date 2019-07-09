@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        GlobalUtils.setAudioInSilentModeOn()
         Appodeal.initialize(withApiKey: "b40e1fbb24bc14e50b0d75cddfee134d6abb4855df114e6d", types: [.nonSkippableVideo, .interstitial, .nativeAd])
         setupInitialViewController()
         

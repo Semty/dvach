@@ -122,13 +122,13 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     
     /// Currently Visible Photo Cell (if any)
     public var currentPhotoCell: DTPhotoCollectionViewCell? {
-        return collectionView.cellForItem(at: IndexPath(row: currentPhotoIndex,
+        return collectionView.cellForItem(at: IndexPath(row: currentIndex,
                                                         section: 0)) as? DTPhotoCollectionViewCell
     }
     
     /// Currently Visible Video Container (if any)
     public var currentVideoContainer: VideoContainer? {
-        return collectionView.cellForItem(at: IndexPath(row: currentPhotoIndex,
+        return collectionView.cellForItem(at: IndexPath(row: currentIndex,
                                                         section: 0)) as? VideoContainer
     }
     
@@ -147,6 +147,11 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     fileprivate var _shouldHideStatusBar = false
     fileprivate var _shouldUseStatusBarStyle = false
     
+    public var isRotating = false
+    
+    private var isOpening = true
+    private var openingIndex = 0
+    
     /// Transition animator
     /// Customizable if you wish to provide your own transitions.
     open lazy var animator: DTMediaViewerBaseAnimator = DTMediaAnimator()
@@ -156,6 +161,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     public init(referencedViews: [UIImageView]?,
                 files: [MediaFile]?,
                 index: Int?) {
+        openingIndex = index ?? 0
         let flowLayout = DTCollectionViewFlowLayout()
         flowLayout.scrollDirection = scrollDirection
         flowLayout.sectionInset = UIEdgeInsets.zero
@@ -278,7 +284,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
         super.viewWillTransition(to: size, with: coordinator)
         
         // Update layout
-        (collectionView.collectionViewLayout as? DTCollectionViewFlowLayout)?.currentIndex = currentPhotoIndex
+        (collectionView.collectionViewLayout as? DTCollectionViewFlowLayout)?.currentIndex = currentIndex
         
         let cell = currentPhotoCell
         let container = currentVideoContainer
@@ -286,12 +292,14 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
         cell?.scrollView.zoomScale = 1.0
         imageView.image = cell?.imageView.image
         _hideImageView(false)
+        isRotating = true
 
         coordinator.animate(alongsideTransition: { (context) in
             
         }) { (context) in
             self._hideImageView(true)
             container?.updateLayout?()
+            self.isRotating = false
         }
     }
     
@@ -309,6 +317,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        isOpening = false
     }
     
     open override func viewWillDisappear(_ animated: Bool) {
@@ -389,6 +398,8 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     }
     
     @objc func _handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        if currentVideoContainer != nil { return }
+        
         // Method to override
         didReceiveTapGesture()
         
@@ -532,6 +543,12 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
             switch gesture.state {
             case .began:
                 
+                // Cancel gesture if tap was in a controls zone
+                if isNeededToCancelDragging(gesture) {
+                    gesture.state = .cancelled
+                    return
+                }
+                
                 // Delegate method
                 mediaViewControllerDelegate?.photoViewerController?(self, willBeginPanGestureRecognizer: panGestureRecognizer)
                 
@@ -611,6 +628,17 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
         }
         
         return CGSize.zero
+    }
+    
+    public func isNeededToCancelDragging(_ gesture: UIPanGestureRecognizer) -> Bool {
+        guard let container = currentVideoContainer else { return false }
+        let controlsFrame = container.controlsViewFrame()
+        let gesturePoint = gesture.location(in: view)
+        if controlsFrame.contains(gesturePoint) {
+            return true
+        } else {
+            return false
+        }
     }
     
     func presentingAnimation() {
@@ -764,7 +792,7 @@ extension DTMediaViewerController: UICollectionViewDataSource {
     
     // MARK: - Public Helpers
     
-    public var currentPhotoIndex: Int {
+    public var currentIndex: Int {
         if scrollDirection == .horizontal {
             if scrollView.frame.width == 0 {
                 return 0
@@ -780,7 +808,7 @@ extension DTMediaViewerController: UICollectionViewDataSource {
     }
     
     public var zoomScale: CGFloat {
-        let index = currentPhotoIndex
+        let index = currentIndex
         let indexPath = IndexPath(item: index, section: 0)
         
         if let cell = collectionView.cellForItem(at: indexPath) as? DTPhotoCollectionViewCell {
@@ -853,6 +881,15 @@ extension DTMediaViewerController: UICollectionViewDataSource {
 }
 
 extension DTMediaViewerController: UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? VideoContainer else { return }
+        if (!isRotating) {
+            if !isOpening || openingIndex == indexPath.row {
+                cell.play()
+            }
+        }
+    }
+    
     public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? VideoContainer else { return }
         cell.pause()

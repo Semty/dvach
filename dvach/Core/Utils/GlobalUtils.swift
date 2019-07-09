@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVKit
 
 public enum GlobalUtils {
     public static let dateFormatter: DateFormatter = {
@@ -22,5 +23,16 @@ public enum GlobalUtils {
     
     static var base2chPathWithoutScheme: String {
         return "2ch.hk"
+    }
+    
+    public static func setAudioInSilentModeOn() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback,
+                                                            mode: .default,
+                                                            options: [])
+        }
+        catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
     }
 }

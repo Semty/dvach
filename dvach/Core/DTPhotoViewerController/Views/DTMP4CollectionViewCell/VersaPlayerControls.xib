@@ -57,14 +57,14 @@
                     </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="xVt-JN-eeM" firstAttribute="leading" secondItem="plg-5n-9gG" secondAttribute="trailing" constant="8" id="Bg3-Rk-rgg"/>
+                <constraint firstItem="m7N-YK-cf8" firstAttribute="trailing" secondItem="J7Q-Ca-veR" secondAttribute="trailing" constant="16" id="Nay-Py-JvI"/>
                 <constraint firstItem="dc4-z9-2OO" firstAttribute="bottom" secondItem="YTV-CT-14H" secondAttribute="bottom" constant="-24" id="OzU-DB-ZLp"/>
                 <constraint firstItem="J7Q-Ca-veR" firstAttribute="leading" secondItem="xVt-JN-eeM" secondAttribute="trailing" constant="8" id="T1w-eQ-1ja"/>
                 <constraint firstItem="dc4-z9-2OO" firstAttribute="top" secondItem="xVt-JN-eeM" secondAttribute="bottom" constant="22" id="Vck-ve-QJp"/>
-                <constraint firstAttribute="trailing" secondItem="J7Q-Ca-veR" secondAttribute="trailing" constant="16" id="Vpp-At-guz"/>
-                <constraint firstItem="plg-5n-9gG" firstAttribute="leading" secondItem="YTV-CT-14H" secondAttribute="leading" constant="16" id="YDB-Iy-b6c"/>
+                <constraint firstItem="plg-5n-9gG" firstAttribute="leading" secondItem="m7N-YK-cf8" secondAttribute="leading" constant="16" id="YDB-Iy-b6c"/>
                 <constraint firstItem="dc4-z9-2OO" firstAttribute="centerX" secondItem="YTV-CT-14H" secondAttribute="centerX" id="hFv-yL-ox4"/>
                 <constraint firstItem="dc4-z9-2OO" firstAttribute="top" secondItem="J7Q-Ca-veR" secondAttribute="bottom" constant="21" id="kf2-jd-XeT"/>
                 <constraint firstItem="dc4-z9-2OO" firstAttribute="top" secondItem="plg-5n-9gG" secondAttribute="bottom" constant="21" id="lgb-Nr-U3V"/>
