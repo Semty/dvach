@@ -175,21 +175,23 @@ extension UIImage {
 
         UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
         
-        let bezierPath = UIBezierPath()
-        bezierPath.move(to: CGPoint(x: 12, y: 3))
-        bezierPath.addCurve(to: CGPoint(x: 6, y: 10), controlPoint1: CGPoint(x: 6, y: 10), controlPoint2: CGPoint(x: 6, y: 10))
-        bezierPath.move(to: CGPoint(x: 6, y: 10))
-        bezierPath.addCurve(to: CGPoint(x: 13, y: 16), controlPoint1: CGPoint(x: 13, y: 16), controlPoint2: CGPoint(x: 13, y: 16))
-        UIColor.black.setStroke()
-        bezierPath.lineWidth = 1.5
-        bezierPath.lineCapStyle = .round
-        bezierPath.lineJoinStyle = .round
-        bezierPath.stroke()
+        func fastFloor(_ x: CGFloat) -> CGFloat { return floor(x) }
         
-        bezierPath.usesEvenOddFillRule = true
-        fillColor.setFill()
-        bezierPath.fill()
-
+        //// Subframes
+        let group: CGRect = CGRect(x: frame.minX + fastFloor(frame.width * 0.31250 + 0.5), y: frame.minY + fastFloor(frame.height * 0.14062 + 0.5), width: fastFloor(frame.width * 0.67188 + 0.5) - fastFloor(frame.width * 0.31250 + 0.5), height: fastFloor(frame.height * 0.85938 + 0.5) - fastFloor(frame.height * 0.14062 + 0.5))
+        
+        //// Group
+        //// back Drawing
+        let backPath = UIBezierPath()
+        backPath.move(to: CGPoint(x: group.minX + 1.00000 * group.width, y: group.minY + 0.00000 * group.height))
+        backPath.addLine(to: CGPoint(x: group.minX + 0.00000 * group.width, y: group.minY + 0.50000 * group.height))
+        backPath.addLine(to: CGPoint(x: group.minX + 1.00000 * group.width, y: group.minY + 1.00000 * group.height))
+        fillColor.setStroke()
+        backPath.lineWidth = 2
+        backPath.lineCapStyle = .round
+        backPath.lineJoinStyle = .round
+        backPath.stroke()
+        
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         

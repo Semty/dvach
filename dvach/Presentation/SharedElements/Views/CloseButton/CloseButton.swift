@@ -29,12 +29,13 @@ final public class CloseButton: UIView, Tappable {
     
     // UI
     private lazy var image: UIImageView = {
-        let size = CGSize(width: .buttonSize/2.4, height: .buttonSize/2.4)
         let image: UIImage
         switch style {
         case .dismiss:
+            let size = CGSize(width: .buttonSize/2.4, height: .buttonSize/2.4)
             image = .cancelIcon(size: size, color: imageColor ?? .white)
         case .pop:
+            let size = CGSize(width: .buttonSize/1.8, height: .buttonSize/1.8)
             image = .backIcon(size: size, color: imageColor ?? .white)
         }
         let imageView = UIImageView(image: image)
