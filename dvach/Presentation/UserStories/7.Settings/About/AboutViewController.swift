@@ -92,6 +92,7 @@ final class AboutViewController: UIViewController {
     private func setupUI() {
         title = "О приложении"
         view.backgroundColor = .white
+        extendedLayoutIncludesOpaqueBars = true
         
         view.addSubview(stackView)
         stackView.contentInset.bottom = .inset20

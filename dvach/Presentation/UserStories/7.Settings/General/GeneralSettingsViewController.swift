@@ -59,6 +59,7 @@ final class GeneralSettingsViewController: UIViewController {
     private func setupUI() {
         title = "Основные"
         view.backgroundColor = .white
+        extendedLayoutIncludesOpaqueBars = true
         stackView.shouldFillRemainingSpace = false
         
         view.addSubview(stackView)

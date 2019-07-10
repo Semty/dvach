@@ -21,7 +21,13 @@ final class InitialViewController: UIViewController, LaunchAnimationViewControll
         case is LaunchAnimationViewController:
             return true
         case is RootTabBarController:
-            return topViewControllerWithRootViewController(rootViewController: rootViewController)?.prefersStatusBarHidden ?? true
+            guard let topController = topViewControllerWithRootViewController(rootViewController: rootViewController) else { return true }
+            
+            if topController is UIAlertController {
+                return true
+            }
+            
+            return topController.prefersStatusBarHidden
         default:
             return true
         }

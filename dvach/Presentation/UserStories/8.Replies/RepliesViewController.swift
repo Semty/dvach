@@ -55,6 +55,7 @@ final class RepliesViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
+        extendedLayoutIncludesOpaqueBars = true
         view.addSubview(tableView)
         tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }

@@ -43,6 +43,7 @@ final class SubscribesViewController: UIViewController {
     private func setupUI() {
         title = "Подписки"
         view.backgroundColor = .white
+        extendedLayoutIncludesOpaqueBars = true
     }
 }
 
