@@ -31,13 +31,13 @@ final class SettingsPresenter: ISettingsPresenter {
             self?.view?.navigationController?.pushViewController(general, animated: true)
         }
         
-        let subscribesModel = ContentSettingsView.Model(title: "Подписки",
-                                                        subtitle: "Отключить рекламу, открыть доступ ко всем доскам")
-        let subscribesBlock = createBlock(model: subscribesModel)
-        subscribesBlock.enablePressStateAnimation { [weak self] in
-            let subscribes = SubscribesViewController()
-            self?.view?.navigationController?.pushViewController(subscribes, animated: true)
-        }
+//        let subscribesModel = ContentSettingsView.Model(title: "Подписки",
+//                                                        subtitle: "Отключить рекламу, открыть доступ ко всем доскам")
+//        let subscribesBlock = createBlock(model: subscribesModel)
+//        subscribesBlock.enablePressStateAnimation { [weak self] in
+//            let subscribes = SubscribesViewController()
+//            self?.view?.navigationController?.pushViewController(subscribes, animated: true)
+//        }
         
         let aboutModel = ContentSettingsView.Model(title: "О приложении", subtitle: "Правила и новости проекта, написать разработчикам, оценить приложение")
         let aboutBlock = createBlock(model: aboutModel)
@@ -46,7 +46,7 @@ final class SettingsPresenter: ISettingsPresenter {
             self?.view?.navigationController?.pushViewController(about, animated: true)
         }
         
-        return [generalBlock, subscribesBlock, aboutBlock]
+        return [generalBlock, aboutBlock]
     }
     
     // MARK: - Private
