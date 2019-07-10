@@ -29,6 +29,7 @@ final class PostViewController: UIViewController {
     private var closeButtonStyle: CloseButton.Style {
         return (navigationController?.viewControllers.count ?? 0 > 1) ? .pop : .dismiss
     }
+    private var visibleRows = [IndexPath]()
     
     // UI
     private lazy var closeButton = componentsFactory.createCloseButton(style: .pop, imageColor: nil, backgroundColor: nil) { [weak self] in
@@ -98,6 +99,15 @@ final class PostViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        visibleRows = tableView.indexPathsForVisibleRows ?? []
+    }
+    
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        guard let indexPath = visibleRows.first else { return }
+        tableView.scrollToRow(at: indexPath, at: .top, animated: false)
     }
     
     // MARK: - Private
