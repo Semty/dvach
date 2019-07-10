@@ -16,6 +16,17 @@ final class InitialViewController: UIViewController, LaunchAnimationViewControll
     
     private var rootViewController: UIViewController?
     
+    override var prefersStatusBarHidden: Bool {
+        switch rootViewController {
+        case is LaunchAnimationViewController:
+            return true
+        case is RootTabBarController:
+            return topViewControllerWithRootViewController(rootViewController: rootViewController)?.prefersStatusBarHidden ?? true
+        default:
+            return true
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initiateSplashScreen()
@@ -70,5 +81,6 @@ final class InitialViewController: UIViewController, LaunchAnimationViewControll
             view.addSubview(rootTabBarController.view)
             rootTabBarController.didMove(toParent: self)
         }
+        setNeedsStatusBarAppearanceUpdate()
     }
 }
