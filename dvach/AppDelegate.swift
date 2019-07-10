@@ -52,12 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupInitialViewController() {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let launchController = LaunchAnimationViewController()
-        let initialViewController = RootTabBarController()
+        let initialViewController = InitialViewController()
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
-        
-        initialViewController.present(launchController, animated: false)
     }
     
     private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController? {

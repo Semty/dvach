@@ -17,6 +17,9 @@ final class LaunchAnimationViewController: UIViewController {
     // UI
     private lazy var animationView = AnimationView(name: "monkey")
     
+    // Delegate
+    public weak var delegate: LaunchAnimationViewControllerDelegate?
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -37,7 +40,7 @@ final class LaunchAnimationViewController: UIViewController {
         }
     }
     
-    // MARK: - Private
+    // MARK: - Load Data
     
     private func loadData() {
         animationView.loopMode = .playOnce
@@ -54,7 +57,7 @@ final class LaunchAnimationViewController: UIViewController {
         }
         
         group.notify(queue: .main) { [weak self] in
-            self?.dismiss(animated: true)
+            self?.delegate?.endSplashScreen()
         }
     }
 }
