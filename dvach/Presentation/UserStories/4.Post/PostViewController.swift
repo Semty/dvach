@@ -32,8 +32,11 @@ final class PostViewController: UIViewController {
     private var visibleRows = [IndexPath]()
     
     // UI
-    private lazy var closeButton = componentsFactory.createCloseButton(style: .pop, imageColor: nil, backgroundColor: nil) { [weak self] in
+    private lazy var closeButton = componentsFactory.createCloseButton(style: closeButtonStyle,
+                                                                       imageColor: nil,
+                                                                       backgroundColor: nil) { [weak self] in
         guard let self = self else { return }
+        self.showNavigation()
         switch self.closeButtonStyle {
         case .pop: self.navigationController?.popViewController(animated: true)
         case .dismiss: self.dismiss(animated: true, completion: nil)
@@ -96,11 +99,6 @@ final class PostViewController: UIViewController {
         skeleton.update(state: .active)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-    
     override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         visibleRows = tableView.indexPathsForVisibleRows ?? []
     }
@@ -146,6 +144,10 @@ final class PostViewController: UIViewController {
         view.skeletonAnimation(skeletonView: skeleton, mainView: tableView)
     }
     
+    private func showNavigation() {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     private func updateTable(indexPath: IndexPath?) {
         tableView.reloadData()
         if let indexPath = indexPath, indexPath.row > 0 {
@@ -155,6 +157,8 @@ final class PostViewController: UIViewController {
         }
         hideSkeleton()
     }
+    
+    // MARK: - Actions
     
     @objc private func refreshThread() {
         startRefreshTime = Date().timeIntervalSince1970
@@ -242,6 +246,7 @@ extension PostViewController: PostCommentViewDelegate {
     
     func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String) {
         presenter.postCommentView(view, didTapAnswersButton: postNumber)
+        showNavigation()
     }
     
     func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String) {

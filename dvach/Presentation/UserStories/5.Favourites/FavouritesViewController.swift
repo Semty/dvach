@@ -64,7 +64,6 @@ final class FavouritesViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
-        extendedLayoutIncludesOpaqueBars = true
         
         view.addSubview(segmentControll)
         segmentControll.snp.makeConstraints {
