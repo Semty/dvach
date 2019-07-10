@@ -72,7 +72,7 @@ final class RepliesPresenter {
                                      text: postParser.attributedText,
                                      fileURLs: imageURLs,
                                      numberOfReplies: repliesCount,
-                                     isAnswerHidden: false,
+                                     isAnswerHidden: true, // TODO: поставить false когда сделаем постинг
                                      isRepliesHidden: false)
     }
 }
