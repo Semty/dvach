@@ -35,6 +35,7 @@ final class BoardsListViewController: UIViewController {
         
         return tableView
     }()
+    private var popRecognizer: SwipeToBackRecognizer?
     
     // MARK: - Initialization
 
@@ -48,12 +49,21 @@ final class BoardsListViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    func update(boards: [Board]) {
+        presenter.update(boards: boards)
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         presenter.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupPopRecognizer()
     }
     
     // MARK: - Private
@@ -63,6 +73,12 @@ final class BoardsListViewController: UIViewController {
         extendedLayoutIncludesOpaqueBars = true
         view.addSubview(tableView)
         tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
+    }
+    
+    private func setupPopRecognizer() {
+        guard let controller = navigationController else { return }
+        popRecognizer = SwipeToBackRecognizer(controller: controller)
+        navigationController?.interactivePopGestureRecognizer?.delegate = popRecognizer
     }
 }
 

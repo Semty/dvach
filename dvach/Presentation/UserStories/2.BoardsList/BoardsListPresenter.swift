@@ -11,6 +11,7 @@ import Foundation
 protocol IBoardsListPresenter {
     var dataSource: [BoardView.Model] { get }
     func viewDidLoad()
+    func update(boards: [Board])
     func didSelectBoard(index: Int)
     func searchBoard(for text: String?)
 }
@@ -21,7 +22,7 @@ final class BoardsListPresenter {
     weak var view: (BoardsListView & UIViewController)?
     
     // Properties
-    private let boards: [Board]
+    private var boards: [Board]
     private var filteredBoards = [Board]()
     var dataSource = [BoardView.Model]()
     
@@ -50,6 +51,10 @@ extension BoardsListPresenter: IBoardsListPresenter {
         dataSource = createViewModels(from: boards)
         view?.updateTable()
         Analytics.logEvent("BoardsListShown", parameters: [:])
+    }
+    
+    func update(boards: [Board]) {
+        self.boards = boards
     }
     
     func didSelectBoard(index: Int) {

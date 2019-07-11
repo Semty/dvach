@@ -88,6 +88,7 @@ final class BoardWithThreadsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
         setupPopRecognizer()
         updateNavigationItem()
         skeleton.update(state: .active)
@@ -117,7 +118,7 @@ final class BoardWithThreadsViewController: UIViewController {
     private func setupPopRecognizer() {
         guard let controller = navigationController else { return }
         popRecognizer = SwipeToBackRecognizer(controller: controller)
-        controller.interactivePopGestureRecognizer?.delegate = popRecognizer
+        navigationController?.interactivePopGestureRecognizer?.delegate = popRecognizer
     }
     
     private func updateNavigationItem() {

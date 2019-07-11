@@ -48,8 +48,7 @@ final class InitialViewController: UIViewController, LaunchAnimationViewControll
         
         splashViewController.willMove(toParent: self)
         addChild(splashViewController)
-        view.insertSubview(splashViewController.view,
-                           at: 0)
+        view.insertSubview(splashViewController.view, at: 0)
         splashViewController.didMove(toParent: self)
         setNeedsStatusBarAppearanceUpdate()
     }
