@@ -12,6 +12,7 @@ import Appodeal
 typealias Replies = [String: [String]]
 
 protocol IPostViewPresenter {
+    var rotationIndex: Int? { get }
     var dataSource: [PostViewPresenter.CellType] { get }
     
     func viewDidLoad()
@@ -52,6 +53,7 @@ final class PostViewPresenter {
     }()
     
     // Properties
+    var rotationIndex: Int?
     var dataSource = [CellType]()
 
     private let boardIdentifier: String
@@ -180,6 +182,7 @@ extension PostViewPresenter: IPostViewPresenter {
     func didTapFile(index: Int,
                     postIndex: Int,
                     imageViews: [UIImageView]) {
+        rotationIndex = postIndex
         let mediaViewerSource = MediaViewerManager.Source(imageViews: imageViews,
                                                           files: posts[postIndex].files,
                                                           imageIndex: index)

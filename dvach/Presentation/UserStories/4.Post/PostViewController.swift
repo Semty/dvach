@@ -43,6 +43,7 @@ final class PostViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(PostCommentCell.self)
         tableView.register(ContextAdCell.self)
         tableView.rowHeight = UITableView.automaticDimension
@@ -65,6 +66,8 @@ final class PostViewController: UIViewController {
     private lazy var placeholder = PlaceholderView()
     private lazy var skeleton = SkeletonPostView.fromNib()
     private var popRecognizer: SwipeToBackRecognizer?
+    
+    private var heightDictionary: [Int : CGFloat] = [:]
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -90,6 +93,22 @@ final class PostViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { context in
+            self.visibleRows = self.tableView.indexPathsForVisibleRows ?? []
+            context.viewController(forKey: .from)
+        }) { context in
+            if let rotationIndex = self.presenter.rotationIndex {
+                self.tableView.scrollToRow(at: IndexPath(row: rotationIndex, section: 0),
+                                           at: .top, animated: false)
+            } else {
+                guard let indexPath = self.visibleRows.first else { return }
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            }
+        }
+        self.tableView.layoutSubviews()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -102,12 +121,18 @@ final class PostViewController: UIViewController {
     }
     
     override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        visibleRows = tableView.indexPathsForVisibleRows ?? []
+//        visibleRows = tableView.indexPathsForVisibleRows ?? []
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        guard let indexPath = visibleRows.first else { return }
-        tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+//        if let rotationIndex = presenter.rotationIndex {
+//            tableView.scrollToRow(at: IndexPath(row: rotationIndex, section: 0),
+//                                  at: .top, animated: false)
+//        } else {
+//            guard let indexPath = visibleRows.first else { return }
+//            tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+//        }
+//        tableView.setNeedsLayout()
     }
     
     // MARK: - Private
@@ -216,6 +241,19 @@ extension PostViewController: UITableViewDataSource {
             adView.snp.makeConstraints { $0.edges.equalToSuperview() }
             return cell
         }
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension PostViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heightDictionary[indexPath.row] = cell.frame.size.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let height = heightDictionary[indexPath.row]
+        return height ?? UITableView.automaticDimension
     }
 }
 
