@@ -19,7 +19,7 @@ target 'dvach' do
    pod 'Nuke', '~> 7.6'
    pod 'Nuke-FLAnimatedImage-Plugin'
    pod 'FLAnimatedImage', :git => 'https://github.com/Flipboard/FLAnimatedImage.git', :tag => '1.0.14'
-   pod 'Nantes'
+   pod 'Nantes', :git => 'https://github.com/Semty/Nantes', :branch => 'dev'
    pod 'SwiftEntryKit', :git => 'https://github.com/Semty/SwiftEntryKit.git', :branch => 'support-of-setting-home-indicator-behaviour'
    pod 'lottie-ios', '3.1.0'
    pod 'Appodeal', '~> 2.4.10'

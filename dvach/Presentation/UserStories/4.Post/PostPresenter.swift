@@ -12,7 +12,6 @@ import Appodeal
 typealias Replies = [String: [String]]
 
 protocol IPostViewPresenter {
-    var rotationIndex: Int? { get }
     var dataSource: [PostViewPresenter.CellType] { get }
     
     func viewDidLoad()
@@ -20,16 +19,16 @@ protocol IPostViewPresenter {
     func didTapFile(index: Int,
                     postIndex: Int,
                     imageViews: [UIImageView])
-    func postCommentView(_ view: PostCommentView, didTapURL url: URL)
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String)
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String)
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL)
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswersButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String)
 }
 
 final class PostViewPresenter {
     
     enum CellType {
-        case post(PostCommentView.Model)
+        case post(PostCommentViewModel)
         case ad(ContextAddView)
         
         var postNumber: String? {
@@ -53,7 +52,6 @@ final class PostViewPresenter {
     }()
     
     // Properties
-    var rotationIndex: Int?
     var dataSource = [CellType]()
 
     private let boardIdentifier: String
@@ -115,20 +113,20 @@ final class PostViewPresenter {
         }
     }
     
-    private func createPostViewModel(post: Post) -> PostCommentView.Model {
+    private func createPostViewModel(post: Post) -> PostCommentViewModel {
         let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.number, number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
         let repliesCount = replies[post.number]?.count ?? 0
         
-        return PostCommentView.Model(postNumber: post.number,
-                                     headerModel: headerViewModel,
-                                     date: post.date,
-                                     text: postParser.attributedText,
-                                     fileURLs: imageURLs,
-                                     numberOfReplies: repliesCount,
-                                     isAnswerHidden: false,
-                                     isRepliesHidden: false)
+        return PostCommentViewModel(postNumber: post.number,
+                                    headerModel: headerViewModel,
+                                    date: post.date,
+                                    text: postParser.attributedText,
+                                    fileURLs: imageURLs,
+                                    numberOfReplies: repliesCount,
+                                    isAnswerHidden: false,
+                                    isRepliesHidden: false)
     }
     
     private func scrollIndexPath(for dataSource: [CellType]) -> IndexPath? {
@@ -182,7 +180,6 @@ extension PostViewPresenter: IPostViewPresenter {
     func didTapFile(index: Int,
                     postIndex: Int,
                     imageViews: [UIImageView]) {
-        rotationIndex = postIndex
         let mediaViewerSource = MediaViewerManager.Source(imageViews: imageViews,
                                                           files: posts[postIndex].files,
                                                           imageIndex: index)
@@ -190,16 +187,16 @@ extension PostViewPresenter: IPostViewPresenter {
         router.presentMediaController(source: mediaViewerSource)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapURL url: URL) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL) {
         guard UIApplication.shared.canOpenURL(url) else { return }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String) {
         router.postCommentView(view, didTapAnswerButton: postNumber)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswersButton postNumber: String) {
         router.postCommentView(view,
                                didTapAnswersButton: postNumber,
                                posts: posts,
@@ -208,7 +205,7 @@ extension PostViewPresenter: IPostViewPresenter {
                                thread: thread)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String) {
         guard let postIndex = posts.firstIndex(where: { $0.number == postNumber }) else { return }
         let post = posts[postIndex]
         router.postCommentView(view,

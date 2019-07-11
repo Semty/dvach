@@ -13,10 +13,10 @@ import Foundation
 protocol IPostRouter {
     
     /// Нажали на "Ответить"
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String)
     
     /// Нажали на "Ответы"
-    func postCommentView(_ view: PostCommentView,
+    func postCommentView(_ view: PostCommentViewContainer,
                          didTapAnswersButton postNumber: String,
                          posts: [Post],
                          replies: Replies,
@@ -24,7 +24,7 @@ protocol IPostRouter {
                          thread: ThreadShortInfo)
     
     /// Нажали на "Еще"
-    func postCommentView(_ view: PostCommentView,
+    func postCommentView(_ view: PostCommentViewContainer,
                          didTapMoreButton post: Post,
                          thread: ThreadShortInfo,
                          boardId: String,
@@ -43,11 +43,11 @@ final class PostRouter: IPostRouter {
     
     // MARK: - IPostRouter
     
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String) {
         print("didTapAnswerButton")
     }
     
-    func postCommentView(_ view: PostCommentView,
+    func postCommentView(_ view: PostCommentViewContainer,
                          didTapAnswersButton postNumber: String,
                          posts: [Post],
                          replies: Replies,
@@ -59,7 +59,7 @@ final class PostRouter: IPostRouter {
         viewHandler?.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func postCommentView(_ view: PostCommentView,
+    func postCommentView(_ view: PostCommentViewContainer,
                          didTapMoreButton post: Post,
                          thread: ThreadShortInfo,
                          boardId: String,

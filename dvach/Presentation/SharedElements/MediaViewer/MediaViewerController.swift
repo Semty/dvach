@@ -30,6 +30,9 @@ final class MediaViewerController: DTMediaViewerController {
         self?.presenter.didTapMoreButton()
     }
     
+    // Properties
+    private var initialDeviceOrientation: UIDeviceOrientation = .portrait
+    
     // Overridden UIViewController Variables
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
@@ -64,15 +67,16 @@ final class MediaViewerController: DTMediaViewerController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialDeviceOrientation = UIDevice.current.orientation
         
         setupUI()
         presenter.viewDidLoad()
         configureSecondaryViews(hidden: true, animated: false)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue),
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UIDevice.current.setValue(Int(initialDeviceOrientation.rawValue),
                                   forKey: "orientation")
     }
         
@@ -170,10 +174,6 @@ final class MediaViewerController: DTMediaViewerController {
             configureSecondaryViews(hidden: true, animated: false)
         }
     }
-    
-    // MARK: - Rotation Handling
-
-    @objc func canRotate() -> Void {}
 }
 
 // MARK: - MediaViewer

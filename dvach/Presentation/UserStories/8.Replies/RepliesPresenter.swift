@@ -9,16 +9,16 @@
 import Foundation
 
 protocol IRepliesPresenter {
-    var dataSource: [PostCommentView.Model] { get }
+    var dataSource: [PostCommentViewModel] { get }
     
     func viewDidLoad()
     func didTapFile(index: Int,
                     postIndex: Int,
                     imageViews: [UIImageView])
-    func postCommentView(_ view: PostCommentView, didTapURL url: URL)
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String)
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String)
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL)
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswersButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String)
 }
 
 final class RepliesPresenter {
@@ -34,7 +34,7 @@ final class RepliesPresenter {
     private let boardId: String
     private let threadShortInfo: ThreadShortInfo
     
-    var dataSource = [PostCommentView.Model]()
+    var dataSource = [PostCommentViewModel]()
     
     // MARK: - Initialization
     
@@ -54,26 +54,26 @@ final class RepliesPresenter {
     
     // MARK: - Private
     
-    private func createModels() -> [PostCommentView.Model] {
+    private func createModels() -> [PostCommentViewModel] {
         guard let repliesIds = replies[postId] else { return [] }
         let repliedPosts = posts.filter { repliesIds.contains($0.number) }
         return repliedPosts.map(createPostViewModel)
     }
     
-    private func createPostViewModel(post: Post) -> PostCommentView.Model {
+    private func createPostViewModel(post: Post) -> PostCommentViewModel {
         let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.number, number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
         let repliesCount = replies[post.number]?.count ?? 0
         
-        return PostCommentView.Model(postNumber: post.number,
-                                     headerModel: headerViewModel,
-                                     date: post.date,
-                                     text: postParser.attributedText,
-                                     fileURLs: imageURLs,
-                                     numberOfReplies: repliesCount,
-                                     isAnswerHidden: false,
-                                     isRepliesHidden: false)
+        return PostCommentViewModel(postNumber: post.number,
+                                    headerModel: headerViewModel,
+                                    date: post.date,
+                                    text: postParser.attributedText,
+                                    fileURLs: imageURLs,
+                                    numberOfReplies: repliesCount,
+                                    isAnswerHidden: false,
+                                    isRepliesHidden: false)
     }
 }
 
@@ -96,16 +96,16 @@ extension RepliesPresenter: IRepliesPresenter {
         router.presentMediaController(source: mediaViewerSource)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapURL url: URL) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL) {
         guard UIApplication.shared.canOpenURL(url) else { return }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String) {
         router.postCommentView(view, didTapAnswerButton: postNumber)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswersButton postNumber: String) {
         router.postCommentView(view,
                                didTapAnswersButton: postNumber,
                                posts: posts,
@@ -114,7 +114,7 @@ extension RepliesPresenter: IRepliesPresenter {
                                thread: threadShortInfo)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String) {
         guard let postIndex = posts.firstIndex(where: { $0.number == postNumber }) else { return }
         let post = posts[postIndex]
         router.postCommentView(view,

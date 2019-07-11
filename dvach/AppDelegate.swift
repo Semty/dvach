@@ -36,18 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         storage.saveContext()
     }
     
-    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        if let rootViewController = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController) {
-            if (rootViewController.responds(to: #selector(MediaViewerController.canRotate))) {
-                // Unlock landscape view orientations for this view controller
-                return .allButUpsideDown;
-            }
-        }
-        
-        // Only allow portrait (standard behaviour)
-        return .portrait;
-    }
-    
     // MARK: - Private
     
     private func setupInitialViewController() {

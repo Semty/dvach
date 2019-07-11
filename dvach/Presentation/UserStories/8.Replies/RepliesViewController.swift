@@ -21,7 +21,7 @@ final class RepliesViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
-        tableView.register(PostCommentCell.self)
+        tableView.register(PostCommentWithMediaCell.self)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
         tableView.tableFooterView = UIView()
@@ -86,7 +86,7 @@ extension RepliesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = presenter.dataSource[indexPath.row]
-        let cell: PostCommentCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        let cell: PostCommentWithMediaCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         cell.prepareForReuse()
         cell.configure(with: viewModel)
         cell.containedView.delegate = self
@@ -101,7 +101,7 @@ extension RepliesViewController: UITableViewDataSource {
 
 extension RepliesViewController: PostCommentViewDelegate {
     
-    func postCommentView(_ view: PostCommentView,
+    func postCommentView(_ view: PostCommentViewContainer,
                          didTapFile index: Int,
                          postIndex: Int,
                          imageViews: [UIImageView]) {
@@ -110,19 +110,19 @@ extension RepliesViewController: PostCommentViewDelegate {
                              imageViews: imageViews)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapURL url: URL) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL) {
         presenter.postCommentView(view, didTapURL: url)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String) {
         presenter.postCommentView(view, didTapAnswerButton: postNumber)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswersButton postNumber: String) {
         presenter.postCommentView(view, didTapAnswersButton: postNumber)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String) {
         presenter.postCommentView(view, didTapMoreButton: postNumber)
     }
 }
