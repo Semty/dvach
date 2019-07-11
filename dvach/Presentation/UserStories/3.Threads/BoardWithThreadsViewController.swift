@@ -94,6 +94,11 @@ final class BoardWithThreadsViewController: UIViewController {
         presenter.viewWillAppear()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     // MARK: - Private
     
     private func setupUI() {
