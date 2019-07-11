@@ -70,6 +70,7 @@ final class SinglePostViewController: UIViewController {
     
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
+        stackView.contentInset.top = view.safeAreaInsets.top
         button.snp.updateConstraints {
             $0.bottom.equalToSuperview().inset(view.safeAreaInsets.bottom + CGFloat.inset16)
         }

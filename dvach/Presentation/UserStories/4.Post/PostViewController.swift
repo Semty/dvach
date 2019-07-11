@@ -99,7 +99,7 @@ final class PostViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
+        
         navigationController?.setNavigationBarHidden(true, animated: animated)
         skeleton.update(state: .active)
     }

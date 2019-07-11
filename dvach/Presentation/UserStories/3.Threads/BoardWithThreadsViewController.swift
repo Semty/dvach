@@ -88,7 +88,7 @@ final class BoardWithThreadsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+
         setupPopRecognizer()
         updateNavigationItem()
         skeleton.update(state: .active)
@@ -98,6 +98,7 @@ final class BoardWithThreadsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     // MARK: - Private
