@@ -46,6 +46,7 @@ final class SettingsViewController: UIViewController {
     
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
+        stackView.contentInset.top = .contentInset + view.safeAreaInsets.top
         header.snp.updateConstraints { $0.height.equalTo(CGFloat.headerHeight + view.safeAreaInsets.top)}
     }
     
@@ -94,8 +95,8 @@ final class SettingsViewController: UIViewController {
         view.addSubview(stackView)
         stackView.backgroundColor = .clear
         stackView.showsVerticalScrollIndicator = false
-        stackView.contentInset.top = .contentInset
         stackView.shouldFillRemainingSpace = false
+        stackView.contentInset.top = .contentInset
         stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
 }

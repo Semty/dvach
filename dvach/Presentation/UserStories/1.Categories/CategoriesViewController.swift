@@ -59,6 +59,7 @@ final class CategoriesViewController: UIViewController {
         
         definesPresentationContext = true
         edgesForExtendedLayout = []
+        setupSearch()
         setupUI()
         presenter.viewDidLoad()
     }
@@ -66,6 +67,10 @@ final class CategoriesViewController: UIViewController {
     // MARK: - Private
     
     private func setupSearch() {
+        let boardsListViewController = BoardsListViewController(boards: [])
+        boardsListViewController.delegate = self
+        searchBoardsController = boardsListViewController
+        
         searchController.searchResultsUpdater = searchBoardsController
         searchController.searchBar.placeholder = "Название или идентификатор"
         searchController.obscuresBackgroundDuringPresentation = false
@@ -149,10 +154,7 @@ extension CategoriesViewController: CategoriesView {
     }
     
     func didLoadBoards(boards: [Board]) {
-        let boardsListViewController = BoardsListViewController(boards: boards)
-        boardsListViewController.delegate = self
-        searchBoardsController = boardsListViewController
-        setupSearch()
+        searchBoardsController?.update(boards: boards)
     }
     
     func showPlaceholder(text: String) {

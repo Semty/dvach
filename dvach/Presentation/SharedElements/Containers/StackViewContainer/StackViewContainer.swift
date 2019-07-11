@@ -133,7 +133,7 @@ final public class StackViewContainer: TPKeyboardAvoidingScrollView, IStackViewC
     override public func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .white
-        contentInsetAdjustmentBehavior = .always
+        contentInsetAdjustmentBehavior = .automatic
     }
     
     override public var contentInset: UIEdgeInsets {
