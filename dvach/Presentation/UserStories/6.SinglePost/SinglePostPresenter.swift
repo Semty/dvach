@@ -12,8 +12,8 @@ import Appodeal
 protocol ISinglePostPresenter {
     func viewDidLoad()
     func didTapOpenThread()
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String)
-    func postCommentView(_ view: PostCommentView, didTapURL url: URL)
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL)
     func didTapFile(index: Int,
                     postIndex: Int,
                     imageViews: [UIImageView])
@@ -45,21 +45,21 @@ final class SinglePostPresenter: NSObject {
     
     // MARK: - Private
     
-    private func createModel() -> PostCommentView.Model {
+    private func createModel() -> PostCommentViewModel {
         let headerViewModel = PostHeaderView.Model(title: post.name,
                                                    subtitle: post.number,
                                                    number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
         
-        return PostCommentView.Model(postNumber: post.number,
-                                     headerModel: headerViewModel,
-                                     date: post.date,
-                                     text: postParser.attributedText,
-                                     fileURLs: imageURLs,
-                                     numberOfReplies: 0,
-                                     isAnswerHidden: true,
-                                     isRepliesHidden: true)
+        return PostCommentViewModel(postNumber: post.number,
+                                    headerModel: headerViewModel,
+                                    date: post.date,
+                                    text: postParser.attributedText,
+                                    fileURLs: imageURLs,
+                                    numberOfReplies: 0,
+                                    isAnswerHidden: true,
+                                    isRepliesHidden: true)
     }
 }
 
@@ -79,12 +79,12 @@ extension SinglePostPresenter: ISinglePostPresenter {
         view?.present(vc.wrappedInNavigation, animated: true)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String) {
         let bottomSheet = actionSheetFactory.createBottomSheet(post: post, threadInfo: nil)
         self.view?.present(bottomSheet, animated: true)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapURL url: URL) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL) {
         guard UIApplication.shared.canOpenURL(url) else { return }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }

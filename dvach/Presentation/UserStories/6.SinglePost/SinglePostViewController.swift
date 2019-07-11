@@ -10,7 +10,7 @@ import Foundation
 import Appodeal
 
 protocol SinglePostView: AnyObject {
-    func configure(model: PostCommentView.Model)
+    func configure(model: PostCommentViewModel)
     func addAdvertisingView(_ view: AdView)
 }
 
@@ -32,8 +32,8 @@ final class SinglePostViewController: UIViewController {
         }
         return button
     }()
-    private lazy var postView: PostCommentView = {
-        let postView = PostCommentView()
+    private lazy var postView: PostCommentViewContainer = {
+        let postView = PostCommentWithMediaView()
         postView.removeBottomSeparator()
         postView.delegate = self
         
@@ -96,7 +96,7 @@ final class SinglePostViewController: UIViewController {
 
 extension SinglePostViewController: SinglePostView {
     
-    func configure(model: PostCommentView.Model) {
+    func configure(model: PostCommentViewModel) {
         postView.configure(with: model)
     }
     
@@ -109,22 +109,22 @@ extension SinglePostViewController: SinglePostView {
 
 extension SinglePostViewController: PostCommentViewDelegate {
     
-    func postCommentView(_ view: PostCommentView,
+    func postCommentView(_ view: PostCommentViewContainer,
                          didTapFile index: Int,
                          postIndex: Int,
                          imageViews: [UIImageView]) {
         presenter.didTapFile(index: index, postIndex: postIndex, imageViews: imageViews)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapURL url: URL) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL) {
         presenter.postCommentView(view, didTapURL: url)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String) {}
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String) {}
     
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String) {}
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswersButton postNumber: String) {}
     
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String) {
         presenter.postCommentView(view, didTapMoreButton: postNumber)
     }
 }

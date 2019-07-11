@@ -46,7 +46,9 @@ final class PostViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
-        tableView.register(PostCommentCell.self)
+        tableView.delegate = self
+        tableView.register(PostCommentWithMediaCell.self)
+        tableView.register(PostCommentWithoutMediaCell.self)
         tableView.register(ContextAdCell.self)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
@@ -68,6 +70,8 @@ final class PostViewController: UIViewController {
     private lazy var placeholder = PlaceholderView()
     private lazy var skeleton = SkeletonPostView.fromNib()
     private var popRecognizer: SwipeToBackRecognizer?
+    
+    private var heightDictionary: [Int : CGFloat] = [:]
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -99,13 +103,9 @@ final class PostViewController: UIViewController {
         skeleton.update(state: .active)
     }
     
-    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        visibleRows = tableView.indexPathsForVisibleRows ?? []
-    }
-    
-    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        guard let indexPath = visibleRows.first else { return }
-        tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     // MARK: - Private
@@ -205,14 +205,26 @@ extension PostViewController: UITableViewDataSource {
 
         switch presenter.dataSource[indexPath.row] {
         case .post(let viewModel):
-            let cell: PostCommentCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.prepareForReuse()
-            cell.configure(with: viewModel)
-            cell.containedView.delegate = self
-            if indexPath.row == presenter.dataSource.count - 1 {
-                cell.containedView.removeBottomSeparator()
+            
+            if viewModel.fileURLs.isEmpty {
+                let cell: PostCommentWithoutMediaCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.prepareForReuse()
+                cell.configure(with: viewModel)
+                cell.containedView.delegate = self
+                if indexPath.row == presenter.dataSource.count - 1 {
+                    cell.containedView.removeBottomSeparator()
+                }
+                return cell
+            } else {
+                let cell: PostCommentWithMediaCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.prepareForReuse()
+                cell.configure(with: viewModel)
+                cell.containedView.delegate = self
+                if indexPath.row == presenter.dataSource.count - 1 {
+                    cell.containedView.removeBottomSeparator()
+                }
+                return cell
             }
-            return cell
             
         case .ad(let adView):
             let cell: ContextAdCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
@@ -223,11 +235,24 @@ extension PostViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+
+extension PostViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heightDictionary[indexPath.row] = cell.frame.size.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let height = heightDictionary[indexPath.row]
+        return height ?? UITableView.automaticDimension
+    }
+}
+
 // MARK: - PostCommentViewDelegate
 
 extension PostViewController: PostCommentViewDelegate {
     
-    func postCommentView(_ view: PostCommentView,
+    func postCommentView(_ view: PostCommentViewContainer,
                          didTapFile index: Int,
                          postIndex: Int,
                          imageViews: [UIImageView]) {
@@ -236,20 +261,20 @@ extension PostViewController: PostCommentViewDelegate {
                              imageViews: imageViews)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapURL url: URL) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL) {
         presenter.postCommentView(view, didTapURL: url)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String) {
         presenter.postCommentView(view, didTapAnswerButton: postNumber)
     }
     
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswersButton postNumber: String) {
         presenter.postCommentView(view, didTapAnswersButton: postNumber)
         showNavigation()
     }
     
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String) {
         presenter.postCommentView(view, didTapMoreButton: postNumber)
     }
 }

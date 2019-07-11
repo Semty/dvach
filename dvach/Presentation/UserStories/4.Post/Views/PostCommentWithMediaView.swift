@@ -1,5 +1,5 @@
 //
-//  PostCommentView.swift
+//  PostCommentWithMediaView.swift
 //  dvach
 //
 //  Created by Kirill Solovyov on 07/06/2019.
@@ -10,31 +10,36 @@ import Foundation
 import Nantes
 import Appodeal
 
-typealias PostCommentCell = TableViewContainerCellBase<PostCommentView>
+typealias PostCommentWithMediaCell = TableViewContainerCellBase<PostCommentWithMediaView>
+
+struct PostCommentViewModel {
+    let postNumber: String
+    let headerModel: PostHeaderView.Model
+    let date: String
+    let text: NSAttributedString
+    let fileURLs: [String]
+    let numberOfReplies: Int
+    let isAnswerHidden: Bool
+    let isRepliesHidden: Bool
+}
+
+protocol PostCommentViewContainer: UIView {
+    var delegate: PostCommentViewDelegate? { get }
+    func configure(with model: PostCommentViewModel)
+}
 
 protocol PostCommentViewDelegate: AnyObject {
-    func postCommentView(_ view: PostCommentView,
+    func postCommentView(_ view: PostCommentViewContainer,
                          didTapFile index: Int,
                          postIndex: Int,
                          imageViews: [UIImageView])
-    func postCommentView(_ view: PostCommentView, didTapURL url: URL)
-    func postCommentView(_ view: PostCommentView, didTapAnswerButton postNumber: String)
-    func postCommentView(_ view: PostCommentView, didTapAnswersButton postNumber: String)
-    func postCommentView(_ view: PostCommentView, didTapMoreButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL)
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapAnswersButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String)
 }
 
-final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAvailable {
-    
-    struct Model {
-        let postNumber: String
-        let headerModel: PostHeaderView.Model
-        let date: String
-        let text: NSAttributedString
-        let fileURLs: [String]
-        let numberOfReplies: Int
-        let isAnswerHidden: Bool
-        let isRepliesHidden: Bool
-    }
+final class PostCommentWithMediaView: UIView, ConfigurableView, ReusableView, SeparatorAvailable, PostCommentViewContainer {
     
     // Dependencies
     weak var delegate: PostCommentViewDelegate?
@@ -147,15 +152,14 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
     
     // MARK: - ConfigurableView
     
-    typealias ConfigurationModel = Model
+    typealias ConfigurationModel = PostCommentViewModel
     
-    func configure(with model: PostCommentView.Model) {
+    func configure(with model: ConfigurationModel) {
         postNumber = model.postNumber
         headerView.configure(with: model.headerModel)
         dateLabel.text = model.date
         text.attributedText = model.text
         
-        gallery.isHidden = model.fileURLs.isEmpty
         if !model.fileURLs.isEmpty {
             let galleryModels = model.fileURLs.map { GalleryView.Model(imageURL: $0) }
             gallery.update(dataSource: galleryModels)
@@ -186,7 +190,7 @@ final class PostCommentView: UIView, ConfigurableView, ReusableView, SeparatorAv
 
 // MARK: - NantesLabelDelegate
 
-extension PostCommentView: NantesLabelDelegate {
+extension PostCommentWithMediaView: NantesLabelDelegate {
     
     func attributedLabel(_ label: NantesLabel, didSelectLink link: URL) {
         delegate?.postCommentView(self, didTapURL: link)
@@ -195,7 +199,7 @@ extension PostCommentView: NantesLabelDelegate {
 
 // MARK: - PostCommentButtonsViewDelegate
 
-extension PostCommentView: PostCommentButtonsViewDelegate {
+extension PostCommentWithMediaView: PostCommentButtonsViewDelegate {
     
     func answerButtonDidTap() {
         Analytics.logEvent("AnswerButtonDidTap", parameters: [:])

@@ -80,7 +80,6 @@
 		4193B1BF22AA9BE300EE25FD /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1BE22AA9BE300EE25FD /* PostRouter.swift */; };
 		4193B1C122AA9BF600EE25FD /* PostAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1C022AA9BF600EE25FD /* PostAssembly.swift */; };
 		4193B1C322AA9CF000EE25FD /* IDvachService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1C222AA9CF000EE25FD /* IDvachService.swift */; };
-		4193B1C622AAA29C00EE25FD /* PostCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1C522AAA29C00EE25FD /* PostCommentView.swift */; };
 		4193B1CA22AAA33100EE25FD /* PostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1C922AAA33100EE25FD /* PostHeaderView.swift */; };
 		4193B1CC22AAA34E00EE25FD /* PostHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1CB22AAA34E00EE25FD /* PostHeaderView.xib */; };
 		4193B1CE22AAC13900EE25FD /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1CD22AAC13900EE25FD /* GalleryView.swift */; };
@@ -176,6 +175,8 @@
 		D504B6EF22B97CEB007C93B1 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6EE22B97CEB007C93B1 /* BannerViewController.swift */; };
 		D50ED7FC22D6446E00A655E9 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50ED7FB22D6446E00A655E9 /* InitialViewController.swift */; };
 		D50ED7FE22D6551D00A655E9 /* Extension+UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50ED7FD22D6551D00A655E9 /* Extension+UIResponder.swift */; };
+		D50ED80422D7444300A655E9 /* PostCommentWithMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50ED80322D7444200A655E9 /* PostCommentWithMediaView.swift */; };
+		D50ED80622D744A200A655E9 /* PostCommentWithoutMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50ED80522D744A200A655E9 /* PostCommentWithoutMediaView.swift */; };
 		D51ACED522C68EC3002B1C26 /* MediaViewerViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51ACED422C68EC3002B1C26 /* MediaViewerViewModelFactory.swift */; };
 		D51F1BBB22C7D58F007040AA /* DTWebMCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51F1BBA22C7D58F007040AA /* DTWebMCollectionViewCell.swift */; };
 		D528DE4022BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3622BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift */; };
@@ -306,7 +307,6 @@
 		4193B1BE22AA9BE300EE25FD /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		4193B1C022AA9BF600EE25FD /* PostAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAssembly.swift; sourceTree = "<group>"; };
 		4193B1C222AA9CF000EE25FD /* IDvachService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDvachService.swift; sourceTree = "<group>"; };
-		4193B1C522AAA29C00EE25FD /* PostCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentView.swift; sourceTree = "<group>"; };
 		4193B1C922AAA33100EE25FD /* PostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderView.swift; sourceTree = "<group>"; };
 		4193B1CB22AAA34E00EE25FD /* PostHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostHeaderView.xib; sourceTree = "<group>"; };
 		4193B1CD22AAC13900EE25FD /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
@@ -411,6 +411,8 @@
 		D504B6EE22B97CEB007C93B1 /* BannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
 		D50ED7FB22D6446E00A655E9 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		D50ED7FD22D6551D00A655E9 /* Extension+UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIResponder.swift"; sourceTree = "<group>"; };
+		D50ED80322D7444200A655E9 /* PostCommentWithMediaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentWithMediaView.swift; sourceTree = "<group>"; };
+		D50ED80522D744A200A655E9 /* PostCommentWithoutMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentWithoutMediaView.swift; sourceTree = "<group>"; };
 		D51ACED422C68EC3002B1C26 /* MediaViewerViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewerViewModelFactory.swift; sourceTree = "<group>"; };
 		D51F1BBA22C7D58F007040AA /* DTWebMCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTWebMCollectionViewCell.swift; sourceTree = "<group>"; };
 		D528DE3622BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTPhotoViewerControllerDelegate.swift; sourceTree = "<group>"; };
@@ -744,7 +746,8 @@
 		4193B1C422AAA25300EE25FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4193B1C522AAA29C00EE25FD /* PostCommentView.swift */,
+				D50ED80322D7444200A655E9 /* PostCommentWithMediaView.swift */,
+				D50ED80522D744A200A655E9 /* PostCommentWithoutMediaView.swift */,
 				41A7F81622D2073C00A52700 /* Ad */,
 				41A7F81522D2072200A52700 /* Buttons */,
 				41A7F81722D2076300A52700 /* Galery */,
@@ -1700,7 +1703,6 @@
 				41BEE73D229F04550028EBFB /* Locator.swift in Sources */,
 				D528DE5822BBD532008A27D9 /* HorizontalMoreButton.swift in Sources */,
 				41A7F81C22D2091400A52700 /* RepliesPresenter.swift in Sources */,
-				4193B1C622AAA29C00EE25FD /* PostCommentView.swift in Sources */,
 				41908A1022BE74120058907D /* AboutViewController.swift in Sources */,
 				41BEE722229F043C0028EBFB /* Extension+UIImage.swift in Sources */,
 				41908A2A22BF9C190058907D /* ContextAddView.swift in Sources */,
@@ -1758,6 +1760,7 @@
 				41908A1E22BE81420058907D /* AppInfoView.swift in Sources */,
 				D528DE4522BB723B008A27D9 /* DTImageView.swift in Sources */,
 				41BEE72E229F043C0028EBFB /* Extension+NSObject.swift in Sources */,
+				D50ED80622D744A200A655E9 /* PostCommentWithoutMediaView.swift in Sources */,
 				41BEE72C229F043C0028EBFB /* Extension+CGFloat.swift in Sources */,
 				41BEE719229F043C0028EBFB /* GlobalUtils.swift in Sources */,
 				4193B1B522AA548200EE25FD /* UIView+Animations.swift in Sources */,
@@ -1812,6 +1815,7 @@
 				41908A2222BE8F550058907D /* ConnectUsView.swift in Sources */,
 				41BEE72B229F043C0028EBFB /* Extension+Array.swift in Sources */,
 				41BEE760229F04730028EBFB /* ShadowViewContainer.swift in Sources */,
+				D50ED80422D7444300A655E9 /* PostCommentWithMediaView.swift in Sources */,
 				4193B1B122AA4EF700EE25FD /* CategoriesSkeletonView.swift in Sources */,
 				4117535322A2F71B008EBD2A /* HorizontalList.swift in Sources */,
 				41BEE75E229F04730028EBFB /* ChildViewController.swift in Sources */,
