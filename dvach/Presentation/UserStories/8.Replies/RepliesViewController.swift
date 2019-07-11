@@ -21,7 +21,9 @@ final class RepliesViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(PostCommentWithMediaCell.self)
+        tableView.register(PostCommentWithoutMediaCell.self)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
         tableView.tableFooterView = UIView()
@@ -29,6 +31,8 @@ final class RepliesViewController: UIViewController {
         
         return tableView
     }()
+    
+    private var heightDictionary: [Int : CGFloat] = [:]
     
     // MARK: - Initialization
     
@@ -54,11 +58,6 @@ final class RepliesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = false
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     // MARK: - Private
@@ -96,14 +95,39 @@ extension RepliesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = presenter.dataSource[indexPath.row]
-        let cell: PostCommentWithMediaCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.prepareForReuse()
-        cell.configure(with: viewModel)
-        cell.containedView.delegate = self
-        if indexPath.row == presenter.dataSource.count - 1 {
-            cell.containedView.removeBottomSeparator()
+        
+        if viewModel.fileURLs.isEmpty {
+            let cell: PostCommentWithoutMediaCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.prepareForReuse()
+            cell.configure(with: viewModel)
+            cell.containedView.delegate = self
+            if indexPath.row == presenter.dataSource.count - 1 {
+                cell.containedView.removeBottomSeparator()
+            }
+            return cell
+        } else {
+            let cell: PostCommentWithMediaCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.prepareForReuse()
+            cell.configure(with: viewModel)
+            cell.containedView.delegate = self
+            if indexPath.row == presenter.dataSource.count - 1 {
+                cell.containedView.removeBottomSeparator()
+            }
+            return cell
         }
-        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension RepliesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heightDictionary[indexPath.row] = cell.frame.size.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let height = heightDictionary[indexPath.row]
+        return height ?? UITableView.automaticDimension
     }
 }
 

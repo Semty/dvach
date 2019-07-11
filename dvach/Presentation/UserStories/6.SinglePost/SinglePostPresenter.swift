@@ -17,6 +17,7 @@ protocol ISinglePostPresenter {
     func didTapFile(index: Int,
                     postIndex: Int,
                     imageViews: [UIImageView])
+    var postFilesIsEmpty: Bool { get }
 }
 
 final class SinglePostPresenter: NSObject {
@@ -33,6 +34,10 @@ final class SinglePostPresenter: NSObject {
     }()
     
     // Properties
+    public var postFilesIsEmpty: Bool {
+        return post.files.isEmpty
+    }
+    
     private let post: Post
     private lazy var adQueue = APDNativeAdQueue()
     private var queueLoaded = false

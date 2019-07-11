@@ -33,11 +33,19 @@ final class SinglePostViewController: UIViewController {
         return button
     }()
     private lazy var postView: PostCommentViewContainer = {
-        let postView = PostCommentWithMediaView()
-        postView.removeBottomSeparator()
-        postView.delegate = self
-        
-        return postView
+        if presenter.postFilesIsEmpty {
+            let postView = PostCommentWithoutMediaView()
+            postView.removeBottomSeparator()
+            postView.delegate = self
+            
+            return postView
+        } else {
+            let postView = PostCommentWithMediaView()
+            postView.removeBottomSeparator()
+            postView.delegate = self
+            
+            return postView
+        }
     }()
     private lazy var closeButton = componentsFactory.createCloseButton(style: .dismiss,
                                                                        imageColor: nil,
