@@ -71,8 +71,12 @@ final class CategoriesPresenter {
             case .japan: japan.0.append($0)
             case .games: games.0.append($0)
             case .politics: politics.0.append($0)
-            case .user: user.0.append($0)
-            case .other: other.0.append($0)
+            case .user : user.0.append($0)
+            case .other:
+                // TODO: дискуссии и абу временно удалены
+                if !($0.shortInfo.identifier == "d" || $0.shortInfo.identifier == "abu") {
+                    other.0.append($0)
+                }
             case .art: art.0.append($0)
             case .theme: theme.0.append($0)
             case .technics: technics.0.append($0)
