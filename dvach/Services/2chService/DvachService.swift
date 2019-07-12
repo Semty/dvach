@@ -85,7 +85,7 @@ extension DvachService: IDvachService {
             case .success(let posts):
                 completion(.success(posts))
             case .failure:
-                completion(.failure(NSError.defaultError(description: "Тред с постами не загрузился. Идем плакаться о ЕОТ в другое место (где есть интернет)")))
+                completion(.failure(NSError.defaultError(description: "Тред с постами не загрузился.\n Идем плакаться о ЕОТ в другое место (где есть интернет)\np.s. Мб, конечно, тред умер ¯\\_(ツ)_/¯")))
             }
         }
     }
