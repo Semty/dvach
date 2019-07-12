@@ -134,7 +134,7 @@ final class PostViewPresenter {
                                     text: postParser.attributedText,
                                     fileURLs: imageURLs,
                                     numberOfReplies: repliesCount,
-                                    isAnswerHidden: false,
+                                    isAnswerHidden: true,
                                     isRepliesHidden: false)
     }
     

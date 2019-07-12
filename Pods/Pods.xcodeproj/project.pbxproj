@@ -418,6 +418,7 @@
 		416918B444A7851A512E19512F9FEA56 /* KafkaArrowHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 040279EFFF984CD89B5C229D1834587E /* KafkaArrowHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		417D850463343784132F542BBFB7BCAC /* EKRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26B6B805B99BC2789CE3FAF347AADFB /* EKRootViewController.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		41B4EB7B0919C119CD727F438C9A8015 /* db_iter.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6006C559A68FDC3686E956BFA31C4E40 /* db_iter.cc */; settings = {COMPILER_FLAGS = "-DOS_MACOSX -DLEVELDB_PLATFORM_POSIX -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		41BC1D9F22D8F34200590339 /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FFEEF2559918AE7868C80221B13E7A /* VPX.framework */; };
 		4233D3A428A24B3A825FB4954CAD0633 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5C2C2C0463DD811E341C9F06DB2204 /* CoreGraphics.framework */; };
 		42542065ED59364C2DD90417D7157E7F /* FAtomicNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = A8E81710DEC255D16DFD0CBC759E3014 /* FAtomicNumber.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		426DEEF75885682A701D4DB34B27A13D /* static_modes_fixed.h in Headers */ = {isa = PBXBuildFile; fileRef = 692D03C6A7B30E0D3F349E1BB3FFF155 /* static_modes_fixed.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -588,7 +589,6 @@
 		641CAB751A57A733817D57461845D6AA /* options.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F73F3AE4B1D6CB93E59E68E06E5CF24 /* options.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64C7F20C3118C84F64A170D413C30AAD /* VersaPlayerPlaybackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0700372ECEBF9D83A2213B128EA4B28 /* VersaPlayerPlaybackDelegate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		64E801E9F21127D6CCFDD2F3A5DA2A94 /* process_NLSFs.c in Sources */ = {isa = PBXBuildFile; fileRef = AEC2BE877A7CACF03C2C2016E635E92E /* process_NLSFs.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		651D2A9922D871500033D885 /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FFEEF2559918AE7868C80221B13E7A /* VPX.framework */; };
 		652827B6E4ACD02D3ECC29F9D38D61A3 /* debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 2885ACF86B734B33DE3EA79DBA6B39CE /* debug.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6573DD72CD06404672E18390A2602965 /* FStringUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B937D156FF61A98C87EDFD359451ACF /* FStringUtilities.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6587C2BA6F5B00A58308B4AC9BFF94DE /* scale_vector_FLP.c in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9ECD4D44992F8ED5B592FDB6E2E99 /* scale_vector_FLP.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -3294,7 +3294,7 @@
 				12D0CCA028FAC7223068E08756B2FDEE /* libopus.framework in Frameworks */,
 				70161E39F6CE8B67794775CF5ED17E02 /* nestegg.framework in Frameworks */,
 				A27F23CE776DE3424379F0E316F4AC92 /* vorbis.framework in Frameworks */,
-				651D2A9922D871500033D885 /* VPX.framework in Frameworks */,
+				41BC1D9F22D8F34200590339 /* VPX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

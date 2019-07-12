@@ -29,7 +29,7 @@ final class RootTabBarController: UITabBarController {
         settingsViewController.tabBarItem.image = #imageLiteral(resourceName: "moreTab").withRenderingMode(.alwaysTemplate)
         
         viewControllers = [categoriesViewController.wrappedInLargeNavigation,
-                           favouritesViewController.wrappedInNavigation,
+                           favouritesViewController.wrappedInLargeNavigation,
                            settingsViewController.wrappedInLargeNavigation]
         tabBar.barTintColor = .white
         tabBar.tintColor = .n1Gray

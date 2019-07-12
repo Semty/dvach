@@ -80,7 +80,7 @@ final class SinglePostViewController: UIViewController {
         super.viewSafeAreaInsetsDidChange()
         stackView.contentInset.top = view.safeAreaInsets.top
         button.snp.updateConstraints {
-            $0.bottom.equalToSuperview().inset(view.safeAreaInsets.bottom + CGFloat.inset16)
+            $0.bottom.equalToSuperview().inset(view.safeAreaInsets.bottom + CGFloat.inset8)
         }
     }
     
@@ -97,7 +97,7 @@ final class SinglePostViewController: UIViewController {
         closeButton.snp.makeConstraints { $0.top.trailing.equalToSuperview().inset(CGFloat.inset16) }
         
         view.addSubview(button)
-        button.snp.makeConstraints { $0.trailing.leading.bottom.equalToSuperview().inset(CGFloat.inset16) }
+        button.snp.makeConstraints { $0.trailing.leading.bottom.equalToSuperview().inset(CGFloat.inset8) }
     }
 }
 
