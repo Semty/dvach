@@ -23,7 +23,7 @@ protocol IPostViewPresenter {
     func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL)
     func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String)
     func postCommentView(_ view: PostCommentViewContainer, didTapAnswersButton postNumber: String)
-    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String)
 }
 
 final class PostViewPresenter {
@@ -214,11 +214,12 @@ extension PostViewPresenter: IPostViewPresenter {
                                thread: thread)
     }
     
-    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String) {
         guard let postIndex = posts.firstIndex(where: { $0.number == postNumber }) else { return }
         let post = posts[postIndex]
         router.postCommentView(view,
-                               didTapMoreButton: post,
+                               didTapMoreButton: button,
+                               post: post,
                                thread: thread,
                                boardId: boardIdentifier,
                                row: post.rowIndex)

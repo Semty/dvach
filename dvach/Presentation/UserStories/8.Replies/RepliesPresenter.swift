@@ -18,7 +18,7 @@ protocol IRepliesPresenter {
     func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL)
     func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String)
     func postCommentView(_ view: PostCommentViewContainer, didTapAnswersButton postNumber: String)
-    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String)
 }
 
 final class RepliesPresenter {
@@ -114,11 +114,12 @@ extension RepliesPresenter: IRepliesPresenter {
                                thread: threadShortInfo)
     }
     
-    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String) {
         guard let postIndex = posts.firstIndex(where: { $0.number == postNumber }) else { return }
         let post = posts[postIndex]
         router.postCommentView(view,
-                               didTapMoreButton: post,
+                               didTapMoreButton: button,
+                               post: post,
                                thread: threadShortInfo,
                                boardId: boardId,
                                row: post.rowIndex)

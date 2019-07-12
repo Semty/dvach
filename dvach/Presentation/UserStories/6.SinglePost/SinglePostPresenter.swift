@@ -12,7 +12,7 @@ import Appodeal
 protocol ISinglePostPresenter {
     func viewDidLoad()
     func didTapOpenThread()
-    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String)
     func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL)
     func didTapFile(index: Int,
                     postIndex: Int,
@@ -84,8 +84,16 @@ extension SinglePostPresenter: ISinglePostPresenter {
         view?.present(vc.wrappedInNavigation, animated: true)
     }
     
-    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String) {
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String) {
         let bottomSheet = actionSheetFactory.createBottomSheet(post: post, threadInfo: nil)
+        if UIDevice.current.userInterfaceIdiom == .pad,
+            let popoverPresentationController = bottomSheet.popoverPresentationController {
+            popoverPresentationController.sourceView = button
+            popoverPresentationController.sourceRect = CGRect(x: button.bounds.origin.x,
+                                                              y: button.bounds.midY,
+                                                              width: 0,
+                                                              height: 0)
+        }
         self.view?.present(bottomSheet, animated: true)
     }
     

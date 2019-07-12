@@ -282,7 +282,7 @@ extension PostViewController: PostCommentViewDelegate {
         showNavigation()
     }
     
-    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String) {
-        presenter.postCommentView(view, didTapMoreButton: postNumber)
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String) {
+        presenter.postCommentView(view, didTapMoreButton: button, postNumber: postNumber)
     }
 }

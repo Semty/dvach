@@ -11,7 +11,7 @@ import Foundation
 protocol PostCommentButtonsViewDelegate: AnyObject {
     func answerButtonDidTap()
     func answersButtonDidTap()
-    func moreButtonDidTap()
+    func moreButtonDidTap(_ button: UIView)
 }
 
 final class PostCommentButtonsView: UIView, ConfigurableView {
@@ -44,7 +44,8 @@ final class PostCommentButtonsView: UIView, ConfigurableView {
         }
         
         moreButton.enableTapping { [weak self] in
-            self?.delegate?.moreButtonDidTap()
+            guard let self = self else { return }
+            self.delegate?.moreButtonDidTap(self.moreButton)
         }
     }
     
