@@ -61,6 +61,7 @@ final class PostRouter: IPostRouter {
         let viewController = RepliesAssembly.assemble(postId: postNumber, posts: posts, replies: replies, board: board, thread: thread)
         viewController.title = ">> \(postNumber)"
 
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         viewHandler?.navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -70,6 +71,7 @@ final class PostRouter: IPostRouter {
                          boardId: String,
                          row: Int) {
         let bottomSheet = actionSheetFactory.createBottomSheet(post: post, threadInfo: (thread, boardId, row))
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         viewHandler?.present(bottomSheet, animated: true)
     }
     
