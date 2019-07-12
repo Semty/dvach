@@ -13,6 +13,7 @@ typealias Replies = [String: [String]]
 
 protocol IPostViewPresenter {
     var dataSource: [PostViewPresenter.CellType] { get }
+    var mediaViewControllerWasPresented: Bool { get set }
     
     func viewDidLoad()
     func refresh()
@@ -43,7 +44,7 @@ final class PostViewPresenter {
     
     // Dependencies
     weak var view: (PostView & UIViewController)?
-    private let router: IPostRouter
+    private var router: IPostRouter
     private let dvachService = Locator.shared.dvachService()
     private lazy var adManager: IAdManager = {
         let manager = Locator.shared.createAdManager(numberOfNativeAds: 10, viewController: view)
@@ -53,6 +54,14 @@ final class PostViewPresenter {
     
     // Properties
     var dataSource = [CellType]()
+    var mediaViewControllerWasPresented: Bool {
+        get {
+            return router.mediaViewControllerWasPresented
+        }
+        set {
+            router.mediaViewControllerWasPresented = newValue
+        }
+    }
 
     private let boardIdentifier: String
     private let thread: ThreadShortInfo

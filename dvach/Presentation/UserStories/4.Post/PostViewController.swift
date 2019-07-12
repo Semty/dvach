@@ -18,7 +18,7 @@ protocol PostView: AnyObject {
 final class PostViewController: UIViewController {
     
     // Dependencies
-    private let presenter: IPostViewPresenter
+    private var presenter: IPostViewPresenter
     private let componentsFactory = Locator.shared.componentsFactory()
     
     // Properties
@@ -36,7 +36,6 @@ final class PostViewController: UIViewController {
                                                                        imageColor: nil,
                                                                        backgroundColor: nil) { [weak self] in
         guard let self = self else { return }
-        self.showNavigation()
         switch self.closeButtonStyle {
         case .pop: self.navigationController?.popViewController(animated: true)
         case .dismiss: self.dismiss(animated: true, completion: nil)
@@ -102,6 +101,19 @@ final class PostViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(true, animated: animated)
         skeleton.update(state: .active)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
+        presenter.mediaViewControllerWasPresented = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if !presenter.mediaViewControllerWasPresented {
+            navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
     }
     
     // MARK: - Private

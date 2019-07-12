@@ -12,6 +12,9 @@ import Foundation
 
 protocol IPostRouter {
     
+    /// Презенчен ли медиа контроллер на данный момент
+    var mediaViewControllerWasPresented: Bool { get set }
+    
     /// Нажали на "Ответить"
     func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String)
     
@@ -35,6 +38,8 @@ protocol IPostRouter {
 }
 
 final class PostRouter: IPostRouter {
+    
+    var mediaViewControllerWasPresented = false
     
     // Dependencies
     weak var viewHandler: UIViewController?
@@ -70,6 +75,7 @@ final class PostRouter: IPostRouter {
     
     func presentMediaController(source: MediaViewerManager.Source) {
         guard let mediaController = mediaViewerManager.mediaViewer(source: source) else { return }
+        mediaViewControllerWasPresented = true
         viewHandler?.present(mediaController, animated: true, completion: nil)
     }
 }
