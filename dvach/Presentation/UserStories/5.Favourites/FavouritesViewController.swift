@@ -60,6 +60,11 @@ final class FavouritesViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
     // MARK: - Private
     
     private func setupUI() {
