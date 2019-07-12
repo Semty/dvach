@@ -57,6 +57,8 @@ final class BoardsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupBackBarButton()
         setupUI()
         presenter.viewDidLoad()
     }
@@ -67,6 +69,12 @@ final class BoardsListViewController: UIViewController {
     }
     
     // MARK: - Private
+    
+    private func setupBackBarButton() {
+        let backItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        backItem.tintColor = .n1Gray
+        navigationItem.backBarButtonItem = backItem
+    }
     
     private func setupUI() {
         view.backgroundColor = .white

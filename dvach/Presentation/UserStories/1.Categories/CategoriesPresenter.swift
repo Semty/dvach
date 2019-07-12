@@ -117,7 +117,6 @@ extension CategoriesPresenter: ICategoriesPresenter {
         let board = boards[indexPath.row]
         let viewController = BoardWithThreadsViewController(boardID: board.shortInfo.identifier)
         viewController.title = board.shortInfo.name
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         view?.navigationController?.pushViewController(viewController, animated: true)
     }
     

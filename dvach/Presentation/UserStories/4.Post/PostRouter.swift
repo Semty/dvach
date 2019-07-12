@@ -49,6 +49,7 @@ final class PostRouter: IPostRouter {
     // MARK: - IPostRouter
     
     func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String) {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         print("didTapAnswerButton")
     }
     
