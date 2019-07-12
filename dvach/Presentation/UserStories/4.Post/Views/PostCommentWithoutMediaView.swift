@@ -156,8 +156,8 @@ extension PostCommentWithoutMediaView: PostCommentButtonsViewDelegate {
         delegate?.postCommentView(self, didTapAnswersButton: postNumber)
     }
     
-    func moreButtonDidTap() {
+    func moreButtonDidTap(_ button: UIView) {
         Analytics.logEvent("MoreButtonDidTap", parameters: [:])
-        delegate?.postCommentView(self, didTapMoreButton: postNumber)
+        delegate?.postCommentView(self, didTapMoreButton: button, postNumber: postNumber)
     }
 }

@@ -97,7 +97,11 @@ final class SinglePostViewController: UIViewController {
         closeButton.snp.makeConstraints { $0.top.trailing.equalToSuperview().inset(CGFloat.inset16) }
         
         view.addSubview(button)
-        button.snp.makeConstraints { $0.trailing.leading.bottom.equalToSuperview().inset(CGFloat.inset8) }
+        let inset: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 50 : .inset16
+        button.snp.makeConstraints {
+            $0.trailing.leading.equalToSuperview().inset(inset)
+            $0.bottom.equalToSuperview().inset(CGFloat.inset8)
+        }
     }
 }
 
@@ -133,7 +137,7 @@ extension SinglePostViewController: PostCommentViewDelegate {
     
     func postCommentView(_ view: PostCommentViewContainer, didTapAnswersButton postNumber: String) {}
     
-    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String) {
-        presenter.postCommentView(view, didTapMoreButton: postNumber)
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String) {
+        presenter.postCommentView(view, didTapMoreButton: button, postNumber: postNumber)
     }
 }

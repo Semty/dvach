@@ -28,7 +28,8 @@ protocol IPostRouter {
     
     /// Нажали на "Еще"
     func postCommentView(_ view: PostCommentViewContainer,
-                         didTapMoreButton post: Post,
+                         didTapMoreButton button: UIView,
+                         post: Post,
                          thread: ThreadShortInfo,
                          boardId: String,
                          row: Int)
@@ -67,11 +68,20 @@ final class PostRouter: IPostRouter {
     }
     
     func postCommentView(_ view: PostCommentViewContainer,
-                         didTapMoreButton post: Post,
+                         didTapMoreButton button: UIView,
+                         post: Post,
                          thread: ThreadShortInfo,
                          boardId: String,
                          row: Int) {
         let bottomSheet = actionSheetFactory.createBottomSheet(post: post, threadInfo: (thread, boardId, row))
+        if UIDevice.current.userInterfaceIdiom == .pad,
+            let popoverPresentationController = bottomSheet.popoverPresentationController {
+            popoverPresentationController.sourceView = button
+            popoverPresentationController.sourceRect = CGRect(x: button.bounds.origin.x,
+                                                              y: button.bounds.midY,
+                                                              width: 0,
+                                                              height: 0)
+        }
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         viewHandler?.present(bottomSheet, animated: true)
     }

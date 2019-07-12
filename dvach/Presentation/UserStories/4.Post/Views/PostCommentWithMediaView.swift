@@ -36,7 +36,7 @@ protocol PostCommentViewDelegate: AnyObject {
     func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL)
     func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String)
     func postCommentView(_ view: PostCommentViewContainer, didTapAnswersButton postNumber: String)
-    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton postNumber: String)
+    func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String)
 }
 
 final class PostCommentWithMediaView: UIView, ConfigurableView, ReusableView, SeparatorAvailable, PostCommentViewContainer {
@@ -211,8 +211,8 @@ extension PostCommentWithMediaView: PostCommentButtonsViewDelegate {
         delegate?.postCommentView(self, didTapAnswersButton: postNumber)
     }
     
-    func moreButtonDidTap() {
+    func moreButtonDidTap(_ button: UIView) {
         Analytics.logEvent("MoreButtonDidTap", parameters: [:])
-        delegate?.postCommentView(self, didTapMoreButton: postNumber)
+        delegate?.postCommentView(self, didTapMoreButton: button, postNumber: postNumber)
     }
 }
