@@ -130,7 +130,7 @@ final class PostViewController: UIViewController {
     }
     
     private func setupPopRecognizer() {
-        guard let controller = navigationController else { return }
+        guard closeButtonStyle == .pop, let controller = navigationController else { return }
         popRecognizer = SwipeToBackRecognizer(controller: controller)
         controller.interactivePopGestureRecognizer?.delegate = popRecognizer
     }
