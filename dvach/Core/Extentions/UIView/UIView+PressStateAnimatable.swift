@@ -9,7 +9,31 @@
 import UIKit
 
 private extension CGFloat {
-    static let defaultScale: CGFloat = 0.95
+    static var defaultScale: CGFloat {
+        let device = UIDevice.current
+        
+        switch device.userInterfaceIdiom {
+        case .pad:
+//            switch device.orientation {
+//            case .portrait, .portraitUpsideDown:
+//                return 0.985
+//            case .landscapeLeft, .landscapeRight:
+//                return 0.995
+//            default: return 0.985
+//            }
+            return 0.99
+        case .phone:
+//            switch device.orientation {
+//            case .portrait, .portraitUpsideDown:
+//                return 0.96
+//            case .landscapeLeft, .landscapeRight:
+//                return 0.98
+//            default: return 0.96
+//            }
+            return 0.96
+        default: return 0.96
+        }
+    }
 }
 
 public enum GestureRecognizerType {

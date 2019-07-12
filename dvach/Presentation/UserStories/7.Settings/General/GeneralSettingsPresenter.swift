@@ -40,6 +40,7 @@ extension GeneralSettingsPresenter: IGeneralSettingsPresenter {
     }
     
     func didChangeNSFWSwitchValue(_ value: Bool) {
+        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
         Analytics.logEvent("NSFWSwitchDidChangeValue", parameters: [:])
         dvachService.dropAllShownBoards()
         appSettingsStorage.nsfwBannersAllowed = value
