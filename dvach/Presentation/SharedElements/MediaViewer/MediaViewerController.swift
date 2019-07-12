@@ -85,9 +85,10 @@ final class MediaViewerController: DTMediaViewerController {
         closeButton.snp.updateConstraints { make in
             make.top.equalToSuperview().inset(CGFloat.inset2 + view.safeAreaInsets.top)
         }
-        horizontalMoreButton.snp.updateConstraints { make in
-            make.top.equalToSuperview().inset(CGFloat.inset12 + view.safeAreaInsets.top)
-        }
+        // TODO: - Сделать три точки видимыми, когда появится функционал
+//        horizontalMoreButton.snp.updateConstraints { make in
+//            make.top.equalToSuperview().inset(CGFloat.inset12 + view.safeAreaInsets.top)
+//        }
     }
     
     // MARK: - Private Setup
@@ -99,11 +100,12 @@ final class MediaViewerController: DTMediaViewerController {
             make.leading.equalToSuperview().inset(CGFloat.inset16)
         }
         
-        view.addSubview(horizontalMoreButton)
-        horizontalMoreButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(CGFloat.inset12)
-            make.trailing.equalToSuperview().inset(CGFloat.inset16)
-        }
+        // TODO: - Сделать три точки видимыми, когда появится функционал
+//        view.addSubview(horizontalMoreButton)
+//        horizontalMoreButton.snp.makeConstraints { make in
+//            make.top.equalToSuperview().inset(CGFloat.inset12)
+//            make.trailing.equalToSuperview().inset(CGFloat.inset16)
+//        }
         
         registerClassPhotoViewer(PhotoViewerCollectionViewCell.self)
     }
