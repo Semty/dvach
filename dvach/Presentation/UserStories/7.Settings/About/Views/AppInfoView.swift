@@ -26,8 +26,8 @@ final class AppInfoView: UIView, ConfigurableView {
         titleLabel.textColor = .n1Gray
         titleLabel.text = "Двач"
         versionLabel.textColor = .n2Gray
-        imageView.image = #imageLiteral(resourceName: "light.png").withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = .n7Blue
+        imageView.image = #imageLiteral(resourceName: "dvachIcon")
+        imageView.clipsToBounds = true
     }
     
     // MARK: - ConfigurableView

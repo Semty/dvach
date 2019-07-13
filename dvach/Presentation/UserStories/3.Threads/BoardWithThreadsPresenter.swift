@@ -110,7 +110,6 @@ extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
     func didSelectCell(index: Int) {
         guard let thread = board?.additionalInfo?.threads[index] else { return }
         let viewController = PostAssembly.assemble(board: boardID, thread: thread.shortInfo)
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         view?.navigationController?.pushViewController(viewController, animated: true)
     }
     
