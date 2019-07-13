@@ -37,6 +37,11 @@ final class BoardsListViewController: UIViewController {
     }()
     private var popRecognizer: SwipeToBackRecognizer?
     
+    override var prefersStatusBarHidden: Bool {
+        hideStatusBar(false, animation: true)
+        return false
+    }
+    
     // MARK: - Initialization
 
     init(boards: [Board]) {

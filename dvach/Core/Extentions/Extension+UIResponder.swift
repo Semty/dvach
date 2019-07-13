@@ -8,6 +8,10 @@
 
 import Foundation
 
+extension TimeInterval {
+    static let animationDuration = 0.3
+}
+
 extension UIResponder {
     func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController? {
         if (rootViewController == nil) { return nil }
@@ -19,5 +23,26 @@ extension UIResponder {
             return topViewControllerWithRootViewController(rootViewController: rootViewController.presentedViewController)
         }
         return rootViewController
+    }
+    
+    func hideStatusBar(_ hide: Bool, animation: Bool) {
+        let statusBarWindow = UIApplication.shared.value(forKey: "statusBarWindow") as? UIWindow
+        if hide {
+            if animation {
+                UIView.animate(withDuration: .animationDuration) {
+                    statusBarWindow?.alpha = 0.0
+                }
+            } else {
+                statusBarWindow?.alpha = 0.0
+            }
+        } else {
+            if animation {
+                UIView.animate(withDuration: .animationDuration) {
+                    statusBarWindow?.alpha = 1.0
+                }
+            } else {
+                statusBarWindow?.alpha = 1.0
+            }
+        }
     }
 }

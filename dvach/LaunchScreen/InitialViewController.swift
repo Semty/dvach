@@ -20,17 +20,13 @@ final class InitialViewController: UIViewController, LaunchAnimationViewControll
         switch rootViewController {
         case is LaunchAnimationViewController:
             return true
-        case is RootTabBarController:
-            guard let topController = topViewControllerWithRootViewController(rootViewController: rootViewController) else { return true }
-            
-            if topController is UIAlertController {
-                return true
-            }
-            
-            return topController.prefersStatusBarHidden
         default:
-            return true
+            return false
         }
+    }
+    
+    override var childForStatusBarHidden: UIViewController? {
+        return ((rootViewController as? UITabBarController)?.selectedViewController as? UINavigationController)?.topViewController
     }
     
     override func viewDidLoad() {
@@ -70,7 +66,7 @@ final class InitialViewController: UIViewController, LaunchAnimationViewControll
             
             transition(from: rootViewController,
                        to: rootTabBarController,
-                       duration: 0.55,
+                       duration: 0.35,
                        options: [.transitionCrossDissolve, .curveEaseOut],
                        animations: { () -> Void in
                         

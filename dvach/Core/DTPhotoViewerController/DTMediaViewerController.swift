@@ -63,7 +63,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     /// Indicates status bar style after photo viewer controller is being dismissing
     /// Include when pan gesture recognizer is active.
     /// Default value if UIStatusBarStyle.LightContent
-    open var statusBarStyleOnDismissing: UIStatusBarStyle = UIStatusBarStyle.lightContent
+    open var statusBarStyleOnDismissing: UIStatusBarStyle = UIStatusBarStyle.default
     
     /// Background color of the viewer.
     /// Default value is black.
@@ -341,7 +341,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     
     // MARK: - Overridden Variables
     
-    open override var prefersStatusBarHidden : Bool {
+    open override var prefersStatusBarHidden: Bool {
         return true
     }
     

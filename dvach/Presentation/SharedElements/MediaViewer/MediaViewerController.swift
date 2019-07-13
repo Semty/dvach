@@ -39,7 +39,8 @@ final class MediaViewerController: DTMediaViewerController {
     }
     
     override var prefersStatusBarHidden: Bool {
-        return true
+        hideStatusBar(true, animation: false)
+        return false
     }
     
     // Overridden DTMediaViewController Variables

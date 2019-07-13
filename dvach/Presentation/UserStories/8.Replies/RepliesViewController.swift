@@ -57,6 +57,7 @@ final class RepliesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        hideStatusBar(false, animation: true)
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     

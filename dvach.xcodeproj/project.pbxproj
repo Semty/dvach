@@ -2044,7 +2044,7 @@
 			baseConfigurationReference = 969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = ZTRS68H53M;
 				ENABLE_BITCODE = NO;
@@ -2056,7 +2056,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DvachDistr;
+				PROVISIONING_PROFILE_SPECIFIER = DvachDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "dvach/dvach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -32,6 +32,11 @@ final class GeneralSettingsViewController: UIViewController {
         return view
     }()
     
+    override var prefersStatusBarHidden: Bool {
+        hideStatusBar(false, animation: true)
+        return false
+    }
+    
     // MARK: - Initialization
     
     init() {

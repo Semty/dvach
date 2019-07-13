@@ -41,7 +41,8 @@ final class SettingsViewController: UIViewController {
     }()
     
     override var prefersStatusBarHidden: Bool {
-        return true
+        hideStatusBar(true, animation: false)
+        return false
     }
     
     override func viewSafeAreaInsetsDidChange() {

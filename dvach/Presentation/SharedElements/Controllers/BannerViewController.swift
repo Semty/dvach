@@ -101,7 +101,6 @@ final class BannerViewController: UIViewController {
                                                  initialVelocity: 0)),
                   scale: .init(from: 0.7, to: 1, duration: 0.4,
                                spring: .init(damping: 1, initialVelocity: 0)))
-        attributes.statusBar = .hidden
         attributes.displayDuration = .infinity
         attributes.hapticFeedbackType = .warning
         attributes.name = .bannerViewWarning
