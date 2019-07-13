@@ -73,7 +73,8 @@ final class PostViewController: UIViewController {
     private var heightDictionary: [Int : CGFloat] = [:]
 
     override var prefersStatusBarHidden: Bool {
-        return true
+        hideStatusBar(true, animation: true)
+        return false
     }
     
     // MARK: - Initialization

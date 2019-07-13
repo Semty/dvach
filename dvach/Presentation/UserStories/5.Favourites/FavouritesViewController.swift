@@ -39,6 +39,11 @@ final class FavouritesViewController: UIViewController {
                 FavouritePostsViewController()]
     }()
     
+    override var prefersStatusBarHidden: Bool {
+        hideStatusBar(false, animation: true)
+        return false
+    }
+    
     // MARK: - Initialization
     
     init() {

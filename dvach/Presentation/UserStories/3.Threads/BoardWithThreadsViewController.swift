@@ -63,6 +63,11 @@ final class BoardWithThreadsViewController: UIViewController {
         return CFAbsoluteTimeGetCurrent() - timeStart
     }
     
+    override var prefersStatusBarHidden: Bool {
+        hideStatusBar(false, animation: true)
+        return false
+    }
+    
     // MARK: - Initialization
     
     init(boardID: String) {

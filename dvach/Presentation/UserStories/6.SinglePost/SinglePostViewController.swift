@@ -53,7 +53,10 @@ final class SinglePostViewController: UIViewController {
         self?.dismiss(animated: true)
     }
     
-    override var prefersStatusBarHidden: Bool { return true }
+    override var prefersStatusBarHidden: Bool {
+        hideStatusBar(true, animation: true)
+        return false
+    }
     
     // MARK: - Initialization
     

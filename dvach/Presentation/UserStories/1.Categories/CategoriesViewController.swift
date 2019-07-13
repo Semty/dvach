@@ -40,6 +40,11 @@ final class CategoriesViewController: UIViewController {
     private lazy var placeholder = PlaceholderView()
     private lazy var updateButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateBoards))
     
+    override var prefersStatusBarHidden: Bool {
+        hideStatusBar(false, animation: true)
+        return false
+    }
+    
     // MARK: - Initialization
     
     init() {

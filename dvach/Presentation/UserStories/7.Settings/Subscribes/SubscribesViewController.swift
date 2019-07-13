@@ -17,6 +17,11 @@ final class SubscribesViewController: UIViewController {
     // Dependencies
     private let presenter: ISubscribesPresenter
     
+    override var prefersStatusBarHidden: Bool {
+        hideStatusBar(false, animation: true)
+        return false
+    }
+    
     // MARK: - Initialization
     
     init() {

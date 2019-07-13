@@ -65,6 +65,11 @@ final class AboutViewController: UIViewController {
         return button
     }()
     
+    override var prefersStatusBarHidden: Bool {
+        hideStatusBar(false, animation: true)
+        return false
+    }
+    
     // MARK: - Initialization
     
     init() {
