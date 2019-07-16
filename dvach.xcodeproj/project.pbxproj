@@ -178,6 +178,8 @@
 		D50ED80422D7444300A655E9 /* PostCommentWithMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50ED80322D7444200A655E9 /* PostCommentWithMediaView.swift */; };
 		D50ED80622D744A200A655E9 /* PostCommentWithoutMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50ED80522D744A200A655E9 /* PostCommentWithoutMediaView.swift */; };
 		D50ED80B22D7A19700A655E9 /* Extension+UIDeviceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50ED80A22D7A19700A655E9 /* Extension+UIDeviceOrientation.swift */; };
+		D513978A22DCA0CF003FECC7 /* Extension+UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D513978922DCA0CF003FECC7 /* Extension+UITabBarController.swift */; };
+		D513978C22DCA133003FECC7 /* Extension+UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D513978B22DCA133003FECC7 /* Extension+UINavigationController.swift */; };
 		D51ACED522C68EC3002B1C26 /* MediaViewerViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51ACED422C68EC3002B1C26 /* MediaViewerViewModelFactory.swift */; };
 		D51F1BBB22C7D58F007040AA /* DTWebMCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51F1BBA22C7D58F007040AA /* DTWebMCollectionViewCell.swift */; };
 		D528DE4022BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE3622BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift */; };
@@ -415,6 +417,8 @@
 		D50ED80322D7444200A655E9 /* PostCommentWithMediaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentWithMediaView.swift; sourceTree = "<group>"; };
 		D50ED80522D744A200A655E9 /* PostCommentWithoutMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentWithoutMediaView.swift; sourceTree = "<group>"; };
 		D50ED80A22D7A19700A655E9 /* Extension+UIDeviceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIDeviceOrientation.swift"; sourceTree = "<group>"; };
+		D513978922DCA0CF003FECC7 /* Extension+UITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITabBarController.swift"; sourceTree = "<group>"; };
+		D513978B22DCA133003FECC7 /* Extension+UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UINavigationController.swift"; sourceTree = "<group>"; };
 		D51ACED422C68EC3002B1C26 /* MediaViewerViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewerViewModelFactory.swift; sourceTree = "<group>"; };
 		D51F1BBA22C7D58F007040AA /* DTWebMCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTWebMCollectionViewCell.swift; sourceTree = "<group>"; };
 		D528DE3622BB723B008A27D9 /* DTPhotoViewerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTPhotoViewerControllerDelegate.swift; sourceTree = "<group>"; };
@@ -1039,6 +1043,8 @@
 				D5F7300A22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift */,
 				D50ED7FD22D6551D00A655E9 /* Extension+UIResponder.swift */,
 				D50ED80A22D7A19700A655E9 /* Extension+UIDeviceOrientation.swift */,
+				D513978922DCA0CF003FECC7 /* Extension+UITabBarController.swift */,
+				D513978B22DCA133003FECC7 /* Extension+UINavigationController.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -1833,6 +1839,7 @@
 				41908A1622BE74410058907D /* SubscribesPresenter.swift in Sources */,
 				41908A0C22BE72DA0058907D /* GeneralSettingsPresenter.swift in Sources */,
 				D51ACED522C68EC3002B1C26 /* MediaViewerViewModelFactory.swift in Sources */,
+				D513978C22DCA133003FECC7 /* Extension+UINavigationController.swift in Sources */,
 				41BEE720229F043C0028EBFB /* Extension+UIFont.swift in Sources */,
 				4193B1BF22AA9BE300EE25FD /* PostRouter.swift in Sources */,
 				D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */,
@@ -1850,6 +1857,7 @@
 				41908A2822BF91DA0058907D /* Extension+UIApplication.swift in Sources */,
 				41BEE726229F043C0028EBFB /* RecognizerDeletable.swift in Sources */,
 				41BEE71E229F043C0028EBFB /* BaseRequest.swift in Sources */,
+				D513978A22DCA0CF003FECC7 /* Extension+UITabBarController.swift in Sources */,
 				4117535822A2FF05008EBD2A /* Extension+UICollectionView.swift in Sources */,
 				D528DE4D22BB9D0A008A27D9 /* PhotoViewerCollectionViewCell.swift in Sources */,
 				41BEE766229F04730028EBFB /* ContentContainer.swift in Sources */,

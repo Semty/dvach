@@ -26,22 +26,30 @@ extension UIResponder {
     }
     
     func hideStatusBar(_ hide: Bool, animation: Bool) {
-        let statusBarWindow = UIApplication.shared.value(forKey: "statusBarWindow") as? UIWindow
-        if hide {
-            if animation {
-                UIView.animate(withDuration: .animationDuration) {
+        if #available(iOS 13.0, *) {
+            if hide {
+                UIApplication.shared.keyWindow?.windowLevel = .statusBar
+            } else {
+                UIApplication.shared.keyWindow?.windowLevel = .normal
+            }
+        } else {
+            let statusBarWindow = UIApplication.shared.value(forKey: "statusBarWindow") as? UIWindow
+            if hide {
+                if animation {
+                    UIView.animate(withDuration: .animationDuration) {
+                        statusBarWindow?.alpha = 0.0
+                    }
+                } else {
                     statusBarWindow?.alpha = 0.0
                 }
             } else {
-                statusBarWindow?.alpha = 0.0
-            }
-        } else {
-            if animation {
-                UIView.animate(withDuration: .animationDuration) {
+                if animation {
+                    UIView.animate(withDuration: .animationDuration) {
+                        statusBarWindow?.alpha = 1.0
+                    }
+                } else {
                     statusBarWindow?.alpha = 1.0
                 }
-            } else {
-                statusBarWindow?.alpha = 1.0
             }
         }
     }

@@ -16,17 +16,8 @@ final class InitialViewController: UIViewController, LaunchAnimationViewControll
     
     private var rootViewController: UIViewController?
     
-    override var prefersStatusBarHidden: Bool {
-        switch rootViewController {
-        case is LaunchAnimationViewController:
-            return true
-        default:
-            return false
-        }
-    }
-    
     override var childForStatusBarHidden: UIViewController? {
-        return ((rootViewController as? UITabBarController)?.selectedViewController as? UINavigationController)?.topViewController
+        return children.last
     }
     
     override func viewDidLoad() {

@@ -9,7 +9,7 @@
 import Foundation
 
 final class RootTabBarController: UITabBarController {
-    
+
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
