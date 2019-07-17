@@ -88,6 +88,7 @@ extension BoardWithThreadsViewController: UITableViewDataSource {
         case .withImage(let threadWithImageModel):
             let cell: ThreadWithImageCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(with: threadWithImageModel)
+            cell.containedView.nsfwDelegate = presenter
             return cell
         case .withoutImage(let threadWithoutImageModel):
             let cell: ThreadWithoutImageCell = tableView.dequeueReusableCell(forIndexPath: indexPath)

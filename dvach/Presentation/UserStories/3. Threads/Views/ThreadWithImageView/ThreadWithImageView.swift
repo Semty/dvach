@@ -10,11 +10,22 @@ import Foundation
 import UIKit
 import Nuke
 
+public protocol NSFWDelegate: class {
+    var nsfwData: [String: (isNSFW: String, confidence: Double)] { get set }
+}
+
+public protocol NSFWContainer {
+    var nsfwDelegate: NSFWDelegate! { get set }
+}
+
 typealias ThreadWithImageCell = TableViewContainerCellBase<ThreadWithImageView>
 
-final class ThreadWithImageView: UIView, ConfigurableView, ReusableView {
+final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, NSFWContainer {
 
     typealias ConfigurationModel = Model
+    
+    // Delegate
+    public weak var nsfwDelegate: NSFWDelegate!
     
     // Model
     struct Model {
@@ -32,14 +43,12 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView {
     @IBOutlet weak var threadImageView: UIImageView!
     @IBOutlet weak var threadView: UIView!
     
-    // Background Queue
-    let backgroundQueue = DispatchQueue(label: "com.ruslantimchenko.imagensfwbackgroundactivity")
-    
     // Layers
     private var viewShadowLayer: CAShapeLayer!
     
     // Variables
     private var cornerRadius: CGFloat = 12.0
+    private var thumbnailFullPath = ""
 
     // MARK: - Lifecycle
     
@@ -79,29 +88,127 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView {
     // MARK: - Private Image Downloading
     private func downloadImage(withPath path: String) {
         let thumbnailFullPath = "https://2ch.hk\(path)"
+        self.thumbnailFullPath = thumbnailFullPath
+        if let nsfwData = isThereSavedNSFWInfo() {
+            if nsfwData.isNSFW == "SFW" {
+                downloadWithoutBlur(nsfwData: nsfwData)
+            } else {
+                downloadWithBlur(checkNSFW: false, nsfwData: nsfwData)
+            }
+        } else {
+            downloadWithBlur(checkNSFW: true, nsfwData: nil)
+        }
+    }
+    
+    private func isThereSavedNSFWInfo() -> (isNSFW: String, confidence: Double)? {
+        guard let nsfwDelegate = nsfwDelegate else { return nil }
+        guard let isNSFW = nsfwDelegate.nsfwData[thumbnailFullPath] else { return nil }
+        return isNSFW
+    }
+    
+    private func downloadWithBlur(checkNSFW: Bool,
+                                  nsfwData: (isNSFW: String, confidence: Double)?) {
         if let url = URL(string: thumbnailFullPath) {
-            
+            let request = ImageRequest(url: url,
+                                       processors: [ImageProcessor.GaussianBlur(radius: 8)])
+            if !checkNSFW {
+                Nuke.loadImage(with: request,
+                               options: ImageLoadingOptions(
+                                contentModes: .init(
+                                    success: .scaleAspectFill,
+                                    failure: .center,
+                                    placeholder: .center)
+                    ),
+                               into: threadImageView,
+                               progress: nil) { [weak self] result in
+                                if let nsfwData = nsfwData {
+                                    switch result {
+                                    case .success:
+                                        DispatchQueue.main.async {
+                                            self?.printNSFWConfidenceInTestLabel(with: nsfwData.isNSFW,
+                                                                                 confidence: nsfwData.confidence)
+                                        }
+                                    case let .failure(error):
+                                        print(error)
+                                    }
+                                }
+                }
+            } else {
+                downloadWithBlur(checkNSFW: false, nsfwData: nsfwData)
+                
+                ImagePipeline.shared.loadImage(with: url,
+                                               progress: nil)
+                { [weak self] result in
+                    switch result {
+                    case let .success(response):
+                        self?.handleNSFW(response: response,
+                                         url: url)
+                    case let .failure(error):
+                        print(error)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func downloadWithoutBlur(nsfwData: (isNSFW: String, confidence: Double)) {
+        if let url = URL(string: thumbnailFullPath) {
             Nuke.loadImage(with: url,
                            options: ImageLoadingOptions(
-                            transition: .fadeIn(duration: 0.5),
                             contentModes: .init(
                                 success: .scaleAspectFill,
                                 failure: .center,
                                 placeholder: .center)
                 ),
                            into: threadImageView,
-                           progress: nil) { [weak self] response, _ in
-                            guard let `self` = self else { return }
-                            
-                            self.backgroundQueue.async { [weak self] in
-                                guard let `self` = self else { return }
-                                let confidence =
-                                    String(describing: response?.image.isItNSFW()?.confidence)
+                           progress: nil) { [weak self] result in
+                            switch result {
+                            case .success:
                                 DispatchQueue.main.async {
-                                    self.confidenceLabel.text = confidence
+                                    self?.printNSFWConfidenceInTestLabel(with: nsfwData.isNSFW,
+                                                                         confidence: nsfwData.confidence)
                                 }
+                            case let .failure(error):
+                                print(error)
                             }
             }
         }
+    }
+    
+    private func handleNSFW(response: ImageResponse, url: URL) {
+        GlobalUtils.backgroundNSFWDetectionQueue.async { [weak self] in
+            guard let self = self else { return }
+            NSFWDetector.shared.predictNSFW(response.image,
+                                            url: url,
+                                            completion:
+                { [weak self] nsfwResponse in
+                    guard let nsfwResponse = nsfwResponse else { return }
+                    guard let self = self else { return }
+                    
+                    var nsfwString = ""
+                    
+                    if (nsfwResponse.0 == "NSFW" && nsfwResponse.1 >= 0.54)
+                        || (nsfwResponse.0 == "SFW" && nsfwResponse.1 <= 0.66) {
+                        nsfwString = "NSFW"
+                    } else {
+                        nsfwString = "SFW"
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.nsfwDelegate.nsfwData.updateValue((nsfwString, nsfwResponse.1), forKey: self.thumbnailFullPath)
+                        self.printNSFWConfidenceInTestLabel(with: nsfwString,
+                                                            confidence: nsfwResponse.1)
+                        if nsfwString == "SFW" {
+                            self.downloadWithoutBlur(nsfwData: (nsfwString, nsfwResponse.1))
+                        }
+                    }
+            })
+        }
+    }
+    
+    private func printNSFWConfidenceInTestLabel(with nsfwString: String,
+                                                confidence: Double) {
+        self.confidenceLabel.text = String(format: "%@ %f",
+                                           arguments: [nsfwString, confidence])
     }
 }

@@ -11,9 +11,11 @@ import UIKit
 
 typealias ThreadWithoutImageCell = TableViewContainerCellBase<ThreadWithoutImageView>
 
-final class ThreadWithoutImageView: UIView, ConfigurableView, ReusableView {
-    
+final class ThreadWithoutImageView: UIView, ConfigurableView, ReusableView, NSFWContainer {
+
     typealias ConfigurationModel = Model
+    
+    var nsfwDelegate: NSFWDelegate!
     
     // Model
     struct Model {

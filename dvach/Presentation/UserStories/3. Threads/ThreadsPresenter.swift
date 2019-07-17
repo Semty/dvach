@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-protocol IThreadsPresenter {
+protocol IThreadsPresenter: NSFWDelegate {
     var dataSource: [ThreadsPresenter.CellType] { get }
+    var nsfwData: [String: (isNSFW: String, confidence: Double)] { get set }
     func viewDidLoad()
 }
 
@@ -28,6 +29,9 @@ final class ThreadsPresenter {
     // Properties
     private let boardID: String
     var dataSource = [ThreadsPresenter.CellType]()
+    
+    // NSFW Dictionary
+    public var nsfwData = [String: (isNSFW: String, confidence: Double)]()
     
     // MARK: - Initialization
     

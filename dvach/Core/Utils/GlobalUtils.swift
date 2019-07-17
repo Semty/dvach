@@ -15,4 +15,8 @@ public enum GlobalUtils {
         dateFormatter.timeStyle = .medium
         return dateFormatter
     }()
+    
+    public static let backgroundNSFWDetectionQueue = DispatchQueue(label: "com.ruslantimchenko.imagensfwbackgroundactivity",
+                                                                   qos: .utility,
+                                                                   attributes: .concurrent)
 }

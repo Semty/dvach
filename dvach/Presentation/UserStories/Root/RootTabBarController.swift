@@ -19,5 +19,7 @@ final class RootTabBarController: UITabBarController {
         viewControllers = []
         tabBar.barTintColor = .white
         tabBar.tintColor = .n6Green
+        
+        self.viewControllers = [BoardWithThreadsViewController.init(boardID: "b")]
     }
 }
