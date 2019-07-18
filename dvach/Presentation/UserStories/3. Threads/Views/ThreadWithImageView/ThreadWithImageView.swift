@@ -84,6 +84,17 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, NSFWCon
         dateLabel.text = model.dateTitle
         downloadImage(withPath: model.threadImageThumbnail)
     }
+    
+    // MARK: - ReusableView
+    
+    func prepareForReuse() {
+        subjectLabel.text = nil
+        commentLabel.text = nil
+        dateLabel.text = nil
+        print("\n\nOPERATION \(thumbnailFullPath) SHOULD CANCELLED???????????????????????\n\n")
+        NSFWDetector.shared.cancelNSFWDetectionIfNeeded(thumbnailFullPath)
+        threadImageView.image = nil
+    }
 
     // MARK: - Private Image Downloading
     private func downloadImage(withPath path: String) {
@@ -142,9 +153,11 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, NSFWCon
                 ImagePipeline.shared.loadImage(with: request,
                                                progress: nil)
                 { [weak self] result in
+                    guard let self = self else { return }
                     switch result {
                     case let .success(response):
-                        self?.handleNSFW(response: response,
+                        print("\n\nHANDLE NSFW \(self.thumbnailFullPath) ~~~~~~~~~~~~~~~~~~~~~~\n\n")
+                        self.handleNSFW(response: response,
                                          url: url)
                     case let .failure(error):
                         print(error)
@@ -180,8 +193,9 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, NSFWCon
     }
     
     private func handleNSFW(response: ImageResponse, url: URL) {
-        GlobalUtils.backgroundNSFWDetectionQueue.async { [weak self] in
+        GlobalUtils.backgroundNSFWDetectionQueue.sync { [weak self] in
             guard let self = self else { return }
+            if thumbnailFullPath != url.absoluteString { return }
             NSFWDetector.shared.predictNSFW(response.image,
                                             url: url,
                                             completion:

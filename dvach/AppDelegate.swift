@@ -43,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ImagePipeline.shared = ImagePipeline {
             $0.isDataCachingForProcessedImagesEnabled = true
         }
-        ImageLoadingOptions.shared.alwaysTransition = true
     }
 }
 

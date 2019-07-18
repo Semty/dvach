@@ -18,7 +18,6 @@ class NSFWDetector {
     
     private lazy var nsfwDetectorOperationQueue: OperationQueue = {
         let operationQueue = OperationQueue()
-        //operationQueue.maxConcurrentOperationCount = 4
         operationQueue.underlyingQueue = nsfwDetectorBackgroundQueue
         return operationQueue
     }()
@@ -27,39 +26,40 @@ class NSFWDetector {
         DispatchQueue(label: "com.ruslantimchenko.nsfwDetectorBackgroundQueue",
                       qos: .utility)
     
-    func predictNSFW(_ image: UIImage, url: URL, completion: @escaping ((String, Double)?) -> Void) {
-        let operation = Operation()
-        operation.name = url.absoluteString
-        operation.completionBlock = {
-            let imageResized = image.square(scaledToSize: 224)
-            guard let pixelBuffer = imageResized.toCVPixelBuffer() else {
-                completion(nil)
-                return
-            }
-            do {
-                let nudity = Nudity()
-                let output = try nudity.prediction(data: pixelBuffer)
-                let classLabel = output.classLabel
-                guard let prediction = output.prob[classLabel] else {
-                    completion(nil)
-                    return
-                }
-                
-                let nsfwString: String
-                
-                if (classLabel == "NSFW" && prediction >= .nsfwPredictionBorder)
-                    || (classLabel == "SFW" && prediction <= .sfwPredictionBorder) {
-                    nsfwString = "NSFW"
-                } else {
-                    nsfwString = "SFW"
-                }
-
-                completion((nsfwString, prediction))
-            } catch let err {
-                print(err)
+    public func predictNSFW(_ image: UIImage, url: URL, completion: @escaping ((String, Double)?) -> Void) {
+        print("PREDICT")
+        isOperationExecuting(url.absoluteString) { (operation) in
+            if let _ = operation {
                 completion(nil)
             }
         }
-        nsfwDetectorOperationQueue.addOperation(operation)
+        
+        let nsfwOperation = NSFWOperation(image: image, url: url)
+        nsfwOperation.name = url.absoluteString
+        nsfwOperation.nsfwCompletionBlock = { nsfwResponse in
+            completion(nsfwResponse)
+        }
+        nsfwDetectorOperationQueue.addOperation(nsfwOperation)
+    }
+    
+    public func cancelNSFWDetectionIfNeeded(_ name: String) {
+        isOperationExecuting(name) { (operation) in
+            if let operation = operation {
+                operation.cancel()
+            }
+        }
+    }
+    
+    // MARK: - Helpful Functions
+    
+    private func isOperationExecuting(_ name: String, completion: (Operation?) -> Void) {
+        print(nsfwDetectorOperationQueue.operations.count)
+        nsfwDetectorOperationQueue.operations.forEach { operation in
+            if operation.name == name {
+                print("\n\nOPERATION \(name) CANCELLED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n")
+                completion(operation)
+            }
+        }
+        completion(nil)
     }
 }

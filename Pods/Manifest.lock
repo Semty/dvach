@@ -70,7 +70,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Kingfisher (= 4.10.0)
-  - Nuke
+  - Nuke (from `https://github.com/Semty/Nuke`, branch `dev`)
   - PureLayout
   - SnapKit (= 4.2.0)
   - SwiftyJSON (= 4.2.0)
@@ -89,10 +89,19 @@ SPEC REPOS:
     - Kingfisher
     - leveldb-library
     - nanopb
-    - Nuke
     - PureLayout
     - SnapKit
     - SwiftyJSON
+
+EXTERNAL SOURCES:
+  Nuke:
+    :branch: dev
+    :git: https://github.com/Semty/Nuke
+
+CHECKOUT OPTIONS:
+  Nuke:
+    :commit: a1ff53baf7fdf37db5d7593a9c4f13bffe5e0bec
+    :git: https://github.com/Semty/Nuke
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -112,6 +121,6 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 54523b8d8e96f0d38eef9fe32a6657375155e01f
+PODFILE CHECKSUM: 2f3dc7bd9ecf25aff76eb14bfc8b7459a72688c8
 
 COCOAPODS: 1.7.3
