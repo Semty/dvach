@@ -8,6 +8,10 @@
 
 import Foundation
 
+extension Double {
+    static let nsfwPredictionBorder = 0.52
+    static let sfwPredictionBorder = 0.72
+}
 
 class NSFWDetector {
     static let shared = NSFWDetector()
@@ -35,7 +39,22 @@ class NSFWDetector {
             do {
                 let nudity = Nudity()
                 let output = try nudity.prediction(data: pixelBuffer)
-                completion((output.classLabel, output.prob[output.classLabel] ?? 50))
+                let classLabel = output.classLabel
+                guard let prediction = output.prob[classLabel] else {
+                    completion(nil)
+                    return
+                }
+                
+                let nsfwString: String
+                
+                if (classLabel == "NSFW" && prediction >= .nsfwPredictionBorder)
+                    || (classLabel == "SFW" && prediction <= .sfwPredictionBorder) {
+                    nsfwString = "NSFW"
+                } else {
+                    nsfwString = "SFW"
+                }
+
+                completion((nsfwString, prediction))
             } catch let err {
                 print(err)
                 completion(nil)

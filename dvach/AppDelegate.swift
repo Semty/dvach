@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 import CoreData
 
 @UIApplicationMain
@@ -36,6 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
+    }
+    
+    private func setupNuke() {
+        ImagePipeline.shared = ImagePipeline {
+            $0.isDataCachingForProcessedImagesEnabled = true
+        }
+        ImageLoadingOptions.shared.alwaysTransition = true
     }
 }
 

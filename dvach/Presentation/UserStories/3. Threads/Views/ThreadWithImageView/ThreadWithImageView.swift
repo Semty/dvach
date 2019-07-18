@@ -110,10 +110,11 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, NSFWCon
                                   nsfwData: (isNSFW: String, confidence: Double)?) {
         if let url = URL(string: thumbnailFullPath) {
             let request = ImageRequest(url: url,
-                                       processors: [ImageProcessor.GaussianBlur(radius: 8)])
+                                       processors: [ImageProcessor.GaussianBlur(radius: 12)])
             if !checkNSFW {
                 Nuke.loadImage(with: request,
                                options: ImageLoadingOptions(
+                                transition: .fadeIn(duration: 0.5),
                                 contentModes: .init(
                                     success: .scaleAspectFill,
                                     failure: .center,
@@ -136,7 +137,9 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, NSFWCon
             } else {
                 downloadWithBlur(checkNSFW: false, nsfwData: nsfwData)
                 
-                ImagePipeline.shared.loadImage(with: url,
+                let request = ImageRequest(url: url)
+                
+                ImagePipeline.shared.loadImage(with: request,
                                                progress: nil)
                 { [weak self] result in
                     switch result {
@@ -155,6 +158,7 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, NSFWCon
         if let url = URL(string: thumbnailFullPath) {
             Nuke.loadImage(with: url,
                            options: ImageLoadingOptions(
+                            transition: .fadeIn(duration: 0.5),
                             contentModes: .init(
                                 success: .scaleAspectFill,
                                 failure: .center,
@@ -185,21 +189,15 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, NSFWCon
                     guard let nsfwResponse = nsfwResponse else { return }
                     guard let self = self else { return }
                     
-                    var nsfwString = ""
-                    
-                    if (nsfwResponse.0 == "NSFW" && nsfwResponse.1 >= 0.54)
-                        || (nsfwResponse.0 == "SFW" && nsfwResponse.1 <= 0.66) {
-                        nsfwString = "NSFW"
-                    } else {
-                        nsfwString = "SFW"
-                    }
+                    let nsfwString = nsfwResponse.0
+                    let nsfwConfidence = nsfwResponse.1
                     
                     DispatchQueue.main.async {
-                        self.nsfwDelegate.nsfwData.updateValue((nsfwString, nsfwResponse.1), forKey: self.thumbnailFullPath)
+                        self.nsfwDelegate.nsfwData.updateValue((nsfwString, nsfwConfidence), forKey: self.thumbnailFullPath)
                         self.printNSFWConfidenceInTestLabel(with: nsfwString,
                                                             confidence: nsfwResponse.1)
                         if nsfwString == "SFW" {
-                            self.downloadWithoutBlur(nsfwData: (nsfwString, nsfwResponse.1))
+                            self.downloadWithoutBlur(nsfwData: (nsfwString, nsfwConfidence))
                         }
                     }
             })
