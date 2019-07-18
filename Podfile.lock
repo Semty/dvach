@@ -197,10 +197,10 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Nantes (0.0.8)
-  - Nuke (7.6.3)
-  - Nuke-FLAnimatedImage-Plugin (6.1):
+  - Nuke (8.0)
+  - Nuke-FLAnimatedImage-Plugin (6.2):
     - FLAnimatedImage (~> 1.0)
-    - Nuke (~> 7.5)
+    - Nuke (~> 8.0)
   - OGVKit/Core (0.5.13)
   - OGVKit/OpusDecoder (0.5.13):
     - libopus
@@ -245,8 +245,8 @@ DEPENDENCIES:
   - KafkaRefresh
   - lottie-ios (= 3.1.0)
   - Nantes (from `https://github.com/Semty/Nantes`, branch `dev`)
-  - Nuke (~> 7.6)
-  - Nuke-FLAnimatedImage-Plugin
+  - Nuke (~> 8.0)
+  - Nuke-FLAnimatedImage-Plugin (from `https://github.com/semty/Nuke-FLAnimatedImage-Plugin.git`, branch `dev`)
   - OGVKit/WebM (from `https://github.com/Semty/WebM`)
   - PureLayout
   - SnapKit (= 4.2.0)
@@ -277,7 +277,6 @@ SPEC REPOS:
     - lottie-ios
     - nanopb
     - Nuke
-    - Nuke-FLAnimatedImage-Plugin
     - PureLayout
     - QuickLayout
     - SnapKit
@@ -290,6 +289,9 @@ EXTERNAL SOURCES:
   Nantes:
     :branch: dev
     :git: https://github.com/Semty/Nantes
+  Nuke-FLAnimatedImage-Plugin:
+    :branch: dev
+    :git: https://github.com/semty/Nuke-FLAnimatedImage-Plugin.git
   OGVKit:
     :git: https://github.com/Semty/WebM
   SwiftEntryKit:
@@ -305,6 +307,9 @@ CHECKOUT OPTIONS:
   Nantes:
     :commit: 201e27ebad6dbe172927861b2631db0664b4e3fa
     :git: https://github.com/Semty/Nantes
+  Nuke-FLAnimatedImage-Plugin:
+    :commit: 361af7947e11a8b90e3e3e758a4031275c32ec8f
+    :git: https://github.com/semty/Nuke-FLAnimatedImage-Plugin.git
   OGVKit:
     :commit: 10f9d3cd4f6eb96ee8a7f9a6226703ff784a94d6
     :git: https://github.com/Semty/WebM
@@ -337,8 +342,8 @@ SPEC CHECKSUMS:
   lottie-ios: 9467723922dfff46f6d4e3019c32594a62440b7c
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Nantes: 94a2e0c0b8207f12694f4ff6d96bf670adad3e27
-  Nuke: 44130e95e09463f8773ae4b96b90de1eba6b3350
-  Nuke-FLAnimatedImage-Plugin: bee60907311da45dd291463f41a176d50de68122
+  Nuke: 8d90f1dbf88d27a7ba6ff3934de01693812e5adb
+  Nuke-FLAnimatedImage-Plugin: c6e8f6cffd57659953a149ff1682370b9040d09d
   OGVKit: 46e30d4b1f06e179b1f254c92604bfd6c4b8338c
   PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
   QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
@@ -347,6 +352,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   VersaPlayer: 4c078dfd2c99c7c934b456cf6d47aefd747afa52
 
-PODFILE CHECKSUM: bb6222776f356ade11a641802435326f73fe3f79
+PODFILE CHECKSUM: e30df4deb23c0a44cf0e0fe5f83ea085e08f38e1
 
 COCOAPODS: 1.7.3

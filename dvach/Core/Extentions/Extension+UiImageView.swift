@@ -25,8 +25,11 @@ extension UIImageView {
                                                     failure: .scaleAspectFit,
                                                     placeholder: .scaleAspectFill))
         
-        Nuke.loadImage(with: url, options: options, into: self, progress: nil) { [weak self] _, error in
-            if error != nil {
+        Nuke.loadImage(with: url, options: options, into: self, progress: nil) { [weak self] result in
+            switch result {
+            case .success:
+                break
+            case .failure:
                 self?.image = defaultImage
             }
         }
