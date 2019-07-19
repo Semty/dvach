@@ -41,4 +41,10 @@ final class ConfigHandler {
     var rules: String {
         return json["rules"].stringValue.replacingOccurrences(of: "\\n", with: "\n")
     }
+    
+    var nsfwFilter: (nsfwBorder: Double, sfwBorder: Double) {
+        let dict = json["nsfwFilter"].dictionaryValue
+        return (dict["nsfwPredictionBorder"]?.double ?? 0.49,
+                dict["sfwPredictionBorder"]?.double ?? 0.98)
+    }
 }

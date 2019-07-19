@@ -10,8 +10,8 @@ import Foundation
 import Nuke
 
 private extension Double {
-    static let nsfwPredictionBorder = 0.49
-    static let sfwPredictionBorder = 0.98
+    static let nsfwPredictionBorder = Config.nsfwFilter.nsfwBorder
+    static let sfwPredictionBorder = Config.nsfwFilter.sfwBorder
 }
 
 
