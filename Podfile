@@ -16,7 +16,7 @@ target 'dvach' do
    pod 'Alamofire'
    pod 'SwiftyJSON', '4.2.0'
    pod 'SnapKit', '4.2.0'
-   pod 'Nuke', '~> 8.0'
+   pod 'Nuke', :git => 'https://github.com/Semty/Nuke', :branch => 'dev'
    pod 'Nuke-FLAnimatedImage-Plugin', :git => 'https://github.com/Semty/Nuke-FLAnimatedImage-Plugin.git'
    pod 'FLAnimatedImage', :git => 'https://github.com/Flipboard/FLAnimatedImage.git', :tag => '1.0.14'
    pod 'Nantes', :git => 'https://github.com/Semty/Nantes', :branch => 'dev'
