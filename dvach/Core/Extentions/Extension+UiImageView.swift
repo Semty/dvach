@@ -9,6 +9,11 @@
 import Foundation
 import Nuke
 
+private extension Double {
+    static let nsfwPredictionBorder = Config.nsfwFilter.nsfwBorder
+    static let sfwPredictionBorder = Config.nsfwFilter.sfwBorder
+}
+
 extension UIImageView {
     
     func loadImage(url: String) {
@@ -23,7 +28,10 @@ extension UIImageView {
         
         if checkNSFW {
             request = ImageRequest(url: url,
-                                   processors: [ImageProcessor.NSFWImageProcessor(url: url)])
+                                   processors:
+                [ImageProcessor.NSFWImageProcessor(url: url,
+                                                   nsfwPredictionBorder: .nsfwPredictionBorder,
+                                                   sfwPredictionBorder: .sfwPredictionBorder)])
         } else {
             request = ImageRequest(url: url)
         }

@@ -48,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupNuke() {
         ImagePipeline.shared = ImagePipeline {
+            $0.isDataCachingForOriginalImageDataEnabled = false
             $0.isDataCachingForProcessedImagesEnabled = true
         }
     }

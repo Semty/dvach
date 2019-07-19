@@ -9,33 +9,31 @@
 import Foundation
 import Nuke
 
-private extension Double {
-    static let nsfwPredictionBorder = Config.nsfwFilter.nsfwBorder
-    static let sfwPredictionBorder = Config.nsfwFilter.sfwBorder
-}
-
-
 extension ImageProcessor {
     public struct NSFWImageProcessor: ImageProcessing, Hashable, CustomStringConvertible {
         
         private let url: URL
+        private let nsfwPredictionBorder: Double
+        private let sfwPredictionBorder: Double
         
-        public init(url: URL) {
+        public init(url: URL, nsfwPredictionBorder: Double, sfwPredictionBorder: Double) {
             self.url = url
+            self.nsfwPredictionBorder = nsfwPredictionBorder
+            self.sfwPredictionBorder = sfwPredictionBorder
         }
         
         public func process(image: Image, context: ImageProcessingContext?) -> Image? {
             let nsfwResponse = detectNSFW(image)
             
-            if nsfwResponse?.0 == "NSFW" {
+            if nsfwResponse?.0 == "SFW" {
+                return image
+            } else {
                 return blur(image: image, radius: 12)
             }
-            
-            return image
         }
         
         public var identifier: String {
-            return "com.github.semty/nuke/nsfw_image_processor?url=\(url.absoluteString)"
+            return "com.github.semty/nuke/nsfw_image_processor?url=\(url.absoluteString)&nsfwPredictionBorder=\(nsfwPredictionBorder)&sfwPredictionBorder=\(sfwPredictionBorder)"
         }
         
         public var hashableIdentifier: AnyHashable {
@@ -43,7 +41,7 @@ extension ImageProcessor {
         }
         
         public var description: String {
-            return "NSFWImageProcessor(url: \(url.absoluteString)"
+            return "NSFWImageProcessor(url: \(url.absoluteString), nsfwPredictionBorder: \(nsfwPredictionBorder), sfwPredictionBorder: \(sfwPredictionBorder)"
         }
         
         private func blur(image: UIImage, radius: Int) -> UIImage {
@@ -79,8 +77,8 @@ extension ImageProcessor {
                 
                 let nsfwString: String
                 
-                if (classLabel == "NSFW" && prediction >= .nsfwPredictionBorder)
-                    || (classLabel == "SFW" && prediction <= .sfwPredictionBorder) {
+                if (classLabel == "NSFW" && prediction >= nsfwPredictionBorder)
+                    || (classLabel == "SFW" && prediction <= sfwPredictionBorder) {
                     nsfwString = "NSFW"
                 } else {
                     nsfwString = "SFW"
