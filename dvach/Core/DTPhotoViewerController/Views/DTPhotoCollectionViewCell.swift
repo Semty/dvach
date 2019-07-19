@@ -149,7 +149,8 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
             imageView.loadImage(url: urlPath,
                                 defaultImage: image,
                                 placeholder: image,
-                                transition: false)
+                                transition: false,
+                                checkNSFW: false)
         } else {
             imageView.image = image
         }

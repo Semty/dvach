@@ -196,6 +196,8 @@
 		D528DE4F22BBC05F008A27D9 /* MediaViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE4E22BBC05F008A27D9 /* MediaViewerController.swift */; };
 		D528DE5522BBCD82008A27D9 /* MediaViewerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE5422BBCD82008A27D9 /* MediaViewerPresenter.swift */; };
 		D528DE5822BBD532008A27D9 /* HorizontalMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE5722BBD532008A27D9 /* HorizontalMoreButton.swift */; };
+		D5361BA722E1D7C0003C89EC /* Nudity.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D5361BA622E1D7C0003C89EC /* Nudity.mlmodel */; };
+		D5361BAA22E1D966003C89EC /* NSFWImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5361BA922E1D966003C89EC /* NSFWImageProcessor.swift */; };
 		D5750AB422AEC0D70058E99D /* Extension+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */; };
 		D5750AB622AEC5050058E99D /* DvachLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB522AEC5050058E99D /* DvachLink.swift */; };
 		D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB922AEC57E0058E99D /* PostParser.swift */; };
@@ -435,6 +437,8 @@
 		D528DE4E22BBC05F008A27D9 /* MediaViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewerController.swift; sourceTree = "<group>"; };
 		D528DE5422BBCD82008A27D9 /* MediaViewerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewerPresenter.swift; sourceTree = "<group>"; };
 		D528DE5722BBD532008A27D9 /* HorizontalMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMoreButton.swift; sourceTree = "<group>"; };
+		D5361BA622E1D7C0003C89EC /* Nudity.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Nudity.mlmodel; sourceTree = "<group>"; };
+		D5361BA922E1D966003C89EC /* NSFWImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWImageProcessor.swift; sourceTree = "<group>"; };
 		D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSAttributedString.swift"; sourceTree = "<group>"; };
 		D5750AB522AEC5050058E99D /* DvachLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DvachLink.swift; sourceTree = "<group>"; };
 		D5750AB922AEC57E0058E99D /* PostParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParser.swift; sourceTree = "<group>"; };
@@ -961,6 +965,7 @@
 			isa = PBXGroup;
 			children = (
 				41BEE738229F04550028EBFB /* Locator.swift */,
+				D5361BA522E1D75E003C89EC /* NSFWDetector */,
 				41908A2D22BFFA460058907D /* AdManager */,
 				D528DE3522BB723B008A27D9 /* DTPhotoViewerController */,
 				D58ADB9F22AC271B00A8334B /* TextParser */,
@@ -1402,6 +1407,15 @@
 			path = HorizontalMoreButton;
 			sourceTree = "<group>";
 		};
+		D5361BA522E1D75E003C89EC /* NSFWDetector */ = {
+			isa = PBXGroup;
+			children = (
+				D5361BA622E1D7C0003C89EC /* Nudity.mlmodel */,
+				D5361BA922E1D966003C89EC /* NSFWImageProcessor.swift */,
+			);
+			path = NSFWDetector;
+			sourceTree = "<group>";
+		};
 		D58963E222BA8D0600B73A4B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1703,6 +1717,7 @@
 				4193B1D022AAC8E500EE25FD /* Extension+UiImageView.swift in Sources */,
 				41BEE763229F04730028EBFB /* ImbaTableView.swift in Sources */,
 				411902CA22A6C642008231AC /* HighlightingGestureRecognizer.swift in Sources */,
+				D5361BAA22E1D966003C89EC /* NSFWImageProcessor.swift in Sources */,
 				41908A1422BE74380058907D /* SubscribesViewController.swift in Sources */,
 				4193B1BB22AA998200EE25FD /* PostViewController.swift in Sources */,
 				D504B6ED22B946F9007C93B1 /* Extension+UIDevice.swift in Sources */,
@@ -1762,6 +1777,7 @@
 				41BEE737229F04450028EBFB /* TPKeyboardAvoidingSwift.swift in Sources */,
 				4190801322A86EE7003309D9 /* Config.swift in Sources */,
 				41BEE75B229F04730028EBFB /* IComponentsFactory.swift in Sources */,
+				D5361BA722E1D7C0003C89EC /* Nudity.mlmodel in Sources */,
 				411902CD22A6C6AC008231AC /* HighlightingNonScrollableGestureRecognizer.swift in Sources */,
 				41BEE727229F043C0028EBFB /* Extension+UIView.swift in Sources */,
 				D50ED7FC22D6446E00A655E9 /* InitialViewController.swift in Sources */,

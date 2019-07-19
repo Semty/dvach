@@ -47,7 +47,8 @@ final class FavouriteThreadView: UIView, SeparatorAvailable, ConfigurableView, R
         image.loadImage(url: model.iconURL ?? "",
                         defaultImage: UIImage(named: "placeholder"),
                         placeholder: nil,
-                        transition: true)
+                        transition: true,
+                        checkNSFW: true)
     }
     
     // MARK: - Reusable

@@ -78,7 +78,8 @@ extension MediaViewerManager: DTMediaViewerControllerDataSource {
             imageView.loadImage(url: file.urlPath ?? "",
                                 defaultImage: file.image,
                                 placeholder: file.image,
-                                transition: false)
+                                transition: false,
+                                checkNSFW: false)
         } else {
             imageView.image = file.image
         }

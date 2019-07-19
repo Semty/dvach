@@ -12,12 +12,22 @@ import Nuke
 extension UIImageView {
     
     func loadImage(url: String) {
-        loadImage(url: url, defaultImage: nil, placeholder: nil, transition: true)
+        loadImage(url: url, defaultImage: nil, placeholder: nil, transition: true, checkNSFW: true)
     }
     
-    func loadImage(url: String, defaultImage: UIImage?, placeholder: UIImage?, transition: Bool) {
+    func loadImage(url: String, defaultImage: UIImage?, placeholder: UIImage?, transition: Bool, checkNSFW: Bool) {
         image = defaultImage
         guard let url = URL(string: "\(GlobalUtils.base2chPath)\(url)") else { return }
+        
+        let request: ImageRequest
+        
+        if checkNSFW {
+            request = ImageRequest(url: url,
+                                   processors: [ImageProcessor.NSFWImageProcessor(url: url)])
+        } else {
+            request = ImageRequest(url: url)
+        }
+        
         let options =
             ImageLoadingOptions(placeholder: placeholder,
                                 transition: transition ? .fadeIn(duration: 0.5) : nil,
@@ -25,7 +35,7 @@ extension UIImageView {
                                                     failure: .scaleAspectFit,
                                                     placeholder: .scaleAspectFill))
         
-        Nuke.loadImage(with: url, options: options, into: self, progress: nil) { [weak self] result in
+        Nuke.loadImage(with: request, options: options, into: self, progress: nil) { [weak self] result in
             switch result {
             case .success:
                 break

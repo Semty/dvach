@@ -49,7 +49,8 @@ final class GalleryView: UIView, ConfigurableView, ReusableView, PressStateAnima
         imageView.loadImage(url: model.imageURL,
                             defaultImage: UIImage(named: "placeholder"),
                             placeholder: nil,
-                            transition: true)
+                            transition: true,
+                            checkNSFW: true)
     }
     
     // MARK: - ReusableView
