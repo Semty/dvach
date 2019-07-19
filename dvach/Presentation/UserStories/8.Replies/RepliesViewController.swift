@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import SafariServices
 
-protocol RepliesView: AnyObject {
+protocol RepliesView: AnyObject, SFSafariViewControllerDelegate {
     func updateTable()
 }
 
@@ -159,5 +160,13 @@ extension RepliesViewController: PostCommentViewDelegate {
     
     func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String) {
         presenter.postCommentView(view, didTapMoreButton: button, postNumber: postNumber)
+    }
+}
+
+// MARK: - SFSafariViewControllerDelegate
+
+extension RepliesViewController: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

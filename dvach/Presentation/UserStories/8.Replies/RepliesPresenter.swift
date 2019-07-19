@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SafariServices
 
 protocol IRepliesPresenter {
     var dataSource: [PostCommentViewModel] { get }
@@ -24,7 +25,7 @@ protocol IRepliesPresenter {
 final class RepliesPresenter {
     
     // Dependencies
-    weak var view: RepliesView?
+    weak var view: (RepliesView & UIViewController)?
     private let router: IPostRouter
     
     // Properties
@@ -98,7 +99,9 @@ extension RepliesPresenter: IRepliesPresenter {
     
     func postCommentView(_ view: PostCommentViewContainer, didTapURL url: URL) {
         guard UIApplication.shared.canOpenURL(url) else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        let safariVC = SFSafariViewController(url: url)
+        self.view?.present(safariVC, animated: true, completion: nil)
+        safariVC.delegate = self.view
     }
     
     func postCommentView(_ view: PostCommentViewContainer, didTapAnswerButton postNumber: String) {

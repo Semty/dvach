@@ -8,8 +8,9 @@
 
 import Foundation
 import Appodeal
+import SafariServices
 
-protocol SinglePostView: AnyObject {
+protocol SinglePostView: AnyObject, SFSafariViewControllerDelegate {
     func configure(model: PostCommentViewModel)
     func addAdvertisingView(_ view: AdView)
 }
@@ -142,5 +143,13 @@ extension SinglePostViewController: PostCommentViewDelegate {
     
     func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String) {
         presenter.postCommentView(view, didTapMoreButton: button, postNumber: postNumber)
+    }
+}
+
+// MARK: - SFSafariViewControllerDelegate
+
+extension SinglePostViewController: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

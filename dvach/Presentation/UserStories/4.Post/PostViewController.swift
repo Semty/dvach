@@ -8,8 +8,9 @@
 
 import Foundation
 import KafkaRefresh
+import SafariServices
 
-protocol PostView: AnyObject {
+protocol PostView: AnyObject, SFSafariViewControllerDelegate {
     func updateTable(scrollTo indexPath: IndexPath?)
     func showPlaceholder(text: String)
     func endRefreshing(indexPath: IndexPath?)
@@ -285,5 +286,13 @@ extension PostViewController: PostCommentViewDelegate {
     
     func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String) {
         presenter.postCommentView(view, didTapMoreButton: button, postNumber: postNumber)
+    }
+}
+
+// MARK: - SFSafariViewControllerDelegate
+
+extension PostViewController: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
