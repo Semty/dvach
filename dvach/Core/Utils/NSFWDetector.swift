@@ -9,8 +9,8 @@
 import Foundation
 
 extension Double {
-    static let nsfwPredictionBorder = 0.52
-    static let sfwPredictionBorder = 0.72
+    static let nsfwPredictionBorder = 0.49
+    static let sfwPredictionBorder = 0.98
 }
 
 class NSFWDetector {

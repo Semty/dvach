@@ -91,8 +91,8 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, NSFWCon
         subjectLabel.text = nil
         commentLabel.text = nil
         dateLabel.text = nil
-        print("\n\nOPERATION \(thumbnailFullPath) SHOULD CANCELLED???????????????????????\n\n")
-        NSFWDetector.shared.cancelNSFWDetectionIfNeeded(thumbnailFullPath)
+        //print("\n\nOPERATION \(thumbnailFullPath) SHOULD CANCELLED???????????????????????\n\n")
+        //NSFWDetector.shared.cancelNSFWDetectionIfNeeded(thumbnailFullPath)
         threadImageView.image = nil
     }
 
@@ -100,15 +100,16 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, NSFWCon
     private func downloadImage(withPath path: String) {
         let thumbnailFullPath = "https://2ch.hk\(path)"
         self.thumbnailFullPath = thumbnailFullPath
-        if let nsfwData = isThereSavedNSFWInfo() {
-            if nsfwData.isNSFW == "SFW" {
-                downloadWithoutBlur(nsfwData: nsfwData)
-            } else {
-                downloadWithBlur(checkNSFW: false, nsfwData: nsfwData)
-            }
-        } else {
-            downloadWithBlur(checkNSFW: true, nsfwData: nil)
-        }
+//        if let nsfwData = isThereSavedNSFWInfo() {
+//            if nsfwData.isNSFW == "SFW" {
+//                downloadWithoutBlur(nsfwData: nsfwData)
+//            } else {
+//                downloadWithBlur(checkNSFW: false, nsfwData: nsfwData)
+//            }
+//        } else {
+//            downloadWithBlur(checkNSFW: true, nsfwData: nil)
+//        }
+        downloadWithBlur(checkNSFW: false, nsfwData: nil)
     }
     
     private func isThereSavedNSFWInfo() -> (isNSFW: String, confidence: Double)? {
@@ -121,7 +122,7 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, NSFWCon
                                   nsfwData: (isNSFW: String, confidence: Double)?) {
         if let url = URL(string: thumbnailFullPath) {
             let request = ImageRequest(url: url,
-                                       processors: [ImageProcessor.GaussianBlur(radius: 12)])
+                                       processors: [ImageProcessor.NSFWImageProcessor(url: url)])
             if !checkNSFW {
                 Nuke.loadImage(with: request,
                                options: ImageLoadingOptions(

@@ -65,6 +65,7 @@
 		41BEE767229F04730028EBFB /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE759229F04730028EBFB /* CloseButton.swift */; };
 		41BEE76D229F05C10028EBFB /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE76C229F05C10028EBFB /* RootTabBarController.swift */; };
 		41BEE76F229F06970028EBFB /* ModelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEE76E229F06970028EBFB /* ModelRequest.swift */; };
+		D5361BA322E1C860003C89EC /* NSFWImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5361BA222E1C860003C89EC /* NSFWImageProcessor.swift */; };
 		D547F91C22E0DFD800004F07 /* NSFWOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547F91B22E0DFD800004F07 /* NSFWOperation.swift */; };
 		D587B07122A67C4000A86602 /* Nudity.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D587B07022A67C4000A86602 /* Nudity.mlmodel */; };
 		D587B07322A6809400A86602 /* NSFW.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D587B07222A6809300A86602 /* NSFW.mlmodel */; };
@@ -163,6 +164,7 @@
 		969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.release.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.release.xcconfig"; sourceTree = "<group>"; };
 		BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56667501DB5905B423A9582 /* Pods-dvachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D5361BA222E1C860003C89EC /* NSFWImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWImageProcessor.swift; sourceTree = "<group>"; };
 		D547F91B22E0DFD800004F07 /* NSFWOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWOperation.swift; sourceTree = "<group>"; };
 		D587B07022A67C4000A86602 /* Nudity.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Nudity.mlmodel; sourceTree = "<group>"; };
 		D587B07222A6809300A86602 /* NSFW.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = NSFW.mlmodel; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 			children = (
 				D5F674B122DF7E9D00708CE2 /* NSFWDetector.swift */,
 				D547F91B22E0DFD800004F07 /* NSFWOperation.swift */,
+				D5361BA222E1C860003C89EC /* NSFWImageProcessor.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -787,6 +790,7 @@
 				414408A522A04BBC00E4E53E /* BoardsRequest.swift in Sources */,
 				414408A722A050F600E4E53E /* Category.swift in Sources */,
 				41BEE75F229F04730028EBFB /* TapGestureRecognizer.swift in Sources */,
+				D5361BA322E1C860003C89EC /* NSFWImageProcessor.swift in Sources */,
 				41BEE71C229F043C0028EBFB /* Persistable.swift in Sources */,
 				41BEE71D229F043C0028EBFB /* RequestManager.swift in Sources */,
 				41BEE75C229F04730028EBFB /* ConfigurableView.swift in Sources */,
