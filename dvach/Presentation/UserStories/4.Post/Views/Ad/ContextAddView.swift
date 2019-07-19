@@ -13,25 +13,67 @@ typealias ContextAdCell = TableViewContainerCellBase<ContextAddView>
 
 final class ContextAddView: UIView, SeparatorAvailable, ConfigurableView, ReusableView {
 
+    @IBOutlet weak var fakeAnswerNumberLabel: UILabel!
+    @IBOutlet weak var fakeAnswerTwoSymbolsLabel: UILabel!
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var answersButton: VerticalOvalButton!
+    @IBOutlet weak var moreButton: VerticalOvalButton!
+    @IBOutlet weak var roundAdMarkView: UIView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var callToAction: UILabel!
     @IBOutlet weak var image: UIImageView!
     
+    private var fakeNumberOfReplies: String {
+        let randomNumber = Int.random(in: 1..<13)
+        return "\(randomNumber)"
+    }
+    
+    private var fakeAnswerNumberString: String {
+        let randomNumber = Int.random(in: 1000000..<9999999)
+        return "\(randomNumber)"
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        fakeAnswerTwoSymbolsLabel.textColor = UIColor.a3Orange
+        fakeAnswerNumberLabel.textColor = UIColor.a3Orange
+        fakeAnswerNumberLabel.text = fakeAnswerNumberString
+        textLabel.textColor = .n1Gray
+        textLabel.font = UIFont.commentRegular
+        textLabel.numberOfLines = 0
         title.textColor = .n1Gray
         callToAction.textColor = .n7Blue
         addBottomSeparator(with: .defaultStyle)
+        roundAdMarkView.backgroundColor = .n7Blue
+        moreButton.configure(with: VerticalOvalButton.Model(color: .n9LightGreen,
+                                                            icon: UIImage(named: "more"),
+                                                            text: nil))
+        answersButton.configure(with: VerticalOvalButton.Model(color: .n4Red,
+                                                               icon: UIImage(named: "answers"),
+                                                               text: fakeNumberOfReplies))
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         image.makeRoundedByCornerRadius(.radius10)
+        roundAdMarkView.makeRounded()
+        textLabel.sizeToFit()
     }
     
     struct Model {}
     typealias ConfigurationModel = Model
     func configure(with model: ContextAddView.Model) {}
+    
+    // MARK: - ReusableView
+    
+    func prepareForReuse() {
+        fakeAnswerNumberLabel.text = nil
+        fakeAnswerTwoSymbolsLabel.text = nil
+        textLabel.text = nil
+        title.text = nil
+        callToAction.text = nil
+        image.image = nil
+    }
 }
 
 // MARK: - APDNativeAdView
@@ -48,6 +90,14 @@ extension ContextAddView: APDNativeAdView {
     
     func iconView() -> UIImageView {
         return image
+    }
+    
+    func descriptionLabel() -> UILabel {
+        return textLabel
+    }
+    
+    func contentRatingLabel() -> UILabel {
+        return fakeAnswerNumberLabel
     }
     
     static func nib() -> UINib {
