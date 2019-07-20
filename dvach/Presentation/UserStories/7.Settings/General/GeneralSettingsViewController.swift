@@ -21,7 +21,8 @@ final class GeneralSettingsViewController: UIViewController {
     // Dependencies
     private let presenter: IGeneralSettingsPresenter
     private let componentsFactory = Locator.shared.componentsFactory()
-    private lazy var adManager = Locator.shared.createAdManager(numberOfNativeAds: 0, viewController: self)
+    private lazy var adManager = Locator.shared.createAdManager(numberOfNativeAds: 0,
+                                                                viewController: self)
     
     // UI
     private lazy var stackView = componentsFactory.createStackViewContainer()

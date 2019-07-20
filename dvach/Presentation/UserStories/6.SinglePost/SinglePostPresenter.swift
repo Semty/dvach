@@ -29,7 +29,8 @@ final class SinglePostPresenter: NSObject {
     private let dvachService = Locator.shared.dvachService()
     private let mediaViewerManager = MediaViewerManager()
     private lazy var adManager: IAdManager = {
-        let manager = Locator.shared.createAdManager(numberOfNativeAds: 1, viewController: view)
+        let manager = Locator.shared.createAdManager(numberOfNativeAds: 1,
+                                                     viewController: view)
         manager.delegate = self
         return manager
     }()
@@ -120,8 +121,7 @@ extension SinglePostPresenter: ISinglePostPresenter {
 
 extension SinglePostPresenter: AdManagerDelegate {
     
-    func adManagerDidCreateNativeAdViews(_ views: [AdView]) {
-        guard let adView = views.first else { return }
-        view?.addAdvertisingView(adView)
+    func adManagerDidCreateNativeAdView(_ view: AdView) {
+        self.view?.addAdvertisingView(view)
     }
 }

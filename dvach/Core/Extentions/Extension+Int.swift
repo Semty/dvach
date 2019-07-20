@@ -10,7 +10,8 @@ import Foundation
 
 extension Int {
     
-    static let adPeriod = 10
+    static let adPeriod = 15
+    static let maxAdCount = 1
     
     var stringValue: String {
         return "\(self)"

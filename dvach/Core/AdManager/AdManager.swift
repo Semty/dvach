@@ -12,7 +12,7 @@ import Appodeal
 public typealias AdView = (UIView & APDNativeAdView)
 
 protocol AdManagerDelegate: AnyObject {
-    func adManagerDidCreateNativeAdViews(_ views: [AdView])
+    func adManagerDidCreateNativeAdView(_ view: AdView)
 }
 
 protocol IAdManager: AnyObject {
@@ -26,15 +26,11 @@ final class AdManager: NSObject, IAdManager {
     // Dependencies
     weak var delegate: AdManagerDelegate?
     private let numberOfAds: Int
+    private var downloadedAds = 0
     private weak var viewController: UIViewController?
     
     // Properties
     private lazy var adQueue = APDNativeAdQueue()
-    private var nativeAds = [APDNativeAd]()
-    private lazy var queueLoaded: Bool = {
-        createAdViews()
-        return true
-    }()
     
     // MARK: - Initialization
     
@@ -63,23 +59,24 @@ final class AdManager: NSObject, IAdManager {
     
     // MARK: - Private
     
-    private func createAdViews() {
+    private func createAdViews(_ nativeAd: APDNativeAd) {
         guard let vc = viewController else { return }
-        let views = nativeAds.compactMap { $0.getViewFor(vc) }
-        delegate?.adManagerDidCreateNativeAdViews(views)
+        guard let view = nativeAd.getViewFor(vc) else { return }
+        delegate?.adManagerDidCreateNativeAdView(view)
     }
 }
 
 // MARK: - APDNativeAdQueueDelegate
 
 extension AdManager: APDNativeAdQueueDelegate {
-    
     func adQueueAdIsAvailable(_ adQueue: APDNativeAdQueue, ofCount count: UInt) {
-        if nativeAds.count > numberOfAds {
-            _ = queueLoaded
+        if downloadedAds >= numberOfAds {
             return
         } else {
-            nativeAds.append(contentsOf: adQueue.getNativeAds(ofCount: 1))
+            downloadedAds += 1
+            if let ad = adQueue.getNativeAds(ofCount: 1).first {
+                createAdViews(ad)
+            }
         }
     }
 }

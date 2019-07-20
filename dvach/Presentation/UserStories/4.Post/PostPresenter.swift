@@ -41,6 +41,15 @@ final class PostViewPresenter {
                 return nil
             }
         }
+        
+        var isAd: Bool {
+            switch self {
+            case .ad:
+                return true
+            default:
+                return false
+            }
+        }
     }
     
     // Dependencies
@@ -48,7 +57,9 @@ final class PostViewPresenter {
     private var router: IPostRouter
     private let dvachService = Locator.shared.dvachService()
     private lazy var adManager: IAdManager = {
-        let manager = Locator.shared.createAdManager(numberOfNativeAds: 10, viewController: view)
+        let numberOfNativeAds = dataSource.count / .adPeriod
+        let manager = Locator.shared.createAdManager(numberOfNativeAds: numberOfNativeAds > .maxAdCount ? .maxAdCount : numberOfNativeAds,
+                                                     viewController: view)
         manager.delegate = self
         return manager
     }()
@@ -69,6 +80,7 @@ final class PostViewPresenter {
     private var postNumber: String?
     private var posts = [Post]()
     private var replies = Replies()
+    private var numberOfAds = 0
     
     // MARK: - Initialization
     
@@ -233,23 +245,25 @@ extension PostViewPresenter: IPostViewPresenter {
 
 extension PostViewPresenter: AdManagerDelegate {
     
-    func adManagerDidCreateNativeAdViews(_ views: [AdView]) {
-        var ads: [CellType] = views.compactMap {
-            guard let adView = $0 as? ContextAddView else { return nil }
-            return CellType.ad(adView)
-        }
+    func adManagerDidCreateNativeAdView(_ view: AdView) {
+        guard let adView = view as? ContextAddView else { return }
+        let ad = CellType.ad(adView)
+        
+        let lastVisibleRow = self.view?.lastVisibleRow ?? 0
+        let insertAt = ((numberOfAds + 1) * .adPeriod) + numberOfAds
         var newDataSource = dataSource
-        dataSource.enumerated().forEach { index, item in
-            if index != 0, index % .adPeriod == 0, let ad = ads.first {
-                ads = Array(ads.dropFirst())
-                newDataSource.insert(ad, at: index)
-            }
+        var adIndexPaths = [IndexPath]()
+        
+        if dataSource.count > insertAt, insertAt > lastVisibleRow {
+            adIndexPaths.append(IndexPath(row: insertAt,
+                                          section: 0))
+            newDataSource.insert(ad, at: insertAt)
+            numberOfAds += 1
         }
-        let scrollIndexPath = self.scrollIndexPath(for: newDataSource)
         
         DispatchQueue.main.async {
             self.dataSource = newDataSource
-            self.view?.updateTable(scrollTo: scrollIndexPath)
+            self.view?.insertRows(indexPaths: adIndexPaths)
         }
     }
 }

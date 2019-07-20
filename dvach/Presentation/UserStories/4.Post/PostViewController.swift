@@ -12,8 +12,10 @@ import SafariServices
 
 protocol PostView: AnyObject, SFSafariViewControllerDelegate {
     func updateTable(scrollTo indexPath: IndexPath?)
+    func insertRows(indexPaths: [IndexPath])
     func showPlaceholder(text: String)
     func endRefreshing(indexPath: IndexPath?)
+    var lastVisibleRow: Int { get }
 }
 
 final class PostViewController: UIViewController {
@@ -180,8 +182,20 @@ final class PostViewController: UIViewController {
 
 extension PostViewController: PostView {
     
+    var lastVisibleRow: Int {
+        return tableView.indexPathsForVisibleRows?.first?.row ?? 0
+    }
+    
     func updateTable(scrollTo indexPath: IndexPath?) {
         updateTable(indexPath: indexPath)
+    }
+    
+    func insertRows(indexPaths: [IndexPath]) {
+        tableView.beginUpdates()
+        tableView.insertRows(at: indexPaths, with: .fade)
+        tableView.endUpdates()
+        
+        hideSkeleton()
     }
     
     func showPlaceholder(text: String) {
@@ -238,6 +252,7 @@ extension PostViewController: UITableViewDataSource {
             
         case .ad(let adView):
             let cell: ContextAdCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.prepareForReuse()
             cell.containedView.addSubview(adView)
             adView.snp.makeConstraints { $0.edges.equalToSuperview() }
             return cell
