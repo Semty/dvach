@@ -203,6 +203,8 @@
 		D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB922AEC57E0058E99D /* PostParser.swift */; };
 		D58ADBA722AC405300A8334B /* Extension+NSRegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58ADBA622AC405300A8334B /* Extension+NSRegularExpression.swift */; };
 		D5955FA922BA6C1700438630 /* Extension+UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5955FA822BA6C1700438630 /* Extension+UIBezierPath.swift */; };
+		D59E39DE22E39A34007F65AD /* SynchronizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59E39DD22E39A34007F65AD /* SynchronizedArray.swift */; };
+		D59E39E022E3A8AA007F65AD /* WriteLockableSynchronizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59E39DF22E3A8AA007F65AD /* WriteLockableSynchronizedArray.swift */; };
 		D5A69D4322A2E69700C46E24 /* BoardWithThreadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */; };
 		D5A69D4522A2E83200C46E24 /* BoardWithThreadsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4422A2E83200C46E24 /* BoardWithThreadsPresenter.swift */; };
 		D5A69D4A22A2FB3400C46E24 /* ThreadWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A69D4922A2FB3400C46E24 /* ThreadWithImageView.swift */; };
@@ -444,6 +446,8 @@
 		D5750AB922AEC57E0058E99D /* PostParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParser.swift; sourceTree = "<group>"; };
 		D58ADBA622AC405300A8334B /* Extension+NSRegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSRegularExpression.swift"; sourceTree = "<group>"; };
 		D5955FA822BA6C1700438630 /* Extension+UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIBezierPath.swift"; sourceTree = "<group>"; };
+		D59E39DD22E39A34007F65AD /* SynchronizedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedArray.swift; sourceTree = "<group>"; };
+		D59E39DF22E3A8AA007F65AD /* WriteLockableSynchronizedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteLockableSynchronizedArray.swift; sourceTree = "<group>"; };
 		D5A69D4222A2E69700C46E24 /* BoardWithThreadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithThreadsViewController.swift; sourceTree = "<group>"; };
 		D5A69D4422A2E83200C46E24 /* BoardWithThreadsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithThreadsPresenter.swift; sourceTree = "<group>"; };
 		D5A69D4922A2FB3400C46E24 /* ThreadWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithImageView.swift; sourceTree = "<group>"; };
@@ -971,6 +975,7 @@
 				D58ADB9F22AC271B00A8334B /* TextParser */,
 				411902BB22A6BE3D008231AC /* Shared models */,
 				41BEE6F6229F043C0028EBFB /* Utils */,
+				D59E39DC22E39A34007F65AD /* Base Classes */,
 				41BEE6F8229F043C0028EBFB /* Storage */,
 				41BEE6FC229F043C0028EBFB /* RequestManager */,
 				41BEE702229F043C0028EBFB /* Extentions */,
@@ -1434,6 +1439,15 @@
 			path = TextParser;
 			sourceTree = "<group>";
 		};
+		D59E39DC22E39A34007F65AD /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D59E39DD22E39A34007F65AD /* SynchronizedArray.swift */,
+				D59E39DF22E3A8AA007F65AD /* WriteLockableSynchronizedArray.swift */,
+			);
+			path = "Base Classes";
+			sourceTree = "<group>";
+		};
 		D5A69D1D22A2E5DB00C46E24 /* 3.Threads */ = {
 			isa = PBXGroup;
 			children = (
@@ -1736,6 +1750,7 @@
 				41B3E2D522A31298000B3F51 /* CategoriesViewModelFactory.swift in Sources */,
 				418CB9C522BAA5AE006C9A15 /* ContentSettingsView.swift in Sources */,
 				D5A69D4C22A2FB4B00C46E24 /* ThreadWithoutImageView.swift in Sources */,
+				D59E39E022E3A8AA007F65AD /* WriteLockableSynchronizedArray.swift in Sources */,
 				D5A69D4522A2E83200C46E24 /* BoardWithThreadsPresenter.swift in Sources */,
 				41BEE725229F043C0028EBFB /* UIView+NibLoadable.swift in Sources */,
 				D5D37B3522B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift in Sources */,
@@ -1766,6 +1781,7 @@
 				D5F7300B22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift in Sources */,
 				D528DE4822BB723B008A27D9 /* Helper.swift in Sources */,
 				41BEE72D229F043C0028EBFB /* Extension+String.swift in Sources */,
+				D59E39DE22E39A34007F65AD /* SynchronizedArray.swift in Sources */,
 				41D38A6522B51968000D1391 /* DvachItem.swift in Sources */,
 				41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */,
 				D528DE4222BB723B008A27D9 /* DTMediaAnimator.swift in Sources */,

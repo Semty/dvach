@@ -161,12 +161,14 @@ final class PostViewController: UIViewController {
     }
     
     private func updateTable(indexPath: IndexPath?) {
+        presenter.dataSource.lockArray()
         tableView.reloadData()
         if let indexPath = indexPath, indexPath.row > 0 {
             tableView.scrollToRow(at: indexPath,
                                   at: .middle,
                                   animated: false)
         }
+        presenter.dataSource.unlockArray()
         hideSkeleton()
     }
     
@@ -191,9 +193,11 @@ extension PostViewController: PostView {
     }
     
     func insertRows(indexPaths: [IndexPath]) {
+        presenter.dataSource.lockArray()
         tableView.beginUpdates()
         tableView.insertRows(at: indexPaths, with: .fade)
         tableView.endUpdates()
+        presenter.dataSource.unlockArray()
         
         hideSkeleton()
     }
@@ -226,36 +230,38 @@ extension PostViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        switch presenter.dataSource[indexPath.row] {
-        case .post(let viewModel):
-            
-            if viewModel.fileURLs.isEmpty {
-                let cell: PostCommentWithoutMediaCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.prepareForReuse()
-                cell.configure(with: viewModel)
-                cell.containedView.delegate = self
-                if indexPath.row == presenter.dataSource.count - 1 {
-                    cell.containedView.removeBottomSeparator()
+        if let data = presenter.dataSource[indexPath.row] {
+            switch data {
+            case .post(let viewModel):
+                if viewModel.fileURLs.isEmpty {
+                    let cell: PostCommentWithoutMediaCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                    cell.prepareForReuse()
+                    cell.configure(with: viewModel)
+                    cell.containedView.delegate = self
+                    if indexPath.row == presenter.dataSource.count - 1 {
+                        cell.containedView.removeBottomSeparator()
+                    }
+                    return cell
+                } else {
+                    let cell: PostCommentWithMediaCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                    cell.prepareForReuse()
+                    cell.configure(with: viewModel)
+                    cell.containedView.delegate = self
+                    if indexPath.row == presenter.dataSource.count - 1 {
+                        cell.containedView.removeBottomSeparator()
+                    }
+                    return cell
                 }
-                return cell
-            } else {
-                let cell: PostCommentWithMediaCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                
+            case .ad(let adView):
+                let cell: ContextAdCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.prepareForReuse()
-                cell.configure(with: viewModel)
-                cell.containedView.delegate = self
-                if indexPath.row == presenter.dataSource.count - 1 {
-                    cell.containedView.removeBottomSeparator()
-                }
+                cell.containedView.addSubview(adView)
+                adView.snp.makeConstraints { $0.edges.equalToSuperview() }
                 return cell
             }
-            
-        case .ad(let adView):
-            let cell: ContextAdCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.prepareForReuse()
-            cell.containedView.addSubview(adView)
-            adView.snp.makeConstraints { $0.edges.equalToSuperview() }
-            return cell
+        } else {
+            return UITableViewCell()
         }
     }
 }

@@ -13,7 +13,7 @@ import SafariServices
 typealias Replies = [String: [String]]
 
 protocol IPostViewPresenter {
-    var dataSource: [PostViewPresenter.CellType] { get }
+    var dataSource: WriteLockableSynchronizedArray<PostViewPresenter.CellType> { get }
     var mediaViewControllerWasPresented: Bool { get set }
     
     func viewDidLoad()
@@ -65,7 +65,7 @@ final class PostViewPresenter {
     }()
     
     // Properties
-    var dataSource = [CellType]()
+    var dataSource = WriteLockableSynchronizedArray<CellType>()
     var mediaViewControllerWasPresented: Bool {
         get {
             return router.mediaViewControllerWasPresented
@@ -104,16 +104,16 @@ final class PostViewPresenter {
             case .success(let posts):
                 var enrichedPosts = [Post]()
                 posts.forEach(self.updateReplies) // Приходится два раза пробегать по массиву с постами :(
-                let dataSource: [CellType] = posts.enumerated().map { index, item in
+                let synchronizedDataSource = WriteLockableSynchronizedArray<CellType>()
+                for (index, item) in posts.enumerated() {
                     var post = item
                     post.rowIndex = index // Проставляем индекс здесь, чтобы он не сбился из-за рекламы
                     enrichedPosts.append(post)
                     let model = self.createPostViewModel(post: post)
-                    
-                    return .post(model)
+                    synchronizedDataSource.append(.post(model))
                 }
                 self.posts = enrichedPosts
-                self.dataSource = dataSource
+                self.dataSource = synchronizedDataSource
                 
                 completion(nil)
             case .failure(let error):
@@ -151,7 +151,7 @@ final class PostViewPresenter {
                                     isRepliesHidden: false)
     }
     
-    private func scrollIndexPath(for dataSource: [CellType]) -> IndexPath? {
+    private func scrollIndexPath(for dataSource: WriteLockableSynchronizedArray<CellType>) -> IndexPath? {
         guard let postNumber = postNumber else { return nil }
         var row = 0
         dataSource.enumerated().forEach {
@@ -262,7 +262,7 @@ extension PostViewPresenter: AdManagerDelegate {
             }
         }
         
-        var newDataSource = dataSource
+        let newDataSource = dataSource
         var adIndexPaths = [IndexPath]()
         
         if dataSourceCount > insertAt, insertAt > lastVisibleRow {
