@@ -249,12 +249,23 @@ extension PostViewPresenter: AdManagerDelegate {
         guard let adView = view as? ContextAddView else { return }
         let ad = CellType.ad(adView)
         
+        let dataSourceCount = dataSource.count
         let lastVisibleRow = self.view?.lastVisibleRow ?? 0
-        let insertAt = ((numberOfAds + 1) * .adPeriod) + numberOfAds
+        var incrementor = 1
+        var insertAt = ((numberOfAds + incrementor) * .adPeriod) + numberOfAds
+        
+        while insertAt <= lastVisibleRow {
+            incrementor += 1
+            insertAt = ((numberOfAds + incrementor) * .adPeriod) + numberOfAds
+            if insertAt > dataSourceCount {
+                return
+            }
+        }
+        
         var newDataSource = dataSource
         var adIndexPaths = [IndexPath]()
         
-        if dataSource.count > insertAt, insertAt > lastVisibleRow {
+        if dataSourceCount > insertAt, insertAt > lastVisibleRow {
             adIndexPaths.append(IndexPath(row: insertAt,
                                           section: 0))
             newDataSource.insert(ad, at: insertAt)

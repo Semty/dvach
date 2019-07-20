@@ -118,7 +118,11 @@ extension SinglePostViewController: SinglePostView {
     }
     
     func addAdvertisingView(_ view: AdView) {
+        view.alpha = 0.0
         stackView.addView(view)
+        UIView.animate(withDuration: 0.75) {
+            view.alpha = 1.0
+        }
     }
 }
 

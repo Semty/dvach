@@ -183,7 +183,7 @@ final class PostViewController: UIViewController {
 extension PostViewController: PostView {
     
     var lastVisibleRow: Int {
-        return tableView.indexPathsForVisibleRows?.first?.row ?? 0
+        return tableView.indexPathsForVisibleRows?.last?.row ?? 0
     }
     
     func updateTable(scrollTo indexPath: IndexPath?) {
