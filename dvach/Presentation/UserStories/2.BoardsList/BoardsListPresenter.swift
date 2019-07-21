@@ -69,7 +69,10 @@ extension BoardsListPresenter: IBoardsListPresenter {
     func searchBoard(for text: String?) {
         guard let text = text, !text.isEmpty else { return }
         filteredBoards = boards.filter {
-            $0.shortInfo.name.lowercased().contains(text) || $0.shortInfo.identifier.lowercased().contains(text)
+            // TODO: - Временно из поиска удалены доски для взрослых, а также /d/ и /abu/ -
+            ($0.shortInfo.name.lowercased().contains(text) || $0.shortInfo.identifier.lowercased().contains(text)) &&
+            $0.shortInfo.category != .adults &&
+            !($0.shortInfo.identifier == "d" || $0.shortInfo.identifier == "abu")
         }
         let viewModels = createViewModels(from: filteredBoards)
         dataSource = viewModels
