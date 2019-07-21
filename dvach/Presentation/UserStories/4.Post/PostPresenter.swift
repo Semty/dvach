@@ -242,7 +242,7 @@ extension PostViewPresenter: IPostViewPresenter {
                 DispatchQueue.main.async {
                     self.view?.updateTable(scrollTo: scrollIndexPath)
                 }
-                if self.dataSource.count > .maxAdCount * 2 {
+                if self.dataSource.count > .adPeriod * 2 {
                     self.adManager.loadNativeAd()
                 }
             }
