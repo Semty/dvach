@@ -242,7 +242,9 @@ extension PostViewPresenter: IPostViewPresenter {
                 DispatchQueue.main.async {
                     self.view?.updateTable(scrollTo: scrollIndexPath)
                 }
-                self.adManager.loadNativeAd()
+                if self.dataSource.count > .maxAdCount * 2 {
+                    self.adManager.loadNativeAd()
+                }
             }
         }
         Analytics.logEvent("PostsShown", parameters: [:])

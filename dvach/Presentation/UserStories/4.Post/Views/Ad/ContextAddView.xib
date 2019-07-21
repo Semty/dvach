@@ -63,7 +63,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5N-gK-EsF" customClass="VerticalOvalButton" customModule="dvach" customModuleProvider="target">
-                    <rect key="frame" x="358" y="182" width="40" height="50"/>
+                    <rect key="frame" x="358" y="183" width="40" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="P3J-LE-Viy"/>
@@ -71,7 +71,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQj-Gl-QzK">
-                    <rect key="frame" x="16" y="174" width="382" height="0.0"/>
+                    <rect key="frame" x="16" y="175" width="382" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -93,7 +93,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UR7-rL-rvv" customClass="VerticalOvalButton" customModule="dvach" customModuleProvider="target">
-                    <rect key="frame" x="318" y="182" width="40" height="50"/>
+                    <rect key="frame" x="318" y="183" width="40" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="8yo-f3-l5x"/>
@@ -123,7 +123,7 @@
                 <constraint firstAttribute="bottom" secondItem="UR7-rL-rvv" secondAttribute="bottom" constant="8" id="dbz-ze-kGv"/>
                 <constraint firstItem="SgK-Gc-Zcv" firstAttribute="top" secondItem="8c9-5Q-193" secondAttribute="bottom" constant="12" id="gfg-Wg-AZM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hQj-Gl-QzK" secondAttribute="trailing" constant="16" id="hw3-dp-Lti"/>
-                <constraint firstItem="hQj-Gl-QzK" firstAttribute="top" secondItem="cuZ-tf-J9V" secondAttribute="bottom" id="nS8-qK-E6p"/>
+                <constraint firstItem="hQj-Gl-QzK" firstAttribute="top" secondItem="cuZ-tf-J9V" secondAttribute="bottom" constant="1" id="nS8-qK-E6p"/>
                 <constraint firstItem="HKm-YX-b0f" firstAttribute="top" secondItem="SgK-Gc-Zcv" secondAttribute="bottom" constant="8" id="p1I-iv-Crp"/>
                 <constraint firstItem="f5N-gK-EsF" firstAttribute="top" secondItem="hQj-Gl-QzK" secondAttribute="bottom" constant="8" id="pap-Qx-ikB"/>
                 <constraint firstAttribute="bottom" secondItem="f5N-gK-EsF" secondAttribute="bottom" constant="8" id="r5M-7N-mST"/>
