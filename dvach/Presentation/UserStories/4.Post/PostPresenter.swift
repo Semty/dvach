@@ -81,6 +81,7 @@ final class PostViewPresenter {
     private var posts = [Post]()
     private var replies = Replies()
     private var numberOfAds = 0
+    private var adIndexPaths = [IndexPath]()
     
     // MARK: - Initialization
     
@@ -93,31 +94,73 @@ final class PostViewPresenter {
     
     // MARK: - Private
     
-    private func loadPost(completion: @escaping (Error?) -> Void) {
+    private func loadPost(fullReload: Bool, completion: @escaping (Error?, [IndexPath]?) -> Void) {
         replies = [:]
+        var postNum: Int?
+        if !fullReload {
+            postNum = dataSource.count
+        }
         dvachService.loadThreadWithPosts(board: boardIdentifier,
                                          threadNum: thread.number,
-                                         postNum: nil,
+                                         postNum: postNum,
                                          location: nil) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(let posts):
-                var enrichedPosts = [Post]()
-                posts.forEach(self.updateReplies) // Приходится два раза пробегать по массиву с постами :(
-                let synchronizedDataSource = WriteLockableSynchronizedArray<CellType>()
-                for (index, item) in posts.enumerated() {
-                    var post = item
-                    post.rowIndex = index // Проставляем индекс здесь, чтобы он не сбился из-за рекламы
-                    enrichedPosts.append(post)
-                    let model = self.createPostViewModel(post: post)
-                    synchronizedDataSource.append(.post(model))
+            case .success(var posts):
+                // Если пришло 0 постов, то нет смысла возвращать что-то, кроме ошибки
+                if posts.count > 0 {
+                    
+                    let newPostsCount = posts.count
+                    if !fullReload {
+                        posts.insert(contentsOf: self.posts, at: 0)
+                    }
+                    var enrichedPosts = [Post]()
+                    posts.forEach(self.updateReplies) // Приходится два раза пробегать по массиву с постами :(
+                    let synchronizedDataSource = WriteLockableSynchronizedArray<CellType>()
+                    for (index, item) in posts.enumerated() {
+                        var post = item
+                        post.rowIndex = index // Проставляем индекс здесь, чтобы он не сбился из-за рекламы
+                        enrichedPosts.append(post)
+                        let model = self.createPostViewModel(post: post)
+                        synchronizedDataSource.append(.post(model))
+                    }
+                    self.posts = enrichedPosts
+                    
+                    if !fullReload {
+                        // Достаем рекламные ячейки и перекидываем их в новый дата сорс
+                        for indexPath in self.adIndexPaths {
+                            if let adCellModel = self.dataSource[indexPath.row],
+                                adCellModel.isAd {
+                                synchronizedDataSource.insert(adCellModel,
+                                                              at: indexPath.row)
+                            }
+                        }
+                        var appendIndexPaths = [IndexPath]()
+                        let oldDataSourceLastIndex = self.dataSource.count - 1
+                        
+                        // Считаем, какие индекс пасы у новых постов
+                        for index in 1...newPostsCount {
+                            appendIndexPaths.append(IndexPath(row: oldDataSourceLastIndex + index, section: 0))
+                        }
+                        
+                        self.dataSource = synchronizedDataSource
+                        completion(nil, appendIndexPaths)
+                    } else {
+                        var allIndexPaths = [IndexPath]()
+                        
+                        // Считаем, какие индекс пасы у новых постов
+                        for index in 0..<posts.count {
+                            allIndexPaths.append(IndexPath(row: index, section: 0))
+                        }
+                        self.dataSource = synchronizedDataSource
+                        completion(nil, allIndexPaths)
+                    }
+                    
+                } else {
+                    completion(NSError() as Error, nil)
                 }
-                self.posts = enrichedPosts
-                self.dataSource = synchronizedDataSource
-                
-                completion(nil)
             case .failure(let error):
-                completion(error)
+                completion(error, nil)
             }
         }
     }
@@ -170,7 +213,7 @@ final class PostViewPresenter {
 extension PostViewPresenter: IPostViewPresenter {
     
     func viewDidLoad() {
-        loadPost { [weak self] error in
+        loadPost(fullReload: true) { [weak self] error, indexPaths  in
             guard let self = self else { return }
             if let error = error {
                 DispatchQueue.main.async {
@@ -190,11 +233,10 @@ extension PostViewPresenter: IPostViewPresenter {
     func refresh() {
         postNumber = posts.last?.number
 
-        loadPost { [weak self] _ in
+        loadPost(fullReload: false) { [weak self] _, newPostIndexPaths  in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                let scrollIndexPath = self.scrollIndexPath(for: self.dataSource)
-                self.view?.endRefreshing(indexPath: scrollIndexPath)
+                self.view?.endRefreshing(indexPaths: newPostIndexPaths)
             }
         }
     }
@@ -271,6 +313,8 @@ extension PostViewPresenter: AdManagerDelegate {
             newDataSource.insert(ad, at: insertAt)
             numberOfAds += 1
         }
+        
+        self.adIndexPaths.append(contentsOf: adIndexPaths)
         
         DispatchQueue.main.async {
             self.dataSource = newDataSource

@@ -30,6 +30,17 @@ extension Int {
         return GlobalUtils.dateFormatter.string(from: date)
     }
     
+    func rightWordForNew() -> String {
+        let lastNumber = self % 100
+        
+        switch lastNumber {
+        case 1,21,31,41,51,61,71,81,91:
+            return "новый"
+        default:
+            return "новых"
+        }
+    }
+    
     func rightWordForPostsCount() -> String {
         let lastNumber = self % 100
         

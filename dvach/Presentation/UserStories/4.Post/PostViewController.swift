@@ -14,7 +14,7 @@ protocol PostView: AnyObject, SFSafariViewControllerDelegate {
     func updateTable(scrollTo indexPath: IndexPath?)
     func insertRows(indexPaths: [IndexPath])
     func showPlaceholder(text: String)
-    func endRefreshing(indexPath: IndexPath?)
+    func endRefreshing(indexPaths: [IndexPath]?)
     var lastVisibleRow: Int { get }
 }
 
@@ -172,6 +172,31 @@ final class PostViewController: UIViewController {
         hideSkeleton()
     }
     
+    private func refreshTable(_ appendIndexPaths: [IndexPath]?) {
+        guard let appendIndexPaths = appendIndexPaths else { return }
+        
+        presenter.dataSource.lockArray()
+        
+        var reloadIndexPaths = [IndexPath]()
+        
+        for (index, _) in presenter.dataSource.enumerated() {
+            let reloadIndexPath = IndexPath(row: index, section: 0)
+            if !appendIndexPaths.contains(reloadIndexPath) {
+                reloadIndexPaths.append(reloadIndexPath)
+            }
+        }
+
+        UIView.setAnimationsEnabled(false)
+        tableView.performBatchUpdates({ [weak self] in
+            self?.tableView.insertRows(at: appendIndexPaths, with: .none)
+            self?.tableView.reloadRows(at: reloadIndexPaths,
+                                      with: .none)
+        }) { [weak self] _ in
+            UIView.setAnimationsEnabled(true)
+            self?.presenter.dataSource.unlockArray()
+        }
+    }
+    
     // MARK: - Actions
     
     @objc private func refreshThread() {
@@ -208,15 +233,24 @@ extension PostViewController: PostView {
         hideSkeleton()
     }
     
-    func endRefreshing(indexPath: IndexPath?) {
+    func endRefreshing(indexPaths: [IndexPath]?) {
+        let indexPathsCount = indexPaths?.count ?? 0
+        let alertString = "\(indexPathsCount) \(String(describing: indexPathsCount.rightWordForNew())) \(String(describing: indexPathsCount.rightWordForPostsCount()))"
+        
         if deltaRefreshTime < 2 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.updateTable(scrollTo: indexPath)
-                self.refreshControll.endRefreshing()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+                self?.refreshControll.endRefreshing(withAlertText: alertString) { [weak self] in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                        self?.refreshTable(indexPaths)
+                    }
+                }
             }
         } else {
-            updateTable(scrollTo: indexPath)
-            refreshControll.endRefreshing()
+            refreshControll.endRefreshing(withAlertText: alertString) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                    self?.refreshTable(indexPaths)
+                }
+            }
         }
     }
 }
