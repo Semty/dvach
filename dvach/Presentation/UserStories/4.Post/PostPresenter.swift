@@ -176,8 +176,10 @@ final class PostViewPresenter {
                                        userInfo: nil) as Error, nil)
                 }
             case .failure(let error):
-                completion(error, nil)
-            }
+                completion(NSError(domain: error.localizedDescription,
+                                   code: 1488,
+                                   userInfo: nil), nil)
+                                            }
         }
     }
     
