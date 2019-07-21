@@ -17,7 +17,7 @@ struct BoardAdditionalInfo {
     let filter: String?
     let maxComment: Int
     let maxFileSize: Int // В килобайтах, например: 40960
-    let threads: [Thread]
+    let threads: [ChanThread]
 }
 
 // MARK: - JSONParsable
@@ -34,7 +34,7 @@ extension BoardAdditionalInfo: JSONParsable {
             let threadsArray = json["threads"].array else { return nil }
         
         let filter = json["filter"].string
-        let threads = threadsArray.compactMap(Thread.from)
+        let threads = threadsArray.compactMap(ChanThread.from)
         
         return BoardAdditionalInfo(boardInfo: boardInfo,
                                    boardInfoOuter: boardInfoOuter,

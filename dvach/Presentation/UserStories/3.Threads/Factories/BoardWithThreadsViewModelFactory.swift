@@ -12,7 +12,7 @@ final class BoardWithThreadsViewModelFactory {
     
     // MARK: - Public Interface
     
-    func createThreadsViewModels(threads: [Thread]) -> [BoardWithThreadsPresenter.CellType] {
+    func createThreadsViewModels(threads: [ChanThread]) -> [BoardWithThreadsPresenter.CellType] {
         return threads.compactMap { thread in
             guard let comment = thread.shortInfo.comment,
                 let subject = thread.shortInfo.subject else { return nil }
@@ -37,7 +37,7 @@ final class BoardWithThreadsViewModelFactory {
     }
     
     // MARK: - Private Interface
-    private func getThreadThumbnail(_ thread: Thread) -> String? {
+    private func getThreadThumbnail(_ thread: ChanThread) -> String? {
         guard let threadImageThumbnail = thread.additionalInfo?.files.first?.thumbnail else { return nil }
         return threadImageThumbnail
     }

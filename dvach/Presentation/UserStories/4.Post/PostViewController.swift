@@ -11,10 +11,10 @@ import KafkaRefresh
 import SafariServices
 
 protocol PostView: AnyObject, SFSafariViewControllerDelegate {
-    func updateTable(scrollTo indexPath: IndexPath?)
-    func insertRows(indexPaths: [IndexPath])
+    func updateTable(scrollTo indexPath: IndexPath?, signalAdSemaphore: Bool)
+    func insertRows(indexPaths: [IndexPath], signalAdSemaphore: Bool)
     func showPlaceholder(text: String)
-    func endRefreshing(error: Error?, indexPaths: [IndexPath]?)
+    func endRefreshing(error: Error?, indexPaths: [IndexPath]?, signalAdSemaphore: Bool)
     var lastVisibleRow: Int { get }
 }
 
@@ -161,21 +161,19 @@ final class PostViewController: UIViewController {
     }
     
     private func updateTable(indexPath: IndexPath?) {
-        presenter.dataSource.lockArray()
         tableView.reloadData()
         if let indexPath = indexPath, indexPath.row > 0 {
             tableView.scrollToRow(at: indexPath,
                                   at: .middle,
                                   animated: false)
         }
-        presenter.dataSource.unlockArray()
         hideSkeleton()
     }
     
-    private func refreshTable(_ appendIndexPaths: [IndexPath]?) {
-        guard let appendIndexPaths = appendIndexPaths else { return }
-        
-        presenter.dataSource.lockArray()
+    private func refreshTable(_ appendIndexPaths: [IndexPath]?, signalAdSemaphore: Bool) {
+        guard let appendIndexPaths = appendIndexPaths else {
+            return
+        }
         
         var reloadIndexPaths = [IndexPath]()
         
@@ -193,7 +191,10 @@ final class PostViewController: UIViewController {
                                       with: .none)
         }) { [weak self] _ in
             UIView.setAnimationsEnabled(true)
-            self?.presenter.dataSource.unlockArray()
+            if signalAdSemaphore {
+                self?.presenter.adInsertingSemaphore.signal()
+                print("\nDATA UPDATE SIGNAL\n")
+            }
         }
     }
     
@@ -213,16 +214,24 @@ extension PostViewController: PostView {
         return tableView.indexPathsForVisibleRows?.last?.row ?? 0
     }
     
-    func updateTable(scrollTo indexPath: IndexPath?) {
+    func updateTable(scrollTo indexPath: IndexPath?, signalAdSemaphore: Bool) {
         updateTable(indexPath: indexPath)
+        
+        if signalAdSemaphore {
+            presenter.adInsertingSemaphore.signal()
+            print("\nDATA UPDATE SIGNAL\n")
+        }
     }
     
-    func insertRows(indexPaths: [IndexPath]) {
-        presenter.dataSource.lockArray()
+    func insertRows(indexPaths: [IndexPath], signalAdSemaphore: Bool) {
         tableView.beginUpdates()
         tableView.insertRows(at: indexPaths, with: .fade)
         tableView.endUpdates()
-        presenter.dataSource.unlockArray()
+        
+        if signalAdSemaphore {
+            presenter.adInsertingSemaphore.signal()
+            print("\nAD MANAGER SIGNAL\n")
+        }
         
         hideSkeleton()
     }
@@ -233,7 +242,7 @@ extension PostViewController: PostView {
         hideSkeleton()
     }
     
-    func endRefreshing(error: Error?, indexPaths: [IndexPath]?) {
+    func endRefreshing(error: Error?, indexPaths: [IndexPath]?, signalAdSemaphore: Bool) {
         let indexPathsCount = indexPaths?.count ?? 0
         let alertString: String
         
@@ -247,14 +256,16 @@ extension PostViewController: PostView {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                 self?.refreshControll.endRefreshing(withAlertText: alertString) { [weak self] in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                        self?.refreshTable(indexPaths)
+                        self?.refreshTable(indexPaths,
+                                           signalAdSemaphore: signalAdSemaphore)
                     }
                 }
             }
         } else {
             refreshControll.endRefreshing(withAlertText: alertString) { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                    self?.refreshTable(indexPaths)
+                    self?.refreshTable(indexPaths,
+                                       signalAdSemaphore: signalAdSemaphore)
                 }
             }
         }

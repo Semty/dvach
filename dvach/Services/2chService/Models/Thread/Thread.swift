@@ -1,5 +1,5 @@
 //
-//  Thread.swift
+//  ChanThread.swift
 //  dvach
 //
 //  Created by Ruslan Timchenko on 31/05/2019.
@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct Thread {
+struct ChanThread {
     let shortInfo: ThreadShortInfo
     let lastHit: TimeInterval? // Как я понял, это таймстамп последней активности в треде
     let postsCount: Int
@@ -24,9 +24,9 @@ struct Thread {
 
 // MARK: - JSONParsable
 
-extension Thread: JSONParsable {
+extension ChanThread: JSONParsable {
     
-    static func from(json: JSON) -> Thread? {
+    static func from(json: JSON) -> ChanThread? {
         guard let postsCount = json["posts_count"].int else { return nil }
         
         var num: Int
@@ -61,7 +61,7 @@ extension Thread: JSONParsable {
                                         subject: subject,
                                         thumbnailURL: additionalInfo?.files.first?.thumbnail,
                                         isFavourite: true)
-        return Thread(shortInfo: shortInfo,
+        return ChanThread(shortInfo: shortInfo,
                       lastHit: lastHit,
                       postsCount: postsCount,
                       score: score,

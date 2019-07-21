@@ -13,6 +13,7 @@ import SafariServices
 typealias Replies = [String: [String]]
 
 protocol IPostViewPresenter {
+    var adInsertingSemaphore: DispatchSemaphore { get }
     var dataSource: WriteLockableSynchronizedArray<PostViewPresenter.CellType> { get }
     var mediaViewControllerWasPresented: Bool { get set }
     
@@ -57,12 +58,18 @@ final class PostViewPresenter {
     private var router: IPostRouter
     private let dvachService = Locator.shared.dvachService()
     private lazy var adManager: IAdManager = {
-        let numberOfNativeAds = dataSource.count / .adPeriod
-        let manager = Locator.shared.createAdManager(numberOfNativeAds: numberOfNativeAds > .maxAdCount ? .maxAdCount : numberOfNativeAds,
+        let numberOfNativeAds: Int = .maxAdCount
+        let manager = Locator.shared.createAdManager(numberOfNativeAds: numberOfNativeAds,
                                                      viewController: view)
         manager.delegate = self
         return manager
     }()
+    
+    // Semaphore for resolving the issue with ad inserting and data update
+    public lazy var adInsertingSemaphore = DispatchSemaphore(value: 1)
+    
+    // Ad inserting queue
+    private let adInsertingQueue = DispatchQueue(label: "com.ruslantimchenko.adInsertingQueue")
     
     // Properties
     var dataSource = WriteLockableSynchronizedArray<CellType>()
@@ -99,33 +106,22 @@ final class PostViewPresenter {
         var postNum: Int?
         // Если тред обновляем, то нет смысла грузить весь тред, так что грузим только новые посты
         if !fullReload {
-            postNum = dataSource.count
+            postNum = posts.count + 1
         }
         dvachService.loadThreadWithPosts(board: boardIdentifier,
                                          threadNum: thread.number,
                                          postNum: postNum,
-                                         location: nil) { [weak self] result in
+                                         location: nil)
+        { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(var posts):
                 // Если пришло 0 постов, то возвращаем ошибку
                 if posts.count > 0 {
+                    print("\nDATA UPDATE WAIT\n")
+                    self.adInsertingSemaphore.wait()
+                    print("\nDATA UPDATE CONTINUE\n")
                     
-                    // У Двача есть баг, что при обновлении треда, в котором до 5 постов (n < 6), всегда возвращается 1 пост, который является копией последнего
-                    if self.posts.count < 6 {
-                        self.posts.forEach({
-                            posts.removeObject($0)
-                        })
-                        
-                        // Если был дубликат и ничего более, значит, пришло 0 постов, возвращаем ошибку
-                        if posts.isEmpty {
-                            completion(NSError(domain: "Нет новых постов",
-                                               code: 228,
-                                               userInfo: nil) as Error, nil)
-                            return
-                        }
-                    }
-
                     // Обнуляем все реплаи только в случае получения какой-то даты
                     self.replies = [:]
                     
@@ -175,11 +171,12 @@ final class PostViewPresenter {
                                        code: 228,
                                        userInfo: nil) as Error, nil)
                 }
+                
             case .failure(let error):
                 completion(NSError(domain: error.localizedDescription,
                                    code: 1488,
                                    userInfo: nil), nil)
-                                            }
+            }
         }
     }
     
@@ -240,11 +237,10 @@ extension PostViewPresenter: IPostViewPresenter {
             } else {
                 let scrollIndexPath = self.scrollIndexPath(for: self.dataSource)
                 DispatchQueue.main.async {
-                    self.view?.updateTable(scrollTo: scrollIndexPath)
+                    self.view?.updateTable(scrollTo: scrollIndexPath,
+                                           signalAdSemaphore: true)
                 }
-                if self.dataSource.count > .adPeriod * 2 {
-                    self.adManager.loadNativeAd()
-                }
+                self.adManager.loadNativeAd()
             }
         }
         Analytics.logEvent("PostsShown", parameters: [:])
@@ -252,11 +248,14 @@ extension PostViewPresenter: IPostViewPresenter {
     
     func refresh() {
         postNumber = posts.last?.number
-
+        
         loadPost(fullReload: false) { [weak self] error, newPostIndexPaths  in
             guard let self = self else { return }
+            
             DispatchQueue.main.async {
-                self.view?.endRefreshing(error: error, indexPaths: newPostIndexPaths)
+                self.view?.endRefreshing(error: error,
+                                         indexPaths: newPostIndexPaths,
+                                         signalAdSemaphore: true)
             }
         }
     }
@@ -309,36 +308,54 @@ extension PostViewPresenter: AdManagerDelegate {
     
     func adManagerDidCreateNativeAdView(_ view: AdView) {
         guard let adView = view as? ContextAddView else { return }
-        let ad = CellType.ad(adView)
         
-        let dataSourceCount = dataSource.count
+        let dataSourceCount = self.dataSource.count
         let lastVisibleRow = self.view?.lastVisibleRow ?? 0
-        var incrementor = 1
-        var insertAt = ((numberOfAds + incrementor) * .adPeriod) + numberOfAds
         
-        while insertAt <= lastVisibleRow {
-            incrementor += 1
-            insertAt = ((numberOfAds + incrementor) * .adPeriod) + numberOfAds
-            if insertAt > dataSourceCount {
-                return
+        adInsertingQueue.async { [weak self] in
+            guard let self = self else { return }
+            
+            print("\nAD MANAGER WAIT\n")
+            self.adInsertingSemaphore.wait()
+            print("\nAD MANAGER CONTINUE\n")
+            
+            let ad = CellType.ad(adView)
+            
+            var incrementor = 1
+            var insertAt = ((self.numberOfAds + incrementor) * .adPeriod) + self.numberOfAds
+            
+            // Изначально пытаемся вставить рекламу так, чтобы пользователь этого не увидел
+            while insertAt <= lastVisibleRow {
+                incrementor += 1
+                insertAt = ((self.numberOfAds + incrementor) * .adPeriod) + self.numberOfAds
+                if insertAt > dataSourceCount {
+                    // Если так сделать нельзя, то вставляем в последнюю ячейку
+                    insertAt = dataSourceCount
+                    break
+                }
             }
-        }
-        
-        let newDataSource = dataSource
-        var adIndexPaths = [IndexPath]()
-        
-        if dataSourceCount > insertAt, insertAt > lastVisibleRow {
-            adIndexPaths.append(IndexPath(row: insertAt,
-                                          section: 0))
-            newDataSource.insert(ad, at: insertAt)
-            numberOfAds += 1
-        }
-        
-        self.adIndexPaths.append(contentsOf: adIndexPaths)
-        
-        DispatchQueue.main.async {
-            self.dataSource = newDataSource
-            self.view?.insertRows(indexPaths: adIndexPaths)
+            
+            if insertAt > dataSourceCount {
+                insertAt = dataSourceCount
+            }
+            
+            let newDataSource = self.dataSource
+            var adIndexPaths = [IndexPath]()
+            
+            if dataSourceCount >= insertAt {
+                adIndexPaths.append(IndexPath(row: insertAt,
+                                              section: 0))
+                newDataSource.insert(ad, at: insertAt)
+                self.numberOfAds += 1
+            }
+            
+            self.adIndexPaths.append(contentsOf: adIndexPaths)
+            
+            DispatchQueue.main.async {
+                self.dataSource = newDataSource
+                self.view?.insertRows(indexPaths: adIndexPaths,
+                                      signalAdSemaphore: true)
+            }
         }
     }
 }
