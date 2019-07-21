@@ -95,8 +95,9 @@ final class PostViewPresenter {
     // MARK: - Private
     
     private func loadPost(fullReload: Bool, completion: @escaping (Error?, [IndexPath]?) -> Void) {
-        replies = [:]
+        
         var postNum: Int?
+        // Если тред обновляем, то нет смысла грузить весь тред, так что грузим только новые посты
         if !fullReload {
             postNum = dataSource.count
         }
@@ -107,8 +108,26 @@ final class PostViewPresenter {
             guard let self = self else { return }
             switch result {
             case .success(var posts):
-                // Если пришло 0 постов, то нет смысла возвращать что-то, кроме ошибки
+                // Если пришло 0 постов, то возвращаем ошибку
                 if posts.count > 0 {
+                    
+                    // У Двача есть баг, что при обновлении треда, в котором до 5 постов (n < 6), всегда возвращается 1 пост, который является копией последнего
+                    if self.posts.count < 6 {
+                        self.posts.forEach({
+                            posts.removeObject($0)
+                        })
+                        
+                        // Если был дубликат и ничего более, значит, пришло 0 постов, возвращаем ошибку
+                        if posts.isEmpty {
+                            completion(NSError(domain: "Нет новых постов",
+                                               code: 228,
+                                               userInfo: nil) as Error, nil)
+                            return
+                        }
+                    }
+
+                    // Обнуляем все реплаи только в случае получения какой-то даты
+                    self.replies = [:]
                     
                     let newPostsCount = posts.count
                     if !fullReload {
@@ -124,6 +143,7 @@ final class PostViewPresenter {
                         let model = self.createPostViewModel(post: post)
                         synchronizedDataSource.append(.post(model))
                     }
+                    
                     self.posts = enrichedPosts
                     
                     if !fullReload {
@@ -146,18 +166,14 @@ final class PostViewPresenter {
                         self.dataSource = synchronizedDataSource
                         completion(nil, appendIndexPaths)
                     } else {
-                        var allIndexPaths = [IndexPath]()
-                        
-                        // Считаем, какие индекс пасы у новых постов
-                        for index in 0..<posts.count {
-                            allIndexPaths.append(IndexPath(row: index, section: 0))
-                        }
                         self.dataSource = synchronizedDataSource
-                        completion(nil, allIndexPaths)
+                        completion(nil, nil)
                     }
                     
                 } else {
-                    completion(NSError() as Error, nil)
+                    completion(NSError(domain: "Нет новых постов",
+                                       code: 228,
+                                       userInfo: nil) as Error, nil)
                 }
             case .failure(let error):
                 completion(error, nil)
@@ -233,10 +249,10 @@ extension PostViewPresenter: IPostViewPresenter {
     func refresh() {
         postNumber = posts.last?.number
 
-        loadPost(fullReload: false) { [weak self] _, newPostIndexPaths  in
+        loadPost(fullReload: false) { [weak self] error, newPostIndexPaths  in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.view?.endRefreshing(indexPaths: newPostIndexPaths)
+                self.view?.endRefreshing(error: error, indexPaths: newPostIndexPaths)
             }
         }
     }

@@ -14,7 +14,7 @@ protocol PostView: AnyObject, SFSafariViewControllerDelegate {
     func updateTable(scrollTo indexPath: IndexPath?)
     func insertRows(indexPaths: [IndexPath])
     func showPlaceholder(text: String)
-    func endRefreshing(indexPaths: [IndexPath]?)
+    func endRefreshing(error: Error?, indexPaths: [IndexPath]?)
     var lastVisibleRow: Int { get }
 }
 
@@ -233,9 +233,15 @@ extension PostViewController: PostView {
         hideSkeleton()
     }
     
-    func endRefreshing(indexPaths: [IndexPath]?) {
+    func endRefreshing(error: Error?, indexPaths: [IndexPath]?) {
         let indexPathsCount = indexPaths?.count ?? 0
-        let alertString = "\(indexPathsCount) \(String(describing: indexPathsCount.rightWordForNew())) \(String(describing: indexPathsCount.rightWordForPostsCount()))"
+        let alertString: String
+        
+        if let error = error {
+            alertString = (error as NSError).domain
+        } else {
+            alertString = "\(indexPathsCount) \(String(describing: indexPathsCount.rightWordForNew())) \(String(describing: indexPathsCount.rightWordForPostsCount()))"
+        }
         
         if deltaRefreshTime < 2 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in

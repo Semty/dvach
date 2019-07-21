@@ -99,3 +99,9 @@ extension Post: JSONParsable {
                     rowIndex: 0)
     }
 }
+
+extension Post: Equatable {
+    static func == (lhs: Post, rhs: Post) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+}
