@@ -183,17 +183,18 @@ final class PostViewController: UIViewController {
                 reloadIndexPaths.append(reloadIndexPath)
             }
         }
-
-        UIView.setAnimationsEnabled(false)
-        tableView.performBatchUpdates({ [weak self] in
-            self?.tableView.insertRows(at: appendIndexPaths, with: .none)
-            self?.tableView.reloadRows(at: reloadIndexPaths,
-                                      with: .none)
-        }) { [weak self] _ in
-            UIView.setAnimationsEnabled(true)
-            if signalAdSemaphore {
-                self?.presenter.adInsertingSemaphore.signal()
-                print("\nDATA UPDATE SIGNAL\n")
+        print("\nREFRESH TABLE ANIMATION WILL START\n")
+        UIView.performWithoutAnimation {
+            tableView.performBatchUpdates({ [weak self] in
+                self?.tableView.insertRows(at: appendIndexPaths, with: .none)
+                self?.tableView.reloadRows(at: reloadIndexPaths,
+                                           with: .none)
+            }) { [weak self] _ in
+                print("\nREFRESH TABLE ANIMATION DID END\n")
+                if signalAdSemaphore {
+                    self?.presenter.adInsertingSemaphore.signal()
+                    print("\nDATA UPDATE SIGNAL\n")
+                }
             }
         }
     }
@@ -251,10 +252,10 @@ extension PostViewController: PostView {
         } else {
             alertString = "\(indexPathsCount) \(String(describing: indexPathsCount.rightWordForNew())) \(String(describing: indexPathsCount.rightWordForPostsCount()))"
         }
-        
+
         if deltaRefreshTime < 2 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                self?.refreshControll.endRefreshing(withAlertText: alertString) { [weak self] in
+                self?.refreshControll.endRefreshing(withAlertText: alertString) {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                         self?.refreshTable(indexPaths,
                                            signalAdSemaphore: signalAdSemaphore)
@@ -262,8 +263,8 @@ extension PostViewController: PostView {
                 }
             }
         } else {
-            refreshControll.endRefreshing(withAlertText: alertString) { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            refreshControll.endRefreshing(withAlertText: alertString) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
                     self?.refreshTable(indexPaths,
                                        signalAdSemaphore: signalAdSemaphore)
                 }

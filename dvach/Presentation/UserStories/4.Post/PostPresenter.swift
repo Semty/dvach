@@ -66,7 +66,11 @@ final class PostViewPresenter {
     }()
     
     // Semaphore for resolving the issue with ad inserting and data update
-    public lazy var adInsertingSemaphore = DispatchSemaphore(value: 1)
+    public lazy var adInsertingSemaphore: DispatchSemaphore = {
+        let semaphore = DispatchSemaphore(value: 0)
+        semaphore.signal()
+        return semaphore
+    }()
     
     // Ad inserting queue
     private let adInsertingQueue = DispatchQueue(label: "com.ruslantimchenko.adInsertingQueue")
