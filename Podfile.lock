@@ -92,6 +92,7 @@ PODS:
     - Appodeal/Core
   - Appodeal/YandexAdapter (2.4.10):
     - Appodeal/Core
+  - DeepDiff (2.2.0)
   - Firebase/Core (6.5.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.0.4)
@@ -239,6 +240,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Appodeal (~> 2.4.10)
+  - DeepDiff
   - Firebase/Core
   - Firebase/Database
   - FLAnimatedImage (from `https://github.com/Flipboard/FLAnimatedImage.git`, tag `1.0.14`)
@@ -263,6 +265,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Appodeal
+    - DeepDiff
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuthInterop
@@ -327,6 +330,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Appodeal: 7c655d91a5e200a73140e9be90f57a6a9a893cc8
+  DeepDiff: e329bc46dd14ca788d8ec08d34420799ba1d77f2
   Firebase: dedc9e48ea3f3649ad5f6b982f8a0c73508a14b5
   FirebaseAnalytics: 3fb375bc9d13779add4039716f868d233a473fad
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
@@ -356,6 +360,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   VersaPlayer: 4c078dfd2c99c7c934b456cf6d47aefd747afa52
 
-PODFILE CHECKSUM: db3df72113639e8edec0149406e8aad7b60e4814
+PODFILE CHECKSUM: 2b014762b4d2d6e0eede484a707e2c5d4d5048b4
 
 COCOAPODS: 1.7.3

@@ -26,6 +26,7 @@ target 'dvach' do
    pod 'OGVKit/WebM', :git => 'https://github.com/Semty/WebM'
    pod 'VersaPlayer', :git => 'https://github.com/Semty/MP4'
    pod 'KafkaRefresh'
+   pod 'DeepDiff'
    
   target 'dvachTests' do
     inherit! :search_paths
