@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import DeepDiff
 
 protocol IBoardWithThreadsPresenter {
     var dataSource: [BoardWithThreadsPresenter.CellType] { get }
@@ -24,9 +25,35 @@ protocol IBoardWithThreadsPresenter {
 
 final class BoardWithThreadsPresenter {
     
-    enum CellType {
+    enum CellType: DiffAware {
         case withImage(ThreadWithImageView.Model)
         case withoutImage(ThreadWithoutImageView.Model)
+        
+        // DiffAware
+        typealias DiffId = String
+        
+        var diffId: String {
+            switch self {
+            case .withImage(let model):
+                return model.id
+            case .withoutImage(let model):
+                return model.id
+            }
+        }
+        
+        private var description: String {
+            switch self {
+            case .withImage(let model):
+                return model.description
+            case .withoutImage(let model):
+                return model.description
+            }
+        }
+        
+        static func compareContent(_ a: BoardWithThreadsPresenter.CellType,
+                                   _ b: BoardWithThreadsPresenter.CellType) -> Bool {
+            return a.description == b.description
+        }
     }
     
     // Dependencies
@@ -55,10 +82,14 @@ final class BoardWithThreadsPresenter {
             switch result {
             case .success(let board):
                 self.board = board
-                self.dataSource = self.createViewModels(board: board)
+                let newDataSource = self.createViewModels(board: board)
+                let changes = diff(old: self.dataSource, new: newDataSource)
                 
                 DispatchQueue.main.async {
-                    self.view?.dataWasLoaded()
+                    self.view?.updateUI(changes: changes,
+                                        completion: { [weak self] in
+                                            self?.dataSource = newDataSource
+                    })
                 }
             case .failure:
                 DispatchQueue.main.async {

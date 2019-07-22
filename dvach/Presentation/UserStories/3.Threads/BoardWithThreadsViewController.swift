@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SwiftEntryKit
+import DeepDiff
 
 private extension CGFloat {
     static let tableViewContentInset: CGFloat = 16
@@ -19,7 +20,8 @@ private extension CGFloat {
 protocol BoardWithThreadsView: AnyObject {
     func showNSFWBanner()
     func updateNavigationBar()
-    func dataWasLoaded()
+    func updateUI(changes: [Change<BoardWithThreadsPresenter.CellType>],
+                  completion: @escaping () -> Void)
     func dataWasNotLoaded()
 }
 
@@ -153,26 +155,18 @@ final class BoardWithThreadsViewController: UIViewController {
             refreshControl.endRefreshing()
         }
     }
-    
-    private func updateTable() {
+
+    private func updateTable(changes: [Change<BoardWithThreadsPresenter.CellType>],
+                             completion: () -> Void) {
         updateNavigationItem()
-        var indexPaths = [IndexPath]()
-        for row in 0..<presenter.dataSource.count {
-            indexPaths.append(IndexPath(row: row, section: 0))
-        }
-        
-        if tableView.numberOfRows(inSection: 0).isZero {
-            tableView.beginUpdates()
-            tableView.insertRows(at: indexPaths,
-                                 with: .fade)
-            tableView.endUpdates()
-        } else {
-            tableView.setContentOffset(tableView.contentOffset, animated: false)
-            tableView.beginUpdates()
-            tableView.reloadRows(at: indexPaths,
-                                 with: .fade)
-            tableView.endUpdates()
-        }
+
+        tableView.reload(changes: changes,
+                         section: 0,
+                         insertionAnimation: .fade,
+                         deletionAnimation: .fade,
+                         replacementAnimation: .fade,
+                         updateData: completion,
+                         completion: nil)
         
         if !skeleton.isHidden {
             skeleton.update(state: .nonactive)
@@ -217,16 +211,19 @@ extension BoardWithThreadsViewController: BoardWithThreadsView {
         endRefreshing()
     }
     
-    func dataWasLoaded() {
+    func updateUI(changes: [Change<BoardWithThreadsPresenter.CellType>],
+                  completion: @escaping () -> Void) {
         let timeDiff = 1.0 - self.timeDiff
         
         if timeDiff > 0 {
             DispatchQueue.main.asyncAfter(deadline: .now() + timeDiff) { [weak self] in
                 guard let self = self else { return }
-                self.updateTable()
+                self.updateTable(changes: changes,
+                                 completion: completion)
             }
         } else {
-            updateTable()
+            updateTable(changes: changes,
+                        completion: completion)
         }
     }
 }

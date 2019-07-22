@@ -22,6 +22,11 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, PressSt
         let commentTitle: String
         let postsCountTitle: String
         let threadImageThumbnail: String
+        let id: String
+        
+        var description: String {
+            return "\(id)\n\(commentTitle)\n\(subjectTitle)\n\(threadImageThumbnail)"
+        }
     }
     
     // Outlets

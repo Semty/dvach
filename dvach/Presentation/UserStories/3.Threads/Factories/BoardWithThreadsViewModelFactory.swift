@@ -19,18 +19,22 @@ final class BoardWithThreadsViewModelFactory {
             
             let postsCountTitle = "\(thread.postsCount) \(thread.postsCount.rightWordForPostsCount())"
             
+            let id = thread.shortInfo.identifier
+            
             if let thumbnailPath = self.getThreadThumbnail(thread) {
                 let threadWithImageViewModel =
                     ThreadWithImageView.Model(subjectTitle: subject,
                                               commentTitle: comment,
                                               postsCountTitle: postsCountTitle,
-                                              threadImageThumbnail: thumbnailPath)
+                                              threadImageThumbnail: thumbnailPath,
+                                              id: id)
                 return .withImage(threadWithImageViewModel)
             } else {
                 let threadWithoutImageViewModel =
                     ThreadWithoutImageView.Model(subjectTitle: subject,
                                                  commentTitle: comment,
-                                                 postsCountTitle: postsCountTitle)
+                                                 postsCountTitle: postsCountTitle,
+                                                 id: id)
                 return .withoutImage(threadWithoutImageViewModel)
             }
         }

@@ -20,6 +20,11 @@ final class ThreadWithoutImageView: UIView, ConfigurableView, ReusableView, Pres
         let subjectTitle: String
         let commentTitle: String
         let postsCountTitle: String
+        let id: String
+        
+        var description: String {
+            return "\(id)\n\(commentTitle)\n\(subjectTitle)"
+        }
     }
     
     // Outlets
