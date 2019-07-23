@@ -73,7 +73,8 @@ final class PostViewPresenter {
     }()
     
     // Ad inserting queue
-    private let adInsertingQueue = DispatchQueue(label: "com.ruslantimchenko.adInsertingQueue")
+    private lazy var adInsertingQueue = DispatchQueue(label: "com.ruslantimchenko.adInsertingQueue",
+                                                      qos: .utility)
     
     // Properties
     var dataSource = WriteLockableSynchronizedArray<CellType>()

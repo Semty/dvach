@@ -70,6 +70,7 @@ final class AdManager: NSObject, IAdManager {
 
 extension AdManager: APDNativeAdQueueDelegate {
     func adQueueAdIsAvailable(_ adQueue: APDNativeAdQueue, ofCount count: UInt) {
+        // Как мы можем прочитать из жокументации Appodeal, они отдают рекламу на ГЛАВНОМ потоке. 5 баллов господам. Кроме того, из-за их офигенной системы загрузки рекламы, вместо 1 раза она грузится 2 (иногда 3). Ах, да, они все планируют исправить в следующей версии! Честно-честно
         if downloadedAds >= numberOfAds {
             return
         } else {
