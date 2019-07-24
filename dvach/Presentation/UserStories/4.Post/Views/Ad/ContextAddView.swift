@@ -22,6 +22,7 @@ final class ContextAddView: UIView, SeparatorAvailable, ConfigurableView, Reusab
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var callToAction: UILabel!
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var viewForAdPlacement: UIView!
     
     private lazy var fakeNumberOfReplies: String = {
         let randomNumber = Int.random(in: 1..<13)
@@ -110,6 +111,10 @@ extension ContextAddView: APDNativeAdView {
     func setRating(_ rating: NSNumber) {
         fakeAnswerNumberLabel.text = String(format: " %.1f",
                                             arguments: [rating.doubleValue])
+    }
+    
+    func adChoicesView() -> UIView {
+        return viewForAdPlacement
     }
     
     static func nib() -> UINib {
