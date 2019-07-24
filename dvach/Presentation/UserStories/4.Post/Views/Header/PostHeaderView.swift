@@ -14,6 +14,10 @@ final class PostHeaderView: UIView, ConfigurableView, ReusableView {
         let title: String
         let subtitle: String
         let number: Int
+        
+        public var description: String {
+            return "\(title)\n\(subtitle)\n\(number)"
+        }
     }
     
     public var serialNumber = 1

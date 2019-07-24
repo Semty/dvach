@@ -23,14 +23,20 @@ final class ContextAddView: UIView, SeparatorAvailable, ConfigurableView, Reusab
     @IBOutlet weak var callToAction: UILabel!
     @IBOutlet weak var image: UIImageView!
     
-    private var fakeNumberOfReplies: String {
+    private lazy var fakeNumberOfReplies: String = {
         let randomNumber = Int.random(in: 1..<13)
         return "\(randomNumber)"
-    }
+    }()
     
-    private var fakeAnswerNumberString: String {
+    private lazy var fakeAnswerNumberString: String = {
         let randomNumber = Int.random(in: 1000000..<9999999)
         return "\(randomNumber)"
+    }()
+    
+    public var id = ""
+    
+    public var adDescription: String {
+        return "\(id)\n\(fakeAnswerNumberString)\n\(fakeNumberOfReplies)"
     }
     
     override func awakeFromNib() {
@@ -60,9 +66,14 @@ final class ContextAddView: UIView, SeparatorAvailable, ConfigurableView, Reusab
         textLabel.sizeToFit()
     }
     
-    struct Model {}
+    struct Model {
+        let id: String
+    }
     typealias ConfigurationModel = Model
-    func configure(with model: ContextAddView.Model) {}
+    
+    func configure(with model: ContextAddView.Model) {
+        self.id = model.id
+    }
     
     // MARK: - ReusableView
     
@@ -96,8 +107,9 @@ extension ContextAddView: APDNativeAdView {
         return textLabel
     }
     
-    func contentRatingLabel() -> UILabel {
-        return fakeAnswerNumberLabel
+    func setRating(_ rating: NSNumber) {
+        fakeAnswerNumberLabel.text = String(format: " %.1f",
+                                            arguments: [rating.doubleValue])
     }
     
     static func nib() -> UINib {

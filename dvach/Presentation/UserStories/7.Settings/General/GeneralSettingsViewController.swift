@@ -88,7 +88,7 @@ extension GeneralSettingsViewController: GeneralSettingsView {
 extension GeneralSettingsViewController: SettingsSwitcherViewDelegate {
     
     func settingsSwitcherView(_ view: SettingsSwitcherView, didChangeSwitchValue value: Bool) {
-        adManager.showInterstitialAd()
+        //adManager.showInterstitialAd()
         presenter.didChangeNSFWSwitchValue(value)
     }
 }

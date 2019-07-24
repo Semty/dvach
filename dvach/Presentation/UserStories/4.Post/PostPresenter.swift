@@ -9,6 +9,7 @@
 import Foundation
 import Appodeal
 import SafariServices
+import DeepDiff
 
 typealias Replies = [String: [String]]
 
@@ -30,7 +31,7 @@ protocol IPostViewPresenter {
 
 final class PostViewPresenter {
     
-    enum CellType {
+    enum CellType: DiffAware {
         case post(PostCommentViewModel)
         case ad(ContextAddView)
         
@@ -51,6 +52,33 @@ final class PostViewPresenter {
                 return false
             }
         }
+        
+        // DiffAware
+        typealias DiffId = String
+        
+        var diffId: String {
+            switch self {
+            case .post(let model):
+                return model.id
+            case .ad(let model):
+                return model.id
+            }
+        }
+        
+        private var description: String {
+            switch self {
+            case .post(let model):
+                return model.description
+            case .ad(let model):
+                return model.adDescription
+            }
+        }
+        
+        static func compareContent(_ a: PostViewPresenter.CellType,
+                                   _ b: PostViewPresenter.CellType) -> Bool {
+            return a.description == b.description
+        }
+
     }
     
     // Dependencies
@@ -106,7 +134,7 @@ final class PostViewPresenter {
     
     // MARK: - Private
     
-    private func loadPost(fullReload: Bool, completion: @escaping (Error?, [IndexPath]?) -> Void) {
+    private func loadPost(fullReload: Bool, completion: @escaping (WriteLockableSynchronizedArray<PostViewPresenter.CellType>, [Change<PostViewPresenter.CellType>]) -> Void, error: @escaping (Error) -> Void) {
         
         var postNum: Int?
         // Если тред обновляем, то нет смысла грузить весь тред, так что грузим только новые посты
@@ -129,8 +157,7 @@ final class PostViewPresenter {
                     
                     // Обнуляем все реплаи только в случае получения какой-то даты
                     self.replies = [:]
-                    
-                    let newPostsCount = posts.count
+
                     if !fullReload {
                         posts.insert(contentsOf: self.posts, at: 0)
                     }
@@ -156,31 +183,29 @@ final class PostViewPresenter {
                                                               at: indexPath.row)
                             }
                         }
-                        var appendIndexPaths = [IndexPath]()
-                        let oldDataSourceLastIndex = self.dataSource.count - 1
                         
-                        // Считаем, какие индекс пасы у новых постов
-                        for index in 1...newPostsCount {
-                            appendIndexPaths.append(IndexPath(row: oldDataSourceLastIndex + index, section: 0))
-                        }
+                        // Находим, какие ячейки изменились
+                        let changes = diff(old: self.dataSource.array ?? [],
+                                           new: synchronizedDataSource.array ?? [])
                         
-                        self.dataSource = synchronizedDataSource
-                        completion(nil, appendIndexPaths)
+                        completion(synchronizedDataSource, changes)
                     } else {
-                        self.dataSource = synchronizedDataSource
-                        completion(nil, nil)
+                        // Находим, какие ячейки изменились
+                        let changes = diff(old: self.dataSource.array ?? [],
+                                           new: synchronizedDataSource.array ?? [])
+                        completion(synchronizedDataSource, changes)
                     }
                     
                 } else {
-                    completion(NSError(domain: "Нет новых постов",
-                                       code: 228,
-                                       userInfo: nil) as Error, nil)
+                    error(NSError(domain: "Нет новых постов",
+                                  code: 228,
+                                  userInfo: nil))
                 }
                 
-            case .failure(let error):
-                completion(NSError(domain: error.localizedDescription,
-                                   code: 1488,
-                                   userInfo: nil), nil)
+            case .failure(let receivedError):
+                error(NSError(domain: receivedError.localizedDescription,
+                              code: 1488,
+                              userInfo: nil))
             }
         }
     }
@@ -203,6 +228,7 @@ final class PostViewPresenter {
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
         let repliesCount = replies[post.number]?.count ?? 0
+        let id = post.identifier
         
         return PostCommentViewModel(postNumber: post.number,
                                     headerModel: headerViewModel,
@@ -211,7 +237,8 @@ final class PostViewPresenter {
                                     fileURLs: imageURLs,
                                     numberOfReplies: repliesCount,
                                     isAnswerHidden: true,
-                                    isRepliesHidden: false)
+                                    isRepliesHidden: false,
+                                    id: id)
     }
     
     private func scrollIndexPath(for dataSource: WriteLockableSynchronizedArray<CellType>) -> IndexPath? {
@@ -233,34 +260,54 @@ final class PostViewPresenter {
 extension PostViewPresenter: IPostViewPresenter {
     
     func viewDidLoad() {
-        loadPost(fullReload: true) { [weak self] error, indexPaths  in
-            guard let self = self else { return }
-            if let error = error {
-                DispatchQueue.main.async {
-                    self.view?.showPlaceholder(text: error.localizedDescription)
-                }
-            } else {
+        
+        loadPost(fullReload: true,
+                 completion:
+            { [weak self] newDataSource, changes in
+                guard let self = self else { return }
                 let scrollIndexPath = self.scrollIndexPath(for: self.dataSource)
                 DispatchQueue.main.async {
-                    self.view?.updateTable(scrollTo: scrollIndexPath,
-                                           signalAdSemaphore: true)
+                    self.view?.updateTable(changes: changes,
+                                           scrollTo: scrollIndexPath,
+                                           signalAdSemaphore: true,
+                                           completion: { [weak self] in
+                                            self?.dataSource = newDataSource
+                    })
                 }
                 self.adManager.loadNativeAd()
+        }) { [weak self] error in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.view?.showPlaceholder(text: error.localizedDescription)
             }
         }
+
         Analytics.logEvent("PostsShown", parameters: [:])
     }
     
     func refresh() {
         postNumber = posts.last?.number
         
-        loadPost(fullReload: false) { [weak self] error, newPostIndexPaths  in
+        loadPost(fullReload: false,
+                 completion:
+            { [weak self] newDataSource, changes in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    self.view?.endRefreshing(error: nil,
+                                             changes: changes,
+                                             signalAdSemaphore: true,
+                                             completion: { [weak self] in
+                                                self?.dataSource = newDataSource
+                                                
+                    })
+                }
+        }) { [weak self] error in
             guard let self = self else { return }
-            
             DispatchQueue.main.async {
                 self.view?.endRefreshing(error: error,
-                                         indexPaths: newPostIndexPaths,
-                                         signalAdSemaphore: true)
+                                         changes: [],
+                                         signalAdSemaphore: true,
+                                         completion: {})
             }
         }
     }
@@ -313,6 +360,8 @@ extension PostViewPresenter: AdManagerDelegate {
     
     func adManagerDidCreateNativeAdView(_ view: AdView) {
         guard let adView = view as? ContextAddView else { return }
+        // Присвоим рекламе уникальный идентификационный номер, чтобы не обновлять ячейку лишний раз
+        adView.configure(with: ContextAddView.Model(id: "\(Int.random(in: 100000000..<999999999))_ad"))
         
         let dataSourceCount = self.dataSource.count
         let lastVisibleRow = self.view?.lastVisibleRow ?? 0
@@ -323,8 +372,6 @@ extension PostViewPresenter: AdManagerDelegate {
             print("\nAD MANAGER WAIT\n")
             self.adInsertingSemaphore.wait()
             print("\nAD MANAGER CONTINUE\n")
-            
-            let ad = CellType.ad(adView)
             
             var incrementor = 1
             var insertAt = ((self.numberOfAds + incrementor) * .adPeriod) + self.numberOfAds
@@ -344,22 +391,28 @@ extension PostViewPresenter: AdManagerDelegate {
                 insertAt = dataSourceCount
             }
             
-            let newDataSource = self.dataSource
+            let newDataSource = WriteLockableSynchronizedArray(with: self.dataSource.array ?? [])
             var adIndexPaths = [IndexPath]()
             
             if dataSourceCount >= insertAt {
                 adIndexPaths.append(IndexPath(row: insertAt,
                                               section: 0))
-                newDataSource.insert(ad, at: insertAt)
+                newDataSource.insert(.ad(adView), at: insertAt)
                 self.numberOfAds += 1
             }
             
             self.adIndexPaths.append(contentsOf: adIndexPaths)
             
+            let changes = diff(old: self.dataSource.array ?? [],
+                               new: newDataSource.array ?? [])
+            
             DispatchQueue.main.async {
-                self.dataSource = newDataSource
-                self.view?.insertRows(indexPaths: adIndexPaths,
-                                      signalAdSemaphore: true)
+                self.view?.updateTable(changes: changes,
+                                       scrollTo: nil,
+                                       signalAdSemaphore: true,
+                                       completion: { [weak self] in
+                                        self?.dataSource = newDataSource
+                })
             }
         }
     }

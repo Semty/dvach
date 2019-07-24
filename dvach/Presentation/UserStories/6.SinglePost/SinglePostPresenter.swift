@@ -58,6 +58,7 @@ final class SinglePostPresenter: NSObject {
                                                    number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
+        let id = post.identifier
         
         return PostCommentViewModel(postNumber: post.number,
                                     headerModel: headerViewModel,
@@ -66,7 +67,8 @@ final class SinglePostPresenter: NSObject {
                                     fileURLs: imageURLs,
                                     numberOfReplies: 0,
                                     isAnswerHidden: true,
-                                    isRepliesHidden: true)
+                                    isRepliesHidden: true,
+                                    id: id)
     }
 }
 

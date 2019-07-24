@@ -9,12 +9,18 @@
 import Foundation
 import KafkaRefresh
 import SafariServices
+import DeepDiff
 
 protocol PostView: AnyObject, SFSafariViewControllerDelegate {
-    func updateTable(scrollTo indexPath: IndexPath?, signalAdSemaphore: Bool)
-    func insertRows(indexPaths: [IndexPath], signalAdSemaphore: Bool)
+    func updateTable(changes: [Change<PostViewPresenter.CellType>],
+                     scrollTo indexPath: IndexPath?,
+                     signalAdSemaphore: Bool,
+                     completion: () -> Void)
     func showPlaceholder(text: String)
-    func endRefreshing(error: Error?, indexPaths: [IndexPath]?, signalAdSemaphore: Bool)
+    func endRefreshing(error: Error?,
+                       changes: [Change<PostViewPresenter.CellType>],
+                       signalAdSemaphore: Bool,
+                       completion: @escaping () -> Void)
     var lastVisibleRow: Int { get }
 }
 
@@ -160,45 +166,6 @@ final class PostViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    private func updateTable(indexPath: IndexPath?) {
-        tableView.reloadData()
-        if let indexPath = indexPath, indexPath.row > 0 {
-            tableView.scrollToRow(at: indexPath,
-                                  at: .middle,
-                                  animated: false)
-        }
-        hideSkeleton()
-    }
-    
-    private func refreshTable(_ appendIndexPaths: [IndexPath]?, signalAdSemaphore: Bool) {
-        guard let appendIndexPaths = appendIndexPaths else {
-            return
-        }
-        
-        var reloadIndexPaths = [IndexPath]()
-        
-        for (index, _) in presenter.dataSource.enumerated() {
-            let reloadIndexPath = IndexPath(row: index, section: 0)
-            if !appendIndexPaths.contains(reloadIndexPath) {
-                reloadIndexPaths.append(reloadIndexPath)
-            }
-        }
-        print("\nREFRESH TABLE ANIMATION WILL START\n")
-        UIView.performWithoutAnimation {
-            tableView.performBatchUpdates({ [weak self] in
-                self?.tableView.insertRows(at: appendIndexPaths, with: .none)
-                self?.tableView.reloadRows(at: reloadIndexPaths,
-                                           with: .none)
-            }) { [weak self] _ in
-                print("\nREFRESH TABLE ANIMATION DID END\n")
-                if signalAdSemaphore {
-                    self?.presenter.adInsertingSemaphore.signal()
-                    print("\nDATA UPDATE SIGNAL\n")
-                }
-            }
-        }
-    }
-    
     // MARK: - Actions
     
     @objc private func refreshThread() {
@@ -215,25 +182,28 @@ extension PostViewController: PostView {
         return tableView.indexPathsForVisibleRows?.last?.row ?? 0
     }
     
-    func updateTable(scrollTo indexPath: IndexPath?, signalAdSemaphore: Bool) {
-        updateTable(indexPath: indexPath)
+    func updateTable(changes: [Change<PostViewPresenter.CellType>],
+                     scrollTo indexPath: IndexPath?,
+                     signalAdSemaphore: Bool,
+                     completion: () -> Void) {
         
-        if signalAdSemaphore {
-            presenter.adInsertingSemaphore.signal()
-            print("\nDATA UPDATE SIGNAL\n")
-        }
-    }
-    
-    func insertRows(indexPaths: [IndexPath], signalAdSemaphore: Bool) {
-        tableView.beginUpdates()
-        tableView.insertRows(at: indexPaths, with: .fade)
-        tableView.endUpdates()
-        
-        if signalAdSemaphore {
-            presenter.adInsertingSemaphore.signal()
-            print("\nAD MANAGER SIGNAL\n")
+        tableView.reload(changes: changes,
+                         section: 0,
+                         insertionAnimation: .fade,
+                         deletionAnimation: .fade,
+                         replacementAnimation: .fade,
+                         updateData: completion) { [weak self] _ in
+                            if signalAdSemaphore {
+                                self?.presenter.adInsertingSemaphore.signal()
+                                print("\nUPDATE TABLE SIGNAL\n")
+                            }
         }
         
+        if let indexPath = indexPath, indexPath.row > 0 {
+            tableView.scrollToRow(at: indexPath,
+                                  at: .middle,
+                                  animated: false)
+        }
         hideSkeleton()
     }
     
@@ -243,30 +213,56 @@ extension PostViewController: PostView {
         hideSkeleton()
     }
     
-    func endRefreshing(error: Error?, indexPaths: [IndexPath]?, signalAdSemaphore: Bool) {
-        let indexPathsCount = indexPaths?.count ?? 0
+    func endRefreshing(error: Error?,
+                       changes: [Change<PostViewPresenter.CellType>],
+                       signalAdSemaphore: Bool,
+                       completion: @escaping () -> Void) {
         let alertString: String
+        var newPostsNumber = 0
+        let signalAdSemaphore: Bool
+        
+        changes.forEach { change in
+            switch change {
+            case .insert:
+                newPostsNumber += 1
+            case .delete: break
+            case .replace: break
+            case .move: break
+            }
+        }
         
         if let error = error {
             alertString = (error as NSError).domain
+            signalAdSemaphore = false
         } else {
-            alertString = "\(indexPathsCount) \(String(describing: indexPathsCount.rightWordForNew())) \(String(describing: indexPathsCount.rightWordForPostsCount()))"
+            alertString = "\(newPostsNumber) \(String(describing: newPostsNumber.rightWordForNew())) \(String(describing: newPostsNumber.rightWordForPostsCount()))"
+            signalAdSemaphore = true
         }
 
-        if deltaRefreshTime < 2 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+        if deltaRefreshTime < 1.0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+                if newPostsNumber > 0 {
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                }
                 self?.refreshControll.endRefreshing(withAlertText: alertString) {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                        self?.refreshTable(indexPaths,
-                                           signalAdSemaphore: signalAdSemaphore)
+                        self?.updateTable(changes: changes,
+                                          scrollTo: nil,
+                                          signalAdSemaphore: signalAdSemaphore,
+                                          completion: completion)
                     }
                 }
             }
         } else {
+            if newPostsNumber > 0 {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            }
             refreshControll.endRefreshing(withAlertText: alertString) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
-                    self?.refreshTable(indexPaths,
-                                       signalAdSemaphore: signalAdSemaphore)
+                    self?.updateTable(changes: changes,
+                                      scrollTo: nil,
+                                      signalAdSemaphore: signalAdSemaphore,
+                                      completion: completion)
                 }
             }
         }

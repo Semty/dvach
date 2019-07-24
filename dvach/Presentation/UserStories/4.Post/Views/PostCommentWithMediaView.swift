@@ -21,6 +21,11 @@ struct PostCommentViewModel {
     let numberOfReplies: Int
     let isAnswerHidden: Bool
     let isRepliesHidden: Bool
+    let id: String
+    
+    public var description: String {
+        return "\(id)\n\(postNumber)\n\(headerModel.description)\n\(date)\n\(text)\n\(fileURLs.count)\n\(numberOfReplies)"
+    }
 }
 
 protocol PostCommentViewContainer: UIView {

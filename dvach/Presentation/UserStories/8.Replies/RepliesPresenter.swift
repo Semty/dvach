@@ -66,6 +66,7 @@ final class RepliesPresenter {
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
         let repliesCount = replies[post.number]?.count ?? 0
+        let id = post.identifier
         
         return PostCommentViewModel(postNumber: post.number,
                                     headerModel: headerViewModel,
@@ -74,7 +75,8 @@ final class RepliesPresenter {
                                     fileURLs: imageURLs,
                                     numberOfReplies: repliesCount,
                                     isAnswerHidden: true,
-                                    isRepliesHidden: false)
+                                    isRepliesHidden: false,
+                                    id: id)
     }
 }
 
