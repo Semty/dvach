@@ -18,7 +18,7 @@ protocol AdManagerDelegate: AnyObject {
 protocol IAdManager: AnyObject {
     var delegate: AdManagerDelegate? { get set }
     func loadNativeAd()
-    func showInterstitialAd()
+    //func showInterstitialAd()
 }
 
 final class AdManager: NSObject, IAdManager {
@@ -50,12 +50,12 @@ final class AdManager: NSObject, IAdManager {
         adQueue.loadAd()
     }
     
-    func showInterstitialAd() {
-        guard let vc = viewController else { return }
-        if Appodeal.isReadyForShow(with: .interstitial) {
-            Appodeal.showAd(.interstitial, rootViewController: vc)
-        }
-    }
+//    func showInterstitialAd() {
+//        guard let vc = viewController else { return }
+//        if Appodeal.isReadyForShow(with: .interstitial) {
+//            Appodeal.showAd(.interstitial, rootViewController: vc)
+//        }
+//    }
     
     // MARK: - Private
     

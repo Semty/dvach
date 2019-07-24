@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         GlobalUtils.setAudioInSilentModeOn()
-        Appodeal.initialize(withApiKey: "b40e1fbb24bc14e50b0d75cddfee134d6abb4855df114e6d", types: [.nonSkippableVideo, .interstitial, .nativeAd])
+        Appodeal.setAutocache(false, types: .nativeAd)
+        Appodeal.initialize(withApiKey: "b40e1fbb24bc14e50b0d75cddfee134d6abb4855df114e6d", types: [.nativeAd])
         setupInitialViewController()
         setupNuke()
         
