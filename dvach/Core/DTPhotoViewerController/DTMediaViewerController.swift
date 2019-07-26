@@ -698,7 +698,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     
     func dismissalAnimationDidFinish() {
         if automaticallyUpdateReferencedViewVisibility {
-            referencedView?.image = imageView.image
+            //referencedView?.image = imageView.image
             referencedView?.isHidden = false
         }
     }

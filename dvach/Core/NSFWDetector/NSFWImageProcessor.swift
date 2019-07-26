@@ -26,9 +26,17 @@ extension ImageProcessor {
             let nsfwResponse = detectNSFW(image)
             
             if nsfwResponse?.0 == "SFW" {
-                return image
+                if let cgImage = image.cgImage {
+                    let processedImage = UIImage(cgImage: cgImage)
+                    processedImage.isNFFW = false
+                    return processedImage
+                } else {
+                    return nil
+                }
             } else {
-                return blur(image: image, radius: 12)
+                let processedImage = blur(image: image, radius: 12)
+                processedImage.isNFFW = true
+                return processedImage
             }
         }
         

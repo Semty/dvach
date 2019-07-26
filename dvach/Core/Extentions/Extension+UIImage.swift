@@ -7,8 +7,21 @@
 //
 
 import Foundation
+import ObjectiveC
+
+// Declare a global var to produce a unique address as the assoc object handle
+private var NSFWAssociatedObjectHandle: UInt8 = 0
 
 extension UIImage {
+    
+    public var isNFFW: Bool {
+        get {
+            return objc_getAssociatedObject(self, &NSFWAssociatedObjectHandle) as? Bool ?? true
+        }
+        set {
+            objc_setAssociatedObject(self, &NSFWAssociatedObjectHandle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC) 
+        }
+    }
     
     static func from(color: UIColor) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
