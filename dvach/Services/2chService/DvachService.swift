@@ -90,6 +90,27 @@ extension DvachService: IDvachService {
         }
     }
     
+    func reportPost(board: String,
+                    threadNum: String,
+                    postNum: String,
+                    comment: String,
+                    qos: DispatchQoS,
+                    completion: @escaping (Result<ReportResponse>) -> Void) {
+        
+        let request = ReportRequest(board: board,
+                                    threadNum: threadNum,
+                                    postNum: postNum,
+                                    comment: comment)
+        requestManager.loadModel(request: request, qos: qos) { result in
+            switch result {
+            case .success(let reportResponse):
+                completion(.success(reportResponse))
+            case .failure:
+                completion(.failure(NSError.defaultError(description: "Репорт не отправился. Пожалуйста, попробуйте еще раз")))
+            }
+        }
+    }
+    
     // MARK: - Shown Boards
     
     func dropAllShownBoards() {

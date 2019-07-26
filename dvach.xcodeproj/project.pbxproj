@@ -169,6 +169,8 @@
 		41D38A7E22B83226000D1391 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41D38A7D22B83226000D1391 /* Assets.xcassets */; };
 		65AED6E222C814BC0054EE59 /* AlertDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AED6E122C814BC0054EE59 /* AlertDisplayable.swift */; };
 		65AED6E522C819620054EE59 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AED6E422C819620054EE59 /* PlaceholderView.swift */; };
+		D5039F1922EA02B10023BCA5 /* ReportResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5039F1822EA02B10023BCA5 /* ReportResponse.swift */; };
+		D5039F1B22EA03460023BCA5 /* ReportRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5039F1A22EA03460023BCA5 /* ReportRequest.swift */; };
 		D504B6E922B90F2A007C93B1 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6E822B90F2A007C93B1 /* BannerView.swift */; };
 		D504B6EB22B90F36007C93B1 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D504B6EA22B90F36007C93B1 /* BannerView.xib */; };
 		D504B6ED22B946F9007C93B1 /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */; };
@@ -223,6 +225,7 @@
 		D5D37B3A22B2835D00CDEBA2 /* SkeletonThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */; };
 		D5E4733E22A937980055AB92 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E4733D22A937970055AB92 /* Post.swift */; };
 		D5E4734022A941990055AB92 /* ThreadWithPostsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */; };
+		D5EB334B22EAF50C00F56AE9 /* extension+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EB334A22EAF50C00F56AE9 /* extension+UIAlertController.swift */; };
 		D5F72FFF22D240FD008F7CB8 /* DTMP4CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F72FFE22D240FD008F7CB8 /* DTMP4CollectionViewCell.swift */; };
 		D5F7300922D2600C008F7CB8 /* VersaPlayerControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F7300822D2600C008F7CB8 /* VersaPlayerControls.xib */; };
 		D5F7300B22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F7300A22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift */; };
@@ -412,6 +415,8 @@
 		969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvach.release.xcconfig"; path = "Pods/Target Support Files/Pods-dvach/Pods-dvach.release.xcconfig"; sourceTree = "<group>"; };
 		BD406ED771E37C07E50B1E3E /* Pods_dvach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56667501DB5905B423A9582 /* Pods-dvachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dvachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dvachTests/Pods-dvachTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D5039F1822EA02B10023BCA5 /* ReportResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportResponse.swift; sourceTree = "<group>"; };
+		D5039F1A22EA03460023BCA5 /* ReportRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRequest.swift; sourceTree = "<group>"; };
 		D504B6E822B90F2A007C93B1 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		D504B6EA22B90F36007C93B1 /* BannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
 		D504B6EC22B946F9007C93B1 /* Extension+UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIDevice.swift"; sourceTree = "<group>"; };
@@ -466,6 +471,7 @@
 		D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonThreadView.swift; sourceTree = "<group>"; };
 		D5E4733D22A937970055AB92 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithPostsRequest.swift; sourceTree = "<group>"; };
+		D5EB334A22EAF50C00F56AE9 /* extension+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UIAlertController.swift"; sourceTree = "<group>"; };
 		D5F72FFE22D240FD008F7CB8 /* DTMP4CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMP4CollectionViewCell.swift; sourceTree = "<group>"; };
 		D5F7300822D2600C008F7CB8 /* VersaPlayerControls.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VersaPlayerControls.xib; sourceTree = "<group>"; };
 		D5F7300A22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+VersaPlayerControls.swift"; sourceTree = "<group>"; };
@@ -589,6 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				414408A422A04BBC00E4E53E /* BoardsRequest.swift */,
+				D5039F1A22EA03460023BCA5 /* ReportRequest.swift */,
 				D5B22BC122A187A0001EE4F8 /* BoardWithBumpSortingThreadsCatalogRequest.swift */,
 				D5D37B3422B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift */,
 				D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */,
@@ -603,6 +610,7 @@
 				4193B1DF22AF047200EE25FD /* Category */,
 				4193B1E022AF048300EE25FD /* Thread */,
 				4193B1E122AF049400EE25FD /* Post */,
+				D5039F1722EA02980023BCA5 /* Report */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1055,6 +1063,7 @@
 				D50ED80A22D7A19700A655E9 /* Extension+UIDeviceOrientation.swift */,
 				D513978922DCA0CF003FECC7 /* Extension+UITabBarController.swift */,
 				D513978B22DCA133003FECC7 /* Extension+UINavigationController.swift */,
+				D5EB334A22EAF50C00F56AE9 /* extension+UIAlertController.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -1314,6 +1323,14 @@
 				36997A4334605A1D078B3ED4 /* Pods-dvachTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D5039F1722EA02980023BCA5 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				D5039F1822EA02B10023BCA5 /* ReportResponse.swift */,
+			);
+			path = Report;
 			sourceTree = "<group>";
 		};
 		D504B6E622B90F02007C93B1 /* CloseButton */ = {
@@ -1736,6 +1753,7 @@
 				4193B1BB22AA998200EE25FD /* PostViewController.swift in Sources */,
 				D504B6ED22B946F9007C93B1 /* Extension+UIDevice.swift in Sources */,
 				41BEE723229F043C0028EBFB /* UView+NibAwakable.swift in Sources */,
+				D5039F1B22EA03460023BCA5 /* ReportRequest.swift in Sources */,
 				41908A3122BFFA6F0058907D /* AdManager.swift in Sources */,
 				4144089F22A04AC400E4E53E /* DvachService.swift in Sources */,
 				41BEE73D229F04550028EBFB /* Locator.swift in Sources */,
@@ -1851,6 +1869,7 @@
 				4117534322A2E4ED008EBD2A /* CategoriesViewController.swift in Sources */,
 				41907FF522A6CF8F003309D9 /* UIView+SeparatorAvailable.swift in Sources */,
 				4190801122A86A6D003309D9 /* ConfigService.swift in Sources */,
+				D5039F1922EA02B10023BCA5 /* ReportResponse.swift in Sources */,
 				4193B1BD22AA998D00EE25FD /* PostPresenter.swift in Sources */,
 				41908A0122BACE9F0058907D /* LaunchView.swift in Sources */,
 				41BEE71A229F043C0028EBFB /* Storage.swift in Sources */,
@@ -1884,6 +1903,7 @@
 				D5F72FFF22D240FD008F7CB8 /* DTMP4CollectionViewCell.swift in Sources */,
 				D528DE4922BB723B008A27D9 /* DTPhotoCollectionViewCell.swift in Sources */,
 				D5B22BC222A187A0001EE4F8 /* BoardWithBumpSortingThreadsCatalogRequest.swift in Sources */,
+				D5EB334B22EAF50C00F56AE9 /* extension+UIAlertController.swift in Sources */,
 				D528DE4322BB723B008A27D9 /* DTMediaViewerController.swift in Sources */,
 				D5B22BBE22A165AF001EE4F8 /* File.swift in Sources */,
 				41908A2822BF91DA0058907D /* Extension+UIApplication.swift in Sources */,

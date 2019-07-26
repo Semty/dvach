@@ -73,7 +73,19 @@ final class PostRouter: IPostRouter {
                          thread: ThreadShortInfo,
                          boardId: String,
                          row: Int) {
-        let bottomSheet = actionSheetFactory.createBottomSheet(post: post, threadInfo: (thread, boardId, row))
+        let bottomSheet = actionSheetFactory.createBottomSheet(post: post,
+                                                               threadInfo: (thread, boardId, row),
+                                                               descriptionAlert:
+            { [weak self] alert in
+                if let alert = alert {
+                    self?.viewHandler?.present(alert, animated: true)
+                }},
+                                                               successAlert:
+            { [weak self] alert in
+                if let alert = alert {
+                    self?.viewHandler?.present(alert, animated: true)
+                }
+        })
         if UIDevice.current.userInterfaceIdiom == .pad,
             let popoverPresentationController = bottomSheet.popoverPresentationController {
             popoverPresentationController.sourceView = button

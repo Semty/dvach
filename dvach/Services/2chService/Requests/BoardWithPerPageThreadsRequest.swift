@@ -23,6 +23,7 @@ final class BoardWithPerPageThreadsRequest: IRequest {
     }
     
     // MARK: - IRequest
+    
     var section: String {
         return "/\(board)/\(page)"
     }

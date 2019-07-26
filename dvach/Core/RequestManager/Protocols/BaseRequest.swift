@@ -9,6 +9,11 @@
 import Foundation
 import Alamofire
 
+public enum ContentType: String {
+    case applicationJSON = "application/json"
+    case multipartFormData = "multipart/form-data"
+}
+
 protocol BaseRequest {
     var payloadKey: String? { get }
     var accessLevel: String { get }
@@ -18,6 +23,7 @@ protocol BaseRequest {
     var section: String { get }
     var action: String { get }
     var parameters: [String: String] { get }
+    var contentType: ContentType { get }
     var httpMethod: HTTPMethod { get }
 }
 
@@ -61,6 +67,10 @@ extension BaseRequest {
     
     var parameters: [String: String] {
         return [:]
+    }
+    
+    var contentType: ContentType {
+        return .applicationJSON
     }
     
     var httpMethod: HTTPMethod {

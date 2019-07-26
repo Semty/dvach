@@ -57,6 +57,14 @@ protocol IDvachService {
                              qos: DispatchQoS,
                              completion: @escaping (Result<[Post]>) -> Void)
     
+    /// Репорт поста
+    func reportPost(board: String,
+                    threadNum: String,
+                    postNum: String,
+                    comment: String,
+                    qos: DispatchQoS,
+                    completion: @escaping (Result<ReportResponse>) -> Void)
+    
     // MARK: - Shown Boards
     
     /// Отметить все доски как непросмотренные

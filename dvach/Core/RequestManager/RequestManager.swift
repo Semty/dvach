@@ -61,13 +61,37 @@ final class RequestManager: IRequestManager {
             queue = userInitiatedQueue
         }
         
-        Alamofire.request(url, method: request.httpMethod, parameters: request.parameters, headers: request.headers).responseJSON(queue: queue) { response in
-            if let data = response.data {
-                let json = JSON(data)
-                completion(json, nil)
-            } else {
-                let error = NSError.defaultError(description: "EXECUTION ERROR")
-                completion(nil, error)
+        if request.httpMethod == .post && request.contentType == .multipartFormData {
+            Alamofire.upload(multipartFormData: { multipart in
+                request.parameters.forEach({ dict in
+                    guard let data = dict.value.data(using: .utf8) else { return }
+                    multipart.append(data, withName: dict.key)
+                })
+            }, to: url) { result in
+                switch result {
+                case .success(let upload, _, _):
+                    upload.response { response in
+                        if let data = response.data {
+                            let json = JSON(data)
+                            completion(json, nil)
+                        } else {
+                            let error = NSError.defaultError(description: "EXECUTION ERROR")
+                            completion(nil, error)
+                        }
+                    }
+                case .failure(let error):
+                   completion(nil, error)
+                }
+            }
+        } else {
+            Alamofire.request(url, method: request.httpMethod, parameters: request.parameters, headers: request.headers).responseJSON(queue: queue) { response in
+                if let data = response.data {
+                    let json = JSON(data)
+                    completion(json, nil)
+                } else {
+                    let error = NSError.defaultError(description: "EXECUTION ERROR")
+                    completion(nil, error)
+                }
             }
         }
     }

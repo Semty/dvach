@@ -89,7 +89,19 @@ extension SinglePostPresenter: ISinglePostPresenter {
     }
     
     func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String) {
-        let bottomSheet = actionSheetFactory.createBottomSheet(post: post, threadInfo: nil)
+        let bottomSheet = actionSheetFactory.createBottomSheet(post: post,
+                                                               threadInfo: nil,
+                                                               descriptionAlert:
+            { [weak self] alert in
+                if let alert = alert {
+                    self?.view?.present(alert, animated: true)
+                }},
+                                                               successAlert:
+            { [weak self] alert in
+                if let alert = alert {
+                    self?.view?.present(alert, animated: true)
+                }
+        })
         if UIDevice.current.userInterfaceIdiom == .pad,
             let popoverPresentationController = bottomSheet.popoverPresentationController {
             popoverPresentationController.sourceView = button
