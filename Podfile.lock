@@ -1,114 +1,98 @@
 PODS:
   - Alamofire (4.8.2)
-  - Appodeal (2.5.7):
-    - Appodeal/Full (= 2.5.7)
-  - Appodeal/AdColonyAdapter (2.5.7):
+  - Appodeal (2.4.9):
+    - Appodeal/Full (= 2.4.9)
+  - Appodeal/AdColonyAdapter (2.4.9):
     - Appodeal/AdExchangeAdapter
     - Appodeal/Core
-  - Appodeal/AdExchangeAdapter (2.5.7):
+  - Appodeal/AdExchangeAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/AmazonAdsAdapter (2.5.7):
+  - Appodeal/AmazonAdsAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/AppLovinAdapter (2.5.7):
+  - Appodeal/AppLovinAdapter (2.4.9):
     - Appodeal/AdExchangeAdapter
     - Appodeal/Core
-  - Appodeal/Banner (2.5.7):
+  - Appodeal/Banner (2.4.9):
     - Appodeal/AdExchangeAdapter
     - Appodeal/AmazonAdsAdapter
     - Appodeal/AppLovinAdapter
     - Appodeal/FacebookAudienceAdapter
     - Appodeal/GoogleAdMobAdapter
     - Appodeal/InMobiAdapter
-    - Appodeal/InnerActiveAdapter
     - Appodeal/MyTargetAdapter
-    - Appodeal/OpenXAdapter
-    - Appodeal/SmaatoAdapter
     - Appodeal/StartAppAdapter
+    - Appodeal/TwitterMoPubAdapter
     - Appodeal/YandexAdapter
-  - Appodeal/ChartboostAdapter (2.5.7):
+  - Appodeal/ChartboostAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/Core (2.5.7)
-  - Appodeal/FacebookAudienceAdapter (2.5.7):
+  - Appodeal/Core (2.4.9)
+  - Appodeal/FacebookAudienceAdapter (2.4.9):
     - Appodeal/Core
-    - FBSDKCoreKit/Basics
-  - Appodeal/FlurryAdapter (2.5.7):
+  - Appodeal/FlurryAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/Full (2.5.7):
+  - Appodeal/Full (2.4.9):
     - Appodeal/Banner
     - Appodeal/Core
     - Appodeal/Interstitial
     - Appodeal/Native
     - Appodeal/Video
-  - Appodeal/GoogleAdMobAdapter (2.5.7):
+  - Appodeal/GoogleAdMobAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/InMobiAdapter (2.5.7):
+  - Appodeal/InMobiAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/InnerActiveAdapter (2.5.7):
-    - Appodeal/AdExchangeAdapter
-    - Appodeal/Core
-  - Appodeal/Interstitial (2.5.7):
+  - Appodeal/Interstitial (2.4.9):
     - Appodeal/AmazonAdsAdapter
     - Appodeal/FacebookAudienceAdapter
     - Appodeal/GoogleAdMobAdapter
     - Appodeal/InMobiAdapter
     - Appodeal/Video
     - Appodeal/YandexAdapter
-  - Appodeal/IronSource (2.5.7):
+  - Appodeal/IronSource (2.4.9):
     - Appodeal/Core
-  - Appodeal/MintegralAdapter (2.5.7):
+  - Appodeal/MobvistaAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/MyTargetAdapter (2.5.7):
+  - Appodeal/MyTargetAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/Native (2.5.7):
+  - Appodeal/Native (2.4.9):
     - Appodeal/AdExchangeAdapter
     - Appodeal/AppLovinAdapter
     - Appodeal/FacebookAudienceAdapter
     - Appodeal/FlurryAdapter
-    - Appodeal/GoogleAdMobAdapter
     - Appodeal/InMobiAdapter
-    - Appodeal/InnerActiveAdapter
     - Appodeal/MyTargetAdapter
     - Appodeal/PubnativeAdapter
-    - Appodeal/SmaatoAdapter
     - Appodeal/StartAppAdapter
-  - Appodeal/OpenXAdapter (2.5.7):
-    - Appodeal/AdExchangeAdapter
+    - Appodeal/TwitterMoPubAdapter
+  - Appodeal/PubnativeAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/PubnativeAdapter (2.5.7):
-    - Appodeal/AdExchangeAdapter
+  - Appodeal/StartAppAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/SmaatoAdapter (2.5.7):
-    - Appodeal/AdExchangeAdapter
+  - Appodeal/TapjoyAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/StartAppAdapter (2.5.7):
+  - Appodeal/TwitterMoPubAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/TapjoyAdapter (2.5.7):
+  - Appodeal/UnityAdapter (2.4.9):
     - Appodeal/Core
-  - Appodeal/UnityAdapter (2.5.7):
-    - Appodeal/Core
-  - Appodeal/Video (2.5.7):
+  - Appodeal/Video (2.4.9):
     - Appodeal/AdColonyAdapter
     - Appodeal/AdExchangeAdapter
     - Appodeal/AppLovinAdapter
     - Appodeal/ChartboostAdapter
     - Appodeal/InMobiAdapter
-    - Appodeal/InnerActiveAdapter
     - Appodeal/IronSource
-    - Appodeal/MintegralAdapter
+    - Appodeal/MobvistaAdapter
     - Appodeal/MyTargetAdapter
-    - Appodeal/OpenXAdapter
-    - Appodeal/SmaatoAdapter
     - Appodeal/StartAppAdapter
     - Appodeal/TapjoyAdapter
+    - Appodeal/TwitterMoPubAdapter
     - Appodeal/UnityAdapter
     - Appodeal/VungleAdapter
-  - Appodeal/VungleAdapter (2.5.7):
+  - Appodeal/VungleAdapter (2.4.9):
     - Appodeal/AdExchangeAdapter
     - Appodeal/Core
-  - Appodeal/YandexAdapter (2.5.7):
+  - Appodeal/YandexAdapter (2.4.9):
     - Appodeal/Core
   - DeepDiff (2.2.0)
-  - FBSDKCoreKit/Basics (5.2.3)
   - Firebase/Core (6.5.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.0.4)
@@ -255,7 +239,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - Appodeal
+  - Appodeal (= 2.4.9)
   - DeepDiff
   - Firebase/Core
   - Firebase/Database
@@ -282,7 +266,6 @@ SPEC REPOS:
     - Alamofire
     - Appodeal
     - DeepDiff
-    - FBSDKCoreKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuthInterop
@@ -346,9 +329,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Appodeal: 33ac7acfa1ea711c8b403e194bdb8d2b0e19d538
+  Appodeal: 7e9b03fd5a38556ba15569f3b1aa38c68c3bc0bd
   DeepDiff: e329bc46dd14ca788d8ec08d34420799ba1d77f2
-  FBSDKCoreKit: 5154c35d9058fd7dfa0445ba19e194c4b172fc32
   Firebase: dedc9e48ea3f3649ad5f6b982f8a0c73508a14b5
   FirebaseAnalytics: 3fb375bc9d13779add4039716f868d233a473fad
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
@@ -378,6 +360,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   VersaPlayer: 4c078dfd2c99c7c934b456cf6d47aefd747afa52
 
-PODFILE CHECKSUM: b450b32d9fe2cef9213e9a1a9232abd984353680
+PODFILE CHECKSUM: ef5dabd898c2135a5b46f59c74f6368b55890cc3
 
 COCOAPODS: 1.7.3
