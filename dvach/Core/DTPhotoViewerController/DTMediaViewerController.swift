@@ -152,7 +152,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     private var isOpening = true
     private var openingIndex = 0
     
-    // We need to lock our controller if we open media content in Safari inside the app
+    // We need to lock our controller if we open media content in Safari inside the app to avoid unexpected behaviour 
     open var controllerIsLocked = false
     
     /// Transition animator
