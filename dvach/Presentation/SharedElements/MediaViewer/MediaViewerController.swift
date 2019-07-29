@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import SafariServices
 
-protocol MediaViewer: AnyObject {
-    
+protocol MediaViewer: AnyObject, SFSafariViewControllerDelegate {
+    func lockController()
 }
 
 final class MediaViewerController: DTMediaViewerController {
@@ -150,6 +151,12 @@ final class MediaViewerController: DTMediaViewerController {
     
     // MARK: - Overridden DTMediaViewerController Methods
     
+    override func shouldOpenMediaFile(url: URL?, type: MediaFile.MediaType) {
+        if let url = url {
+            presenter.openMediaFile(at: url, type: type)
+        }
+    }
+    
     override func didReceiveTapGesture(hideControls hide: Bool?) {
         hideUnhideViewsWithZoom(hide: hide)
     }
@@ -182,5 +189,16 @@ final class MediaViewerController: DTMediaViewerController {
 // MARK: - MediaViewer
 
 extension MediaViewerController: MediaViewer {
-    
+    func lockController() {
+        controllerIsLocked = true
+    }
+}
+
+
+// MARK: - SFSafariViewControllerDelegate
+
+extension MediaViewerController: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }

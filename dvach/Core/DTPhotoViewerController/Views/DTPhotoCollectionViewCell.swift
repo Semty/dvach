@@ -14,11 +14,27 @@ public protocol DTPhotoCollectionViewCellDelegate: NSObjectProtocol {
     func collectionViewCellDidZoomOnPhoto(_ cell: DTPhotoCollectionViewCell, atScale scale: CGFloat)
     func collectionViewCellWillZoomOnPhoto(_ cell: DTPhotoCollectionViewCell)
     func collectionViewCellDidEndZoomingOnPhoto(_ cell: DTPhotoCollectionViewCell, atScale scale: CGFloat)
+    func shouldOpenMediaFile(url: URL?, type: DTMediaViewerController.MediaFile.MediaType)
 }
 
 open class DTPhotoCollectionViewCell: UICollectionViewCell {
     public private(set) var scrollView: DTScrollView!
     public private(set) var imageView: FLAnimatedImageView!
+    
+    // Open in browser button
+    private lazy var button: BottomButton = {
+        let button = BottomButton()
+        let model = BottomButton.Model(text: "Открыть фото в браузере",
+                                       backgroundColor: .white,
+                                       textColor: .black)
+        button.configure(with: model)
+        button.isHidden = true
+        button.enablePressStateAnimation { [weak self] in
+            self?.delegate?.shouldOpenMediaFile(url: self?.url,
+                                                type: .image)
+        }
+        return button
+    }()
     
     private var xOffset: CGFloat = -1
     
@@ -51,6 +67,9 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
             correctCurrentZoomScaleIfNeeded()
         }
     }
+    
+    // Media File URL
+    private var url: URL?
     
     // Delegate
     weak var delegate: DTPhotoCollectionViewCellDelegate?
@@ -99,6 +118,17 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
         scrollView.snp.makeConstraints { $0.edges.equalToSuperview() }
         
         scrollView.contentInsetAdjustmentBehavior = .never
+        
+        setupButton()
+    }
+    
+    private func setupButton() {
+        addSubview(button)
+        let inset: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 50 : .inset16
+        button.snp.makeConstraints {
+            $0.trailing.leading.equalToSuperview().inset(inset)
+            $0.bottom.equalToSuperview().inset(CGFloat.inset8)
+        }
     }
     
     private func correctCurrentZoomScaleIfNeeded() {
@@ -108,6 +138,14 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
         
         if scrollView.zoomScale > scrollView.maximumZoomScale {
             scrollView.zoomScale = scrollView.maximumZoomScale
+        }
+    }
+    
+    // Overridden
+    override open func safeAreaInsetsDidChange() {
+        super.safeAreaInsetsDidChange()
+        button.snp.updateConstraints {
+            $0.bottom.equalToSuperview().inset(safeAreaInsets.bottom + CGFloat.inset8)
         }
     }
     
@@ -144,13 +182,19 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
     // MARK: - Configuration
     
     public func configure(_ image: UIImage?, urlPath: String?) {
-        if let urlPath = urlPath {
-            ImagePipeline.Configuration.isAnimatedImageDataEnabled = true
-            imageView.loadImage(url: urlPath,
-                                defaultImage: image,
-                                placeholder: image,
-                                transition: false,
-                                checkNSFW: false)
+        if let urlPath = urlPath, let image = image {
+            url = URL(string: "\(GlobalUtils.base2chPath)\(urlPath)")
+            if !image.isNFFW {
+                ImagePipeline.Configuration.isAnimatedImageDataEnabled = true
+                imageView.loadImage(url: urlPath,
+                                    defaultImage: image,
+                                    placeholder: image,
+                                    transition: false,
+                                    checkNSFW: false)
+            } else {
+                imageView.image = image
+                button.isHidden = false
+            }
         } else {
             imageView.image = image
         }

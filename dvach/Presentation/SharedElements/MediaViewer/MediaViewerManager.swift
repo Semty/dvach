@@ -73,7 +73,7 @@ extension MediaViewerManager: DTMediaViewerControllerDataSource {
                                configurePhotoAt index: Int,
                                withImageView imageView: FLAnimatedImageView) {
         let file = mediaFiles[index]
-        if file.type == .image {
+        if file.type == .image, let image = file.image, !image.isNFFW {
             ImagePipeline.Configuration.isAnimatedImageDataEnabled = true
             imageView.loadImage(url: file.urlPath ?? "",
                                 defaultImage: file.image,
@@ -92,7 +92,7 @@ extension MediaViewerManager: DTMediaViewerControllerDataSource {
     
     func mediaViewerController(_ mediaViewerController: DTMediaViewerController, configureCell cell: VideoContainer, forVideoAt index: Int) {
         let file = mediaFiles[index]
-        cell.configure(urlPath: file.urlPath)
+        cell.configure(urlPath: file.urlPath, image: file.image)
     }
 }
 

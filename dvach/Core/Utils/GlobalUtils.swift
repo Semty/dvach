@@ -25,6 +25,10 @@ public enum GlobalUtils {
         return "2ch.hk"
     }
     
+    public static func vlcScheme(urlPath: URL) -> URL? {
+        return URL(string: "vlc-x-callback://x-callback-url/stream?url=\(urlPath)")
+    }
+    
     public static func setAudioInSilentModeOn() {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback,

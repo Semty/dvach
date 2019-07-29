@@ -25,7 +25,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
         let image: UIImage?
         let urlPath: String?
         
-        enum MediaType {
+        public enum MediaType {
             case image
             case webm
             case mp4
@@ -151,6 +151,9 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     
     private var isOpening = true
     private var openingIndex = 0
+    
+    // We need to lock our controller if we open media content in Safari inside the app
+    open var controllerIsLocked = false
     
     /// Transition animator
     /// Customizable if you wish to provide your own transitions.
@@ -304,38 +307,43 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     }
     
     open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if !animated {
-            presentingAnimation()
-            presentationAnimationDidFinish()
-        }
-        else {
-            presentationAnimationWillStart()
+        if !controllerIsLocked {
+            super.viewWillAppear(animated)
+            
+            if !animated {
+                presentingAnimation()
+                presentationAnimationDidFinish()
+            }
+            else {
+                presentationAnimationWillStart()
+            }
         }
     }
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         isOpening = false
+        controllerIsLocked = false
     }
     
     open override func viewWillDisappear(_ animated: Bool) {
-        // Update image view before animation
-        updateImageView(scrollView: scrollView)
-        
-        if let videoContainer = currentVideoContainer {
-            videoContainer.pause()
-        }
-        
-        super.viewWillDisappear(animated)
-        
-        if !animated {
-            dismissingAnimation()
-            dismissalAnimationDidFinish()
-        }
-        else {
-            dismissalAnimationWillStart()
+        if !controllerIsLocked {
+            // Update image view before animation
+            updateImageView(scrollView: scrollView)
+            
+            if let videoContainer = currentVideoContainer {
+                videoContainer.pause()
+            }
+            
+            super.viewWillDisappear(animated)
+            
+            if !animated {
+                dismissingAnimation()
+                dismissalAnimationDidFinish()
+            }
+            else {
+                dismissalAnimationWillStart()
+            }
         }
     }
     
@@ -398,7 +406,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     }
     
     @objc func _handleTapGesture(_ gesture: UITapGestureRecognizer) {
-        if currentVideoContainer != nil { return }
+        if currentVideoContainer != nil || controllerIsLocked { return }
         
         // Method to override
         didReceiveTapGesture()
@@ -434,7 +442,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     }
     
     @objc func _handleDoubleTapGesture(_ gesture: UITapGestureRecognizer) {
-        if currentVideoContainer != nil { return }
+        if currentVideoContainer != nil || controllerIsLocked { return }
         // Method to override
         didReceiveDoubleTapGesture()
         
@@ -736,6 +744,10 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     }
     
     // MARK: - Public behavior methods
+    
+    open func shouldOpenMediaFile(url: URL?, type: MediaFile.MediaType) {
+        
+    }
     
     open func didScrollToPhoto(at index: Int) {
         
