@@ -265,7 +265,7 @@ extension PostViewPresenter: IPostViewPresenter {
                  completion:
             { [weak self] newDataSource, changes in
                 guard let self = self else { return }
-                let scrollIndexPath = self.scrollIndexPath(for: self.dataSource)
+                let scrollIndexPath = self.scrollIndexPath(for: newDataSource)
                 DispatchQueue.main.async {
                     self.view?.updateTable(changes: changes,
                                            scrollTo: scrollIndexPath,
