@@ -50,13 +50,6 @@ final class AdManager: NSObject, IAdManager {
         adQueue.loadAd()
     }
     
-//    func showInterstitialAd() {
-//        guard let vc = viewController else { return }
-//        if Appodeal.isReadyForShow(with: .interstitial) {
-//            Appodeal.showAd(.interstitial, rootViewController: vc)
-//        }
-//    }
-    
     // MARK: - Private
     
     private func createAdViews() {
@@ -74,6 +67,7 @@ extension AdManager: APDNativeAdQueueDelegate {
     func adQueueAdIsAvailable(_ adQueue: APDNativeAdQueue, ofCount count: UInt) {
         // Как мы можем прочитать из жокументации Appodeal, они отдают рекламу на ГЛАВНОМ потоке. 5 баллов господам. Кроме того, из-за их офигенной системы загрузки рекламы, вместо 1 раза она грузится 2 (иногда 3). Ах, да, они все планируют исправить в следующей версии! Честно-честно
         // Update: после долгой переписки они, вроде как, серверно ограничат нас на загрузку 1 рекламы за раз. Пока данное решение видится оптимальным
+        // One more update: серверное ограничение пока не сильно помогло, we're waiting for
         print("\n\nAD MANAGER: HELLO GUYS\n\n")
         if nativeArray.count >= numberOfAds {
             return
