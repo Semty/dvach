@@ -274,7 +274,11 @@ extension PostViewPresenter: IPostViewPresenter {
                                             self?.dataSource = newDataSource
                     })
                 }
-                self.adManager.loadNativeAd()
+                // Грузим рекламу не сразу, а рандомно через промежуток от 1 до 5 секунд
+                DispatchQueue.global().asyncAfter(deadline: .now() + Double.random(in: 1...5),
+                                                  execute: { [weak self] in
+                                                    self?.adManager.loadNativeAd()
+                })
         }) { [weak self] error in
             guard let self = self else { return }
             DispatchQueue.main.async {

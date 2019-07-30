@@ -26,7 +26,7 @@ final class AdManager: NSObject, IAdManager {
     // Dependencies
     weak var delegate: AdManagerDelegate?
     private let numberOfAds: Int
-    private var downloadedAds = 0
+    private var nativeArray: [APDNativeAd] = []
     private weak var viewController: UIViewController?
     
     // Properties
@@ -59,10 +59,12 @@ final class AdManager: NSObject, IAdManager {
     
     // MARK: - Private
     
-    private func createAdViews(_ nativeAd: APDNativeAd) {
+    private func createAdViews() {
         guard let vc = viewController else { return }
-        guard let view = nativeAd.getViewFor(vc) else { return }
-        delegate?.adManagerDidCreateNativeAdView(view)
+        for nativeAd in nativeArray {
+            guard let view = nativeAd.getViewFor(vc) else { return }
+            delegate?.adManagerDidCreateNativeAdView(view)
+        }
     }
 }
 
@@ -71,13 +73,13 @@ final class AdManager: NSObject, IAdManager {
 extension AdManager: APDNativeAdQueueDelegate {
     func adQueueAdIsAvailable(_ adQueue: APDNativeAdQueue, ofCount count: UInt) {
         // Как мы можем прочитать из жокументации Appodeal, они отдают рекламу на ГЛАВНОМ потоке. 5 баллов господам. Кроме того, из-за их офигенной системы загрузки рекламы, вместо 1 раза она грузится 2 (иногда 3). Ах, да, они все планируют исправить в следующей версии! Честно-честно
-        if downloadedAds >= numberOfAds {
+        // Update: после долгой переписки они, вроде как, серверно ограничат нас на загрузку 1 рекламы за раз. Пока данное решение видится оптимальным
+        print("\n\nAD MANAGER: HELLO GUYS\n\n")
+        if nativeArray.count >= numberOfAds {
             return
         } else {
-            downloadedAds += 1
-            if let ad = adQueue.getNativeAds(ofCount: 1).first {
-                createAdViews(ad)
-            }
+            nativeArray.append(contentsOf: adQueue.getNativeAds(ofCount: 1))
+            createAdViews()
         }
     }
 }
