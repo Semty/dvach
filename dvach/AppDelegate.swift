@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GlobalUtils.setAudioInSilentModeOn()
         //Appodeal.setLogLevel(.debug)
         Appodeal.setAutocache(false, types: .nativeAd)
-        Appodeal.initialize(withApiKey: "9a73fae9d72048b1aa143954ca98dc4c3c94576b028e681d", types: [.nativeAd], hasConsent: false)
+        Appodeal.initialize(withApiKey: "9a73fae9d72048b1aa143954ca98dc4c3c94576b028e681d", types: [.nativeAd], hasConsent: true)
         setupInitialViewController()
         setupNuke()
         
