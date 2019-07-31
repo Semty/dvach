@@ -424,6 +424,7 @@
 		416918B444A7851A512E19512F9FEA56 /* KafkaArrowHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = F1677C7C6BDE8466F08159458D38AFCE /* KafkaArrowHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		417D850463343784132F542BBFB7BCAC /* EKRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3256B8F2961A8EC1F64F60C319396F8D /* EKRootViewController.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		41B4EB7B0919C119CD727F438C9A8015 /* db_iter.cc in Sources */ = {isa = PBXBuildFile; fileRef = FACBE5FD69F55EABC3478CA20B145CB6 /* db_iter.cc */; settings = {COMPILER_FLAGS = "-DOS_MACOSX -DLEVELDB_PLATFORM_POSIX -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		41E6AB3222F0C8D100049120 /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F5B6B5B059A0E6F6AEC7E16D20DCB7A /* VPX.framework */; };
 		4233D3A428A24B3A825FB4954CAD0633 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F0181A3539FB715F4A3A769A52C4A8 /* CoreGraphics.framework */; };
 		42542065ED59364C2DD90417D7157E7F /* FAtomicNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 74701DE5280E94B9D06D7673B63323FE /* FAtomicNumber.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		426DEEF75885682A701D4DB34B27A13D /* static_modes_fixed.h in Headers */ = {isa = PBXBuildFile; fileRef = 078CE0EEF290403E57AD712F0A5FF3CD /* static_modes_fixed.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -1122,7 +1123,6 @@
 		D5BF12BC7B1608EAAD90612DA4122011 /* GroupNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D993582E272A3BB6F738749276E184D /* GroupNode.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D5C5F56EC4199CFE83EA258967D0090E /* encode_frame_FLP.c in Sources */ = {isa = PBXBuildFile; fileRef = 7B8FA6734B48142C1B8BBA5C9DC6D698 /* encode_frame_FLP.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D5C6B1A5953523D0D1061C96362F8820 /* GULApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FE83FC6517044E3855368C7BE5D003C /* GULApplication.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		D5F4CD3922EF692D0029516A /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F5B6B5B059A0E6F6AEC7E16D20DCB7A /* VPX.framework */; };
 		D611B99A990E882AACA9156AD9ABDD55 /* residue_44p51.h in Headers */ = {isa = PBXBuildFile; fileRef = B36541FB7C73B3494098A4FE846C5167 /* residue_44p51.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D62129B07C8071B039CB49C10FC444C2 /* FPersistentConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A3080B301D6597AAABA1647EF1BF8B /* FPersistentConnection.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D64335AFA176E95D8A1892337EDB9819 /* PureLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B71E58752333614530652F4EE92177E /* PureLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1768,7 +1768,6 @@
 		06ACA79DDC3DBA633D12916A534E8C5F /* FIRInstanceIDCheckinPreferences_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceIDCheckinPreferences_Private.h; path = Firebase/InstanceID/FIRInstanceIDCheckinPreferences_Private.h; sourceTree = "<group>"; };
 		06C17FD39798734236D5CBDDCDB1941E /* FIROptions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIROptions.h; path = Firebase/Core/Public/FIROptions.h; sourceTree = "<group>"; };
 		06CECDEDE43D5C1533B46362EAABC210 /* NSError+FIRInstanceID.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSError+FIRInstanceID.m"; path = "Firebase/InstanceID/NSError+FIRInstanceID.m"; sourceTree = "<group>"; };
-		06D3BB4416DB1BE3422E33A23E7B2E55 /* libAPDMobvistaAdapter.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libAPDMobvistaAdapter.a; path = APDMobvistaAdapter.embeddedframework/libAPDMobvistaAdapter.a; sourceTree = "<group>"; };
 		06E463E385AFFBC6B89B185239D9E1D1 /* FTreeSortedDictionary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTreeSortedDictionary.m; path = Firebase/Database/third_party/FImmutableSortedDictionary/FImmutableSortedDictionary/FTreeSortedDictionary.m; sourceTree = "<group>"; };
 		06EC447945B83C4ADAB4ED41D620B8E4 /* FIRApp.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRApp.m; path = Firebase/Core/FIRApp.m; sourceTree = "<group>"; };
 		06F5EF9899725CECB3FAF412BD155726 /* FIRErrors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRErrors.h; path = Firebase/Core/Private/FIRErrors.h; sourceTree = "<group>"; };
@@ -2562,7 +2561,6 @@
 		97F1420E17EDCBC9E4A394A25BC1C6B6 /* EKAccessoryNoteMessageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EKAccessoryNoteMessageView.swift; path = Source/MessageViews/Notes/EKAccessoryNoteMessageView.swift; sourceTree = "<group>"; };
 		988FBEB972E6D80432453D54EE27BF01 /* EKPopUpMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EKPopUpMessage.swift; path = Source/Model/EKPopUpMessage.swift; sourceTree = "<group>"; };
 		988FD9E03EE0E01D603EF3A7474F66F9 /* MPPlayBtn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPPlayBtn@2x.png"; path = "APDTwitterMoPubAdapter.embeddedframework/Resources/MPPlayBtn@2x.png"; sourceTree = "<group>"; };
-		98CD4E874E7602AD4A406BA10FE60E33 /* MVSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MVSDK.framework; path = APDMobvistaAdapter.embeddedframework/MVSDK.framework; sourceTree = "<group>"; };
 		991643D79D4DCB93F67A1AF995D05718 /* vorbisfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = vorbisfile.h; path = include/vorbis/vorbisfile.h; sourceTree = "<group>"; };
 		9945906E4C23E18626D0DF89DE55FF70 /* pitch.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = pitch.c; path = celt/pitch.c; sourceTree = "<group>"; };
 		998098239C71FE03E07E13ABA32422BD /* QuickLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "QuickLayout-prefix.pch"; sourceTree = "<group>"; };
@@ -2905,6 +2903,7 @@
 		D5C1D424F3E97F088098B2DEDF2ED0D4 /* EKBackgroundView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EKBackgroundView.swift; path = Source/Infra/EKBackgroundView.swift; sourceTree = "<group>"; };
 		D5F9078E7115BB66F305C30193FFEB51 /* FStorageEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FStorageEngine.h; path = Firebase/Database/Persistence/FStorageEngine.h; sourceTree = "<group>"; };
 		D60DEE1832EBA8E8A8E7F424D3D29AC4 /* vorbisenc.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = vorbisenc.c; path = lib/vorbisenc.c; sourceTree = "<group>"; };
+		D63310EABB17F3C624144D073190FA68 /* MTGSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MTGSDK.framework; path = APDMobvistaAdapter.embeddedframework/MTGSDK.framework; sourceTree = "<group>"; };
 		D64541A0374575DBAF1D80308A95E5CF /* FCacheNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FCacheNode.h; path = Firebase/Database/Core/View/FCacheNode.h; sourceTree = "<group>"; };
 		D66A7D4A38BEEFBAD85947A56CB9ED5B /* PolygonNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PolygonNode.swift; path = "lottie-swift/src/Private/NodeRenderSystem/Nodes/PathNodes/PolygonNode.swift"; sourceTree = "<group>"; };
 		D6BD1FB27A0A8D8F45594AEA3F23DC3C /* libopus-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "libopus-dummy.m"; sourceTree = "<group>"; };
@@ -2924,6 +2923,7 @@
 		D9CEE0BCF8D27E799A0E5AE7CF8E1E33 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		D9CF95719C777F2E20CFDE0C1FE0E966 /* FIRNoopAuthTokenProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRNoopAuthTokenProvider.h; path = Firebase/Database/Login/FIRNoopAuthTokenProvider.h; sourceTree = "<group>"; };
 		D9D45A33CA0F89E21EE3D757BAAEF6E8 /* Pods_dvachTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dvachTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9DAF946295CE251527F44054D2080A4 /* libAPDMobvistaAdapter.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libAPDMobvistaAdapter.a; path = APDMobvistaAdapter.embeddedframework/libAPDMobvistaAdapter.a; sourceTree = "<group>"; };
 		DA114475DF4FA473EBB708C222BD29D8 /* resampler_down2.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = resampler_down2.c; path = silk/resampler_down2.c; sourceTree = "<group>"; };
 		DA265AC715C7579B3C8E749B4A3F4AEF /* OGVPlayerState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OGVPlayerState.m; path = Classes/OGVPlayerState.m; sourceTree = "<group>"; };
 		DA5F7E5AA5A762E4504855EAF3216C8A /* SwiftEntryKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftEntryKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3333,7 +3333,7 @@
 				12D0CCA028FAC7223068E08756B2FDEE /* libopus.framework in Frameworks */,
 				70161E39F6CE8B67794775CF5ED17E02 /* nestegg.framework in Frameworks */,
 				A27F23CE776DE3424379F0E316F4AC92 /* vorbis.framework in Frameworks */,
-				D5F4CD3922EF692D0029516A /* VPX.framework in Frameworks */,
+				41E6AB3222F0C8D100049120 /* VPX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3698,6 +3698,15 @@
 				4933A15BD6ED4C4AF6781CC9AE386A6C /* OGVPlayerView.xib */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		1E8D3998DE62D5747830DA1589836E10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D9DAF946295CE251527F44054D2080A4 /* libAPDMobvistaAdapter.a */,
+				D63310EABB17F3C624144D073190FA68 /* MTGSDK.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		1EA2708605B8A8D11497B7E99B6A8E86 /* iOS */ = {
@@ -5317,15 +5326,6 @@
 			path = libvorbis;
 			sourceTree = "<group>";
 		};
-		9F58946BAA6C33AE72DBD647553D9163 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				06D3BB4416DB1BE3422E33A23E7B2E55 /* libAPDMobvistaAdapter.a */,
-				98CD4E874E7602AD4A406BA10FE60E33 /* MVSDK.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A178858259DE1FEB0171A910200EBA0E /* Pods-dvach */ = {
 			isa = PBXGroup;
 			children = (
@@ -5948,7 +5948,7 @@
 		F7A04368936CDD382CDFA64C4A3B15BF /* MobvistaAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				9F58946BAA6C33AE72DBD647553D9163 /* Frameworks */,
+				1E8D3998DE62D5747830DA1589836E10 /* Frameworks */,
 			);
 			name = MobvistaAdapter;
 			sourceTree = "<group>";

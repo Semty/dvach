@@ -223,11 +223,8 @@ extension PostViewController: PostView {
         
         changes.forEach { change in
             switch change {
-            case .insert:
-                newPostsNumber += 1
-            case .delete: break
-            case .replace: break
-            case .move: break
+            case .insert: newPostsNumber += 1
+            case .delete, .replace, .move: break
             }
         }
         
