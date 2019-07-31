@@ -48,7 +48,7 @@ final class PostViewPresenter {
             switch self {
             case .ad:
                 return true
-            default:
+            case .post:
                 return false
             }
         }
@@ -365,9 +365,9 @@ extension PostViewPresenter: AdManagerDelegate {
     func adManagerDidCreateNativeAdView(_ view: AdView) {
         guard let adView = view as? ContextAddView else { return }
         // Присвоим рекламе уникальный идентификационный номер, чтобы не обновлять ячейку лишний раз
-        adView.configure(with: ContextAddView.Model(id: "\(Int.random(in: 100000000..<999999999))_ad"))
-        
-        let dataSourceCount = self.dataSource.count
+        adView.configure(with: ContextAddView.Model(id: UUID().uuidString))
+
+        let dataSourceCount = dataSource.count
         let lastVisibleRow = self.view?.lastVisibleRow ?? 0
         
         adInsertingQueue.async { [weak self] in

@@ -12,6 +12,7 @@ import Foundation
 // It is a modification of Basem Emara's SynchronizedArray, see <http://basememara.com/creating-thread-safe-arrays-in-swift/>
 // It provides concurrent reads and serialized writes. A write is only executed after all reads have been completed.
 // If the LockableSynchronizedArray is locked, new writes are deferred until it is unlocked again, while new reads are executed normally.
+
 public class WriteLockableSynchronizedArray<Element> {
     
     typealias WriteOperation = () -> Void
@@ -30,6 +31,7 @@ public class WriteLockableSynchronizedArray<Element> {
 }
 
 // MARK: - Properties
+
 public extension WriteLockableSynchronizedArray {
     
     /// The first element of the collection.
@@ -69,6 +71,7 @@ public extension WriteLockableSynchronizedArray {
 }
 
 // MARK: - Init
+
 public extension WriteLockableSynchronizedArray {
     convenience init(with array: [Element]) {
         self.init()
@@ -77,6 +80,7 @@ public extension WriteLockableSynchronizedArray {
 }
 
 // MARK: - Lock - Unlock
+
 public extension WriteLockableSynchronizedArray {
     /// Locks the array for writes. Must be unlocked by unlockArray()
     func lockArray() {
@@ -103,6 +107,7 @@ public extension WriteLockableSynchronizedArray {
 }
 
 // MARK: - Immutable
+
 public extension WriteLockableSynchronizedArray {
     /// Returns the first element of the sequence that satisfies the given predicate or nil if no such element is found.
     ///
@@ -173,6 +178,7 @@ public extension WriteLockableSynchronizedArray {
 }
 
 // MARK: - Mutable
+
 public extension WriteLockableSynchronizedArray {
     
     /// Adds a new element at the end of the array.
@@ -275,6 +281,7 @@ public extension WriteLockableSynchronizedArray {
 
 
 // MARK: - Equatable
+
 public extension WriteLockableSynchronizedArray where Element: Equatable {
     
     /// Returns a Boolean value indicating whether the sequence contains the given element.
@@ -289,6 +296,7 @@ public extension WriteLockableSynchronizedArray where Element: Equatable {
 }
 
 // MARK: - Infix operators
+
 public extension WriteLockableSynchronizedArray {
     
     static func +=(left: inout WriteLockableSynchronizedArray, right: Element) {
@@ -301,6 +309,7 @@ public extension WriteLockableSynchronizedArray {
 }
 
 // MARK: - Protocol Sequence
+
 extension WriteLockableSynchronizedArray: Sequence {
     
     public func makeIterator() -> Iterator {
@@ -326,6 +335,7 @@ extension WriteLockableSynchronizedArray: Sequence {
 }
 
 // MARK: - Private helper
+
 fileprivate extension WriteLockableSynchronizedArray {
     func handleWriteOperation(_ op: @escaping WriteLockableSynchronizedArray.WriteOperation) {
         queue.sync {

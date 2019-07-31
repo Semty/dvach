@@ -10,17 +10,23 @@ import Foundation
 import Nuke
 
 extension ImageProcessor {
+    
     public struct NSFWImageProcessor: ImageProcessing, Hashable, CustomStringConvertible {
         
+        // Properties
         private let url: URL
         private let nsfwPredictionBorder: Double
         private let sfwPredictionBorder: Double
+        
+        // MARK: - Initialization
         
         public init(url: URL, nsfwPredictionBorder: Double, sfwPredictionBorder: Double) {
             self.url = url
             self.nsfwPredictionBorder = nsfwPredictionBorder
             self.sfwPredictionBorder = sfwPredictionBorder
         }
+        
+        // MARK: - Public
         
         public func process(image: Image, context: ImageProcessingContext?) -> Image? {
             let nsfwResponse = detectNSFW(image)
@@ -52,6 +58,8 @@ extension ImageProcessor {
             return "NSFWImageProcessor(url: \(url.absoluteString), nsfwPredictionBorder: \(nsfwPredictionBorder), sfwPredictionBorder: \(sfwPredictionBorder)"
         }
         
+        // MARK: - Private
+        
         private func blur(image: UIImage, radius: Int) -> UIImage {
             let context = CIContext(options: nil)
             let blurFilter = CIFilter(name: "CIGaussianBlur")
@@ -72,9 +80,8 @@ extension ImageProcessor {
         private func detectNSFW(_ image: UIImage) -> (String, Double)? {
             print("NSFW DETECTION OF \(url.absoluteString) STARTED")
             let imageResized = image.square(scaledToSize: 224)
-            guard let pixelBuffer = imageResized.toCVPixelBuffer() else {
-                return nil
-            }
+            guard let pixelBuffer = imageResized.toCVPixelBuffer() else { return nil }
+            
             do {
                 let nudity = Nudity()
                 let output = try nudity.prediction(data: pixelBuffer)
@@ -85,8 +92,7 @@ extension ImageProcessor {
                 
                 let nsfwString: String
                 
-                if (classLabel == "NSFW" && prediction >= nsfwPredictionBorder)
-                    || (classLabel == "SFW" && prediction <= sfwPredictionBorder) {
+                if (classLabel == "NSFW" && prediction >= nsfwPredictionBorder) || (classLabel == "SFW" && prediction <= sfwPredictionBorder) {
                     nsfwString = "NSFW"
                 } else {
                     nsfwString = "SFW"
@@ -94,8 +100,8 @@ extension ImageProcessor {
                 
                 print("NSFW DETECTION OF \(url.absoluteString) ENDED")
                 return (nsfwString, prediction)
-            } catch let err {
-                print(err)
+            } catch let error {
+                print(error)
                 return nil
             }
         }
