@@ -10,9 +10,13 @@ import Foundation
 
 final class BoardWithThreadsViewModelFactory {
     
+    // Dependencies
+    private let appSettingsStorage = Locator.shared.appSettingsStorage()
+    
     // MARK: - Public Interface
     
     func createThreadsViewModels(threads: [ChanThread]) -> [BoardWithThreadsPresenter.CellType] {
+        let isSafeMode = appSettingsStorage.isSafeMode
         return threads.compactMap { thread in
             guard let comment = thread.shortInfo.comment,
                 let subject = thread.shortInfo.subject else { return nil }
@@ -27,7 +31,8 @@ final class BoardWithThreadsViewModelFactory {
                                               commentTitle: comment,
                                               postsCountTitle: postsCountTitle,
                                               threadImageThumbnail: thumbnailPath,
-                                              id: id)
+                                              id: id,
+                                              isSafeMode: isSafeMode)
                 return .withImage(threadWithImageViewModel)
             } else {
                 let threadWithoutImageViewModel =

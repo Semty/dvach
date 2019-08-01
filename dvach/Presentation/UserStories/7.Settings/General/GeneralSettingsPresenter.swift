@@ -10,7 +10,7 @@ import Foundation
 
 protocol IGeneralSettingsPresenter {
     func viewDidLoad()
-    func didChangeNSFWSwitchValue(_ value: Bool)
+    func didChangeSafeModeSwitchValue(_ value: Bool)
 }
 
 final class GeneralSettingsPresenter {
@@ -23,10 +23,10 @@ final class GeneralSettingsPresenter {
     // MARK: - Private
     
     private var nsfwViewModel: SettingsSwitcherView.Model {
-        let subtitle = "Баннер, предупреждающий об эротическом/оскорбляющем контенте будет появляться однократно для каждой доски"
-        return SettingsSwitcherView.Model(title: "Отключить предупреждения о NSFW",
+        let subtitle = "Весь графический контент будет появляться размытым"
+        return SettingsSwitcherView.Model(title: "Безопасный режим",
                                           subtitle: subtitle,
-                                          isSwitcherOn: appSettingsStorage.nsfwBannersAllowed)
+                                          isSwitcherOn: appSettingsStorage.isSafeMode)
     }
 }
 
@@ -39,10 +39,9 @@ extension GeneralSettingsPresenter: IGeneralSettingsPresenter {
         view?.update(model: model)
     }
     
-    func didChangeNSFWSwitchValue(_ value: Bool) {
+    func didChangeSafeModeSwitchValue(_ value: Bool) {
         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-        Analytics.logEvent("NSFWSwitchDidChangeValue", parameters: [:])
-        dvachService.dropAllShownBoards()
-        appSettingsStorage.nsfwBannersAllowed = value
+        Analytics.logEvent("SafeModeSwitchDidChangeValue", parameters: [:])        
+        appSettingsStorage.isSafeMode = value
     }
 }

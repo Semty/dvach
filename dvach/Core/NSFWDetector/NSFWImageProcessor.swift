@@ -17,20 +17,24 @@ extension ImageProcessor {
         private let url: URL
         private let nsfwPredictionBorder: Double
         private let sfwPredictionBorder: Double
+        private let isSafeMode: Bool
         
         // MARK: - Initialization
         
-        public init(url: URL, nsfwPredictionBorder: Double, sfwPredictionBorder: Double) {
+        public init(url: URL, nsfwPredictionBorder: Double, sfwPredictionBorder: Double, isSafeMode: Bool) {
             self.url = url
             self.nsfwPredictionBorder = nsfwPredictionBorder
             self.sfwPredictionBorder = sfwPredictionBorder
+            self.isSafeMode = isSafeMode
         }
         
         // MARK: - Public
         
         public func process(image: Image, context: ImageProcessingContext?) -> Image? {
-            let nsfwResponse = detectNSFW(image)
+            // Проверка на безопасный режим
+            guard !isSafeMode else { return bluredImage(image) }
             
+            let nsfwResponse = detectNSFW(image)
             if nsfwResponse?.0 == "SFW" {
                 if let cgImage = image.cgImage {
                     let processedImage = UIImage(cgImage: cgImage)
@@ -40,9 +44,7 @@ extension ImageProcessor {
                     return nil
                 }
             } else {
-                let processedImage = blur(image: image, radius: 12)
-                processedImage.isNFFW = true
-                return processedImage
+                return bluredImage(image)
             }
         }
         
@@ -59,6 +61,12 @@ extension ImageProcessor {
         }
         
         // MARK: - Private
+        
+        private func bluredImage(_ image: Image) -> Image {
+            let processedImage = blur(image: image, radius: 12)
+            processedImage.isNFFW = true
+            return processedImage
+        }
         
         private func blur(image: UIImage, radius: Int) -> UIImage {
             let context = CIContext(options: nil)

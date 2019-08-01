@@ -15,6 +15,7 @@ final class GalleryView: UIView, ConfigurableView, ReusableView, PressStateAnima
     
     struct Model {
         let imageURL: String
+        let isSafeMode: Bool
     }
     
     // UI
@@ -50,7 +51,8 @@ final class GalleryView: UIView, ConfigurableView, ReusableView, PressStateAnima
                             defaultImage: UIImage(named: "placeholder"),
                             placeholder: nil,
                             transition: true,
-                            checkNSFW: true)
+                            checkNSFW: true,
+                            isSafeMode: model.isSafeMode)
     }
     
     // MARK: - ReusableView

@@ -23,6 +23,9 @@ final class FavouriteThreadView: UIView, SeparatorAvailable, ConfigurableView, R
         let iconURL: String?
     }
     
+    // Dependencies
+    private let appSettingsStorage = Locator.shared.appSettingsStorage()
+    
     // Outlets
     @IBOutlet private weak var image: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -48,7 +51,8 @@ final class FavouriteThreadView: UIView, SeparatorAvailable, ConfigurableView, R
                         defaultImage: UIImage(named: "placeholder"),
                         placeholder: nil,
                         transition: true,
-                        checkNSFW: true)
+                        checkNSFW: true,
+                        isSafeMode: appSettingsStorage.isSafeMode)
     }
     
     // MARK: - Reusable

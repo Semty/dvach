@@ -105,12 +105,7 @@ final class BoardWithThreadsPresenter {
     }
     
     private var shouldPresentBannerViewWarning: Bool {
-        let shouldPresent: Bool
-        if !appSettingsStorage.nsfwBannersAllowed {
-            shouldPresent = !isBannerWarningWasPresented
-        } else {
-            shouldPresent = !dvachService.isBoardShown(identifier: boardID) && !isBannerWarningWasPresented
-        }
+        let shouldPresent = !dvachService.isBoardShown(identifier: boardID) && !isBannerWarningWasPresented
         
         // Для того, чтобы баннер не показался лишни раз при viewWillAppear
         isBannerWarningWasPresented = true

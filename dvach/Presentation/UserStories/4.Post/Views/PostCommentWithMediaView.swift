@@ -49,6 +49,7 @@ final class PostCommentWithMediaView: UIView, ConfigurableView, ReusableView, Se
     // Dependencies
     weak var delegate: PostCommentViewDelegate?
     private let componentsFactory = Locator.shared.componentsFactory()
+    private let appSettingsStorage = Locator.shared.appSettingsStorage()
     
     // Properties
     private var postNumber = ""
@@ -166,7 +167,8 @@ final class PostCommentWithMediaView: UIView, ConfigurableView, ReusableView, Se
         text.attributedText = model.text
         
         if !model.fileURLs.isEmpty {
-            let galleryModels = model.fileURLs.map { GalleryView.Model(imageURL: $0) }
+            let isSafeMode = appSettingsStorage.isSafeMode
+            let galleryModels = model.fileURLs.map { GalleryView.Model(imageURL: $0, isSafeMode: isSafeMode) }
             gallery.update(dataSource: galleryModels)
         }
         

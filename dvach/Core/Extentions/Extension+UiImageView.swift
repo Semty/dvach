@@ -16,11 +16,21 @@ private extension Double {
 
 extension UIImageView {
     
-    func loadImage(url: String) {
-        loadImage(url: url, defaultImage: nil, placeholder: nil, transition: true, checkNSFW: true)
+    func loadImage(url: String, isSafeMode: Bool) {
+        loadImage(url: url,
+                  defaultImage: nil,
+                  placeholder: nil,
+                  transition: true,
+                  checkNSFW: true,
+                  isSafeMode: isSafeMode)
     }
     
-    func loadImage(url: String, defaultImage: UIImage?, placeholder: UIImage?, transition: Bool, checkNSFW: Bool) {
+    func loadImage(url: String,
+                   defaultImage: UIImage?,
+                   placeholder: UIImage?,
+                   transition: Bool,
+                   checkNSFW: Bool,
+                   isSafeMode: Bool) {
         image = defaultImage
         guard let url = URL(string: "\(GlobalUtils.base2chPath)\(url)") else { return }
         
@@ -31,7 +41,8 @@ extension UIImageView {
                                    processors:
                 [ImageProcessor.NSFWImageProcessor(url: url,
                                                    nsfwPredictionBorder: .nsfwPredictionBorder,
-                                                   sfwPredictionBorder: .sfwPredictionBorder)])
+                                                   sfwPredictionBorder: .sfwPredictionBorder,
+                                                   isSafeMode: isSafeMode)])
         } else {
             request = ImageRequest(url: url)
         }
