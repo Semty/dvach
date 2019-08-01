@@ -23,6 +23,7 @@ final class MediaViewerManager {
     
     // Dependencies
     private let viewModelFactory = MediaViewerViewModelFactory()
+    private let appSettingsStorage = Locator.shared.appSettingsStorage()
     
     // Properties
     private var imageViews = [UIImageView]()
@@ -79,7 +80,8 @@ extension MediaViewerManager: DTMediaViewerControllerDataSource {
                                 defaultImage: file.image,
                                 placeholder: file.image,
                                 transition: false,
-                                checkNSFW: false)
+                                checkNSFW: false,
+                                isSafeMode: appSettingsStorage.isSafeMode)
         } else {
             imageView.image = file.image
         }
@@ -87,7 +89,7 @@ extension MediaViewerManager: DTMediaViewerControllerDataSource {
     
     func photoViewerController(_ photoViewerController: DTMediaViewerController, configureCell cell: DTPhotoCollectionViewCell, forPhotoAt index: Int) {
         let file = mediaFiles[index]
-        cell.configure(file.image, urlPath: file.urlPath)
+        cell.configure(file.image, urlPath: file.urlPath, isSafeMode: appSettingsStorage.isSafeMode)
     }
     
     func mediaViewerController(_ mediaViewerController: DTMediaViewerController, configureCell cell: VideoContainer, forVideoAt index: Int) {

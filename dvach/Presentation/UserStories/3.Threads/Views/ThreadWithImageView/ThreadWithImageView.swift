@@ -23,6 +23,7 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, PressSt
         let postsCountTitle: String
         let threadImageThumbnail: String
         let id: String
+        let isSafeMode: Bool
         
         var description: String {
             return "\(id)\n\(commentTitle)\n\(subjectTitle)\n\(threadImageThumbnail)"
@@ -79,7 +80,7 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, PressSt
         subjectLabel.text = model.subjectTitle
         commentLabel.text = model.commentTitle
         postsCountLabel.text = model.postsCountTitle
-        threadImageView.loadImage(url: model.threadImageThumbnail)
+        threadImageView.loadImage(url: model.threadImageThumbnail, isSafeMode: model.isSafeMode)
     }
     
     // MARK: - ReusableView

@@ -26,7 +26,7 @@ final class GeneralSettingsViewController: UIViewController {
     
     // UI
     private lazy var stackView = componentsFactory.createStackViewContainer()
-    private lazy var nsfwView: SettingsSwitcherView = {
+    private lazy var safeModeView: SettingsSwitcherView = {
         let view = SettingsSwitcherView.fromNib()
         view.delegate = self
         
@@ -70,7 +70,7 @@ final class GeneralSettingsViewController: UIViewController {
         
         view.addSubview(stackView)
         stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
-        stackView.addView(nsfwView)
+        stackView.addView(safeModeView)
     }
 }
 
@@ -79,7 +79,7 @@ final class GeneralSettingsViewController: UIViewController {
 extension GeneralSettingsViewController: GeneralSettingsView {
     
     func update(model: GeneralSettingsViewController.Model) {
-        nsfwView.configure(with: model.nsfwViewModel)
+        safeModeView.configure(with: model.nsfwViewModel)
     }
 }
 
@@ -89,6 +89,6 @@ extension GeneralSettingsViewController: SettingsSwitcherViewDelegate {
     
     func settingsSwitcherView(_ view: SettingsSwitcherView, didChangeSwitchValue value: Bool) {
         //adManager.showInterstitialAd()
-        presenter.didChangeNSFWSwitchValue(value)
+        presenter.didChangeSafeModeSwitchValue(value)
     }
 }

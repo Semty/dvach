@@ -18,6 +18,7 @@ public protocol DTPhotoCollectionViewCellDelegate: NSObjectProtocol {
 }
 
 open class DTPhotoCollectionViewCell: UICollectionViewCell {
+    
     public private(set) var scrollView: DTScrollView!
     public private(set) var imageView: FLAnimatedImageView!
     
@@ -181,7 +182,7 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Configuration
     
-    public func configure(_ image: UIImage?, urlPath: String?) {
+    public func configure(_ image: UIImage?, urlPath: String?, isSafeMode: Bool) {
         if let urlPath = urlPath, let image = image {
             url = URL(string: "\(GlobalUtils.base2chPath)\(urlPath)")
             if !image.isNFFW {
@@ -190,7 +191,8 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
                                     defaultImage: image,
                                     placeholder: image,
                                     transition: false,
-                                    checkNSFW: false)
+                                    checkNSFW: false,
+                                    isSafeMode: isSafeMode)
             } else {
                 imageView.image = image
                 button.isHidden = false
