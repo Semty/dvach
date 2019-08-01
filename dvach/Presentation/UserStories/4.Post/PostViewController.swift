@@ -51,6 +51,12 @@ final class PostViewController: UIViewController {
         }
     }
     
+    private lazy var scrollButton: ScrollButton = {
+        let button = ScrollButton()
+        button.delegate = self
+        return button
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
@@ -126,13 +132,22 @@ final class PostViewController: UIViewController {
         }
     }
     
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        scrollButton.snp.updateConstraints {
+            $0.bottom.equalToSuperview().inset(CGFloat.inset16 + view.safeAreaInsets.bottom)
+        }
+    }
+    
     // MARK: - Private
     
     private func setupUI() {
         view.backgroundColor = .white
         extendedLayoutIncludesOpaqueBars = true
+        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        tableView.contentInset.bottom = 50
         
         view.addSubview(skeleton)
         skeleton.snp.makeConstraints { $0.edges.equalToSuperview() }
@@ -143,6 +158,9 @@ final class PostViewController: UIViewController {
         
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints { $0.top.trailing.equalToSuperview().inset(CGFloat.inset16) }
+        
+        view.addSubview(scrollButton)
+        scrollButton.snp.makeConstraints { $0.bottom.trailing.equalToSuperview().inset(CGFloat.inset16) }
     }
     
     private func setupBackBarButton() {
@@ -223,11 +241,8 @@ extension PostViewController: PostView {
         
         changes.forEach { change in
             switch change {
-            case .insert:
-                newPostsNumber += 1
-            case .delete: break
-            case .replace: break
-            case .move: break
+            case .insert: newPostsNumber += 1
+            case .delete, .replace, .move: break
             }
         }
         
@@ -317,6 +332,7 @@ extension PostViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension PostViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         heightDictionary[indexPath.row] = cell.frame.size.height
     }
@@ -324,6 +340,12 @@ extension PostViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = heightDictionary[indexPath.row]
         return height ?? UITableView.automaticDimension
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset = scrollView.contentSize.height - (scrollView.bounds.height / 2) - scrollView.contentOffset.y
+        let direction: ScrollButton.Direction = (scrollView.contentSize.height / 2) > offset ? .up : .down
+        scrollButton.change(direction: direction)
     }
 }
 
@@ -361,7 +383,24 @@ extension PostViewController: PostCommentViewDelegate {
 // MARK: - SFSafariViewControllerDelegate
 
 extension PostViewController: SFSafariViewControllerDelegate {
+    
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - ScrollButtonDelegate
+
+extension PostViewController: ScrollButtonDelegate {
+    
+    func scrollButtonDidTapped() {
+        switch scrollButton.currentDirection {
+        case .down:
+            let indexPath = IndexPath(item: presenter.dataSource.count - 1, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        case .up:
+            let indexPath = IndexPath(item: 0, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
 }

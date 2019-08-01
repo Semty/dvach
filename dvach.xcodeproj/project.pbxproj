@@ -33,6 +33,7 @@
 		414408A522A04BBC00E4E53E /* BoardsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A422A04BBC00E4E53E /* BoardsRequest.swift */; };
 		414408A722A050F600E4E53E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A622A050F600E4E53E /* Category.swift */; };
 		414408A922A052A800E4E53E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A822A052A800E4E53E /* Categories.swift */; };
+		41741D6022F2183F00E5C434 /* ScrollButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D5F22F2183F00E5C434 /* ScrollButton.swift */; };
 		418CB9C022BAA3C7006C9A15 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9BF22BAA3C7006C9A15 /* SettingsViewController.swift */; };
 		418CB9C222BAA42A006C9A15 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9C122BAA42A006C9A15 /* SettingsPresenter.swift */; };
 		418CB9C522BAA5AE006C9A15 /* ContentSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9C422BAA5AE006C9A15 /* ContentSettingsView.swift */; };
@@ -270,6 +271,7 @@
 		414408A422A04BBC00E4E53E /* BoardsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsRequest.swift; sourceTree = "<group>"; };
 		414408A622A050F600E4E53E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		414408A822A052A800E4E53E /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		41741D5F22F2183F00E5C434 /* ScrollButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollButton.swift; sourceTree = "<group>"; };
 		418CB9BF22BAA3C7006C9A15 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		418CB9C122BAA42A006C9A15 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		418CB9C422BAA5AE006C9A15 /* ContentSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSettingsView.swift; sourceTree = "<group>"; };
@@ -885,6 +887,7 @@
 				4193B1D322AD8BBE00EE25FD /* PostCommentButtonsView.xib */,
 				4193B1D522AD8C4C00EE25FD /* VerticalOvalButton.swift */,
 				4193B1D722AD8C6800EE25FD /* VerticalOvalButton.xib */,
+				41741D5F22F2183F00E5C434 /* ScrollButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -1842,6 +1845,7 @@
 				41BEE71F229F043C0028EBFB /* IRequestManager.swift in Sources */,
 				41908A1922BE793E0058907D /* SettingsSwitcherView.swift in Sources */,
 				4193B1B722AA56ED00EE25FD /* Extension+CAAnimation.swift in Sources */,
+				41741D6022F2183F00E5C434 /* ScrollButton.swift in Sources */,
 				4193B1CE22AAC13900EE25FD /* GalleryView.swift in Sources */,
 				41A7F81222D1F8A900A52700 /* Extensions+Parser.swift in Sources */,
 				411902C422A6C1EA008231AC /* UIView+PressStateAnimatable.swift in Sources */,
@@ -2092,7 +2096,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DvachDev;
+				PROVISIONING_PROFILE_SPECIFIER = DvachDev2;
 				SWIFT_OBJC_BRIDGING_HEADER = "dvach/dvach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2116,7 +2120,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DvachDev;
+				PROVISIONING_PROFILE_SPECIFIER = DvachDev2;
 				SWIFT_OBJC_BRIDGING_HEADER = "dvach/dvach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

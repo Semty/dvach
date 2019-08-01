@@ -47,7 +47,6 @@ final class RequestManager: IRequestManager {
         guard let url = URL(string: stringURL) else { return }
         
         let queue: DispatchQueue
-        
         switch qos {
         case .userInteractive:
             queue = userInteractiveQueue
@@ -63,10 +62,10 @@ final class RequestManager: IRequestManager {
         
         if request.httpMethod == .post && request.contentType == .multipartFormData {
             Alamofire.upload(multipartFormData: { multipart in
-                request.parameters.forEach({ dict in
+                request.parameters.forEach { dict in
                     guard let data = dict.value.data(using: .utf8) else { return }
                     multipart.append(data, withName: dict.key)
-                })
+                }
             }, to: url) { result in
                 switch result {
                 case .success(let upload, _, _):
