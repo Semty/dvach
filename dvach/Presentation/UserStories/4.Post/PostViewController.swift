@@ -54,6 +54,7 @@ final class PostViewController: UIViewController {
     private lazy var scrollButton: ScrollButton = {
         let button = ScrollButton()
         button.delegate = self
+        button.isHidden = true
         return button
     }()
     
@@ -223,6 +224,7 @@ extension PostViewController: PostView {
                                   animated: false)
         }
         hideSkeleton()
+        scrollButton.isHidden = false
     }
     
     func showPlaceholder(text: String) {
@@ -343,8 +345,17 @@ extension PostViewController: UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.contentSize.height > 0 else { return }
         let offset = scrollView.contentSize.height - (scrollView.bounds.height / 2) - scrollView.contentOffset.y
-        let direction: ScrollButton.Direction = (scrollView.contentSize.height / 2) > offset ? .up : .down
+        var direction: ScrollButton.Direction = .down
+        
+        // Размер ячейки с рекламой 250
+        // Поэтому к оффсету прибавляем половину высоты, чтобы стрелка не делала лишних движений
+        if (scrollView.contentSize.height / 2) > offset - 125 {
+            direction = .up
+        } else if (scrollView.contentSize.height / 2) < offset + 125 {
+            direction = .down
+        }
         scrollButton.change(direction: direction)
     }
 }
