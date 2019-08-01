@@ -52,16 +52,27 @@ extension MediaViewerPresenter {
     
     fileprivate func openInVLC(url: URL) {
         if let url = GlobalUtils.vlcScheme(urlPath: url) {
-            UIApplication.shared.open(url, options: [:]) { [weak self] success in
-                if !success {
-                    let alert = UIAlertController.simpleAlert(title: "Ошибка",
-                                                              message: "На данный момент NSFW Webm открывается только в VLC. Пожалуйста, установите VLC для просмотра данного контента", handler: nil)
-                    self?.view?.present(alert, animated: true, completion: nil)
-                }
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                let message = "На данный момент NSFW Webm открывается только в VLC. Установим VLC для просмотра данного контента?"
+                let alert = UIAlertController(title: "Ошибка",
+                                              message: message,
+                                              preferredStyle: .alert)
+                let action = UIAlertAction(title: "Да", style: .default, handler: { (UIAlertAction) in
+                    if let urlAppStore = URL(string: "itms-apps://itunes.apple.com/app/id650377962"), UIApplication.shared.canOpenURL(urlAppStore) {
+                        UIApplication.shared.open(urlAppStore, options: [:], completionHandler: nil)
+                    }
+                })
+                let actionCancel = UIAlertAction(title: "Нет", style: .cancel, handler: nil)
+                alert.addAction(action)
+                alert.addAction(actionCancel)
+                view?.present(alert, animated: true, completion: nil)
             }
         } else {
             let alert = UIAlertController.simpleAlert(title: "Ошибка",
-                                                      message: "Мы не смогли получить корректный URL для данного медиафайла", handler: nil)
+                                                      message: "Мы не смогли получить корректный URL для данного медиафайла",
+                                                      handler: nil)
             view?.present(alert, animated: true, completion: nil)
         }
     }

@@ -71,7 +71,6 @@ extension AboutPresenter: IAboutPresenter {
                     Analytics.logEvent("DownloadTelegramLinkTapped", parameters: [:])
                     UIApplication.shared.open(urlAppStore, options: [:], completionHandler: nil)
                 }
-                
             })
             let actionCancel = UIAlertAction(title: "Нет", style: .cancel, handler: nil)
             alert.addAction(action)
