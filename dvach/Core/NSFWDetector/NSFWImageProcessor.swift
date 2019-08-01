@@ -83,7 +83,7 @@ extension ImageProcessor {
             guard let pixelBuffer = imageResized.toCVPixelBuffer() else { return nil }
             
             do {
-                let nudity = Nudity()
+                let nudity = try Nudity(contentsOf: Bundle.main.bundleURL)
                 let output = try nudity.prediction(data: pixelBuffer)
                 let classLabel = output.classLabel
                 guard let prediction = output.prob[classLabel] else {
