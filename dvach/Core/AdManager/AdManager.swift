@@ -18,19 +18,19 @@ protocol AdManagerDelegate: AnyObject {
 protocol IAdManager: AnyObject {
     var delegate: AdManagerDelegate? { get set }
     func loadNativeAd()
-    //func showInterstitialAd()
 }
 
 final class AdManager: NSObject, IAdManager {
     
+    weak var adDownloader = AdDownloader.shared
+    
     // Dependencies
     weak var delegate: AdManagerDelegate?
     private let numberOfAds: Int
-    private var nativeArray: [APDNativeAd] = []
     private weak var viewController: UIViewController?
     
-    // Properties
-    private lazy var adQueue = APDNativeAdQueue()
+    // Ad Download Timer
+    private var timer: Timer?
     
     // MARK: - Initialization
     
@@ -39,41 +39,40 @@ final class AdManager: NSObject, IAdManager {
         self.viewController = viewController
     }
     
+    deinit {
+        timer?.invalidate()
+        timer = nil
+    }
+    
     // MARK: - IAdManager
     
     func loadNativeAd() {
-        adQueue.settings.adViewClass = ContextAddView.self
-        adQueue.settings.autocacheMask = [.icon, .media]
-        adQueue.settings.type = .noVideo
-        adQueue.delegate = self
-        
-        adQueue.loadAd()
+        if let ads = adDownloader?.loadNativeAd(), !ads.isEmpty {
+            timer?.invalidate()
+            timer = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.createAdViews(ads)
+            }
+        } else {
+            if timer == nil {
+                DispatchQueue.main.async { [weak self] in
+                    self?.timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true, block: { [weak self] _ in
+                        if self?.timer != nil {
+                            self?.loadNativeAd()
+                        }
+                    })
+                }
+            }
+        }
     }
     
     // MARK: - Private
     
-    private func createAdViews() {
+    private func createAdViews(_ ads: [APDNativeAd]) {
         guard let vc = viewController else { return }
-        for nativeAd in nativeArray {
+        for nativeAd in ads {
             guard let view = nativeAd.getViewFor(vc) else { return }
             delegate?.adManagerDidCreateNativeAdView(view)
-        }
-    }
-}
-
-// MARK: - APDNativeAdQueueDelegate
-
-extension AdManager: APDNativeAdQueueDelegate {
-    func adQueueAdIsAvailable(_ adQueue: APDNativeAdQueue, ofCount count: UInt) {
-        // Как мы можем прочитать из жокументации Appodeal, они отдают рекламу на ГЛАВНОМ потоке. 5 баллов господам. Кроме того, из-за их офигенной системы загрузки рекламы, вместо 1 раза она грузится 2 (иногда 3). Ах, да, они все планируют исправить в следующей версии! Честно-честно
-        // Update: после долгой переписки они, вроде как, серверно ограничат нас на загрузку 1 рекламы за раз. Пока данное решение видится оптимальным
-        // One more update: серверное ограничение пока не сильно помогло, we're waiting for
-        print("\n\nAD MANAGER: HELLO GUYS\n\n")
-        if nativeArray.count >= numberOfAds {
-            return
-        } else {
-            nativeArray.append(contentsOf: adQueue.getNativeAds(ofCount: 1))
-            createAdViews()
         }
     }
 }
