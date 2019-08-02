@@ -275,7 +275,7 @@ extension PostViewPresenter: IPostViewPresenter {
                     })
                 }
                 // Грузим рекламу не сразу, а рандомно через промежуток от 1 до 5 секунд
-                DispatchQueue.global().asyncAfter(deadline: .now() + Double.random(in: 1...5),
+                DispatchQueue.global().asyncAfter(deadline: .now() + Double.random(in: 1...2.5),
                                                   execute: { [weak self] in
                                                     self?.adManager.loadNativeAd()
                 })

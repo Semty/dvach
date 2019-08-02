@@ -223,6 +223,7 @@
 		D5D37B3522B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D37B3422B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift */; };
 		D5D37B3822B2790C00CDEBA2 /* SkeletonThreadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D37B3722B2790C00CDEBA2 /* SkeletonThreadView.xib */; };
 		D5D37B3A22B2835D00CDEBA2 /* SkeletonThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */; };
+		D5DA35E522F23CA2007E328C /* AdDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA35E422F23CA2007E328C /* AdDownloader.swift */; };
 		D5E4733E22A937980055AB92 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E4733D22A937970055AB92 /* Post.swift */; };
 		D5E4734022A941990055AB92 /* ThreadWithPostsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */; };
 		D5EB334B22EAF50C00F56AE9 /* extension+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EB334A22EAF50C00F56AE9 /* extension+UIAlertController.swift */; };
@@ -469,6 +470,7 @@
 		D5D37B3422B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithPerPageThreadsRequest.swift; sourceTree = "<group>"; };
 		D5D37B3722B2790C00CDEBA2 /* SkeletonThreadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkeletonThreadView.xib; sourceTree = "<group>"; };
 		D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonThreadView.swift; sourceTree = "<group>"; };
+		D5DA35E422F23CA2007E328C /* AdDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDownloader.swift; sourceTree = "<group>"; };
 		D5E4733D22A937970055AB92 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithPostsRequest.swift; sourceTree = "<group>"; };
 		D5EB334A22EAF50C00F56AE9 /* extension+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UIAlertController.swift"; sourceTree = "<group>"; };
@@ -739,6 +741,7 @@
 			isa = PBXGroup;
 			children = (
 				41908A3022BFFA6F0058907D /* AdManager.swift */,
+				D5DA35E422F23CA2007E328C /* AdDownloader.swift */,
 			);
 			path = AdManager;
 			sourceTree = "<group>";
@@ -1799,6 +1802,7 @@
 				D5F7300B22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift in Sources */,
 				D528DE4822BB723B008A27D9 /* Helper.swift in Sources */,
 				41BEE72D229F043C0028EBFB /* Extension+String.swift in Sources */,
+				D5DA35E522F23CA2007E328C /* AdDownloader.swift in Sources */,
 				D59E39DE22E39A34007F65AD /* SynchronizedArray.swift in Sources */,
 				41D38A6522B51968000D1391 /* DvachItem.swift in Sources */,
 				41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */,
