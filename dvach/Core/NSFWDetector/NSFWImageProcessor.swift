@@ -49,7 +49,7 @@ extension ImageProcessor {
         }
         
         public var identifier: String {
-            return "com.github.semty/nuke/nsfw_image_processor?url=\(url.absoluteString)&nsfwPredictionBorder=\(nsfwPredictionBorder)&sfwPredictionBorder=\(sfwPredictionBorder)"
+            return "com.github.semty/nuke/nsfw_image_processor?url=\(url.absoluteString)&nsfwPredictionBorder=\(nsfwPredictionBorder)&sfwPredictionBorder=\(sfwPredictionBorder)&isSafe=\(isSafeMode)"
         }
         
         public var hashableIdentifier: AnyHashable {
@@ -57,7 +57,7 @@ extension ImageProcessor {
         }
         
         public var description: String {
-            return "NSFWImageProcessor(url: \(url.absoluteString), nsfwPredictionBorder: \(nsfwPredictionBorder), sfwPredictionBorder: \(sfwPredictionBorder)"
+            return "NSFWImageProcessor(url: \(url.absoluteString), nsfwPredictionBorder: \(nsfwPredictionBorder), sfwPredictionBorder: \(sfwPredictionBorder), isSafeMode: \(isSafeMode)"
         }
         
         // MARK: - Private
@@ -91,7 +91,7 @@ extension ImageProcessor {
             guard let pixelBuffer = imageResized.toCVPixelBuffer() else { return nil }
             
             do {
-                let nudity = try Nudity(contentsOf: Bundle.main.bundleURL)
+                let nudity = Nudity()
                 let output = try nudity.prediction(data: pixelBuffer)
                 let classLabel = output.classLabel
                 guard let prediction = output.prob[classLabel] else {

@@ -422,6 +422,7 @@
 		40E5F48D173FC8A5A47F91D1BCFC7A6B /* FTreeSortedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FEE46BFBED047BAC8844FC5C3DF9AF1 /* FTreeSortedDictionary.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4121BC3D434FC4BCA10246EDA4BC5CAE /* FIRInstanceIDConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A677BCC46E2A49941F6745EB25F7F1E /* FIRInstanceIDConstants.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		416918B444A7851A512E19512F9FEA56 /* KafkaArrowHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F725C3E5F81741AB0B7525AF16C24A8 /* KafkaArrowHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		41741D6222F5D92C00E5C434 /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C207BCABC88DD80074096D0F16DD0E0B /* VPX.framework */; };
 		417D850463343784132F542BBFB7BCAC /* EKRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD31159FC748F60140D475B7925E87A3 /* EKRootViewController.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		41B4EB7B0919C119CD727F438C9A8015 /* db_iter.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3BB02A3CC123C3E31F27DC1BE9A29252 /* db_iter.cc */; settings = {COMPILER_FLAGS = "-DOS_MACOSX -DLEVELDB_PLATFORM_POSIX -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		4233D3A428A24B3A825FB4954CAD0633 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F0181A3539FB715F4A3A769A52C4A8 /* CoreGraphics.framework */; };
@@ -1115,7 +1116,6 @@
 		D41F196B37E9B098F0B9F6CE036868A9 /* Image.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B5FD62ADBD038E06BD5EE03432B4F9B7 /* Image.bundle */; };
 		D4F58F22AA127711713A06B44CB265C5 /* OGVAudioFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = CF562E9B139965E4B3711C1F7247F715 /* OGVAudioFormat.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D50FDA53BDA74A95934993BE0900ACB7 /* PathOutputNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FD0F07500578EABCDE99BF5BE5901 /* PathOutputNode.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		D54E532922F4993C0027C045 /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C207BCABC88DD80074096D0F16DD0E0B /* VPX.framework */; };
 		D5728F24F8DA5E45D3C7F039DBD98174 /* StarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4358B9E7A5CA10EC082B395CEB8D6E92 /* StarNode.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D5829406E285B52A3467FDC30DA2AA70 /* levinsondurbin_FLP.c in Sources */ = {isa = PBXBuildFile; fileRef = 750EAE0D46DB56AE3CB0F6CF037CB62E /* levinsondurbin_FLP.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D584FFE9228F39F972A7E2DCB2B9A544 /* find_pitch_lags_FLP.c in Sources */ = {isa = PBXBuildFile; fileRef = 298D684EAB4202C9052DC8F41E6128C8 /* find_pitch_lags_FLP.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -3315,7 +3315,7 @@
 				12D0CCA028FAC7223068E08756B2FDEE /* libopus.framework in Frameworks */,
 				70161E39F6CE8B67794775CF5ED17E02 /* nestegg.framework in Frameworks */,
 				A27F23CE776DE3424379F0E316F4AC92 /* vorbis.framework in Frameworks */,
-				D54E532922F4993C0027C045 /* VPX.framework in Frameworks */,
+				41741D6222F5D92C00E5C434 /* VPX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

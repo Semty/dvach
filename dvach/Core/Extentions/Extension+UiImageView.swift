@@ -38,11 +38,10 @@ extension UIImageView {
         
         if checkNSFW {
             request = ImageRequest(url: url,
-                                   processors:
-                [ImageProcessor.NSFWImageProcessor(url: url,
-                                                   nsfwPredictionBorder: .nsfwPredictionBorder,
-                                                   sfwPredictionBorder: .sfwPredictionBorder,
-                                                   isSafeMode: isSafeMode)])
+                                   processors: [ImageProcessor.NSFWImageProcessor(url: url,
+                                                                                  nsfwPredictionBorder: .nsfwPredictionBorder,
+                                                                                  sfwPredictionBorder: .sfwPredictionBorder,
+                                                                                  isSafeMode: isSafeMode)])
         } else {
             request = ImageRequest(url: url)
         }
