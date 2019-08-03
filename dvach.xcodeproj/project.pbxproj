@@ -34,6 +34,10 @@
 		414408A722A050F600E4E53E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A622A050F600E4E53E /* Category.swift */; };
 		414408A922A052A800E4E53E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A822A052A800E4E53E /* Categories.swift */; };
 		41741D6022F2183F00E5C434 /* ScrollButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D5F22F2183F00E5C434 /* ScrollButton.swift */; };
+		41741D6522F5F45000E5C434 /* EULAOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D6422F5F45000E5C434 /* EULAOfferViewController.swift */; };
+		41741D6722F5F48400E5C434 /* EULAOfferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41741D6622F5F48400E5C434 /* EULAOfferViewController.xib */; };
+		41741D6A22F608EA00E5C434 /* EULAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D6922F608EA00E5C434 /* EULAViewController.swift */; };
+		41741D6D22F61DAD00E5C434 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D6C22F61DAD00E5C434 /* SeparatorView.swift */; };
 		418CB9C022BAA3C7006C9A15 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9BF22BAA3C7006C9A15 /* SettingsViewController.swift */; };
 		418CB9C222BAA42A006C9A15 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9C122BAA42A006C9A15 /* SettingsPresenter.swift */; };
 		418CB9C522BAA5AE006C9A15 /* ContentSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9C422BAA5AE006C9A15 /* ContentSettingsView.swift */; };
@@ -273,6 +277,10 @@
 		414408A622A050F600E4E53E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		414408A822A052A800E4E53E /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		41741D5F22F2183F00E5C434 /* ScrollButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollButton.swift; sourceTree = "<group>"; };
+		41741D6422F5F45000E5C434 /* EULAOfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAOfferViewController.swift; sourceTree = "<group>"; };
+		41741D6622F5F48400E5C434 /* EULAOfferViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EULAOfferViewController.xib; sourceTree = "<group>"; };
+		41741D6922F608EA00E5C434 /* EULAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAViewController.swift; sourceTree = "<group>"; };
+		41741D6C22F61DAD00E5C434 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		418CB9BF22BAA3C7006C9A15 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		418CB9C122BAA42A006C9A15 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		418CB9C422BAA5AE006C9A15 /* ContentSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSettingsView.swift; sourceTree = "<group>"; };
@@ -617,6 +625,32 @@
 				D5039F1722EA02980023BCA5 /* Report */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		41741D6322F5F41300E5C434 /* 9.EULA */ = {
+			isa = PBXGroup;
+			children = (
+				41741D6822F6086D00E5C434 /* Offer */,
+				41741D6922F608EA00E5C434 /* EULAViewController.swift */,
+			);
+			path = 9.EULA;
+			sourceTree = "<group>";
+		};
+		41741D6822F6086D00E5C434 /* Offer */ = {
+			isa = PBXGroup;
+			children = (
+				41741D6422F5F45000E5C434 /* EULAOfferViewController.swift */,
+				41741D6622F5F48400E5C434 /* EULAOfferViewController.xib */,
+			);
+			path = Offer;
+			sourceTree = "<group>";
+		};
+		41741D6B22F61D9800E5C434 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				41741D6C22F61DAD00E5C434 /* SeparatorView.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		418CB9BE22BAA3A4006C9A15 /* 7.Settings */ = {
@@ -1233,6 +1267,7 @@
 		41BEE758229F04730028EBFB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				41741D6B22F61D9800E5C434 /* New Group */,
 				65AED6E322C819440054EE59 /* Placeholder */,
 				D528DE5622BBD4D7008A27D9 /* HorizontalMoreButton */,
 				D504B6E722B90F14007C93B1 /* BannerView */,
@@ -1254,6 +1289,7 @@
 				41D38A7422B6B703000D1391 /* 6.SinglePost */,
 				418CB9BE22BAA3A4006C9A15 /* 7.Settings */,
 				41A7F81E22D2346500A52700 /* 8.Replies */,
+				41741D6322F5F41300E5C434 /* 9.EULA */,
 				41BEE76B229F05C10028EBFB /* Root */,
 			);
 			path = UserStories;
@@ -1631,6 +1667,7 @@
 				41908A0322BAD0B70058907D /* monkey.json in Resources */,
 				4190800622A6EAF1003309D9 /* IconView.xib in Resources */,
 				4193B1D822AD8C6800EE25FD /* VerticalOvalButton.xib in Resources */,
+				41741D6722F5F48400E5C434 /* EULAOfferViewController.xib in Resources */,
 				419089FF22BACE6A0058907D /* LaunchView.xib in Resources */,
 				41908A2422BE8F6C0058907D /* ConnectUsView.xib in Resources */,
 				41908A2C22BF9EE80058907D /* ContextAddView.xib in Resources */,
@@ -1756,6 +1793,7 @@
 				411902CA22A6C642008231AC /* HighlightingGestureRecognizer.swift in Sources */,
 				D5361BAA22E1D966003C89EC /* NSFWImageProcessor.swift in Sources */,
 				41908A1422BE74380058907D /* SubscribesViewController.swift in Sources */,
+				41741D6D22F61DAD00E5C434 /* SeparatorView.swift in Sources */,
 				4193B1BB22AA998200EE25FD /* PostViewController.swift in Sources */,
 				D504B6ED22B946F9007C93B1 /* Extension+UIDevice.swift in Sources */,
 				41BEE723229F043C0028EBFB /* UView+NibAwakable.swift in Sources */,
@@ -1831,6 +1869,7 @@
 				41BEE72C229F043C0028EBFB /* Extension+CGFloat.swift in Sources */,
 				41BEE719229F043C0028EBFB /* GlobalUtils.swift in Sources */,
 				4193B1B522AA548200EE25FD /* UIView+Animations.swift in Sources */,
+				41741D6522F5F45000E5C434 /* EULAOfferViewController.swift in Sources */,
 				418CB9C022BAA3C7006C9A15 /* SettingsViewController.swift in Sources */,
 				41BEE6DB229EFE720028EBFB /* dvach.xcdatamodeld in Sources */,
 				D5750AB422AEC0D70058E99D /* Extension+NSAttributedString.swift in Sources */,
@@ -1856,6 +1895,7 @@
 				41BEE73E229F04550028EBFB /* AppSettingsStorage.swift in Sources */,
 				41BEE731229F043C0028EBFB /* Extension+Int.swift in Sources */,
 				4193B1F722B1A92000EE25FD /* FavouritePostsViewController.swift in Sources */,
+				41741D6A22F608EA00E5C434 /* EULAViewController.swift in Sources */,
 				41BEE721229F043C0028EBFB /* Extension+UIViewController.swift in Sources */,
 				4193B1F222B1A8E100EE25FD /* FavouriteThreadsPresenter.swift in Sources */,
 				D528DE4722BB723B008A27D9 /* DTPhotoViewerControllerDataSource.swift in Sources */,

@@ -38,3 +38,5 @@ public extension Tappable where Self: UIView {
         }, completion: completion)
     }
 }
+
+public class TappableView: UIView, Tappable {}

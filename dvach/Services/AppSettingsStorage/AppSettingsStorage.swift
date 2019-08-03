@@ -11,11 +11,13 @@ import Foundation
 protocol IAppSettingsStorage: class {
     var lastUpdatedConfigDate: TimeInterval { get set }
     var isSafeMode: Bool { get set }
+    var isEulaCompleted: Bool { get set }
 }
 
 private extension String {
     static let lastUpdatedConfigDateKey = "lastUpdatedConfigDate"
     static let isSafeMode = "isSafeMode"
+    static let isEulaCompleted = "isEulaCompleted"
 }
 
 final class AppSettingsStorage: IAppSettingsStorage {
@@ -38,6 +40,14 @@ final class AppSettingsStorage: IAppSettingsStorage {
         }
     }
     
+    var isEulaCompleted: Bool {
+        get {
+            return self[.isEulaCompleted] as? Bool ?? false
+        }
+        set {
+            self[.isEulaCompleted] = newValue
+        }
+    }
     
     // MARK: - Private
     

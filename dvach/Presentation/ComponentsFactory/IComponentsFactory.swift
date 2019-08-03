@@ -34,6 +34,9 @@ public protocol IComponentsFactory {
     
     /// Блок с кнопкой
     func createBlockWithTitle() -> BlockWithTitle
+    
+    /// Сепаратор
+    func createSeparator() -> SeparatorView
 }
 
 extension IComponentsFactory {

@@ -45,6 +45,19 @@ final class AboutViewController: UIViewController {
         
         return label
     }()
+    private lazy var eulaView: TappableView = {
+        let view = TappableView()
+        view.snp.makeConstraints { $0.height.equalTo(45) }
+        let label = UILabel()
+        label.text = "Пользовательское соглашение"
+        label.textColor = .n7Blue
+        view.addSubview(label)
+        label.snp.makeConstraints { $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: .inset16, bottom: 0, right: .inset16)) }
+        view.enableTapping { [weak self] in
+            self?.present(EULAViewController(), animated: true)
+        }
+        return view
+    }()
     private lazy var contactUsView: ConnectUsView = {
         let view = ConnectUsView.fromNib()
         view.enablePressStateAnimation { [weak self] in
@@ -106,10 +119,10 @@ final class AboutViewController: UIViewController {
         stackView.addView(appInfoView)
         stackView.addView(rulesBlock)
         stackView.addView(newsBlock)
+        stackView.addView(eulaView)
+        stackView.addView(componentsFactory.createSeparator())
         stackView.addView(contactUsView)
-        
-        // TODO: - Добавить со след версии
-//        stackView.addView(rateUs.wrappedInContantContainer)
+        stackView.addView(rateUs.wrappedInContantContainer)
         
         rulesBlock.addView(rulesLabel.wrappedInContantContainer)
         newsBlock.addView(newsLabel.wrappedInContantContainer)

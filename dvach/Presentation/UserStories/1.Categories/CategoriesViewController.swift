@@ -25,7 +25,8 @@ final class CategoriesViewController: UIViewController {
     // Dependencies
     private let presenter: ICategoriesPresenter
     private let componentsFactory = Locator.shared.componentsFactory()
-    
+    private let appSettingsStorage = Locator.shared.appSettingsStorage()
+
     // UI
     private var searchBoardsController: BoardsListViewController?
     private lazy var stackView: StackViewContainer = {
@@ -69,7 +70,19 @@ final class CategoriesViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showEULAOfferIfNeeded()
+    }
+    
     // MARK: - Private
+    
+    private func showEULAOfferIfNeeded() {
+        guard !appSettingsStorage.isEulaCompleted else { return }
+        let viewController = EULAOfferViewController()
+        viewController.modalPresentationStyle = .overCurrentContext
+        UIApplication.shared.keyWindow?.rootViewController?.present(viewController, animated: true)
+    }
     
     private func setupSearch() {
         let boardsListViewController = BoardsListViewController(boards: [])

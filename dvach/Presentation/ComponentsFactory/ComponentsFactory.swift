@@ -51,4 +51,8 @@ public final class ComponentsFactory: IComponentsFactory {
     public func createBlockWithTitle() -> BlockWithTitle {
         return BlockWithTitle.fromNib()
     }
+    
+    public func createSeparator() -> SeparatorView {
+        return SeparatorView(insets: .default16Insets)
+    }
 }
