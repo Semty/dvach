@@ -74,6 +74,12 @@ final class PostViewController: UIViewController {
         
         return tableView
     }()
+    
+    private var shouldShowScrollButton: Bool {
+        // Показываем только если контента больше, чем 3 экрана
+        return (UIScreen.main.bounds.height * 3) > tableView.contentSize.height
+    }
+    
     private lazy var refreshControll: KafkaReplicatorFooter = {
         let refresh = KafkaReplicatorFooter()
         refresh.themeColor = .n7Blue
@@ -224,7 +230,7 @@ extension PostViewController: PostView {
                                   animated: false)
         }
         hideSkeleton()
-        scrollButton.isHidden = false
+        scrollButton.isHidden = shouldShowScrollButton
     }
     
     func showPlaceholder(text: String) {
