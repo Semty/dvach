@@ -66,6 +66,8 @@ final class BannerView: UIView, ConfigurableView {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        titleLabel.textColor = .n1Gray
+        descriptionLabel.textColor = .n1Gray
         setupUI()
     }
     

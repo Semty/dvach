@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftEntryKit
 
 protocol CategoriesView {
     
@@ -70,8 +71,8 @@ final class CategoriesViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         showEULAOfferIfNeeded()
     }
     
@@ -79,9 +80,10 @@ final class CategoriesViewController: UIViewController {
     
     private func showEULAOfferIfNeeded() {
         guard !appSettingsStorage.isEulaCompleted else { return }
-        let viewController = EULAOfferViewController()
-        viewController.modalPresentationStyle = .overCurrentContext
-        UIApplication.shared.keyWindow?.rootViewController?.present(viewController, animated: true)
+        
+        let vc = EULAOfferViewController()
+        let attributes = vc.getAnimationAttributes()
+        SwiftEntryKit.display(entry: vc, using: attributes)
     }
     
     private func setupSearch() {

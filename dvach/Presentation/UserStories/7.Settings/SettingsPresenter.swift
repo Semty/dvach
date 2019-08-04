@@ -24,7 +24,7 @@ final class SettingsPresenter: ISettingsPresenter {
     // MARK: - ISettingsPresenter
     
     var blocks: [UIView] {
-        let generalModel = ContentSettingsView.Model(title: "Общие настройки", subtitle: "Настроить NSFW")
+        let generalModel = ContentSettingsView.Model(title: "Общие настройки", subtitle: "Безопасный режим")
         let generalBlock = createBlock(model: generalModel)
         generalBlock.enablePressStateAnimation { [weak self] in
             let general = GeneralSettingsViewController()
@@ -39,7 +39,7 @@ final class SettingsPresenter: ISettingsPresenter {
 //            self?.view?.navigationController?.pushViewController(subscribes, animated: true)
 //        }
         
-        let aboutModel = ContentSettingsView.Model(title: "О приложении", subtitle: "Правила и новости проекта, написать разработчикам, оценить приложение")
+        let aboutModel = ContentSettingsView.Model(title: "О приложении", subtitle: "Правила и новости проекта, EULA, написать разработчикам, оценить приложение")
         let aboutBlock = createBlock(model: aboutModel)
         aboutBlock.enablePressStateAnimation { [weak self] in
             let about = AboutViewController()
