@@ -123,7 +123,7 @@ final class AboutViewController: UIViewController {
         stackView.addView(eulaView)
         stackView.addView(componentsFactory.createSeparator())
         stackView.addView(contactUsView)
-        stackView.addView(rateUs.wrappedInContantContainer)
+//        stackView.addView(rateUs.wrappedInContantContainer)
         
         rulesBlock.addView(rulesLabel.wrappedInContantContainer)
         newsBlock.addView(newsLabel.wrappedInContantContainer)
