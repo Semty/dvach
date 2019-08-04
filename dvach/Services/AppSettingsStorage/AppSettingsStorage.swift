@@ -12,12 +12,14 @@ protocol IAppSettingsStorage: class {
     var lastUpdatedConfigDate: TimeInterval { get set }
     var isSafeMode: Bool { get set }
     var isEulaCompleted: Bool { get set }
+    var numberOfThreadViews: Int { get set }
 }
 
 private extension String {
     static let lastUpdatedConfigDateKey = "lastUpdatedConfigDate"
     static let isSafeMode = "isSafeMode"
     static let isEulaCompleted = "isEulaCompleted"
+    static let numberOfThreadViews = "numberOfThreadViews"
 }
 
 final class AppSettingsStorage: IAppSettingsStorage {
@@ -46,6 +48,15 @@ final class AppSettingsStorage: IAppSettingsStorage {
         }
         set {
             self[.isEulaCompleted] = newValue
+        }
+    }
+    
+    var numberOfThreadViews: Int {
+        get {
+            return self[.numberOfThreadViews] as? Int ?? 0
+        }
+        set {
+            self[.numberOfThreadViews] = newValue
         }
     }
     

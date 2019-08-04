@@ -38,6 +38,7 @@
 		41741D6722F5F48400E5C434 /* EULAOfferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41741D6622F5F48400E5C434 /* EULAOfferViewController.xib */; };
 		41741D6A22F608EA00E5C434 /* EULAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D6922F608EA00E5C434 /* EULAViewController.swift */; };
 		41741D6D22F61DAD00E5C434 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D6C22F61DAD00E5C434 /* SeparatorView.swift */; };
+		41741D6F22F7014E00E5C434 /* PostPresenter+CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D6E22F7014E00E5C434 /* PostPresenter+CellType.swift */; };
 		418CB9C022BAA3C7006C9A15 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9BF22BAA3C7006C9A15 /* SettingsViewController.swift */; };
 		418CB9C222BAA42A006C9A15 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9C122BAA42A006C9A15 /* SettingsPresenter.swift */; };
 		418CB9C522BAA5AE006C9A15 /* ContentSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9C422BAA5AE006C9A15 /* ContentSettingsView.swift */; };
@@ -281,6 +282,7 @@
 		41741D6622F5F48400E5C434 /* EULAOfferViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EULAOfferViewController.xib; sourceTree = "<group>"; };
 		41741D6922F608EA00E5C434 /* EULAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAViewController.swift; sourceTree = "<group>"; };
 		41741D6C22F61DAD00E5C434 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
+		41741D6E22F7014E00E5C434 /* PostPresenter+CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostPresenter+CellType.swift"; sourceTree = "<group>"; };
 		418CB9BF22BAA3C7006C9A15 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		418CB9C122BAA42A006C9A15 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		418CB9C422BAA5AE006C9A15 /* ContentSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSettingsView.swift; sourceTree = "<group>"; };
@@ -800,6 +802,7 @@
 				4193B1BC22AA998D00EE25FD /* PostPresenter.swift */,
 				4193B1BE22AA9BE300EE25FD /* PostRouter.swift */,
 				4193B1C022AA9BF600EE25FD /* PostAssembly.swift */,
+				41741D6E22F7014E00E5C434 /* PostPresenter+CellType.swift */,
 			);
 			path = 4.Post;
 			sourceTree = "<group>";
@@ -1887,6 +1890,7 @@
 				D5A69D5322A3167700C46E24 /* BoardWithThreadsViewModelFactory.swift in Sources */,
 				41BEE71F229F043C0028EBFB /* IRequestManager.swift in Sources */,
 				41908A1922BE793E0058907D /* SettingsSwitcherView.swift in Sources */,
+				41741D6F22F7014E00E5C434 /* PostPresenter+CellType.swift in Sources */,
 				4193B1B722AA56ED00EE25FD /* Extension+CAAnimation.swift in Sources */,
 				41741D6022F2183F00E5C434 /* ScrollButton.swift in Sources */,
 				4193B1CE22AAC13900EE25FD /* GalleryView.swift in Sources */,

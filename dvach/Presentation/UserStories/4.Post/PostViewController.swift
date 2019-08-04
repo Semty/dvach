@@ -10,24 +10,26 @@ import Foundation
 import KafkaRefresh
 import SafariServices
 import DeepDiff
+import StoreKit
 
 protocol PostView: AnyObject, SFSafariViewControllerDelegate {
-    func updateTable(changes: [Change<PostViewPresenter.CellType>],
+    func updateTable(changes: [Change<PostPresenter.CellType>],
                      scrollTo indexPath: IndexPath?,
                      signalAdSemaphore: Bool,
                      completion: () -> Void)
     func showPlaceholder(text: String)
     func endRefreshing(error: Error?,
-                       changes: [Change<PostViewPresenter.CellType>],
+                       changes: [Change<PostPresenter.CellType>],
                        signalAdSemaphore: Bool,
                        completion: @escaping () -> Void)
+    func showRateController()
     var lastVisibleRow: Int { get }
 }
 
 final class PostViewController: UIViewController {
     
     // Dependencies
-    private var presenter: IPostViewPresenter
+    private var presenter: IPostPresenter
     private let componentsFactory = Locator.shared.componentsFactory()
     
     // Properties
@@ -101,7 +103,7 @@ final class PostViewController: UIViewController {
     
     // MARK: - Initialization
     
-    init(presenter: IPostViewPresenter) {
+    init(presenter: IPostPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -207,7 +209,7 @@ extension PostViewController: PostView {
         return tableView.indexPathsForVisibleRows?.last?.row ?? 0
     }
     
-    func updateTable(changes: [Change<PostViewPresenter.CellType>],
+    func updateTable(changes: [Change<PostPresenter.CellType>],
                      scrollTo indexPath: IndexPath?,
                      signalAdSemaphore: Bool,
                      completion: () -> Void) {
@@ -239,8 +241,12 @@ extension PostViewController: PostView {
         hideSkeleton()
     }
     
+    func showRateController() {
+        SKStoreReviewController.requestReview()
+    }
+    
     func endRefreshing(error: Error?,
-                       changes: [Change<PostViewPresenter.CellType>],
+                       changes: [Change<PostPresenter.CellType>],
                        signalAdSemaphore: Bool,
                        completion: @escaping () -> Void) {
         let alertString: String

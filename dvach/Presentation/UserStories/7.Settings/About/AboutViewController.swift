@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import StoreKit
 
 protocol AboutView: AnyObject {
     func update(model: AboutViewController.ViewModel)
@@ -73,7 +74,7 @@ final class AboutViewController: UIViewController {
         button.configure(with: model)
         button.snp.makeConstraints { $0.height.equalTo(45) }
         button.enablePressStateAnimation { [weak self] in
-            self?.presenter.didTapRateUs()
+            SKStoreReviewController.requestReview()
         }
         return button
     }()

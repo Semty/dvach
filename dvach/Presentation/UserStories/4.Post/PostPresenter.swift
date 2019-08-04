@@ -11,11 +11,15 @@ import Appodeal
 import SafariServices
 import DeepDiff
 
+private extension Int {
+    static let numberOfViewsForRate = 100
+}
+
 typealias Replies = [String: [String]]
 
-protocol IPostViewPresenter {
+protocol IPostPresenter {
     var adInsertingSemaphore: DispatchSemaphore { get }
-    var dataSource: WriteLockableSynchronizedArray<PostViewPresenter.CellType> { get }
+    var dataSource: WriteLockableSynchronizedArray<PostPresenter.CellType> { get }
     var mediaViewControllerWasPresented: Bool { get set }
     
     func viewDidLoad()
@@ -29,62 +33,13 @@ protocol IPostViewPresenter {
     func postCommentView(_ view: PostCommentViewContainer, didTapMoreButton button: UIView, postNumber: String)
 }
 
-final class PostViewPresenter {
-    
-    enum CellType: DiffAware {
-        case post(PostCommentViewModel)
-        case ad(ContextAddView)
-        
-        var postNumber: String? {
-            switch self {
-            case .post(let model):
-                return model.postNumber
-            default:
-                return nil
-            }
-        }
-        
-        var isAd: Bool {
-            switch self {
-            case .ad:
-                return true
-            case .post:
-                return false
-            }
-        }
-        
-        // DiffAware
-        typealias DiffId = String
-        
-        var diffId: String {
-            switch self {
-            case .post(let model):
-                return model.id
-            case .ad(let model):
-                return model.id
-            }
-        }
-        
-        private var description: String {
-            switch self {
-            case .post(let model):
-                return model.description
-            case .ad(let model):
-                return model.adDescription
-            }
-        }
-        
-        static func compareContent(_ a: PostViewPresenter.CellType,
-                                   _ b: PostViewPresenter.CellType) -> Bool {
-            return a.description == b.description
-        }
-
-    }
+final class PostPresenter {
     
     // Dependencies
     weak var view: (PostView & UIViewController)?
     private var router: IPostRouter
     private let dvachService = Locator.shared.dvachService()
+    private let appSettingsStorage = Locator.shared.appSettingsStorage()
     private lazy var adManager: IAdManager = {
         let numberOfNativeAds: Int = .maxAdCount
         let manager = Locator.shared.createAdManager(numberOfNativeAds: numberOfNativeAds,
@@ -134,7 +89,7 @@ final class PostViewPresenter {
     
     // MARK: - Private
     
-    private func loadPost(fullReload: Bool, completion: @escaping (WriteLockableSynchronizedArray<PostViewPresenter.CellType>, [Change<PostViewPresenter.CellType>]) -> Void, error: @escaping (Error) -> Void) {
+    private func loadPost(fullReload: Bool, completion: @escaping (WriteLockableSynchronizedArray<PostPresenter.CellType>, [Change<PostPresenter.CellType>]) -> Void, error: @escaping (Error) -> Void) {
         
         var postNum: Int?
         // Если тред обновляем, то нет смысла грузить весь тред, так что грузим только новые посты
@@ -253,14 +208,23 @@ final class PostViewPresenter {
  
         return IndexPath(row: row, section: 0)
     }
+    
+    private func showRateOfferIfNeeded() {
+        let numberOfViews = appSettingsStorage.numberOfThreadViews
+        appSettingsStorage.numberOfThreadViews = numberOfViews + 1
+        if numberOfViews == .numberOfViewsForRate {
+            view?.showRateController()
+            Analytics.logEvent("RateAppShown", parameters: [:])
+        }
+    }
 }
 
-// MARK: - IPostViewPresenter
+// MARK: - IPostPresenter
 
-extension PostViewPresenter: IPostViewPresenter {
+extension PostPresenter: IPostPresenter {
     
     func viewDidLoad() {
-        
+        showRateOfferIfNeeded()
         loadPost(fullReload: true,
                  completion:
             { [weak self] newDataSource, changes in
@@ -360,7 +324,7 @@ extension PostViewPresenter: IPostViewPresenter {
 
 // MARK: - AdManagerDelegate
 
-extension PostViewPresenter: AdManagerDelegate {
+extension PostPresenter: AdManagerDelegate {
     
     func adManagerDidCreateNativeAdView(_ view: AdView) {
         guard let adView = view as? ContextAddView else { return }
