@@ -20,6 +20,12 @@ protocol IConfigService {
     
     /// Читает конфиг из сохраненного файла, либо из дефолтного конфига в бандле
     func readLocalConfig() -> JSON
+    
+    /// Обновляет конфиг с ненормативной лексикой
+    func updateBadWordsConfig(completion: @escaping () -> Void)
+    
+    /// Читает конфиг с ненормативной лексикой из сохраненного файла, либо из дефолтного конфига в бандле
+    func readBadWordsConfig() -> JSON
 }
 
 final class ConfigService: IConfigService {
@@ -45,10 +51,18 @@ final class ConfigService: IConfigService {
         return url?.appendingPathComponent("config.json") ?? URL(fileURLWithPath: "")
     }
     
-    private func saveConfigToLocalFile(json: JSON) {
+    private var badWordsConfigURl: URL {
+        let url = try? FileManager.default.url(for: .documentDirectory,
+                                               in: .userDomainMask,
+                                               appropriateFor: nil,
+                                               create: false)
+        return url?.appendingPathComponent("badWordsConfig.json") ?? URL(fileURLWithPath: "")
+    }
+    
+    private func saveConfig(json: JSON, to localURL: URL) {
         do {
             let data = json.description.data(using: .utf8)
-            try data?.write(to: configURl, options: .noFileProtection)
+            try data?.write(to: localURL, options: .noFileProtection)
         } catch {
             print(error)
         }
@@ -63,14 +77,13 @@ final class ConfigService: IConfigService {
             return
         }
         
-        firebaseService.observeRemoteDatabase { [weak self] json, error in
-            guard let json = json else {
-                print(error ?? "ConfigService")
+        firebaseService.observeRemoteDatabase(child: .config) { [weak self] json, error in
+            guard let self = self, let json = json else {
                 completion()
                 return
             }
-            self?.appSettingsStorage.lastUpdatedConfigDate = Date().timeIntervalSince1970
-            self?.saveConfigToLocalFile(json: json)
+            self.appSettingsStorage.lastUpdatedConfigDate = Date().timeIntervalSince1970
+            self.saveConfig(json: json, to: self.configURl)
             completion()
         }
     }
@@ -81,6 +94,33 @@ final class ConfigService: IConfigService {
         if let documentsHandler = FileHandle(forReadingAtPath: configURl.path) {
             handler = documentsHandler
         } else if let path = Bundle.main.path(forResource: "config", ofType: "json"),
+            // В случае, если его там нет - берем дефолтный из бандла
+            let defaultHandler = FileHandle(forReadingAtPath: path) {
+            handler = defaultHandler
+        }
+        
+        guard let data = handler?.readDataToEndOfFile() else { return JSON() }
+        return JSON(data)
+    }
+    
+    func updateBadWordsConfig(completion: @escaping () -> Void) {
+        firebaseService.observeRemoteDatabase(child: .badWordsConfig) { [weak self] json, error in
+            guard let self = self, let json = json else {
+                completion()
+                return
+            }
+
+            self.saveConfig(json: json, to: self.badWordsConfigURl)
+            completion()
+        }
+    }
+    
+    func readBadWordsConfig() -> JSON {
+        var handler: FileHandle?
+        // Сначала стараемся считать конфиг "свежий" обновленный по сети
+        if let documentsHandler = FileHandle(forReadingAtPath: badWordsConfigURl.path) {
+            handler = documentsHandler
+        } else if let path = Bundle.main.path(forResource: "badWordsConfig", ofType: "json"),
             // В случае, если его там нет - берем дефолтный из бандла
             let defaultHandler = FileHandle(forReadingAtPath: path) {
             handler = defaultHandler

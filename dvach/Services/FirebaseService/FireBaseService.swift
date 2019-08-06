@@ -13,10 +13,16 @@ import SwiftyJSON
 protocol IFirebaseService {
     
     /// Однократно делает запрос в firebase
-    func observeRemoteDatabase(completion: @escaping (JSON?, Error?) -> Void)
+    func observeRemoteDatabase(child: FireBaseService.Child,
+                               completion: @escaping (JSON?, Error?) -> Void)
 }
 
 final class FireBaseService: IFirebaseService {
+    
+    public enum Child: String {
+        case config
+        case badWordsConfig
+    }
     
     // Models
     private let databaseReference: DatabaseReference
@@ -29,8 +35,8 @@ final class FireBaseService: IFirebaseService {
     
     // MARK: - IFirebaseService
     
-    func observeRemoteDatabase(completion: @escaping (JSON?, Error?) -> Void) {
-        databaseReference.observeSingleEvent(of: DataEventType.value) { snapshot in
+    func observeRemoteDatabase(child: Child, completion: @escaping (JSON?, Error?) -> Void) {
+        databaseReference.child(child.rawValue).observeSingleEvent(of: DataEventType.value) { snapshot in
             if let result = snapshot.value as? [String: Any] {
                 let json = JSON(result)
                 completion(json, nil)
