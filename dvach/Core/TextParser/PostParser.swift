@@ -25,6 +25,9 @@ final class PostParser {
         return NSRange(location: 0, length: attributedText.length)
     }
     
+    // Dependencies
+    private let profanityCensor = Locator.shared.profanityCensor()
+    
     // MARK: - Initialization
     
     init(text: String) {
@@ -56,6 +59,8 @@ final class PostParser {
         
         attributedText.mutableString.finishHtmlToNormal()
         attributedText.mutableString.removeAllTripleLineBreaks()
+        
+        censorProfanity()
     }
     
     // MARK: - Regular Expressions Helpers
@@ -312,5 +317,11 @@ final class PostParser {
             }
             attributedText.textColor(range: range)
         }
+    }
+    
+    // MARK: - Censor Profanity
+    
+    private func censorProfanity() {
+        profanityCensor.censor(attributedText, symbol: "*")
     }
 }

@@ -19,7 +19,9 @@ final class FavouritePostsPresenter {
     
     // Dependencies
     weak var view: (FavouritePostsView & UIViewController)?
+    
     private let dvachService = Locator.shared.dvachService()
+    private let profanityCensor = Locator.shared.profanityCensor()
     
     // Properties
     var dataSource = [FavouriteThreadView.Model]()
@@ -29,8 +31,10 @@ final class FavouritePostsPresenter {
     
     private func createViewModels(posts: [Post]) -> [FavouriteThreadView.Model] {
         return posts.map {
-            FavouriteThreadView.Model(title: $0.subject.parsed2chSubject,
-                                      subtitle: $0.comment.parsed2chPost,
+            FavouriteThreadView.Model(title: profanityCensor.censor($0.subject.parsed2chSubject,
+                                                                    symbol: "*"),
+                                      subtitle: profanityCensor.censor($0.comment.parsed2chPost,
+                                                                       symbol: "*"),
                                       iconURL: $0.files.first?.thumbnail)
         }
     }
@@ -45,9 +49,12 @@ extension FavouritePostsPresenter: IFavouritePostsPresenter {
     }
     
     func viewWillAppear() {
-        favouritePosts = dvachService.favourites(type: Post.self)
-        dataSource = createViewModels(posts: favouritePosts)
-        view?.updateTable()
+        let newFavouritePosts = dvachService.favourites(type: Post.self)
+        if favouritePosts.count != newFavouritePosts.count {
+            favouritePosts = dvachService.favourites(type: Post.self)
+            dataSource = createViewModels(posts: favouritePosts)
+            view?.updateTable()
+        }
     }
     
     func didSelectBoard(index: Int) {

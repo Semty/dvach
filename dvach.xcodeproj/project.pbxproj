@@ -226,6 +226,7 @@
 		D5B22BC022A165B7001EE4F8 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BBF22A165B7001EE4F8 /* Thread.swift */; };
 		D5B22BC222A187A0001EE4F8 /* BoardWithBumpSortingThreadsCatalogRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BC122A187A0001EE4F8 /* BoardWithBumpSortingThreadsCatalogRequest.swift */; };
 		D5B22BC422A18F31001EE4F8 /* BoardAdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B22BC322A18F31001EE4F8 /* BoardAdditionalInfo.swift */; };
+		D5B7093222F9E09300686E62 /* ProfanityCensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7093122F9E09300686E62 /* ProfanityCensor.swift */; };
 		D5D37B3522B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D37B3422B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift */; };
 		D5D37B3822B2790C00CDEBA2 /* SkeletonThreadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D37B3722B2790C00CDEBA2 /* SkeletonThreadView.xib */; };
 		D5D37B3A22B2835D00CDEBA2 /* SkeletonThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */; };
@@ -479,6 +480,7 @@
 		D5B22BBF22A165B7001EE4F8 /* Thread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		D5B22BC122A187A0001EE4F8 /* BoardWithBumpSortingThreadsCatalogRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithBumpSortingThreadsCatalogRequest.swift; sourceTree = "<group>"; };
 		D5B22BC322A18F31001EE4F8 /* BoardAdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardAdditionalInfo.swift; sourceTree = "<group>"; };
+		D5B7093122F9E09300686E62 /* ProfanityCensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfanityCensor.swift; sourceTree = "<group>"; };
 		D5D37B3422B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithPerPageThreadsRequest.swift; sourceTree = "<group>"; };
 		D5D37B3722B2790C00CDEBA2 /* SkeletonThreadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkeletonThreadView.xib; sourceTree = "<group>"; };
 		D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonThreadView.swift; sourceTree = "<group>"; };
@@ -1023,6 +1025,7 @@
 				D5361BA522E1D75E003C89EC /* NSFWDetector */,
 				41908A2D22BFFA460058907D /* AdManager */,
 				D528DE3522BB723B008A27D9 /* DTPhotoViewerController */,
+				D5B7093322F9E14000686E62 /* ProfanityCensor */,
 				D58ADB9F22AC271B00A8334B /* TextParser */,
 				411902BB22A6BE3D008231AC /* Shared models */,
 				41BEE6F6229F043C0028EBFB /* Utils */,
@@ -1557,6 +1560,14 @@
 			path = Factories;
 			sourceTree = "<group>";
 		};
+		D5B7093322F9E14000686E62 /* ProfanityCensor */ = {
+			isa = PBXGroup;
+			children = (
+				D5B7093122F9E09300686E62 /* ProfanityCensor.swift */,
+			);
+			path = ProfanityCensor;
+			sourceTree = "<group>";
+		};
 		D5D37B3622B278D100CDEBA2 /* Skeleton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1841,6 +1852,7 @@
 				D528DE5522BBCD82008A27D9 /* MediaViewerPresenter.swift in Sources */,
 				41BEE75C229F04730028EBFB /* ConfigurableView.swift in Sources */,
 				4117534522A2E500008EBD2A /* CategoriesPresenter.swift in Sources */,
+				D5B7093222F9E09300686E62 /* ProfanityCensor.swift in Sources */,
 				41BEE767229F04730028EBFB /* CloseButton.swift in Sources */,
 				D50ED80B22D7A19700A655E9 /* Extension+UIDeviceOrientation.swift in Sources */,
 				D5F7300B22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift in Sources */,

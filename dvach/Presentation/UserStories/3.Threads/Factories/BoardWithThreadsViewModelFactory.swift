@@ -12,6 +12,7 @@ final class BoardWithThreadsViewModelFactory {
     
     // Dependencies
     private let appSettingsStorage = Locator.shared.appSettingsStorage()
+    private let profanityCensor = Locator.shared.profanityCensor()
     
     // MARK: - Public Interface
     
@@ -21,14 +22,17 @@ final class BoardWithThreadsViewModelFactory {
             guard let comment = thread.shortInfo.comment,
                 let subject = thread.shortInfo.subject else { return nil }
             
+            let censorComment = profanityCensor.censor(comment, symbol: "*")
+            let censorSubject = profanityCensor.censor(subject, symbol: "*")
+            
             let postsCountTitle = "\(thread.postsCount) \(thread.postsCount.rightWordForPostsCount())"
             
             let id = thread.shortInfo.identifier
             
             if let thumbnailPath = self.getThreadThumbnail(thread) {
                 let threadWithImageViewModel =
-                    ThreadWithImageView.Model(subjectTitle: subject,
-                                              commentTitle: comment,
+                    ThreadWithImageView.Model(subjectTitle: censorSubject,
+                                              commentTitle: censorComment,
                                               postsCountTitle: postsCountTitle,
                                               threadImageThumbnail: thumbnailPath,
                                               id: id,
@@ -36,8 +40,8 @@ final class BoardWithThreadsViewModelFactory {
                 return .withImage(threadWithImageViewModel)
             } else {
                 let threadWithoutImageViewModel =
-                    ThreadWithoutImageView.Model(subjectTitle: subject,
-                                                 commentTitle: comment,
+                    ThreadWithoutImageView.Model(subjectTitle: censorSubject,
+                                                 commentTitle: censorComment,
                                                  postsCountTitle: postsCountTitle,
                                                  id: id)
                 return .withoutImage(threadWithoutImageViewModel)

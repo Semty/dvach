@@ -119,6 +119,39 @@ extension String {
         return trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
     }
     
+    func cyrillized() -> String {
+        return self
+            .replacingOccurrences(of: "A", with: "А")
+            .replacingOccurrences(of: "a", with: "а")
+            .replacingOccurrences(of: "B", with: "В")
+            .replacingOccurrences(of: "C", with: "С")
+            .replacingOccurrences(of: "c", with: "с")
+            .replacingOccurrences(of: "E", with: "Е")
+            .replacingOccurrences(of: "e", with: "е")
+            .replacingOccurrences(of: "H", with: "Н")
+            .replacingOccurrences(of: "K", with: "К")
+            .replacingOccurrences(of: "k", with: "к")
+            .replacingOccurrences(of: "M", with: "М")
+            .replacingOccurrences(of: "m", with: "т")
+            .replacingOccurrences(of: "n", with: "п")
+            .replacingOccurrences(of: "O", with: "О")
+            .replacingOccurrences(of: "o", with: "о")
+            .replacingOccurrences(of: "P", with: "Р")
+            .replacingOccurrences(of: "p", with: "р")
+            .replacingOccurrences(of: "R", with: "Я")
+            .replacingOccurrences(of: "T", with: "Т")
+            .replacingOccurrences(of: "U", with: "И")
+            .replacingOccurrences(of: "u", with: "и")
+            .replacingOccurrences(of: "X", with: "Х")
+            .replacingOccurrences(of: "x", with: "х")
+            .replacingOccurrences(of: "Y", with: "У")
+            .replacingOccurrences(of: "y", with: "у")
+            .replacingOccurrences(of: "6", with: "б")
+            .replacingOccurrences(of: "3", with: "з")
+            .replacingOccurrences(of: "4", with: "ч")
+            .replacingOccurrences(of: "0", with: "о")
+    }
+    
     // MARK: - Ranges and Slices of String
     
     func ranges(of string: String, options: CompareOptions = .regularExpression) -> [Range<Index>] {

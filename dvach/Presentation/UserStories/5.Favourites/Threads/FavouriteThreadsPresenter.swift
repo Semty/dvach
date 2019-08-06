@@ -19,7 +19,9 @@ final class FavouriteThreadsPresenter {
     
     // Dependencies
     weak var view: (FavouriteThreadsView & UIViewController)?
+    
     private let dvachService = Locator.shared.dvachService()
+    private let profanityCensor = Locator.shared.profanityCensor()
     
     // Properties
     var dataSource = [FavouriteThreadView.Model]()
@@ -29,8 +31,10 @@ final class FavouriteThreadsPresenter {
     
     private func createViewModels(threads: [ThreadShortInfo]) -> [FavouriteThreadView.Model] {
         return threads.map {
-            FavouriteThreadView.Model(title: $0.subject,
-                                      subtitle: $0.comment,
+            FavouriteThreadView.Model(title: profanityCensor.censor($0.subject ?? "",
+                                                                    symbol: "*"),
+                                      subtitle: profanityCensor.censor($0.comment ?? "",
+                                                                       symbol: "*"),
                                       iconURL: $0.thumbnailURL)
         }
     }
@@ -45,9 +49,12 @@ extension FavouriteThreadsPresenter: IFavouriteThreadsPresenter {
     }
     
     func viewWillAppear() {
-        favouriteThreads = dvachService.favourites(type: ThreadShortInfo.self).filter { $0.isFavourite }
-        dataSource = createViewModels(threads: favouriteThreads)
-        view?.updateTable()
+        let newFavouriteThreads = dvachService.favourites(type: ThreadShortInfo.self).filter { $0.isFavourite }
+        if favouriteThreads.count != newFavouriteThreads.count {
+            favouriteThreads = newFavouriteThreads
+            dataSource = createViewModels(threads: favouriteThreads)
+            view?.updateTable()
+        }
     }
     
     func didSelectBoard(index: Int) {

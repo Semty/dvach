@@ -212,6 +212,72 @@ extension NSMutableString {
                            range: NSRange(location: 0, length: length))
     }
     
+    func cyrillized() {
+        replaceOccurrences(of: "A", with: "А",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "a", with: "а",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "B", with: "В",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "C", with: "С",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "c", with: "c",
+                           range: NSRange(location: 0, length: length))
+            
+        replaceOccurrences(of: "E", with: "Е",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "e", with: "е",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "H", with: "Н",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "K", with: "К",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "k", with: "к",
+                           range: NSRange(location: 0, length: length))
+            
+        replaceOccurrences(of: "M", with: "М",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "m", with: "т",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "n", with: "п",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "O", with: "О",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "o", with: "о",
+                           range: NSRange(location: 0, length: length))
+        
+        replaceOccurrences(of: "P", with: "Р",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "p", with: "р",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "R", with: "Я",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "T", with: "Т",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "U", with: "И",
+                           range: NSRange(location: 0, length: length))
+        
+        replaceOccurrences(of: "u", with: "и",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "X", with: "Х",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "x", with: "х",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "Y", with: "У",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "y", with: "у",
+                           range: NSRange(location: 0, length: length))
+        
+        replaceOccurrences(of: "6", with: "б",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "3", with: "з",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "4", with: "ч",
+                           range: NSRange(location: 0, length: length))
+        replaceOccurrences(of: "0", with: "о",
+                           range: NSRange(location: 0, length: length))
+    }
+    
     func removeAllTripleLineBreaks() {
         var textReplacingState = -1
         while textReplacingState != 0 {

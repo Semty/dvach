@@ -54,4 +54,8 @@ final class Locator {
         return AdManager(numberOfNativeAds: numberOfNativeAds,
                          viewController: viewController)
     }
+    
+    func profanityCensor() -> IProfanityCensor {
+        return ProfanityCensor()
+    }
 }
