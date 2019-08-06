@@ -9,7 +9,7 @@
 import Foundation
 
 private extension String {
-    static let regexOfBannedWords = "\\b(хуй|пизда|ебаный)\\b"
+    static let regexOfBannedWords = "\\b(\(BadWords.shared.string))\\b"
 }
 
 protocol IProfanityCensor {
