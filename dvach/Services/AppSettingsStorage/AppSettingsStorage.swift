@@ -13,6 +13,7 @@ protocol IAppSettingsStorage: class {
     var isSafeMode: Bool { get set }
     var isEulaCompleted: Bool { get set }
     var numberOfThreadViews: Int { get set }
+    var previousBadWordsVersion: Int { get set }
 }
 
 private extension String {
@@ -20,6 +21,7 @@ private extension String {
     static let isSafeMode = "isSafeMode"
     static let isEulaCompleted = "isEulaCompleted"
     static let numberOfThreadViews = "numberOfThreadViews"
+    static let previousBadWordsVersion = "previousBadWordsVersion"
 }
 
 final class AppSettingsStorage: IAppSettingsStorage {
@@ -57,6 +59,15 @@ final class AppSettingsStorage: IAppSettingsStorage {
         }
         set {
             self[.numberOfThreadViews] = newValue
+        }
+    }
+    
+    var previousBadWordsVersion: Int {
+        get {
+            return self[.previousBadWordsVersion] as? Int ?? 0
+        }
+        set {
+            self[.previousBadWordsVersion] = newValue
         }
     }
     

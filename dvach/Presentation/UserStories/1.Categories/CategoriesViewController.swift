@@ -63,7 +63,7 @@ final class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         definesPresentationContext = true
         edgesForExtendedLayout = []
         setupSearch()

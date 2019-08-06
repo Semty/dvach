@@ -39,6 +39,8 @@
 		41741D6A22F608EA00E5C434 /* EULAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D6922F608EA00E5C434 /* EULAViewController.swift */; };
 		41741D6D22F61DAD00E5C434 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D6C22F61DAD00E5C434 /* SeparatorView.swift */; };
 		41741D6F22F7014E00E5C434 /* PostPresenter+CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D6E22F7014E00E5C434 /* PostPresenter+CellType.swift */; };
+		41741D7222F9F03700E5C434 /* BadWordsString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D7122F9F03700E5C434 /* BadWordsString.swift */; };
+		41741D7422FA0FBE00E5C434 /* badWordsConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 41741D7322FA0FBD00E5C434 /* badWordsConfig.json */; };
 		418CB9C022BAA3C7006C9A15 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9BF22BAA3C7006C9A15 /* SettingsViewController.swift */; };
 		418CB9C222BAA42A006C9A15 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9C122BAA42A006C9A15 /* SettingsPresenter.swift */; };
 		418CB9C522BAA5AE006C9A15 /* ContentSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CB9C422BAA5AE006C9A15 /* ContentSettingsView.swift */; };
@@ -283,6 +285,8 @@
 		41741D6922F608EA00E5C434 /* EULAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAViewController.swift; sourceTree = "<group>"; };
 		41741D6C22F61DAD00E5C434 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		41741D6E22F7014E00E5C434 /* PostPresenter+CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostPresenter+CellType.swift"; sourceTree = "<group>"; };
+		41741D7122F9F03700E5C434 /* BadWordsString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadWordsString.swift; sourceTree = "<group>"; };
+		41741D7322FA0FBD00E5C434 /* badWordsConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = badWordsConfig.json; sourceTree = "<group>"; };
 		418CB9BF22BAA3C7006C9A15 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		418CB9C122BAA42A006C9A15 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		418CB9C422BAA5AE006C9A15 /* ContentSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSettingsView.swift; sourceTree = "<group>"; };
@@ -655,6 +659,14 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		41741D7022F9F01200E5C434 /* Objectionable */ = {
+			isa = PBXGroup;
+			children = (
+				41741D7122F9F03700E5C434 /* BadWordsString.swift */,
+			);
+			path = Objectionable;
+			sourceTree = "<group>";
+		};
 		418CB9BE22BAA3A4006C9A15 /* 7.Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1002,6 +1014,7 @@
 				41BEE6E1229EFE750028EBFB /* Info.plist */,
 				41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */,
 				4190800C22A86871003309D9 /* GoogleService-Info.plist */,
+				41741D7322FA0FBD00E5C434 /* badWordsConfig.json */,
 				4190801C22A8865D003309D9 /* config.json */,
 			);
 			path = dvach;
@@ -1494,6 +1507,7 @@
 		D58ADB9F22AC271B00A8334B /* TextParser */ = {
 			isa = PBXGroup;
 			children = (
+				41741D7022F9F01200E5C434 /* Objectionable */,
 				D5750AB922AEC57E0058E99D /* PostParser.swift */,
 				D5750AB522AEC5050058E99D /* DvachLink.swift */,
 				41A7F81122D1F8A900A52700 /* Extensions+Parser.swift */,
@@ -1666,6 +1680,7 @@
 				D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */,
 				4193B1CC22AAA34E00EE25FD /* PostHeaderView.xib in Resources */,
 				4193B1DD22AEF96600EE25FD /* SkeletonPostView.xib in Resources */,
+				41741D7422FA0FBE00E5C434 /* badWordsConfig.json in Resources */,
 				41D38A6F22B54381000D1391 /* FavouriteThreadView.xib in Resources */,
 				41908A0322BAD0B70058907D /* monkey.json in Resources */,
 				4190800622A6EAF1003309D9 /* IconView.xib in Resources */,
@@ -1849,6 +1864,7 @@
 				D5DA35E522F23CA2007E328C /* AdDownloader.swift in Sources */,
 				D59E39DE22E39A34007F65AD /* SynchronizedArray.swift in Sources */,
 				41D38A6522B51968000D1391 /* DvachItem.swift in Sources */,
+				41741D7222F9F03700E5C434 /* BadWordsString.swift in Sources */,
 				41BEE6D3229EFE720028EBFB /* AppDelegate.swift in Sources */,
 				D528DE4222BB723B008A27D9 /* DTMediaAnimator.swift in Sources */,
 				411902B922A6BE05008231AC /* ShadowCollectionViewCell.swift in Sources */,
@@ -2144,7 +2160,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DvachDev;
+				PROVISIONING_PROFILE_SPECIFIER = DvachDev3;
 				SWIFT_OBJC_BRIDGING_HEADER = "dvach/dvach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

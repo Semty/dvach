@@ -18,7 +18,7 @@ final class ConfigHandler {
     
     // Properties
     private var json: JSON {
-        return configService.readLocalConfig()["config"]
+        return configService.readLocalConfig()
     }
     
     // MARK: - Public
@@ -46,5 +46,9 @@ final class ConfigHandler {
         let dict = json["nsfwFilter"].dictionaryValue
         return (dict["nsfwPredictionBorder"]?.double ?? 0.49,
                 dict["sfwPredictionBorder"]?.double ?? 0.98)
+    }
+    
+    var badWordsVersion: Int {
+        return json["badWordsVersion"].intValue
     }
 }
