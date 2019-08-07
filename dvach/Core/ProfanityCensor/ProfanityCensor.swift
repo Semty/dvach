@@ -9,7 +9,7 @@
 import Foundation
 
 private extension String {
-    static let regexOfBannedWords = "\\b(\(BadWords.shared.string))\\b"
+    static let regexOfBannedWords = "\\w{0,5}[хx]([хx\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[уy]([уy\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[ёiлeеюийя]\\w{0,7}|\\w{0,6}[пp]([пp\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[iие]([iие\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[3зс]([3зс\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[дd]\\w{0,10}|[сcs][уy]([уy\\!@#\\$%\\^&*+-\\|\\/]{0,6})[4чkк]\\w{1,3}|\\w{0,4}[bб]([bб\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[lл]([lл\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[yя]\\w{0,10}|\\w{0,8}[её][bб][лске@eыиаa][наи@йвл]\\w{0,8}|\\w{0,4}[еe]([еe\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[бb]([бb\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[uу]([uу\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[н4ч]\\w{0,4}|\\w{0,4}[еeё]([еeё\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[бb]([бb\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[нn]([нn\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[уy]\\w{0,4}|\\w{0,4}[еe]([еe\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[бb]([бb\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[оoаa@]([оoаa@\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[тnнt]\\w{0,4}|\\w{0,10}[ё]([ё\\!@#\\$%\\^&*+-\\|\\/]{0,6})[б]\\w{0,6}|\\w{0,4}[pп]([pп\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[иeеi]([иeеi\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[дd]([дd\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[oоаa@еeиi]([oоаa@еeиi\\s\\!@#\\$%\\^&*+-\\|\\/]{0,6})[рr]\\w{0,12}|\\w{0,6}[cсs][уu][kк][aа]"
 }
 
 protocol IProfanityCensor {
@@ -20,12 +20,12 @@ protocol IProfanityCensor {
 final class ProfanityCensor: IProfanityCensor {
     
     func censor(_ string: NSMutableAttributedString, symbol: String) {
-        guard let cyrillizedText = string.mutableCopy() as? NSMutableAttributedString else { return }
-        cyrillizedText.mutableString.cyrillized()
-        
+//        guard let cyrillizedText = string.mutableCopy() as? NSMutableAttributedString else { return }
+//        cyrillizedText.mutableString.cyrillized()
+
         regexFind(regex: .regexOfBannedWords,
-                  string: cyrillizedText.string,
-                  range: NSRange(location: 0, length: cyrillizedText.length)) { [weak self] range in
+                  string: string.string,
+                  range: NSRange(location: 0, length: string.length)) { [weak self] range in
                     guard let self = self else { return }
                     string.replaceCharacters(in: range,
                                              with: self.censorProfanityWord(string.mutableString.substring(with: range),
@@ -35,16 +35,15 @@ final class ProfanityCensor: IProfanityCensor {
     
     func censor(_ string: String, symbol: String) -> String {
         var censorText = string
-        let cyrillizedText = string.cyrillized()
+//        let cyrillizedText = string.cyrillized()
         
         do {
             let regex = try NSRegularExpression(pattern: .regexOfBannedWords,
-                                                options: [.caseInsensitive,
-                                                          .dotMatchesLineSeparators])
+                                                options: [.caseInsensitive])
             
-            let results = regex.matches(in: cyrillizedText,
-                                        range: NSRange(cyrillizedText.startIndex...,
-                                                       in: cyrillizedText))
+            let results = regex.matches(in: censorText,
+                                        range: NSRange(censorText.startIndex...,
+                                                       in: censorText))
             _ = results.compactMap {
                 Range($0.range, in: censorText).map {
                     let replacingString = String(censorText[$0])
@@ -105,13 +104,13 @@ final class ProfanityCensor: IProfanityCensor {
             let symbols = String(repeating: symbol, count: length - 4)
             return firstTwoCharacters + symbols + lastTwoCharacters
         default:
-            let firstCharacters = string.substring(0, to: 3)
+            let firstCharacters = string.substring(0, to: 2)
             if length == 7 {
-                let lastCharacters = string.substring(length - 2, to: length)
+                let lastCharacters = string.substring(length - 3, to: length)
                 let symbols = String(repeating: symbol, count: length - 5)
                 return firstCharacters + symbols + lastCharacters
             } else if length >= 8 {
-                let lastCharacters = string.substring(length - 3, to: length)
+                let lastCharacters = string.substring(length - 4, to: length)
                 let symbols = String(repeating: symbol, count: length - 6)
                 return firstCharacters + symbols + lastCharacters
             } else {
