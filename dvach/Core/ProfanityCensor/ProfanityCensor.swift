@@ -189,27 +189,23 @@ final class ProfanityCensor: IProfanityCensor {
     
     private func censorVisibleStringIfNeeded( _ string: inout String,
                                               symbol: String) {
+        let lowercasedString = string.lowercased()
         
-        do {
-            let regex = try NSRegularExpression(pattern: .regexOfBannedWords,
-                                                options: [.caseInsensitive])
-            
-            let results = regex.matches(in: string,
-                                        range: NSRange(string.startIndex...,
-                                                       in: string))
-            
-            if !results.isEmpty {
-                _ = results.compactMap {
-                    Range($0.range, in: string).map {
-                        let replacingString = String(string[$0])
-                        string.replaceSubrange($0,
-                                               with: censorProfanityWord(replacingString,
-                                                                         symbol: symbol))
-                    }
-                }
-            }
-        } catch let error {
-            print("invalid regex: \(error.localizedDescription)")
+        if lowercasedString.contains("хуи") ||
+            lowercasedString.contains("хуй") ||
+            lowercasedString.contains("хуя") ||
+            lowercasedString.contains("хую") ||
+            lowercasedString.contains("хуе") ||
+            lowercasedString.contains("хуё") ||
+            lowercasedString.contains("бля") ||
+            lowercasedString.contains("пизд") ||
+            lowercasedString.contains("еба") ||
+            lowercasedString.contains("ебо") ||
+            lowercasedString.contains("ебу") ||
+            lowercasedString.contains("ебе") ||
+            lowercasedString.contains("ебё") ||
+            lowercasedString.contains("ебя") {
+            string = censorProfanityWord(string, symbol: symbol)
         }
     }
 }
