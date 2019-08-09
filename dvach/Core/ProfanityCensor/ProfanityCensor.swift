@@ -95,9 +95,9 @@ final class ProfanityCensor: IProfanityCensor {
         let censorString = String(repeating: symbol, count: string.count)
         
         guard let firstCharacter = string.first else { return censorString }
-        guard let lastCharacter = string.last else { return censorString }
+        guard var lastCharacter = string.last else { return censorString }
         
-        let length = string.count
+        var length = string.count
         
         guard length > 1 else { return censorString }
         
@@ -108,23 +108,58 @@ final class ProfanityCensor: IProfanityCensor {
             let symbols = String(repeating: symbol, count: length - 2)
             return "\(firstCharacter)" + symbols + "\(lastCharacter)"
         case 5:
-            let firstTwoCharacters = string.substring(0, to: 2)
+            var firstTwoCharacters = string.substring(0, to: 2)
             let symbols = String(repeating: symbol, count: length - 3)
+            
+            // TODO: - Изменить логику цензурирования оставшейся части строки, на данный момент такая логика замедляет процесс открытия треда/поста на 4-8 %
+            var visibleString = firstTwoCharacters + "\(lastCharacter)"
+            censorVisibleStringIfNeeded(&visibleString,
+                                        symbol: symbol)
+            length = visibleString.count
+            firstTwoCharacters = visibleString.substring(0, to: 2)
+            if let lastVisibleCharacter = visibleString.last {
+                lastCharacter = lastVisibleCharacter
+            }
+            
             return firstTwoCharacters + symbols + "\(lastCharacter)"
         case 6:
-            let firstTwoCharacters = string.substring(0, to: 2)
-            let lastTwoCharacters = string.substring(length - 2, to: length)
+            var firstTwoCharacters = string.substring(0, to: 2)
+            var lastTwoCharacters = string.substring(length - 2, to: length)
             let symbols = String(repeating: symbol, count: length - 4)
+            
+            var visibleString = firstTwoCharacters + lastTwoCharacters
+            censorVisibleStringIfNeeded(&visibleString,
+                                        symbol: symbol)
+            length = visibleString.count
+            firstTwoCharacters = visibleString.substring(0, to: 2)
+            lastTwoCharacters = visibleString.substring(length - 2, to: length)
+            
             return firstTwoCharacters + symbols + lastTwoCharacters
         default:
-            let firstCharacters = string.substring(0, to: 2)
+            var firstCharacters = string.substring(0, to: 2)
             if length == 7 {
-                let lastCharacters = string.substring(length - 3, to: length)
+                var lastCharacters = string.substring(length - 3, to: length)
                 let symbols = String(repeating: symbol, count: length - 5)
+                
+                var visibleString = firstCharacters + lastCharacters
+                censorVisibleStringIfNeeded(&visibleString,
+                                            symbol: symbol)
+                length = visibleString.count
+                firstCharacters = visibleString.substring(0, to: 2)
+                lastCharacters = visibleString.substring(length - 3, to: length)
+                
                 return firstCharacters + symbols + lastCharacters
             } else if length >= 8 {
-                let lastCharacters = string.substring(length - 4, to: length)
+                var lastCharacters = string.substring(length - 4, to: length)
                 let symbols = String(repeating: symbol, count: length - 6)
+                
+                var visibleString = firstCharacters + lastCharacters
+                censorVisibleStringIfNeeded(&visibleString,
+                                            symbol: symbol)
+                length = visibleString.count
+                firstCharacters = visibleString.substring(0, to: 2)
+                lastCharacters = visibleString.substring(length - 4, to: length)
+                
                 return firstCharacters + symbols + lastCharacters
             } else {
                 return censorString
@@ -150,5 +185,31 @@ final class ProfanityCensor: IProfanityCensor {
         }
         
         return false
+    }
+    
+    private func censorVisibleStringIfNeeded( _ string: inout String,
+                                              symbol: String) {
+        
+        do {
+            let regex = try NSRegularExpression(pattern: .regexOfBannedWords,
+                                                options: [.caseInsensitive])
+            
+            let results = regex.matches(in: string,
+                                        range: NSRange(string.startIndex...,
+                                                       in: string))
+            
+            if !results.isEmpty {
+                _ = results.compactMap {
+                    Range($0.range, in: string).map {
+                        let replacingString = String(string[$0])
+                        string.replaceSubrange($0,
+                                               with: censorProfanityWord(replacingString,
+                                                                         symbol: symbol))
+                    }
+                }
+            }
+        } catch let error {
+            print("invalid regex: \(error.localizedDescription)")
+        }
     }
 }
