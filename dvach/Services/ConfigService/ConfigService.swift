@@ -78,7 +78,7 @@ final class ConfigService: IConfigService {
         }
         
         firebaseService.observeRemoteDatabase(child: .config) { [weak self] json, error in
-            guard let self = self, let json = json else {
+            guard let self = self, let json = json, !json.isEmpty else {
                 completion()
                 return
             }
