@@ -53,7 +53,7 @@ final class SinglePostPresenter: NSObject {
     // MARK: - Private
     
     private func createModel() -> PostCommentViewModel {
-        let headerViewModel = PostHeaderView.Model(title: post.name,
+        let headerViewModel = PostHeaderView.Model(title: post.name.finishHtmlToNormalString(),
                                                    subtitle: post.number,
                                                    number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.thumbnail }

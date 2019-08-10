@@ -62,7 +62,9 @@ final class RepliesPresenter {
     }
     
     private func createPostViewModel(post: Post) -> PostCommentViewModel {
-        let headerViewModel = PostHeaderView.Model(title: post.name, subtitle: post.number, number: post.rowIndex + 1)
+        let headerViewModel = PostHeaderView.Model(title: post.name.finishHtmlToNormalString(),
+                                                   subtitle: post.number,
+                                                   number: post.rowIndex + 1)
         let imageURLs = post.files.map { $0.thumbnail }
         let postParser = PostParser(text: post.comment)
         let repliesCount = replies[post.number]?.count ?? 0
