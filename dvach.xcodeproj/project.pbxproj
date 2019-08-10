@@ -737,7 +737,8 @@
 				419089FE22BACE6A0058907D /* LaunchView.xib */,
 				41908A0022BACE9F0058907D /* LaunchView.swift */,
 			);
-			path = LaunchScreen;
+			name = LaunchScreen;
+			path = ../../LaunchScreen;
 			sourceTree = "<group>";
 		};
 		41908A0822BE72500058907D /* General */ = {
@@ -1011,7 +1012,6 @@
 				41BEE769229F049A0028EBFB /* Services */,
 				41BEE6F5229F043C0028EBFB /* Core */,
 				41BEE735229F04450028EBFB /* Helpers */,
-				419089F922BACD720058907D /* LaunchScreen */,
 				41BEE76A229F04C90028EBFB /* dvach-Bridging-Header.h */,
 				41BEE6E1229EFE750028EBFB /* Info.plist */,
 				41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */,
@@ -1309,6 +1309,7 @@
 				418CB9BE22BAA3A4006C9A15 /* 7.Settings */,
 				41A7F81E22D2346500A52700 /* 8.Replies */,
 				41741D6322F5F41300E5C434 /* 9.EULA */,
+				419089F922BACD720058907D /* LaunchScreen */,
 				41BEE76B229F05C10028EBFB /* Root */,
 			);
 			path = UserStories;

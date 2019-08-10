@@ -18,9 +18,16 @@ protocol ICategoriesPresenter {
 
 final class CategoriesPresenter {
     
-    typealias DataSource = ([Board], Category)
-    
     // Nested
+    struct DataSource: Equatable {
+        var boards: [Board]
+        let category: Category
+        
+        static func == (lhs: CategoriesPresenter.DataSource, rhs: CategoriesPresenter.DataSource) -> Bool {
+            return lhs.category == rhs.category
+        }
+    }
+    
     struct BlockModel {
         let category: Category
         let blockModel: BlockWithTitle.Model
@@ -55,51 +62,51 @@ final class CategoriesPresenter {
     }
     
     private func createViewModels(boards: [Board]) -> [BlockModel] {
-        var japan = ([Board](), Category.japan)
-        var games = ([Board](), Category.games)
-        var politics = ([Board](), Category.politics)
-        var other = ([Board](), Category.other)
-        var art = ([Board](), Category.art)
-        var theme = ([Board](), Category.theme)
-        var technics = ([Board](), Category.technics)
-        var user = ([Board](), Category.user)
-        var adults = ([Board](), Category.adults)
-        var hidden = ([Board](), Category.hidden)
+        var japan = DataSource(boards: [], category: .japan)
+        var games = DataSource(boards: [], category: .games)
+        var politics = DataSource(boards: [], category: .politics)
+        var other = DataSource(boards: [], category: .other)
+        var art = DataSource(boards: [], category: .art)
+        var theme = DataSource(boards: [], category: .theme)
+        var technics = DataSource(boards: [], category: .technics)
+        var user = DataSource(boards: [], category: .user)
+        var adults = DataSource(boards: [], category: .adults)
+        var hidden = DataSource(boards: [], category: .hidden)
         
         boards.forEach {
             switch $0.shortInfo.category {
-            case .japan: japan.0.append($0)
-            case .games: games.0.append($0)
-            case .politics: politics.0.append($0)
-            case .user : user.0.append($0)
+            case .japan: japan.boards.append($0)
+            case .games: games.boards.append($0)
+            case .politics: politics.boards.append($0)
+            case .user : user.boards.append($0)
             case .other:
                 // TODO: дискуссии и абу временно удалены
                 if !($0.shortInfo.identifier == "d" || $0.shortInfo.identifier == "abu") {
-                    other.0.append($0)
+                    other.boards.append($0)
                 }
-            case .art: art.0.append($0)
-            case .theme: theme.0.append($0)
-            case .technics: technics.0.append($0)
-            case .adults: adults.0.append($0)
-            case .hidden: hidden.0.append($0)
+            case .art: art.boards.append($0)
+            case .theme: theme.boards.append($0)
+            case .technics: technics.boards.append($0)
+            case .adults: adults.boards.append($0)
+            case .hidden: hidden.boards.append($0)
             }
         }
         
         // По сути дефолтный порядок
-        let categories = [other, theme, art, technics, games, politics, japan, user, hidden, adults]
+        var categories = [other, theme, art, technics, games, politics, japan, user, hidden, adults]
         
         // Тут выставляется порядок блоков из конфига, если он есть
         if let order = Config.blocksOrder {
             models = order.compactMap { category in
-                categories.first(where: { $0.1 == category })
+                categories.first(where: { $0.category == category })
             }
         } else {
-            models = categories.dropLast() // кроме "Взрослым"
-            models = categories.dropLast() // кроме "Скрытые"
+            categories.removeObject(hidden) // кроме "Скрытые"
+            categories.removeObject(adults) // кроме "Взрослым"
+            models = categories
         }
         
-        
-        return models.compactMap { viewModelsFactory.createViewModels(category: $0.1, boards: $0.0) }
+        return models.compactMap { viewModelsFactory.createViewModels(category: $0.category, boards: $0.boards) }
     }
 }
 
@@ -113,7 +120,7 @@ extension CategoriesPresenter: ICategoriesPresenter {
     }
     
     func didSelectCell(indexPath: IndexPath, category: Category) {
-        let boards = models.first(where: { $0.1 == category })?.0 ?? []
+        let boards = models.first(where: { $0.category == category })?.boards ?? []
         let board = boards[indexPath.row]
         let viewController = BoardWithThreadsViewController(boardID: board.shortInfo.identifier)
         viewController.title = board.shortInfo.name
@@ -121,7 +128,7 @@ extension CategoriesPresenter: ICategoriesPresenter {
     }
     
     func didTapAllBoards(category: Category) {
-        let boards = models.first(where: { $0.1 == category })?.0 ?? []
+        let boards = models.first(where: { $0.category == category })?.boards ?? []
         let viewController = BoardsListViewController(boards: boards)
         viewController.title = category.rawValue
         view?.navigationController?.pushViewController(viewController, animated: true)

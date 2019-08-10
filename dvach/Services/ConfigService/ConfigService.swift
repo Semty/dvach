@@ -94,8 +94,8 @@ final class ConfigService: IConfigService {
         if let documentsHandler = FileHandle(forReadingAtPath: configURl.path) {
             handler = documentsHandler
         } else if let path = Bundle.main.path(forResource: "config", ofType: "json"),
-            // В случае, если его там нет - берем дефолтный из бандла
             let defaultHandler = FileHandle(forReadingAtPath: path) {
+            // В случае, если его там нет - берем дефолтный из бандла
             handler = defaultHandler
         }
         
