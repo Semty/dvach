@@ -17,9 +17,20 @@ final class LaunchAnimationViewController: UIViewController {
 
     // UI
     private lazy var animationView = AnimationView(name: "monkey")
+    private lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.bounds.size = CGSize(width: 300, height: 300)
+        imageView.image = UIImage(named: "whiteDvachIcon")
+        return imageView
+    }()
     
     // Delegate
     public weak var delegate: LaunchAnimationViewControllerDelegate?
+    
+    // Overridden Variables
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     // MARK: - Lifecycle
     
@@ -27,17 +38,28 @@ final class LaunchAnimationViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .n7Blue
         view.addSubview(animationView)
+        view.addSubview(iconImageView)
         animationView.frame = CGRect(x: view.bounds.width,
                                      y: view.bounds.origin.y,
                                      width: view.bounds.width,
                                      height: view.bounds.height)
+        iconImageView.center = view.center
         loadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UIView.animate(withDuration: 1) {
-            self.animationView.frame = self.view.bounds
+        
+        UIView.animateKeyframes(withDuration: 1.0, delay: 0, options: [.calculationModeLinear], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1, animations: {
+                self.animationView.frame = self.view.bounds
+            })
+            UIView.addKeyframe(withRelativeStartTime: 5/10, relativeDuration: 5/10, animations: {
+                self.iconImageView.transform =
+                    CGAffineTransform.init(translationX: -self.view.bounds.width, y: 0)
+            })
+        }) { [weak self] _ in
+            self?.iconImageView.isHidden = true
         }
     }
     
