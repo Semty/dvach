@@ -150,6 +150,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     public var isRotating = false
     
     private var isOpening = true
+    private var isClosing = false
     private var openingIndex = 0
     
     // We need to lock our controller if we open media content in Safari inside the app to avoid unexpected behaviour 
@@ -278,9 +279,11 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
         backgroundView.frame = view.bounds
         scrollView.frame = view.bounds
         
-        // Update image view frame everytime view changes frame
-        (imageView as? DTImageView)?.imageChangeBlock?(imageView.image)
-        updateImageViewFrameDuringRotation()
+        if !isClosing {
+            // Update image view frame everytime view changes frame
+            (imageView as? DTImageView)?.imageChangeBlock?(imageView.image)
+            updateImageViewFrameDuringRotation()
+        }
     }
     
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -650,6 +653,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     }
     
     func presentingAnimation() {
+        isClosing = false
         // Hide reference view
         if automaticallyUpdateReferencedViewVisibility {
             referencedView?.isHidden = true
@@ -677,6 +681,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     }
     
     func dismissingAnimation() {
+        isClosing = true
         imageView.frame = _frameForReferencedView()
         backgroundView.alpha = 0
     }
@@ -705,6 +710,7 @@ open class DTMediaViewerController: UIViewController, VideoContainerDelegate {
     }
     
     func dismissalAnimationDidFinish() {
+        isClosing = false
         if automaticallyUpdateReferencedViewVisibility {
             //referencedView?.image = imageView.image
             referencedView?.isHidden = false
