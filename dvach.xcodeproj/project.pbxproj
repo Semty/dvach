@@ -2161,9 +2161,9 @@
 			baseConfigurationReference = 4274A55E1D343EF270BE19BF /* Pods-dvach.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = ZTRS68H53M;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = dvach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -2173,7 +2173,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DvachDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "dvach/dvach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2185,9 +2185,9 @@
 			baseConfigurationReference = 969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = ZTRS68H53M;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = dvach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -2197,7 +2197,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DvachDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "dvach/dvach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

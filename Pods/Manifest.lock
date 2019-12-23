@@ -1,21 +1,21 @@
 PODS:
-  - Alamofire (4.8.2)
-  - Appodeal (2.5.5):
-    - Appodeal/Full (= 2.5.5)
-  - Appodeal/AdColonyAdapter (2.5.5):
-    - Appodeal/AdExchangeAdapter
+  - Alamofire (4.9.1)
+  - Appodeal (2.5.14):
+    - Appodeal/Full (= 2.5.14)
+  - Appodeal/AdColonyAdapter (2.5.14):
+    - Appodeal/AppodealAdExchangeAdapter
     - Appodeal/Core
-  - Appodeal/AdExchangeAdapter (2.5.5):
+  - Appodeal/AmazonAdsAdapter (2.5.14):
     - Appodeal/Core
-  - Appodeal/AmazonAdsAdapter (2.5.5):
+  - Appodeal/AppLovinAdapter (2.5.14):
+    - Appodeal/AppodealAdExchangeAdapter
     - Appodeal/Core
-  - Appodeal/AppLovinAdapter (2.5.5):
-    - Appodeal/AdExchangeAdapter
+  - Appodeal/AppodealAdExchangeAdapter (2.5.14):
     - Appodeal/Core
-  - Appodeal/Banner (2.5.5):
-    - Appodeal/AdExchangeAdapter
+  - Appodeal/Banner (2.5.14):
     - Appodeal/AmazonAdsAdapter
     - Appodeal/AppLovinAdapter
+    - Appodeal/AppodealAdExchangeAdapter
     - Appodeal/FacebookAudienceAdapter
     - Appodeal/GoogleAdMobAdapter
     - Appodeal/InMobiAdapter
@@ -25,44 +25,41 @@ PODS:
     - Appodeal/SmaatoAdapter
     - Appodeal/StartAppAdapter
     - Appodeal/YandexAdapter
-  - Appodeal/ChartboostAdapter (2.5.5):
+  - Appodeal/ChartboostAdapter (2.5.14):
     - Appodeal/Core
-  - Appodeal/Core (2.5.5)
-  - Appodeal/FacebookAudienceAdapter (2.5.5):
+  - Appodeal/Core (2.5.14)
+  - Appodeal/FacebookAudienceAdapter (2.5.14):
     - Appodeal/Core
-  - Appodeal/FlurryAdapter (2.5.5):
-    - Appodeal/Core
-  - Appodeal/Full (2.5.5):
+    - FBSDKCoreKit/Basics (>= 5.6.0)
+  - Appodeal/Full (2.5.14):
     - Appodeal/Banner
     - Appodeal/Core
     - Appodeal/Interstitial
     - Appodeal/Native
     - Appodeal/Video
-  - Appodeal/GoogleAdMobAdapter (2.5.5):
+  - Appodeal/GoogleAdMobAdapter (2.5.14):
     - Appodeal/Core
-  - Appodeal/InMobiAdapter (2.5.5):
+    - Google-Mobile-Ads-SDK (>= 7.50.0)
+  - Appodeal/InMobiAdapter (2.5.14):
     - Appodeal/Core
-  - Appodeal/InnerActiveAdapter (2.5.5):
-    - Appodeal/AdExchangeAdapter
+  - Appodeal/InnerActiveAdapter (2.5.14):
+    - Appodeal/AppodealAdExchangeAdapter
     - Appodeal/Core
-  - Appodeal/Interstitial (2.5.5):
+  - Appodeal/Interstitial (2.5.14):
     - Appodeal/AmazonAdsAdapter
-    - Appodeal/FacebookAudienceAdapter
-    - Appodeal/GoogleAdMobAdapter
     - Appodeal/InMobiAdapter
     - Appodeal/Video
     - Appodeal/YandexAdapter
-  - Appodeal/IronSource (2.5.5):
+  - Appodeal/IronSourceAdapter (2.5.14):
     - Appodeal/Core
-  - Appodeal/MintegralAdapter (2.5.5):
+  - Appodeal/MintegralAdapter (2.5.14):
     - Appodeal/Core
-  - Appodeal/MyTargetAdapter (2.5.5):
+  - Appodeal/MyTargetAdapter (2.5.14):
     - Appodeal/Core
-  - Appodeal/Native (2.5.5):
-    - Appodeal/AdExchangeAdapter
+  - Appodeal/Native (2.5.14):
     - Appodeal/AppLovinAdapter
+    - Appodeal/AppodealAdExchangeAdapter
     - Appodeal/FacebookAudienceAdapter
-    - Appodeal/FlurryAdapter
     - Appodeal/GoogleAdMobAdapter
     - Appodeal/InMobiAdapter
     - Appodeal/InnerActiveAdapter
@@ -70,96 +67,111 @@ PODS:
     - Appodeal/PubnativeAdapter
     - Appodeal/SmaatoAdapter
     - Appodeal/StartAppAdapter
-  - Appodeal/OpenXAdapter (2.5.5):
-    - Appodeal/AdExchangeAdapter
+  - Appodeal/OpenXAdapter (2.5.14):
+    - Appodeal/AppodealAdExchangeAdapter
     - Appodeal/Core
-  - Appodeal/PubnativeAdapter (2.5.5):
-    - Appodeal/AdExchangeAdapter
+  - Appodeal/PubnativeAdapter (2.5.14):
+    - Appodeal/AppodealAdExchangeAdapter
     - Appodeal/Core
-  - Appodeal/SmaatoAdapter (2.5.5):
-    - Appodeal/AdExchangeAdapter
+  - Appodeal/SmaatoAdapter (2.5.14):
+    - Appodeal/AppodealAdExchangeAdapter
     - Appodeal/Core
-  - Appodeal/StartAppAdapter (2.5.5):
+  - Appodeal/StartAppAdapter (2.5.14):
     - Appodeal/Core
-  - Appodeal/TapjoyAdapter (2.5.5):
+  - Appodeal/UnityAdapter (2.5.14):
     - Appodeal/Core
-  - Appodeal/UnityAdapter (2.5.5):
-    - Appodeal/Core
-  - Appodeal/Video (2.5.5):
+  - Appodeal/Video (2.5.14):
     - Appodeal/AdColonyAdapter
-    - Appodeal/AdExchangeAdapter
     - Appodeal/AppLovinAdapter
+    - Appodeal/AppodealAdExchangeAdapter
     - Appodeal/ChartboostAdapter
+    - Appodeal/FacebookAudienceAdapter
+    - Appodeal/GoogleAdMobAdapter
     - Appodeal/InMobiAdapter
     - Appodeal/InnerActiveAdapter
-    - Appodeal/IronSource
+    - Appodeal/IronSourceAdapter
     - Appodeal/MintegralAdapter
     - Appodeal/MyTargetAdapter
     - Appodeal/OpenXAdapter
     - Appodeal/SmaatoAdapter
     - Appodeal/StartAppAdapter
-    - Appodeal/TapjoyAdapter
     - Appodeal/UnityAdapter
     - Appodeal/VungleAdapter
-  - Appodeal/VungleAdapter (2.5.5):
-    - Appodeal/AdExchangeAdapter
+  - Appodeal/VungleAdapter (2.5.14):
+    - Appodeal/AppodealAdExchangeAdapter
     - Appodeal/Core
-  - Appodeal/YandexAdapter (2.5.5):
+  - Appodeal/YandexAdapter (2.5.14):
     - Appodeal/Core
-  - DeepDiff (2.2.0)
-  - Firebase/Core (6.5.0):
+  - DeepDiff (2.3.1)
+  - FBSDKCoreKit/Basics (5.13.1)
+  - Firebase/Core (6.14.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.0.4)
-  - Firebase/CoreOnly (6.5.0):
-    - FirebaseCore (= 6.1.0)
-  - Firebase/Database (6.5.0):
+    - FirebaseAnalytics (= 6.1.7)
+  - Firebase/CoreOnly (6.14.0):
+    - FirebaseCore (= 6.5.0)
+  - Firebase/Database (6.14.0):
     - Firebase/CoreOnly
-    - FirebaseDatabase (~> 6.0.0)
-  - FirebaseAnalytics (6.0.4):
-    - FirebaseCore (~> 6.1)
+    - FirebaseDatabase (~> 6.1.3)
+  - FirebaseAnalytics (6.1.7):
+    - FirebaseCore (~> 6.5)
     - FirebaseInstanceID (~> 4.2)
-    - GoogleAppMeasurement (= 6.0.4)
+    - GoogleAppMeasurement (= 6.1.7)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (~> 0.3)
+    - nanopb (= 0.3.9011)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (6.1.0):
-    - GoogleUtilities/Environment (~> 6.0)
-    - GoogleUtilities/Logger (~> 6.0)
-  - FirebaseDatabase (6.0.0):
+  - FirebaseCore (6.5.0):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.4)
+    - GoogleUtilities/Logger (~> 6.4)
+  - FirebaseCoreDiagnostics (1.1.2):
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+    - nanopb (~> 0.3.901)
+  - FirebaseCoreDiagnosticsInterop (1.1.0)
+  - FirebaseDatabase (6.1.3):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
-    - leveldb-library (~> 1.18)
-  - FirebaseInstanceID (4.2.2):
-    - FirebaseCore (~> 6.0)
-    - GoogleUtilities/Environment (~> 6.0)
-    - GoogleUtilities/UserDefaults (~> 6.0)
+    - leveldb-library (~> 1.22)
+  - FirebaseInstanceID (4.2.8):
+    - FirebaseCore (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.4)
+    - GoogleUtilities/UserDefaults (~> 6.4)
   - FLAnimatedImage (1.0.14)
-  - GoogleAppMeasurement (6.0.4):
+  - Google-Mobile-Ads-SDK (7.53.1):
+    - GoogleAppMeasurement (~> 6.0)
+  - GoogleAppMeasurement (6.1.7):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (6.2.3):
+    - nanopb (= 0.3.9011)
+  - GoogleDataTransport (3.2.0)
+  - GoogleDataTransportCCTSupport (1.2.3):
+    - GoogleDataTransport (~> 3.2)
+    - nanopb (~> 0.3.901)
+  - GoogleUtilities/AppDelegateSwizzler (6.4.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.2.3)
-  - GoogleUtilities/Logger (6.2.3):
+  - GoogleUtilities/Environment (6.4.0)
+  - GoogleUtilities/Logger (6.4.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.2.3):
+  - GoogleUtilities/MethodSwizzler (6.4.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.2.3):
+  - GoogleUtilities/Network (6.4.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.2.3)"
-  - GoogleUtilities/Reachability (6.2.3):
+  - "GoogleUtilities/NSData+zlib (6.4.0)"
+  - GoogleUtilities/Reachability (6.4.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.2.3):
+  - GoogleUtilities/UserDefaults (6.4.0):
     - GoogleUtilities/Logger
   - KafkaRefresh (1.4.7):
     - KafkaRefresh/Category (= 1.4.7)
@@ -196,7 +208,7 @@ PODS:
   - KafkaRefresh/UIKit/LayerKit (1.4.7):
     - KafkaRefresh/Category
     - KafkaRefresh/Default
-  - leveldb-library (1.20)
+  - leveldb-library (1.22)
   - libnestegg (0.3)
   - libogg (1.3.3)
   - libopus (1.1):
@@ -206,11 +218,11 @@ PODS:
     - libogg (>= 1.0)
   - libvpx (1.7.0)
   - lottie-ios (3.1.0)
-  - nanopb (0.3.901):
-    - nanopb/decode (= 0.3.901)
-    - nanopb/encode (= 0.3.901)
-  - nanopb/decode (0.3.901)
-  - nanopb/encode (0.3.901)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
   - Nantes (0.0.8)
   - Nuke (8.0)
   - Nuke-FLAnimatedImage-Plugin (6.2):
@@ -243,7 +255,7 @@ PODS:
   - OGVKit/WebMDemuxer (0.5.13):
     - libnestegg (~> 0.2)
     - OGVKit/Core
-  - PureLayout (3.1.4)
+  - PureLayout (3.1.5)
   - QuickLayout (3.0.0)
   - SnapKit (4.2.0)
   - SwiftEntryKit (1.0.2):
@@ -253,7 +265,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - Appodeal (= 2.5.5)
+  - Appodeal
   - DeepDiff
   - Firebase/Core
   - Firebase/Database
@@ -276,17 +288,23 @@ SPEC REPOS:
     - libogg
     - libvorbis
     - libvpx
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Appodeal
     - DeepDiff
+    - FBSDKCoreKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuthInterop
     - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
     - FirebaseDatabase
     - FirebaseInstanceID
+    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - KafkaRefresh
     - leveldb-library
@@ -342,38 +360,44 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Semty/MP4
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Appodeal: 7abe1818a399276f0de6284ad509fca3c5fbc6af
-  DeepDiff: e329bc46dd14ca788d8ec08d34420799ba1d77f2
-  Firebase: dedc9e48ea3f3649ad5f6b982f8a0c73508a14b5
-  FirebaseAnalytics: 3fb375bc9d13779add4039716f868d233a473fad
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Appodeal: dda1f27911cf08c34ec487efae883fba76670c56
+  DeepDiff: e5ae6c50d0321568e4508cec5930b9f10bb293fc
+  FBSDKCoreKit: 8fb98209109fb684937f05d534305edb18c20207
+  Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
+  FirebaseAnalytics: f68b9f3f1241385129ae0a83b63627fc420c05e5
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: aecf02fb2274ec361b9bebeac112f5daa18273bd
-  FirebaseDatabase: f48e067716864be2b855cf716b927ef375d6cfa0
-  FirebaseInstanceID: 662b8108a09fe9ed01aafdedba100fde8536b0f6
+  FirebaseCore: 632e05cc5e1199d9147122c16d92305eb04c34bd
+  FirebaseCoreDiagnostics: 511f4f3ed7d440bb69127e8b97c2bc8befae639e
+  FirebaseCoreDiagnosticsInterop: e9b1b023157e3a2fc6418b5cb601e79b9af7b3a0
+  FirebaseDatabase: 9db0c9bb6d3308870cc831a8a6d70c82fd169f37
+  FirebaseInstanceID: ce993a3c3670a8f5d47ce371ac5d143c560608c5
   FLAnimatedImage: 58084d75cec819869a5ee8c76463df798dbaa906
-  GoogleAppMeasurement: 183bd916af7f80deb67c01888368f1108d641832
-  GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
+  Google-Mobile-Ads-SDK: fac081606dbd438d8db57198b83ba8b5f875a601
+  GoogleAppMeasurement: db118eb61a97dd8c4f7014e368d3c335cbbcf80a
+  GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
+  GoogleDataTransportCCTSupport: 202d7cdf9c4a7d81a2bb7f7e7e1ba6faa421b1f2
+  GoogleUtilities: 29bd0d8f850efbd28cff6d99e8b7da1f8d236bcf
   KafkaRefresh: a7962ea8f03f384c1b545d8c27ac419aa0d5b055
-  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   libnestegg: 851afa1dc38c810bb18fa6459c39aa124abd7fc0
   libogg: 35e313159a7270931d0f0f208c2d5f60bc05399b
   libopus: ad5f060dcb8f30f139777244d70f9111f1c80863
   libvorbis: b2c6a2c2bb22447d80403981185b213cf688fae7
   libvpx: 5abeaf729fa406fd65ae1c19adcf00329c40e02a
   lottie-ios: 9467723922dfff46f6d4e3019c32594a62440b7c
-  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Nantes: 94a2e0c0b8207f12694f4ff6d96bf670adad3e27
   Nuke: 8d90f1dbf88d27a7ba6ff3934de01693812e5adb
   Nuke-FLAnimatedImage-Plugin: c6e8f6cffd57659953a149ff1682370b9040d09d
   OGVKit: 46e30d4b1f06e179b1f254c92604bfd6c4b8338c
-  PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
+  PureLayout: 9b4ad47b2f0388c84ff534af23d96e720c1b875a
   QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftEntryKit: 2e20ae0608f50ad8c9cb79341e422c1c374b182f
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   VersaPlayer: 4c078dfd2c99c7c934b456cf6d47aefd747afa52
 
-PODFILE CHECKSUM: c9aafd36fd24d3c66c98c8b7cc228b50fb52e043
+PODFILE CHECKSUM: b450b32d9fe2cef9213e9a1a9232abd984353680
 
-COCOAPODS: 1.7.3
+COCOAPODS: 1.8.4

@@ -97,14 +97,12 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "${PODS_ROOT}/Appodeal/APDAppLovinAdapter.embeddedframework/Resources/AppLovinSDKResources.bundle"
   install_resource "${PODS_ROOT}/Appodeal/APDStartAppAdapter.embeddedframework/Resources/StartApp.bundle"
-  install_resource "${PODS_ROOT}/Appodeal/APDTapjoyAdapter.embeddedframework/Tapjoy.framework/Resources/en.lproj"
-  install_resource "${PODS_ROOT}/Appodeal/APDTapjoyAdapter.embeddedframework/Tapjoy.framework/Resources/TapjoyResources.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "${PODS_ROOT}/Appodeal/APDAppLovinAdapter.embeddedframework/Resources/AppLovinSDKResources.bundle"
   install_resource "${PODS_ROOT}/Appodeal/APDStartAppAdapter.embeddedframework/Resources/StartApp.bundle"
-  install_resource "${PODS_ROOT}/Appodeal/APDTapjoyAdapter.embeddedframework/Tapjoy.framework/Resources/en.lproj"
-  install_resource "${PODS_ROOT}/Appodeal/APDTapjoyAdapter.embeddedframework/Tapjoy.framework/Resources/TapjoyResources.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
