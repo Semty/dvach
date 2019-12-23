@@ -166,7 +166,10 @@ final class PostViewController: UIViewController {
         placeholder.isHidden = true
         
         view.addSubview(closeButton)
-        closeButton.snp.makeConstraints { $0.top.trailing.equalToSuperview().inset(CGFloat.inset16) }
+        closeButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(CGFloat.inset16)
+            $0.top.equalToSuperview().inset(CGFloat.inset40)
+        }
         
         view.addSubview(scrollButton)
         scrollButton.snp.makeConstraints { $0.bottom.trailing.equalToSuperview().inset(CGFloat.inset16) }

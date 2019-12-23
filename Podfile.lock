@@ -265,7 +265,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - Appodeal
+  - Appodeal (= 2.5.14)
   - DeepDiff
   - Firebase/Core
   - Firebase/Database
@@ -288,7 +288,7 @@ SPEC REPOS:
     - libogg
     - libvorbis
     - libvpx
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - Appodeal
     - DeepDiff
@@ -398,6 +398,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   VersaPlayer: 4c078dfd2c99c7c934b456cf6d47aefd747afa52
 
-PODFILE CHECKSUM: b450b32d9fe2cef9213e9a1a9232abd984353680
+PODFILE CHECKSUM: a6cd24003f9a1b5becfd1f31a12ea48e085dc8a8
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.7.3
