@@ -76,9 +76,6 @@
 		41908A2422BE8F6C0058907D /* ConnectUsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41908A2322BE8F6C0058907D /* ConnectUsView.xib */; };
 		41908A2622BEA3100058907D /* ShownBoards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A2522BEA3100058907D /* ShownBoards.swift */; };
 		41908A2822BF91DA0058907D /* Extension+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A2722BF91DA0058907D /* Extension+UIApplication.swift */; };
-		41908A2A22BF9C190058907D /* ContextAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A2922BF9C190058907D /* ContextAddView.swift */; };
-		41908A2C22BF9EE80058907D /* ContextAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41908A2B22BF9EE80058907D /* ContextAddView.xib */; };
-		41908A3122BFFA6F0058907D /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908A3022BFFA6F0058907D /* AdManager.swift */; };
 		4193B1B122AA4EF700EE25FD /* CategoriesSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */; };
 		4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */; };
 		4193B1B522AA548200EE25FD /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B1B422AA548200EE25FD /* UIView+Animations.swift */; };
@@ -232,7 +229,6 @@
 		D5D37B3522B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D37B3422B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift */; };
 		D5D37B3822B2790C00CDEBA2 /* SkeletonThreadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D37B3722B2790C00CDEBA2 /* SkeletonThreadView.xib */; };
 		D5D37B3A22B2835D00CDEBA2 /* SkeletonThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */; };
-		D5DA35E522F23CA2007E328C /* AdDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA35E422F23CA2007E328C /* AdDownloader.swift */; };
 		D5E4733E22A937980055AB92 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E4733D22A937970055AB92 /* Post.swift */; };
 		D5E4734022A941990055AB92 /* ThreadWithPostsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */; };
 		D5EB334B22EAF50C00F56AE9 /* extension+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EB334A22EAF50C00F56AE9 /* extension+UIAlertController.swift */; };
@@ -323,9 +319,6 @@
 		41908A2322BE8F6C0058907D /* ConnectUsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectUsView.xib; sourceTree = "<group>"; };
 		41908A2522BEA3100058907D /* ShownBoards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShownBoards.swift; sourceTree = "<group>"; };
 		41908A2722BF91DA0058907D /* Extension+UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIApplication.swift"; sourceTree = "<group>"; };
-		41908A2922BF9C190058907D /* ContextAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextAddView.swift; sourceTree = "<group>"; };
-		41908A2B22BF9EE80058907D /* ContextAddView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextAddView.xib; sourceTree = "<group>"; };
-		41908A3022BFFA6F0058907D /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		4193B1B022AA4EF700EE25FD /* CategoriesSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSkeletonView.swift; sourceTree = "<group>"; };
 		4193B1B222AA4F2700EE25FD /* CategoriesSkeletonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesSkeletonView.xib; sourceTree = "<group>"; };
 		4193B1B422AA548200EE25FD /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -488,7 +481,6 @@
 		D5D37B3422B268E600CDEBA2 /* BoardWithPerPageThreadsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWithPerPageThreadsRequest.swift; sourceTree = "<group>"; };
 		D5D37B3722B2790C00CDEBA2 /* SkeletonThreadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkeletonThreadView.xib; sourceTree = "<group>"; };
 		D5D37B3922B2835D00CDEBA2 /* SkeletonThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonThreadView.swift; sourceTree = "<group>"; };
-		D5DA35E422F23CA2007E328C /* AdDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDownloader.swift; sourceTree = "<group>"; };
 		D5E4733D22A937970055AB92 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D5E4733F22A941990055AB92 /* ThreadWithPostsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithPostsRequest.swift; sourceTree = "<group>"; };
 		D5EB334A22EAF50C00F56AE9 /* extension+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UIAlertController.swift"; sourceTree = "<group>"; };
@@ -790,15 +782,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		41908A2D22BFFA460058907D /* AdManager */ = {
-			isa = PBXGroup;
-			children = (
-				41908A3022BFFA6F0058907D /* AdManager.swift */,
-				D5DA35E422F23CA2007E328C /* AdDownloader.swift */,
-			);
-			path = AdManager;
-			sourceTree = "<group>";
-		};
 		4193B1AF22AA4ED000EE25FD /* Skeleton */ = {
 			isa = PBXGroup;
 			children = (
@@ -827,7 +810,6 @@
 			children = (
 				D50ED80322D7444200A655E9 /* PostCommentWithMediaView.swift */,
 				D50ED80522D744A200A655E9 /* PostCommentWithoutMediaView.swift */,
-				41A7F81622D2073C00A52700 /* Ad */,
 				41A7F81522D2072200A52700 /* Buttons */,
 				41A7F81722D2076300A52700 /* Galery */,
 				41A7F81422D2070900A52700 /* Header */,
@@ -947,15 +929,6 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
-		41A7F81622D2073C00A52700 /* Ad */ = {
-			isa = PBXGroup;
-			children = (
-				41908A2922BF9C190058907D /* ContextAddView.swift */,
-				41908A2B22BF9EE80058907D /* ContextAddView.xib */,
-			);
-			path = Ad;
-			sourceTree = "<group>";
-		};
 		41A7F81722D2076300A52700 /* Galery */ = {
 			isa = PBXGroup;
 			children = (
@@ -1036,7 +1009,6 @@
 			children = (
 				41BEE738229F04550028EBFB /* Locator.swift */,
 				D5361BA522E1D75E003C89EC /* NSFWDetector */,
-				41908A2D22BFFA460058907D /* AdManager */,
 				D528DE3522BB723B008A27D9 /* DTPhotoViewerController */,
 				D5B7093322F9E14000686E62 /* ProfanityCensor */,
 				D58ADB9F22AC271B00A8334B /* TextParser */,
@@ -1613,7 +1585,6 @@
 				41BEE6CC229EFE720028EBFB /* Frameworks */,
 				41BEE6CD229EFE720028EBFB /* Resources */,
 				8F41E6E7C2CBB23C75C112C7 /* [CP] Embed Pods Frameworks */,
-				A5D021B04AE37AC869B3AE74 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1700,7 +1671,6 @@
 				41741D6722F5F48400E5C434 /* EULAOfferViewController.xib in Resources */,
 				419089FF22BACE6A0058907D /* LaunchView.xib in Resources */,
 				41908A2422BE8F6C0058907D /* ConnectUsView.xib in Resources */,
-				41908A2C22BF9EE80058907D /* ContextAddView.xib in Resources */,
 				4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */,
 				419089F822BAB5BF0058907D /* ContentSettingsView.xib in Resources */,
 				D5A69D5022A2FDA800C46E24 /* ThreadWithoutImageView.xib in Resources */,
@@ -1765,23 +1735,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dvach/Pods-dvach-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A5D021B04AE37AC869B3AE74 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dvach/Pods-dvach-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dvach/Pods-dvach-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dvach/Pods-dvach-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A7A2F2DAB59B53BE346D2F22 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1828,14 +1781,12 @@
 				D504B6ED22B946F9007C93B1 /* Extension+UIDevice.swift in Sources */,
 				41BEE723229F043C0028EBFB /* UView+NibAwakable.swift in Sources */,
 				D5039F1B22EA03460023BCA5 /* ReportRequest.swift in Sources */,
-				41908A3122BFFA6F0058907D /* AdManager.swift in Sources */,
 				4144089F22A04AC400E4E53E /* DvachService.swift in Sources */,
 				41BEE73D229F04550028EBFB /* Locator.swift in Sources */,
 				D528DE5822BBD532008A27D9 /* HorizontalMoreButton.swift in Sources */,
 				41A7F81C22D2091400A52700 /* RepliesPresenter.swift in Sources */,
 				41908A1022BE74120058907D /* AboutViewController.swift in Sources */,
 				41BEE722229F043C0028EBFB /* Extension+UIImage.swift in Sources */,
-				41908A2A22BF9C190058907D /* ContextAddView.swift in Sources */,
 				4117534F22A2F22B008EBD2A /* CategoriesCardView.swift in Sources */,
 				41BEE71B229F043C0028EBFB /* IStorage.swift in Sources */,
 				D5D37B3A22B2835D00CDEBA2 /* SkeletonThreadView.swift in Sources */,
@@ -1874,7 +1825,6 @@
 				D5F7300B22D2618A008F7CB8 /* Extension+VersaPlayerControls.swift in Sources */,
 				D528DE4822BB723B008A27D9 /* Helper.swift in Sources */,
 				41BEE72D229F043C0028EBFB /* Extension+String.swift in Sources */,
-				D5DA35E522F23CA2007E328C /* AdDownloader.swift in Sources */,
 				D59E39DE22E39A34007F65AD /* SynchronizedArray.swift in Sources */,
 				41D38A6522B51968000D1391 /* DvachItem.swift in Sources */,
 				41741D7222F9F03700E5C434 /* BadWordsString.swift in Sources */,
@@ -2161,8 +2111,9 @@
 			baseConfigurationReference = 4274A55E1D343EF270BE19BF /* Pods-dvach.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = ZTRS68H53M;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = dvach/Info.plist;
@@ -2173,7 +2124,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DvachDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "dvach/dvach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2185,8 +2136,9 @@
 			baseConfigurationReference = 969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = ZTRS68H53M;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = dvach/Info.plist;
@@ -2197,7 +2149,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DvachDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "dvach/dvach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

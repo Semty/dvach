@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Appodeal
 import SafariServices
 import DeepDiff
 
@@ -40,13 +39,6 @@ final class PostPresenter {
     private var router: IPostRouter
     private let dvachService = Locator.shared.dvachService()
     private let appSettingsStorage = Locator.shared.appSettingsStorage()
-    private lazy var adManager: IAdManager = {
-        let numberOfNativeAds: Int = .maxAdCount
-        let manager = Locator.shared.createAdManager(numberOfNativeAds: numberOfNativeAds,
-                                                     viewController: view)
-        manager.delegate = self
-        return manager
-    }()
     
     // Semaphore for resolving the issue with ad inserting and data update
     public lazy var adInsertingSemaphore: DispatchSemaphore = {
@@ -130,15 +122,6 @@ final class PostPresenter {
                     self.posts = enrichedPosts
                     
                     if !fullReload {
-                        // Достаем рекламные ячейки и перекидываем их в новый дата сорс
-                        for indexPath in self.adIndexPaths {
-                            if let adCellModel = self.dataSource[indexPath.row],
-                                adCellModel.isAd {
-                                synchronizedDataSource.insert(adCellModel,
-                                                              at: indexPath.row)
-                            }
-                        }
-                        
                         // Находим, какие ячейки изменились
                         let changes = diff(old: self.dataSource.array ?? [],
                                            new: synchronizedDataSource.array ?? [])
@@ -228,8 +211,7 @@ extension PostPresenter: IPostPresenter {
     func viewDidLoad() {
         showRateOfferIfNeeded()
         loadPost(fullReload: true,
-                 completion:
-            { [weak self] newDataSource, changes in
+                 completion: { [weak self] newDataSource, changes in
                 guard let self = self else { return }
                 let scrollIndexPath = self.scrollIndexPath(for: newDataSource)
                 DispatchQueue.main.async {
@@ -240,11 +222,6 @@ extension PostPresenter: IPostPresenter {
                                             self?.dataSource = newDataSource
                     })
                 }
-                // Грузим рекламу не сразу, а рандомно через промежуток от 1 до 5 секунд
-                DispatchQueue.global().asyncAfter(deadline: .now() + Double.random(in: 1...2.5),
-                                                  execute: { [weak self] in
-                                                    self?.adManager.loadNativeAd()
-                })
         }) { [weak self] error in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -321,69 +298,5 @@ extension PostPresenter: IPostPresenter {
                                thread: thread,
                                boardId: boardIdentifier,
                                row: post.rowIndex)
-    }
-}
-
-// MARK: - AdManagerDelegate
-
-extension PostPresenter: AdManagerDelegate {
-    
-    func adManagerDidCreateNativeAdView(_ view: AdView) {
-        guard let adView = view as? ContextAddView else { return }
-        // Присвоим рекламе уникальный идентификационный номер, чтобы не обновлять ячейку лишний раз
-        adView.configure(with: ContextAddView.Model(id: UUID().uuidString))
-
-        let dataSourceCount = dataSource.count
-        let lastVisibleRow = self.view?.lastVisibleRow ?? 0
-        
-        adInsertingQueue.async { [weak self] in
-            guard let self = self else { return }
-            
-            print("\nAD MANAGER WAIT\n")
-            self.adInsertingSemaphore.wait()
-            print("\nAD MANAGER CONTINUE\n")
-            
-            var incrementor = 1
-            var insertAt = ((self.numberOfAds + incrementor) * .adPeriod) + self.numberOfAds
-            
-            // Изначально пытаемся вставить рекламу так, чтобы пользователь этого не увидел
-            while insertAt <= lastVisibleRow {
-                incrementor += 1
-                insertAt = ((self.numberOfAds + incrementor) * .adPeriod) + self.numberOfAds
-                if insertAt > dataSourceCount {
-                    // Если так сделать нельзя, то вставляем в последнюю ячейку
-                    insertAt = dataSourceCount
-                    break
-                }
-            }
-            
-            if insertAt > dataSourceCount {
-                insertAt = dataSourceCount
-            }
-            
-            let newDataSource = WriteLockableSynchronizedArray(with: self.dataSource.array ?? [])
-            var adIndexPaths = [IndexPath]()
-            
-            if dataSourceCount >= insertAt {
-                adIndexPaths.append(IndexPath(row: insertAt,
-                                              section: 0))
-                newDataSource.insert(.ad(adView), at: insertAt)
-                self.numberOfAds += 1
-            }
-            
-            self.adIndexPaths.append(contentsOf: adIndexPaths)
-            
-            let changes = diff(old: self.dataSource.array ?? [],
-                               new: newDataSource.array ?? [])
-            
-            DispatchQueue.main.async {
-                self.view?.updateTable(changes: changes,
-                                       scrollTo: nil,
-                                       signalAdSemaphore: true,
-                                       completion: { [weak self] in
-                                        self?.dataSource = newDataSource
-                })
-            }
-        }
     }
 }

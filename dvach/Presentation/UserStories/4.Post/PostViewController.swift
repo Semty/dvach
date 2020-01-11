@@ -66,7 +66,6 @@ final class PostViewController: UIViewController {
         tableView.delegate = self
         tableView.register(PostCommentWithMediaCell.self)
         tableView.register(PostCommentWithoutMediaCell.self)
-        tableView.register(ContextAdCell.self)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
         tableView.tableFooterView = UIView()
@@ -332,13 +331,6 @@ extension PostViewController: UITableViewDataSource {
                     }
                     return cell
                 }
-                
-            case .ad(let adView):
-                let cell: ContextAdCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.prepareForReuse()
-                cell.containedView.addSubview(adView)
-                adView.snp.makeConstraints { $0.edges.equalToSuperview() }
-                return cell
             }
         } else {
             return UITableViewCell()

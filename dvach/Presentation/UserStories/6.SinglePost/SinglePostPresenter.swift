@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Appodeal
 import SafariServices
 
 protocol ISinglePostPresenter {
@@ -28,12 +27,6 @@ final class SinglePostPresenter: NSObject {
     private let actionSheetFactory = PostBottomSheetFactory()
     private let dvachService = Locator.shared.dvachService()
     private let mediaViewerManager = MediaViewerManager()
-    private lazy var adManager: IAdManager = {
-        let manager = Locator.shared.createAdManager(numberOfNativeAds: 1,
-                                                     viewController: view)
-        manager.delegate = self
-        return manager
-    }()
     
     // Properties
     public var postFilesIsEmpty: Bool {
@@ -41,8 +34,6 @@ final class SinglePostPresenter: NSObject {
     }
     
     private let post: Post
-    private lazy var adQueue = APDNativeAdQueue()
-    private var queueLoaded = false
     
     // MARK: - Initialization
     
@@ -77,7 +68,6 @@ final class SinglePostPresenter: NSObject {
 extension SinglePostPresenter: ISinglePostPresenter {
     
     func viewDidLoad() {
-        adManager.loadNativeAd()
         view?.configure(model: createModel())
     }
     
@@ -128,14 +118,5 @@ extension SinglePostPresenter: ISinglePostPresenter {
                                                           imageIndex: index)
         guard let mediaController = mediaViewerManager.mediaViewer(source: mediaViewerSource) else { return }
         view?.present(mediaController, animated: true, completion: nil)
-    }
-}
-
-// MARK: - AdManagerDelegate
-
-extension SinglePostPresenter: AdManagerDelegate {
-    
-    func adManagerDidCreateNativeAdView(_ view: AdView) {
-        self.view?.addAdvertisingView(view)
     }
 }

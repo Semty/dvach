@@ -7,12 +7,10 @@
 //
 
 import Foundation
-import Appodeal
 import SafariServices
 
 protocol SinglePostView: AnyObject, SFSafariViewControllerDelegate {
     func configure(model: PostCommentViewModel)
-    func addAdvertisingView(_ view: AdView)
 }
 
 final class SinglePostViewController: UIViewController {
@@ -115,14 +113,6 @@ extension SinglePostViewController: SinglePostView {
     
     func configure(model: PostCommentViewModel) {
         postView.configure(with: model)
-    }
-    
-    func addAdvertisingView(_ view: AdView) {
-        view.alpha = 0.0
-        stackView.addView(view)
-        UIView.animate(withDuration: 0.75) {
-            view.alpha = 1.0
-        }
     }
 }
 

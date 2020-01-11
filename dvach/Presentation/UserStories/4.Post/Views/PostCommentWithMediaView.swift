@@ -8,7 +8,6 @@
 
 import Foundation
 import Nantes
-import Appodeal
 
 typealias PostCommentWithMediaCell = TableViewContainerCellBase<PostCommentWithMediaView>
 

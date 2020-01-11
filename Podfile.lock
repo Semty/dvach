@@ -1,109 +1,6 @@
 PODS:
   - Alamofire (4.9.1)
-  - Appodeal (2.5.14):
-    - Appodeal/Full (= 2.5.14)
-  - Appodeal/AdColonyAdapter (2.5.14):
-    - Appodeal/AppodealAdExchangeAdapter
-    - Appodeal/Core
-  - Appodeal/AmazonAdsAdapter (2.5.14):
-    - Appodeal/Core
-  - Appodeal/AppLovinAdapter (2.5.14):
-    - Appodeal/AppodealAdExchangeAdapter
-    - Appodeal/Core
-  - Appodeal/AppodealAdExchangeAdapter (2.5.14):
-    - Appodeal/Core
-  - Appodeal/Banner (2.5.14):
-    - Appodeal/AmazonAdsAdapter
-    - Appodeal/AppLovinAdapter
-    - Appodeal/AppodealAdExchangeAdapter
-    - Appodeal/FacebookAudienceAdapter
-    - Appodeal/GoogleAdMobAdapter
-    - Appodeal/InMobiAdapter
-    - Appodeal/InnerActiveAdapter
-    - Appodeal/MyTargetAdapter
-    - Appodeal/OpenXAdapter
-    - Appodeal/SmaatoAdapter
-    - Appodeal/StartAppAdapter
-    - Appodeal/YandexAdapter
-  - Appodeal/ChartboostAdapter (2.5.14):
-    - Appodeal/Core
-  - Appodeal/Core (2.5.14)
-  - Appodeal/FacebookAudienceAdapter (2.5.14):
-    - Appodeal/Core
-    - FBSDKCoreKit/Basics (>= 5.6.0)
-  - Appodeal/Full (2.5.14):
-    - Appodeal/Banner
-    - Appodeal/Core
-    - Appodeal/Interstitial
-    - Appodeal/Native
-    - Appodeal/Video
-  - Appodeal/GoogleAdMobAdapter (2.5.14):
-    - Appodeal/Core
-    - Google-Mobile-Ads-SDK (>= 7.50.0)
-  - Appodeal/InMobiAdapter (2.5.14):
-    - Appodeal/Core
-  - Appodeal/InnerActiveAdapter (2.5.14):
-    - Appodeal/AppodealAdExchangeAdapter
-    - Appodeal/Core
-  - Appodeal/Interstitial (2.5.14):
-    - Appodeal/AmazonAdsAdapter
-    - Appodeal/InMobiAdapter
-    - Appodeal/Video
-    - Appodeal/YandexAdapter
-  - Appodeal/IronSourceAdapter (2.5.14):
-    - Appodeal/Core
-  - Appodeal/MintegralAdapter (2.5.14):
-    - Appodeal/Core
-  - Appodeal/MyTargetAdapter (2.5.14):
-    - Appodeal/Core
-  - Appodeal/Native (2.5.14):
-    - Appodeal/AppLovinAdapter
-    - Appodeal/AppodealAdExchangeAdapter
-    - Appodeal/FacebookAudienceAdapter
-    - Appodeal/GoogleAdMobAdapter
-    - Appodeal/InMobiAdapter
-    - Appodeal/InnerActiveAdapter
-    - Appodeal/MyTargetAdapter
-    - Appodeal/PubnativeAdapter
-    - Appodeal/SmaatoAdapter
-    - Appodeal/StartAppAdapter
-  - Appodeal/OpenXAdapter (2.5.14):
-    - Appodeal/AppodealAdExchangeAdapter
-    - Appodeal/Core
-  - Appodeal/PubnativeAdapter (2.5.14):
-    - Appodeal/AppodealAdExchangeAdapter
-    - Appodeal/Core
-  - Appodeal/SmaatoAdapter (2.5.14):
-    - Appodeal/AppodealAdExchangeAdapter
-    - Appodeal/Core
-  - Appodeal/StartAppAdapter (2.5.14):
-    - Appodeal/Core
-  - Appodeal/UnityAdapter (2.5.14):
-    - Appodeal/Core
-  - Appodeal/Video (2.5.14):
-    - Appodeal/AdColonyAdapter
-    - Appodeal/AppLovinAdapter
-    - Appodeal/AppodealAdExchangeAdapter
-    - Appodeal/ChartboostAdapter
-    - Appodeal/FacebookAudienceAdapter
-    - Appodeal/GoogleAdMobAdapter
-    - Appodeal/InMobiAdapter
-    - Appodeal/InnerActiveAdapter
-    - Appodeal/IronSourceAdapter
-    - Appodeal/MintegralAdapter
-    - Appodeal/MyTargetAdapter
-    - Appodeal/OpenXAdapter
-    - Appodeal/SmaatoAdapter
-    - Appodeal/StartAppAdapter
-    - Appodeal/UnityAdapter
-    - Appodeal/VungleAdapter
-  - Appodeal/VungleAdapter (2.5.14):
-    - Appodeal/AppodealAdExchangeAdapter
-    - Appodeal/Core
-  - Appodeal/YandexAdapter (2.5.14):
-    - Appodeal/Core
   - DeepDiff (2.3.1)
-  - FBSDKCoreKit/Basics (5.13.1)
   - Firebase/Core (6.14.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.1.7)
@@ -143,8 +40,6 @@ PODS:
     - GoogleUtilities/Environment (~> 6.4)
     - GoogleUtilities/UserDefaults (~> 6.4)
   - FLAnimatedImage (1.0.14)
-  - Google-Mobile-Ads-SDK (7.53.1):
-    - GoogleAppMeasurement (~> 6.0)
   - GoogleAppMeasurement (6.1.7):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -265,7 +160,6 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - Appodeal (= 2.5.14)
   - DeepDiff
   - Firebase/Core
   - Firebase/Database
@@ -290,9 +184,7 @@ SPEC REPOS:
     - libvpx
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - Appodeal
     - DeepDiff
-    - FBSDKCoreKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuthInterop
@@ -301,7 +193,6 @@ SPEC REPOS:
     - FirebaseCoreDiagnosticsInterop
     - FirebaseDatabase
     - FirebaseInstanceID
-    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
@@ -361,9 +252,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  Appodeal: dda1f27911cf08c34ec487efae883fba76670c56
   DeepDiff: e5ae6c50d0321568e4508cec5930b9f10bb293fc
-  FBSDKCoreKit: 8fb98209109fb684937f05d534305edb18c20207
   Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
   FirebaseAnalytics: f68b9f3f1241385129ae0a83b63627fc420c05e5
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
@@ -373,7 +262,6 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 9db0c9bb6d3308870cc831a8a6d70c82fd169f37
   FirebaseInstanceID: ce993a3c3670a8f5d47ce371ac5d143c560608c5
   FLAnimatedImage: 58084d75cec819869a5ee8c76463df798dbaa906
-  Google-Mobile-Ads-SDK: fac081606dbd438d8db57198b83ba8b5f875a601
   GoogleAppMeasurement: db118eb61a97dd8c4f7014e368d3c335cbbcf80a
   GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
   GoogleDataTransportCCTSupport: 202d7cdf9c4a7d81a2bb7f7e7e1ba6faa421b1f2
@@ -398,6 +286,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   VersaPlayer: 4c078dfd2c99c7c934b456cf6d47aefd747afa52
 
-PODFILE CHECKSUM: a6cd24003f9a1b5becfd1f31a12ea48e085dc8a8
+PODFILE CHECKSUM: 1a04ce30310268ea656233b578109d4ef65ebeb4
 
 COCOAPODS: 1.7.3

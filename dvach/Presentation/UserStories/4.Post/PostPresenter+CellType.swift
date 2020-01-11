@@ -13,23 +13,11 @@ extension PostPresenter {
     
     enum CellType: DiffAware {
         case post(PostCommentViewModel)
-        case ad(ContextAddView)
         
         var postNumber: String? {
             switch self {
             case .post(let model):
                 return model.postNumber
-            default:
-                return nil
-            }
-        }
-        
-        var isAd: Bool {
-            switch self {
-            case .ad:
-                return true
-            case .post:
-                return false
             }
         }
         
@@ -40,8 +28,6 @@ extension PostPresenter {
             switch self {
             case .post(let model):
                 return model.id
-            case .ad(let model):
-                return model.id
             }
         }
         
@@ -49,8 +35,6 @@ extension PostPresenter {
             switch self {
             case .post(let model):
                 return model.description
-            case .ad(let model):
-                return model.adDescription
             }
         }
         
@@ -58,6 +42,5 @@ extension PostPresenter {
                                    _ b: PostPresenter.CellType) -> Bool {
             return a.description == b.description
         }
-        
     }
 }

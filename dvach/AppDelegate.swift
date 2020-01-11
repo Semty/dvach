@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import Firebase
-import Appodeal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,9 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         GlobalUtils.setAudioInSilentModeOn()
-        //Appodeal.setLogLevel(.debug)
-        Appodeal.setAutocache(false, types: .nativeAd)
-        Appodeal.initialize(withApiKey: "9a73fae9d72048b1aa143954ca98dc4c3c94576b028e681d", types: [.nativeAd], hasConsent: true)
         setupInitialViewController()
         setupNuke()
         

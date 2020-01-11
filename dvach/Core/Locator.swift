@@ -49,12 +49,6 @@ final class Locator {
                              appSettingsStorage: appSettingsStorage())
     }
     
-    /// менеджер для показа рекламы
-    func createAdManager(numberOfNativeAds: Int, viewController: UIViewController?) -> IAdManager {
-        return AdManager(numberOfNativeAds: numberOfNativeAds,
-                         viewController: viewController)
-    }
-    
     func profanityCensor() -> IProfanityCensor {
         return ProfanityCensor()
     }

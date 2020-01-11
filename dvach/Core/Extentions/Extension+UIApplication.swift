@@ -7,13 +7,7 @@
 //
 
 import Foundation
-import Appodeal
 
 extension UIApplication {
     
-    func showNonskipableAd() {
-        if Appodeal.isReadyForShow(with: .nonSkippableVideo), let vc = keyWindow?.rootViewController {
-            Appodeal.showAd(.nonSkippableVideo, rootViewController: vc)
-        }
-    }
 }
