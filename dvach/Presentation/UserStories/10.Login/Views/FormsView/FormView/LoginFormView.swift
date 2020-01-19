@@ -35,7 +35,7 @@ final class LoginFormView: UIView {
         
         backgroundColor = .white
         layer.borderWidth = 1
-        iconImageView.tintColor = .iconColor
+        iconImageView.tintColor = .a1Green
         setupUI()
     }
     
@@ -44,9 +44,9 @@ final class LoginFormView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         if isFirstResponder {
-            layer.borderColor = .focusBorderColor
+            layer.borderColor = UIColor.n7Blue.cgColor
         } else {
-            layer.borderColor = .stillBorderColor
+            layer.borderColor = UIColor.n7Blue.cgColor
         }
     }
     
@@ -162,15 +162,4 @@ extension LoginFormView: ReusableView {
 private extension CGFloat {
     static var cornerRadius: CGFloat = 8
     static var height: CGFloat = 49
-}
-
-private extension UIColor {
-    static let stillBorderColor = Theme.current.borderGrayColor
-    static let focusBorderColor = Theme.current.mainColor
-    static let iconColor = Theme.current.mainColor
-}
-
-private extension CGColor {
-    static let stillBorderColor = UIColor.stillBorderColor.cgColor
-    static let focusBorderColor = UIColor.focusBorderColor.cgColor
 }

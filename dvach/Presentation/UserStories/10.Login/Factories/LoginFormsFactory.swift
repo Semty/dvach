@@ -125,7 +125,7 @@ extension LoginFormsFactory: ILoginFormsFactory {
     private func createLoginNameForm() -> LoginFormView {
         let textfield = LoginTextField()
         let textFieldModel =
-            LoginTextField.ConfigurationModel(text: nil, placeholder: .nameFormPlaceholder, contentType: .name, returnKeyType: .next, onTap: { [weak self] name, contentType in
+            LoginTextField.ConfigurationModel(text: nil, placeholder: "nameFormPlaceholder", contentType: .name, returnKeyType: .next, onTap: { [weak self] name, contentType in
                 self?.output?.didTapName(name, contentType)
                 }, onBegin: { [weak self] name, contentType in
                     self?.output?.didBeginName(name, contentType)
@@ -153,7 +153,7 @@ extension LoginFormsFactory: ILoginFormsFactory {
             $0.leading.equalTo(textfield.snp.trailing).offset(16)
         }
         
-        let model = LoginFormView.ConfigurationModel(image: .nameFormIcon,
+        let model = LoginFormView.ConfigurationModel(image: UIImage(),
                                                      contentView: contentView)
         
         let loginNameView = LoginFormView.fromNib()
@@ -165,7 +165,7 @@ extension LoginFormsFactory: ILoginFormsFactory {
     private func createLoginEmailForm() -> LoginFormView {
         let textfield = LoginTextField()
         let textFieldModel =
-            LoginTextField.ConfigurationModel(text: nil, placeholder: .emailFormPlaceholder, contentType: .emailAddress, returnKeyType: .next, onTap: { [weak self] email, contentType in
+            LoginTextField.ConfigurationModel(text: nil, placeholder: "emailFormPlaceholder", contentType: .emailAddress, returnKeyType: .next, onTap: { [weak self] email, contentType in
                 self?.output?.didTapEmail(email, contentType)
                 }, onBegin: { [weak self] email, contentType in
                     self?.output?.didBeginEmail(email, contentType)
@@ -193,7 +193,7 @@ extension LoginFormsFactory: ILoginFormsFactory {
             $0.leading.equalTo(textfield.snp.trailing).offset(16)
         }
         
-        let model = LoginFormView.ConfigurationModel(image: .emailFormIcon,
+        let model = LoginFormView.ConfigurationModel(image: UIImage(),
                                                      contentView: contentView)
         
         let loginEmailView = LoginFormView.fromNib()
@@ -211,7 +211,7 @@ extension LoginFormsFactory: ILoginFormsFactory {
             contentType = .password
         }
         let textFieldModel =
-            LoginTextField.ConfigurationModel(text: nil, placeholder: .passwordFormPlaceholder, contentType: contentType, returnKeyType: .done, onTap: { [weak self] password, contentType in
+            LoginTextField.ConfigurationModel(text: nil, placeholder: "passwordFormPlaceholder", contentType: contentType, returnKeyType: .done, onTap: { [weak self] password, contentType in
                 self?.output?.didTapPassword(password, contentType)
                 }, onBegin: { [weak self] password, contentType in
                     self?.output?.didBeginPassword(password, contentType)
@@ -239,7 +239,7 @@ extension LoginFormsFactory: ILoginFormsFactory {
             $0.leading.equalTo(textfield.snp.trailing).offset(16)
         }
         
-        let model = LoginFormView.ConfigurationModel(image: .passwordFormIcon,
+        let model = LoginFormView.ConfigurationModel(image: UIImage(),
                                                      contentView: contentView)
         
         let loginPassportView = LoginFormView.fromNib()
@@ -247,19 +247,4 @@ extension LoginFormsFactory: ILoginFormsFactory {
         
         return loginPassportView
     }
-}
-
-private extension UIImage {
-    static let nameFormIcon = AppConstants.Images.Login.username
-    static let emailFormIcon = AppConstants.Images.Login.email
-    static let passwordFormIcon = AppConstants.Images.Login.password
-}
-
-private extension String {
-    static let nameFormPlaceholder =
-        AppConstants.Strings.Login.Forms.namePlaceholder
-    static let emailFormPlaceholder =
-        AppConstants.Strings.Login.Forms.emailPlaceholder
-    static let passwordFormPlaceholder =
-        AppConstants.Strings.Login.Forms.passwordPlaceholder
 }

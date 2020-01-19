@@ -101,15 +101,6 @@ private extension TimeInterval {
     static let animationDuration = 0.45
 }
 
-private extension UIColor {
-    static let headerBlack = Theme.current.awesomeBlackColor
-}
-
-private extension UIFont {
-    static let titleFont = AppConstants.Font.bold(size: 25)
-    static let subtitleFont = AppConstants.Font.regular(size: 17)
-}
-
 private extension CGFloat {
     static let headerHeight: CGFloat = 153
     static let headerWithoutNotchHeight: CGFloat = 127

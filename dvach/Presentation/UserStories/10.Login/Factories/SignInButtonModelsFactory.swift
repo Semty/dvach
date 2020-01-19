@@ -36,14 +36,3 @@ final class SignInButtonModelsFactory: ISignInButtonModelsFactory {
         }
     }
 }
-
-// MARK: - Private Extensions
-
-private extension String {
-    static let logIn = AppConstants.Strings.Login.logIn
-    static let signUp = AppConstants.Strings.Login.signUp
-}
-
-private extension UIColor {
-    static let createAccountColor = Theme.current.mainColor
-}

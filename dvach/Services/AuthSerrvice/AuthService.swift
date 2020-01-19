@@ -13,9 +13,7 @@ import FacebookLogin
 protocol IAuthService {
     var authServiceDelegate: IAuthServiceDelegate? { get set }
     func startSignInFlow(with authType: AuthService.AuthType,
-                         authData: (
-        name: String?, email: String, password: String)?
-    )
+                         authData: (name: String?, email: String, password: String)?)
     func startSignOutFlow()
     func startPasswordResetFlow(_ email: String)
 }

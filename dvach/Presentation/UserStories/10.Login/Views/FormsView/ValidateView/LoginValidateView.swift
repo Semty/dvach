@@ -94,8 +94,3 @@ private extension CGFloat {
 private extension TimeInterval {
     static let stateChangingDuration: TimeInterval = 0.45
 }
-
-private extension UIImage {
-    static let valid = AppConstants.Images.Login.valid
-    static let invalid = AppConstants.Images.Login.invalid
-}

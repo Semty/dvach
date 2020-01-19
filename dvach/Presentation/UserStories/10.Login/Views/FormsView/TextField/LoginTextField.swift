@@ -10,9 +10,6 @@ import Foundation
 
 final class LoginTextField: UITextField {
     
-    // Dependencies
-    private lazy var metrics: MetricsManager = Locator.shared.metricsManager()
-    
     // Model
     private var onTap: ((String, UITextContentType) -> Void)?
     private var onBegin: ((String, UITextContentType) -> Void)?
@@ -24,7 +21,6 @@ final class LoginTextField: UITextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        font = .font
         smartInsertDeleteType = .yes
         enablesReturnKeyAutomatically = true
         setup()
@@ -40,21 +36,6 @@ final class LoginTextField: UITextField {
     @discardableResult
     override func becomeFirstResponder() -> Bool {
         if canBecomeFirstResponder && !isFirstResponder {
-            guard let textContentType = textContentType else { return super.becomeFirstResponder() }
-            switch textContentType {
-            case .name:
-                metrics.signUpInputFocus(input: .name)
-            case .password:
-                metrics.signUpInputFocus(input: .password)
-            case .emailAddress:
-                metrics.signUpInputFocus(input: .email)
-            default: break
-            }
-            if #available(iOS 12.0, *) {
-                if textContentType == .newPassword {
-                    metrics.signUpInputFocus(input: .newPassword)
-                }
-            }
             return super.becomeFirstResponder()
         } else {
             return super.becomeFirstResponder()
@@ -141,10 +122,7 @@ extension LoginTextField: ConfigurableView {
         textContentType = model.contentType
         attributedPlaceholder =
             NSAttributedString(string: model.placeholder ?? "",
-                               attributes: [
-                                .foregroundColor: UIColor.placeholderColor,
-                                .font: UIFont.font
-            ])
+                               attributes: [.foregroundColor: UIColor.n1Gray, .font: UIFont()])
         
         onTap = model.onTap
         onBegin = model.onBegin
@@ -158,12 +136,4 @@ extension LoginTextField: ConfigurableView {
 
 private extension CGFloat {
     static let height: CGFloat = 41
-}
-
-private extension UIFont {
-    static let font = AppConstants.Font.regular(size: 16)
-}
-
-private extension UIColor {
-    static let placeholderColor = Theme.current.placeholderGrayishColor
 }

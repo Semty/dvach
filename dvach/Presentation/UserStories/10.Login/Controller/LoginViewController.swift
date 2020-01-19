@@ -96,7 +96,7 @@ final class LoginViewController: UIViewController {
     
     internal lazy var signInButton: BottomButton = {
         let button = BottomButton()
-        button.disabledColor = Theme.current.mainColor
+        button.disabledColor = .n2Gray
         button.isEnabled = false
         button.enablePressStateAnimation { [weak self] in
             self?.signInButtonAction()
@@ -135,8 +135,8 @@ final class LoginViewController: UIViewController {
     
     internal lazy var closeButton =
         componentsFactory.createCloseButton(
-            style: .mo,
-            imageColor: .closeColor,
+            style: .dismiss,
+            imageColor: .a4Red,
             backgroundColor: nil,
             completion: { [weak self] in self?.closeButtonAction() }
     )
@@ -201,7 +201,7 @@ final class LoginViewController: UIViewController {
     // MARK: - Setup UI
     
     private func setupUI() {
-        view.backgroundColor = .backgroundColor
+        view.backgroundColor = .white
         
         view.addSubview(headerView)
         view.addSubview(loginFormsContainer)
@@ -318,9 +318,9 @@ final class LoginViewController: UIViewController {
     
     private func goToAction() {
         guard let title = goToView.title else { return }
-        if title.contains(String.toLoginButton) {
+        if title.contains("tring.toLoginButton") {
             presenter.toLoginButtonTapped()
-        } else if title.contains(String.toSignUpButton) {
+        } else if title.contains("String.toSignUpButton") {
             presenter.toSignUpButtonTapped()
         }
     }
@@ -410,16 +410,6 @@ final class LoginViewController: UIViewController {
 
 // MARK: - Private Extensions
 
-private extension UIColor {
-    static let backgroundColor = Theme.current.backgroundColor
-    static let facebookColor = Theme.current.facebookColor
-    static let appleColor = Theme.current.appleColor
-    static let emailColor = Theme.current.mainColor
-    static let closeColor = Theme.current.awesomeBlackColor
-    static let createAccountColor = Theme.current.mainColor
-    static let logOutColor = Theme.current.mainColor
-}
-
 private extension CGFloat {
     static let staticViewContainerViewHeight: CGFloat = 49
     static let commonLeadingTrailing: CGFloat = 24
@@ -430,21 +420,4 @@ private extension CGFloat {
     static let closeButtonTopOffset: CGFloat = -6
     static let loginFormsToCreateAccountOffset: CGFloat = 24
     static let forgotPasswordToCreateAccountOffset: CGFloat = 18
-}
-
-private extension UIImage {
-    static let facebook = AppConstants.Images.Login.facebook
-    static let apple = AppConstants.Images.Login.apple
-    static let email = AppConstants.Images.Login.authEmail
-    static let close = AppConstants.Images.close
-}
-
-private extension String {
-    static let email = AppConstants.Strings.Login.AuthType.email
-    static let facebook = AppConstants.Strings.Login.AuthType.facebook
-    static let apple = AppConstants.Strings.Login.AuthType.apple
-    static let logOut = AppConstants.Strings.Login.logOut
-    
-    static let toLoginButton = AppConstants.Strings.Login.AccountAvailability.toLoginButton
-    static let toSignUpButton = AppConstants.Strings.Login.AccountAvailability.toSignUpButton
 }

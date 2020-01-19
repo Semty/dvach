@@ -218,7 +218,7 @@ SPEC REPOS:
     - libogg
     - libvorbis
     - libvpx
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - DeepDiff
     - FacebookCore
@@ -346,4 +346,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c15b472dafefc872ecc6c9bdece7cce7bd97e2f8
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.7.3

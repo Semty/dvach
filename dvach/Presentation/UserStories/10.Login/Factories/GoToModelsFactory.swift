@@ -15,8 +15,7 @@ protocol IGoToModelsFactory {
 final class GoToModelsFactory {
     
     // Private Interface
-    private let textAttributes = String.attributes(withFont: .font,
-                                                   textAlignment: .center)
+    private let textAttributes = String.attributes(withFont: UIFont(), textAlignment: .center)
 }
 
 // MARK: - IGoToModelsFactory
@@ -29,40 +28,25 @@ extension GoToModelsFactory: IGoToModelsFactory {
         
         switch state {
         case .start, .signUp, .logOut:
-            string = .toLogIn
-            buttonString = .toLoginButton
+            string = "toLogIn"
+            buttonString = "toLoginButton"
         case .logIn:
-            string = .toSignUp
-            buttonString = .toSignUpButton
+            string = "toSignUp"
+            buttonString = "toSignUpButton"
         }
         
-        let font: UIFont = .font
+        let font: UIFont = UIFont.systemWith(size: .size18) ?? UIFont()
         
         let text = string.withAttributes(textAttributes).mutableCopy() as! NSMutableAttributedString
         text.addAttribute(.font,
                           value: font,
                           range: (text.string as NSString).range(of: text.string))
         text.addAttribute(.foregroundColor,
-                          value: Theme.current.mainColor,
+                          value: UIColor.white,
                           range: (text.string as NSString).range(of: buttonString))
         
         let model = LoginSignInSignUpView.ConfigurationModel(text: text)
         
         return model
     }
-}
-
-// MARK: - Private Extensions
-
-private extension UIFont {
-    static let smallerFont = AppConstants.Font.regular(size: 14)
-    static let font = AppConstants.Font.regular(size: 16)
-}
-
-private extension String {
-    static let toLogIn = AppConstants.Strings.Login.AccountAvailability.toLogIn
-    static let toSignUp = AppConstants.Strings.Login.AccountAvailability.toSignUp
-    
-    static let toLoginButton = AppConstants.Strings.Login.AccountAvailability.toLoginButton
-    static let toSignUpButton = AppConstants.Strings.Login.AccountAvailability.toSignUpButton
 }

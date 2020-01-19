@@ -8,23 +8,22 @@
 
 import Foundation
 
-final class LoginForgotPasswordView: PressStateAnimatableView {
+final class LoginForgotPasswordView: UIView, PressStateAnimatable {
     
     // Private Interface
-    private let textAttributes = String.attributes(withFont: .font,
-                                                   textAlignment: .center)
+    private let textAttributes = String.attributes(withFont: UIFont(), textAlignment: .center)
     
     // UI
     private lazy var label: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        let string: String = .forgotPassword
+        let string: String = "forgotPassword"
         let text = string.withAttributes(textAttributes).mutableCopy() as! NSMutableAttributedString
         text.addAttribute(.font,
                           value: UIFont.font,
                           range: (text.string as NSString).range(of: text.string))
         text.addAttribute(.foregroundColor,
-                          value: Theme.current.mainColor,
+                          value: .white,
                           range: (text.string as NSString).range(of: .pressHere))
         label.attributedText = text
         return label
@@ -58,16 +57,6 @@ final class LoginForgotPasswordView: PressStateAnimatableView {
 }
 
 // MARK: - Private Extensions
-
-private extension UIFont {
-    static let font = AppConstants.Font.regular(size: 13)
-}
-
-private extension String {
-    static let forgotPassword = AppConstants.Strings.Login.AccountAvailability.forgotPassword
-    static let pressHere = AppConstants.Strings.Login.AccountAvailability.pressHere
-}
-
 
 private extension CGFloat {
     static let height: CGFloat = 16

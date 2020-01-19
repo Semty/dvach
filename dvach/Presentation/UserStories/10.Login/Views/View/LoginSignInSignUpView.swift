@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class LoginSignInSignUpView: PressStateAnimatableView {
+final class LoginSignInSignUpView: UIView, PressStateAnimatable {
     
     // UI
     private lazy var label: UILabel = {

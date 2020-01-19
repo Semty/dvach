@@ -18,7 +18,7 @@ extension LoginPresenter: IAuthServiceDelegate {
         if view?.keyboardIsShown ?? false {
             view?.forceLoginFormResignFirstResponder()
         }
-        view?.showSuccessAlertAndCloseViewController(with: .success)
+        view?.showSuccessAlertAndCloseViewController(with: "success")
     }
     
     func authFailed(with error: Error) {
@@ -30,7 +30,7 @@ extension LoginPresenter: IAuthServiceDelegate {
     }
     
     func deauthSuccessfull() {
-        view?.showSuccessAlert(with: .success)
+        view?.showSuccessAlert(with: "success")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             self?.updateState(.signUp)
         }
@@ -42,7 +42,7 @@ extension LoginPresenter: IAuthServiceDelegate {
     }
     
     func passwordResetSuccessfull() {
-        view?.showSuccessAlert(with: .passwordReset)
+        view?.showSuccessAlert(with: "passwordReset")
     }
     
     func passwordResetFailed(with error: Error) {
@@ -60,11 +60,6 @@ extension LoginPresenter: IAuthServiceDelegate {
 }
 
 // MARK: - Private Extensions
-
-private extension String {
-    static let success = AppConstants.Strings.Login.success
-    static let passwordReset = AppConstants.Strings.Login.passwordReset
-}
 
 private extension Int {
     static let emailAlreadyInUseErrorCode = 17007
