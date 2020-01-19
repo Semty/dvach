@@ -10,6 +10,7 @@
 #define dvach_Bridging_Header_h
 
 #import <UIKit/UIKit.h>
+#import <CommonCrypto/CommonHMAC.h>
 #import <PureLayout/PureLayout.h>
 @import SnapKit;
 @import Alamofire;

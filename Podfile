@@ -13,6 +13,8 @@ target 'dvach' do
    pod 'PureLayout'
    pod 'Firebase/Core'
    pod 'Firebase/Database'
+   pod 'Firebase/Auth'
+   pod 'FacebookLogin'
    pod 'Alamofire'
    pod 'SwiftyJSON', '4.2.0'
    pod 'SnapKit', '4.2.0'
