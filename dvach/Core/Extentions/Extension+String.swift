@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias Attributes = [NSAttributedString.Key: Any]
+
 extension String {
     
     var removeSpaces: String {
@@ -174,5 +176,54 @@ extension String {
         let pattern = pattern
         return ranges(of: pattern, options: .regularExpression)
             .map{ (self[$0], $0) }
+    }
+    
+    // MARK: - For Auth
+    
+    static func attributes(withFont font: UIFont, color: UIColor? = nil, lineSpacing: CGFloat? = nil, textAlignment: NSTextAlignment? = nil, kern: CGFloat? = nil) -> [NSAttributedString.Key: Any] {
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = lineSpacing ?? 0
+        style.alignment = textAlignment ?? .natural
+        
+        return [NSAttributedString.Key.font: font,
+                NSAttributedString.Key.paragraphStyle: style,
+                NSAttributedString.Key.foregroundColor: color ?? UIColor.black,
+                NSAttributedString.Key.kern: kern ?? 0]
+    }
+    
+    static func attributes(_ attributes: [NSAttributedString.Key: Any], font: UIFont? = nil, color: UIColor? = nil) -> [NSAttributedString.Key: Any] {
+        var copy = attributes
+        
+        if let font = font {
+            copy[NSAttributedString.Key.font] = font
+        }
+        
+        if let color = color {
+            copy[NSAttributedString.Key.foregroundColor] = color
+        }
+        
+        return copy
+    }
+    
+    func withAttributes(_ attributes: [NSAttributedString.Key: Any]) -> NSAttributedString {
+        return NSAttributedString(string: self, attributes: attributes)
+    }
+    
+    func isEmailValid() -> Bool {
+        let regEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regEx)
+        return predicate.evaluate(with: self)
+    }
+    
+    func isNameValid() -> Bool {
+        let regEx = "^[\\p{L}'][\\p{L}' -]{1,25}$"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regEx)
+        return predicate.evaluate(with: self)
+    }
+    
+    func isPasswordValid() -> Bool {
+        let regEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regEx)
+        return predicate.evaluate(with: self)
     }
 }

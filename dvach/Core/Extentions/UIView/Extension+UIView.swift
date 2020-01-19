@@ -12,6 +12,10 @@ import PureLayout
 
 extension UIView {
     
+    var safeArea: ConstraintBasicAttributesDSL {
+        return safeAreaLayoutGuide.snp
+    }
+    
     @discardableResult
     public func autoSetDimension(_ dimension: ALDimension, toSize size: CGFloat, priority: UILayoutPriority) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(item: self,
@@ -36,6 +40,10 @@ extension UIView {
         }
         
         return nil
+    }
+    
+    public func removeAllSubviews() {
+        subviews.forEach({ $0.removeFromSuperview() })
     }
     
     public func snapshot(size: CGSize? = nil, rect: CGRect? = nil) -> UIImage {

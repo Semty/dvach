@@ -9,6 +9,12 @@
 import Foundation
 
 extension UIDevice {
+    
+    static var safeAreaTopInset: CGFloat {
+        let window = UIApplication.shared.keyWindow
+        return window?.safeAreaInsets.top ?? 0
+    }
+    
     var hasNotch: Bool {
         let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
         return bottom > 0

@@ -28,6 +28,7 @@ target 'dvach' do
    pod 'VersaPlayer', :git => 'https://github.com/Semty/MP4'
    pod 'KafkaRefresh'
    pod 'DeepDiff'
+   pod 'IHProgressHUD', :git => 'https://github.com/Swiftify-Corp/IHProgressHUD.git'
    
   target 'dvachTests' do
     inherit! :search_paths

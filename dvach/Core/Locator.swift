@@ -52,4 +52,16 @@ final class Locator {
     func profanityCensor() -> IProfanityCensor {
         return ProfanityCensor()
     }
+    
+    func authService() -> IAuthService {
+        return AuthService()
+    }
+    
+    func accountUpdater() -> IUserAccountUpdater {
+        return UserAccountUpdater.shared
+    }
+    
+    func accountService() -> IUserAccountService {
+        return UserAccountService()
+    }
 }

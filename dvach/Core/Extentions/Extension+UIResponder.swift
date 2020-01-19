@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension TimeInterval {
+private extension TimeInterval {
     static let animationDuration = 0.3
 }
 

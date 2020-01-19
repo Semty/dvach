@@ -209,4 +209,4 @@ extension PressStateAnimatable where Self: UIView {
     }
 }
 
-final public class PressStateAnimatableView: UIView, PressStateAnimatable {}
+final class PressStateAnimatableView: UIView, PressStateAnimatable {}
