@@ -36,20 +36,13 @@ protocol ILoginView: AnyObject {
     func closeViewController()
     
     func showSuccessAlert(with text: String)
-    func showSuccessAlertAndCloseViewController(with text: String,
-                                                debugNotes: String?)
+    func showSuccessAlertAndCloseViewController(with text: String)
     func showErrorAlert(with text: String)
     func showLoaderAlert()
     func dismissLoaderAlert()
     
     func showPopUp(from view: UIView, with model: PopViewModelsFactory.Model)
     func dismissPopUp()
-}
-
-extension ILoginView {
-    func showSuccessAlertAndCloseViewController(with text: String) {
-        showSuccessAlertAndCloseViewController(with: text, debugNotes: nil)
-    }
 }
 
 // MARK: - ILoginView
@@ -122,11 +115,11 @@ extension LoginViewController: ILoginView {
             self.goToView.configure(with: goToModel)
             self.headerView.configure(with: headerModel)
             self.signInButton.layoutIfNeeded()
-            }, completion: { [weak self] _ in
-                if Screen.currentIPhone == .iPhone5 {
+            }, completion: nil /*{  [weak self] _ in
+                if UIscreen.main.currentIPhone == .iPhone5 {
                     self?.fixSomeUIOnIphone5(with: state)
                 }
-        })
+        }*/)
     }
     
     func forceLoginFormBecomeFirstResponder() {
@@ -251,16 +244,8 @@ extension LoginViewController: ILoginView {
         }
     }
     
-    func showSuccessAlertAndCloseViewController(with text: String,
-                                                debugNotes: String?) {
-        var text = text
-        var hudDuration = 1.0
-        if AppConfiguration.isDebug {
-            if let debugNotes = debugNotes {
-                text += debugNotes
-                hudDuration = 4
-            }
-        }
+    func showSuccessAlertAndCloseViewController(with text: String) {
+        let hudDuration = 1.0
         IHProgressHUD.setMaxSupportedWindowLevel(maxSupportedWindowLevel: .statusBar)
         IHProgressHUD.set(maximumDismissTimeInterval: hudDuration)
         IHProgressHUD.setHapticsEnabled(hapticsEnabled: true)

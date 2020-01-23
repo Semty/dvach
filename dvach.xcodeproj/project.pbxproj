@@ -205,6 +205,9 @@
 		D528DE5822BBD532008A27D9 /* HorizontalMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528DE5722BBD532008A27D9 /* HorizontalMoreButton.swift */; };
 		D5361BA722E1D7C0003C89EC /* Nudity.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D5361BA622E1D7C0003C89EC /* Nudity.mlmodel */; };
 		D5361BAA22E1D966003C89EC /* NSFWImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5361BA922E1D966003C89EC /* NSFWImageProcessor.swift */; };
+		D568CE5323DA136200D87227 /* PopView+Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D568CE5023DA136200D87227 /* PopView+Transitions.swift */; };
+		D568CE5423DA136200D87227 /* PopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D568CE5123DA136200D87227 /* PopView.swift */; };
+		D568CE5523DA136200D87227 /* PopView+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = D568CE5223DA136200D87227 /* PopView+Draw.swift */; };
 		D5750AB422AEC0D70058E99D /* Extension+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */; };
 		D5750AB622AEC5050058E99D /* DvachLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB522AEC5050058E99D /* DvachLink.swift */; };
 		D5750ABA22AEC57E0058E99D /* PostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5750AB922AEC57E0058E99D /* PostParser.swift */; };
@@ -489,6 +492,9 @@
 		D528DE5722BBD532008A27D9 /* HorizontalMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMoreButton.swift; sourceTree = "<group>"; };
 		D5361BA622E1D7C0003C89EC /* Nudity.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Nudity.mlmodel; sourceTree = "<group>"; };
 		D5361BA922E1D966003C89EC /* NSFWImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWImageProcessor.swift; sourceTree = "<group>"; };
+		D568CE5023DA136200D87227 /* PopView+Transitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PopView+Transitions.swift"; sourceTree = "<group>"; };
+		D568CE5123DA136200D87227 /* PopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopView.swift; sourceTree = "<group>"; };
+		D568CE5223DA136200D87227 /* PopView+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PopView+Draw.swift"; sourceTree = "<group>"; };
 		D5750AB322AEC0D70058E99D /* Extension+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSAttributedString.swift"; sourceTree = "<group>"; };
 		D5750AB522AEC5050058E99D /* DvachLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DvachLink.swift; sourceTree = "<group>"; };
 		D5750AB922AEC57E0058E99D /* PostParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParser.swift; sourceTree = "<group>"; };
@@ -1325,6 +1331,7 @@
 		41BEE758229F04730028EBFB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D568CE4F23DA136200D87227 /* PopView */,
 				D5A6C77023D49AB0009C0A6C /* HeaderView */,
 				41741D6B22F61D9800E5C434 /* New Group */,
 				65AED6E322C819440054EE59 /* Placeholder */,
@@ -1541,6 +1548,16 @@
 				D5361BA922E1D966003C89EC /* NSFWImageProcessor.swift */,
 			);
 			path = NSFWDetector;
+			sourceTree = "<group>";
+		};
+		D568CE4F23DA136200D87227 /* PopView */ = {
+			isa = PBXGroup;
+			children = (
+				D568CE5023DA136200D87227 /* PopView+Transitions.swift */,
+				D568CE5123DA136200D87227 /* PopView.swift */,
+				D568CE5223DA136200D87227 /* PopView+Draw.swift */,
+			);
+			path = PopView;
 			sourceTree = "<group>";
 		};
 		D58963E222BA8D0600B73A4B /* Controllers */ = {
@@ -2035,6 +2052,7 @@
 				D528DE4422BB723B008A27D9 /* DTMediaViewerController+UISrcrollViewDelegate.swift in Sources */,
 				4190800422A6EA9A003309D9 /* IconView.swift in Sources */,
 				D5A6C76B23D49920009C0A6C /* OrView.swift in Sources */,
+				D568CE5423DA136200D87227 /* PopView.swift in Sources */,
 				411902BD22A6BE53008231AC /* Shadow.swift in Sources */,
 				4193B1E822B19EC600EE25FD /* FavouritesPresenter.swift in Sources */,
 				41908A1222BE74210058907D /* AboutPresenter.swift in Sources */,
@@ -2125,6 +2143,7 @@
 				D5A6C73023D49130009C0A6C /* NotificationName.swift in Sources */,
 				4193B1F722B1A92000EE25FD /* FavouritePostsViewController.swift in Sources */,
 				D5A6C77223D49AB0009C0A6C /* HeaderView.swift in Sources */,
+				D568CE5523DA136200D87227 /* PopView+Draw.swift in Sources */,
 				41741D6A22F608EA00E5C434 /* EULAViewController.swift in Sources */,
 				41BEE721229F043C0028EBFB /* Extension+UIViewController.swift in Sources */,
 				4193B1F222B1A8E100EE25FD /* FavouriteThreadsPresenter.swift in Sources */,
@@ -2161,6 +2180,7 @@
 				41BEE760229F04730028EBFB /* ShadowViewContainer.swift in Sources */,
 				D50ED80422D7444300A655E9 /* PostCommentWithMediaView.swift in Sources */,
 				4193B1B122AA4EF700EE25FD /* CategoriesSkeletonView.swift in Sources */,
+				D568CE5323DA136200D87227 /* PopView+Transitions.swift in Sources */,
 				4117535322A2F71B008EBD2A /* HorizontalList.swift in Sources */,
 				41BEE75E229F04730028EBFB /* ChildViewController.swift in Sources */,
 				41BEE72A229F043C0028EBFB /* Extension+NSError.swift in Sources */,
@@ -2367,10 +2387,10 @@
 			baseConfigurationReference = 4274A55E1D343EF270BE19BF /* Pods-dvach.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = ZTRS68H53M;
+				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = dvach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -2380,7 +2400,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DvachDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "dvach/dvach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2392,10 +2412,10 @@
 			baseConfigurationReference = 969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = ZTRS68H53M;
+				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = dvach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -2405,7 +2425,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DvachDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "dvach/dvach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

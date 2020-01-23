@@ -24,6 +24,7 @@ public extension CGFloat {
     // MARK: - Fonts
 
     static let size12: CGFloat = 12
+    static let size13: CGFloat = 13
     static let size16: CGFloat = 16
     static let size18: CGFloat = 18
     static let size30: CGFloat = 30

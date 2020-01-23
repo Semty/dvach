@@ -70,8 +70,8 @@ final class LoginViewController: UIViewController {
     internal lazy var facebookButton: BottomButton = {
         let button = BottomButton()
         let model = BottomButton.Model(text: .facebook,
-                                       image: .facebook,
-                                       backgroundColor: .facebookColor,
+                                       image: nil,
+                                       backgroundColor: .n7Blue,
                                        textColor: .white)
         button.configure(with: model)
         button.enablePressStateAnimation { [weak self] in
@@ -83,8 +83,8 @@ final class LoginViewController: UIViewController {
     internal lazy var emailButton: BottomButton = {
         let button = BottomButton()
         let model = BottomButton.Model(text: .email,
-                                       image: .email,
-                                       backgroundColor: .emailColor,
+                                       image: nil,
+                                       backgroundColor: UIColor.a6Blue,
                                        textColor: .white)
         button.configure(with: model)
         button.enablePressStateAnimation { [weak self] in
@@ -109,7 +109,7 @@ final class LoginViewController: UIViewController {
         let button = BottomButton()
         button.configure(with: BottomButton.Model(text: .logOut,
                                                   image: nil,
-                                                  backgroundColor: .logOutColor,
+                                                  backgroundColor: .a6Blue,
                                                   textColor: .white))
         button.enablePressStateAnimation { [weak self] in
             self?.signOutButtonAction()
@@ -402,7 +402,7 @@ final class LoginViewController: UIViewController {
                 + forgotPasswordView.bounds.height
         }
         let topSafeArea = UIDevice.safeAreaTopInset
-        let appearanceFrame = Screen.bounds.height - keyboardHeight
+        let appearanceFrame = UIScreen.main.bounds.height - keyboardHeight
         let topOffset = (appearanceFrame - loginFormsContainerHeight) / 2 + (topSafeArea / 2)
         return topOffset
     }
@@ -420,4 +420,14 @@ private extension CGFloat {
     static let closeButtonTopOffset: CGFloat = -6
     static let loginFormsToCreateAccountOffset: CGFloat = 24
     static let forgotPasswordToCreateAccountOffset: CGFloat = 18
+}
+
+private extension String {
+    static let email = "Регистрация по email"
+    static let facebook = "Продолжить с Facebook"
+    static let apple = "Продолжить с Apple"
+    static let logOut = "Выйти"
+    
+    static let toLoginButton = "Войти"
+    static let toSignUpButton = "Зарегистрироваться"
 }

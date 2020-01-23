@@ -17,13 +17,13 @@ final class LoginForgotPasswordView: UIView, PressStateAnimatable {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        let string: String = "forgotPassword"
+        let string: String = .forgotPassword
         let text = string.withAttributes(textAttributes).mutableCopy() as! NSMutableAttributedString
         text.addAttribute(.font,
                           value: UIFont.font,
                           range: (text.string as NSString).range(of: text.string))
         text.addAttribute(.foregroundColor,
-                          value: .white,
+                          value: UIColor.n1Gray,
                           range: (text.string as NSString).range(of: .pressHere))
         label.attributedText = text
         return label
@@ -57,6 +57,15 @@ final class LoginForgotPasswordView: UIView, PressStateAnimatable {
 }
 
 // MARK: - Private Extensions
+
+private extension UIFont {
+    static let font: UIFont = .boldSystemFont(ofSize: .size13)
+}
+
+private extension String {
+    static let forgotPassword = "Забыли пароль? Нажмите здесь"
+    static let pressHere = "Нажмите здесь"
+}
 
 private extension CGFloat {
     static let height: CGFloat = 16

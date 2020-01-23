@@ -36,3 +36,14 @@ final class SignInButtonModelsFactory: ISignInButtonModelsFactory {
         }
     }
 }
+
+// MARK: - Private Extensions
+
+private extension String {
+    static let logIn = "Войти"
+    static let signUp = "Создать аккаунт"
+}
+
+private extension UIColor {
+    static let createAccountColor = UIColor.n1Gray
+}
