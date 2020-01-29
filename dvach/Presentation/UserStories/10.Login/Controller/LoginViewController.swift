@@ -45,27 +45,23 @@ final class LoginViewController: UIViewController {
         let facebookAppleStackView = UIStackView()
         facebookAppleStackView.spacing = 16
         facebookAppleStackView.axis = .vertical
-        facebookAppleStackView.addArrangedSubview(facebookButton)
-//        if #available(iOS 13.0, *) {
-//            facebookAppleStackView.addArrangedSubview(appleButton)
-//        }
+//        facebookAppleStackView.addArrangedSubview(facebookButton)
+        facebookAppleStackView.addArrangedSubview(appleButton)
         facebookAppleStackView.alpha = 0.0
         return facebookAppleStackView
     }()
     
-//    @available(iOS 13.0, *)
-//    internal lazy var appleButton: BottomButton = {
-//        let button = BottomButton()
-//        let model = BottomButton.Model(text: .apple,
-//                                       image: .apple,
-//                                       backgroundColor: .appleColor,
-//                                       textColor: .white)
-//        button.configure(with: model)
-//        button.enablePressStateAnimation { [weak self] in
-//            self?.appleButtonAction()
-//        }
-//        return button
-//    }()
+    internal lazy var appleButton: BottomButton = {
+        let button = BottomButton()
+        let model = BottomButton.Model(text: .apple,
+                                       backgroundColor: .n1Gray,
+                                       textColor: .white)
+        button.configure(with: model)
+        button.enablePressStateAnimation { [weak self] in
+            self?.appleButtonAction()
+        }
+        return button
+    }()
     
     internal lazy var facebookButton: BottomButton = {
         let button = BottomButton()
@@ -133,13 +129,10 @@ final class LoginViewController: UIViewController {
         return view
     }()
     
-    internal lazy var closeButton =
-        componentsFactory.createCloseButton(
-            style: .dismiss,
-            imageColor: .a4Red,
-            backgroundColor: nil,
-            completion: { [weak self] in self?.closeButtonAction() }
-    )
+    internal lazy var closeButton = componentsFactory.createCloseButton(style: .dismiss,
+                                                                        imageColor: .white,
+                                                                        backgroundColor: nil,
+                                                                        completion: { [weak self] in self?.closeButtonAction() })
     
     internal weak var popView: PopView?
     
@@ -148,14 +141,13 @@ final class LoginViewController: UIViewController {
     
     // Override
     
-    // Temporarily disabled
-//    override var prefersStatusBarHidden: Bool {
-//        return keyboardIsShown
-//    }
-//
-//    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-//        return .slide
-//    }
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     // Public
     public var keyboardIsShown = false
@@ -209,7 +201,7 @@ final class LoginViewController: UIViewController {
         view.addSubview(goToView)
         view.addSubview(facebookAppleStackView)
         view.addSubview(orView)
-        view.addSubview(emailButton)
+//        view.addSubview(emailButton)
         view.addSubview(signInButton)
         view.addSubview(closeButton)
         view.addSubview(signOutButton)
@@ -241,17 +233,17 @@ final class LoginViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(facebookAppleStackView.snp.top).offset(CGFloat.authButtonsDelimiterOffset)
         }
-        emailButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(CGFloat.commonLeadingTrailing)
-            $0.bottom.equalTo(orView.snp.top).offset(CGFloat.authButtonsDelimiterOffset)
-        }
+//        emailButton.snp.makeConstraints {
+//            $0.leading.trailing.equalToSuperview().inset(CGFloat.commonLeadingTrailing)
+//            $0.bottom.equalTo(orView.snp.top).offset(CGFloat.authButtonsDelimiterOffset)
+//        }
         signInButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(CGFloat.commonLeadingTrailing)
             $0.top.equalTo(forgotPasswordView.snp.bottom).offset(CGFloat.forgotPasswordToCreateAccountOffset)
         }
         closeButton.snp.makeConstraints {
             $0.top.equalTo(view.safeArea.top).offset(CGFloat.closeButtonTopOffset)
-            $0.trailing.equalTo(view.safeArea.trailing).inset(4)
+            $0.trailing.equalTo(view.safeArea.trailing).inset(12)
         }
     }
     
@@ -288,9 +280,9 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Actions
     
-//    @objc private func appleButtonAction() {
-//        presenter.appleButtonTapped()
-//    }
+    @objc private func appleButtonAction() {
+        presenter.appleButtonTapped()
+    }
     
     @objc private func facebookButtonAction() {
         presenter.facebookButtonTapped()

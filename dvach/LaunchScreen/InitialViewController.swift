@@ -14,6 +14,8 @@ public protocol LaunchAnimationViewControllerDelegate: class {
 
 final class InitialViewController: UIViewController, LaunchAnimationViewControllerDelegate {
     
+    private let userAccountService = Locator.shared.accountService()
+    
     private var rootViewController: UIViewController?
     
     override var childForStatusBarHidden: UIViewController? {
@@ -43,7 +45,7 @@ final class InitialViewController: UIViewController, LaunchAnimationViewControll
     // MARK: - LaunchAnimationViewControllerDelegate
     
     public func endSplashScreen() {
-        let rootTabBarController = RootTabBarController()
+        let rootTabBarController = userAccountService.isUserSignIn ? RootTabBarController() : LoginAssembly.assemble(self)
         
         rootTabBarController.willMove(toParent: self)
         addChild(rootTabBarController)
@@ -60,19 +62,30 @@ final class InitialViewController: UIViewController, LaunchAnimationViewControll
                        duration: 0.35,
                        options: [.transitionCrossDissolve, .curveEaseOut],
                        animations: { () -> Void in
-                        
             }, completion: { _ in
                 rootTabBarController.didMove(toParent: self)
                 rootViewController.removeFromParent()
                 rootViewController.didMove(toParent: nil)
             })
-            
         } else {
-            
             rootViewController = rootTabBarController
             view.addSubview(rootTabBarController.view)
             rootTabBarController.didMove(toParent: self)
         }
         setNeedsStatusBarAppearanceUpdate()
+    }
+}
+
+// MARK: - ILoginViewControllerDelegate
+
+extension InitialViewController: ILoginViewControllerDelegate {
+    
+    func loginViewWillBeClosed() {
+        let rootTabBarController = RootTabBarController()
+        self.rootViewController = rootTabBarController
+        rootTabBarController.willMove(toParent: self)
+        addChild(rootTabBarController)
+        view.addSubview(rootTabBarController.view)
+        rootTabBarController.didMove(toParent: self)
     }
 }

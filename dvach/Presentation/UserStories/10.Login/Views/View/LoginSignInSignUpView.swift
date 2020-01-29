@@ -53,7 +53,7 @@ extension LoginSignInSignUpView: ConfigurableView {
     }
     
     func configure(with model: ConfigurationModel) {
-        label.attributedText = model.text
+//        label.attributedText = model.text
     }
 }
 

@@ -18,13 +18,12 @@ enum LoginAssembly {
         let loginFormsValidator = LoginFormsValidator()
         let goToModelsFactory = GoToModelsFactory()
         let componentsFactory = Locator.shared.componentsFactory()
-        let presenter =
-            LoginPresenter(loginFormsFactory: loginFormsFactory,
-                           loginFormsValidator: loginFormsValidator,
-                           goToModelsFactory: goToModelsFactory,
-                           headerModelsFactory: headerModelsFactory,
-                           popViewModelsFactory: popViewModelsFactory,
-                           signInButtonModelsFactory: signInButtonModelsFactory)
+        let presenter = LoginPresenter(loginFormsFactory: loginFormsFactory,
+                                       loginFormsValidator: loginFormsValidator,
+                                       goToModelsFactory: goToModelsFactory,
+                                       headerModelsFactory: headerModelsFactory,
+                                       popViewModelsFactory: popViewModelsFactory,
+                                       signInButtonModelsFactory: signInButtonModelsFactory)
         if let _ = delegate {
             presenter.state = .start
         }
