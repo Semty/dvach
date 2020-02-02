@@ -19,8 +19,8 @@ final class HeaderModelsFactory: IHeaderModelsFactory {
     func getModel(with state: LoginPresenter.State) -> HeaderView.ConfigurationModel {
         switch state {
         case .start, .signUp:
-            return HeaderView.ConfigurationModel(title: "createAccountTitle",
-                                                 subtitle: "subtitle",
+            return HeaderView.ConfigurationModel(title: "Добро пожаловать.\nСнова",
+                                                 subtitle: "Наша авторизация анонимна и безопасна",
                                                  animate: false)
         case .logOut:
             return HeaderView.ConfigurationModel(title: "logOutFromAccountTitle",

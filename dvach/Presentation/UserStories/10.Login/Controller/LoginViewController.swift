@@ -22,10 +22,7 @@ final class LoginViewController: UIViewController {
     internal let componentsFactory: IComponentsFactory
     
     // UI
-    internal lazy var headerView: HeaderView = {
-        let view = HeaderView()
-        return view
-    }()
+    internal lazy var headerView = HeaderView()
     
     internal lazy var loginFormsContainer: LoginFormsView = {
         let view = LoginFormsView()
@@ -204,6 +201,7 @@ final class LoginViewController: UIViewController {
 //        view.addSubview(emailButton)
         view.addSubview(signInButton)
         view.addSubview(closeButton)
+        closeButton.isHidden = true
         view.addSubview(signOutButton)
         
         headerView.snp.makeConstraints { $0.leading.trailing.top.equalToSuperview() }

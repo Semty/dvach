@@ -14,17 +14,16 @@ final class HeaderView: UIView {
     // UI
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-//        label.font = .titleFont
-//        label.textColor = .headerBlack
+        label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.textColor = .n7Blue
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.4
+        label.numberOfLines = 0
         return label
     }()
     
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-//        label.font = .subtitleFont
-//        label.textColor = .headerBlack
+        label.textColor = .n2Gray
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.4
@@ -47,13 +46,6 @@ final class HeaderView: UIView {
     // MARK: - Private
     
     private func setup() {
-        snp.makeConstraints {
-            if UIDevice.current.hasNotch {
-                $0.height.equalTo(CGFloat.headerHeight)
-            } else {
-                $0.height.equalTo(CGFloat.headerWithoutNotchHeight)
-            }
-        }
         addSubview(titleLabel)
         addSubview(subtitleLabel)
         titleLabel.snp.makeConstraints { $0.leading.trailing.equalToSuperview().inset(24)
@@ -102,8 +94,6 @@ private extension TimeInterval {
 }
 
 private extension CGFloat {
-    static let headerHeight: CGFloat = 153
-    static let headerWithoutNotchHeight: CGFloat = 127
     static let titleHeight: CGFloat = 29
     static let subtitleHeight: CGFloat = 29
 }

@@ -9,8 +9,8 @@
 import Foundation
 
 private extension CGFloat {
-    static let headerHeight: CGFloat = 130
-    static let contentInset: CGFloat = 70
+    static let headerHeight: CGFloat = 160
+    static let contentInset: CGFloat = 100
 }
 
 protocol SettingsView: AnyObject {
@@ -33,7 +33,8 @@ final class SettingsViewController: UIViewController {
         icon.tintColor = .white
         view.addSubview(icon)
         icon.snp.makeConstraints {
-            $0.top.trailing.equalToSuperview().inset(CGFloat.inset16)
+            $0.trailing.equalToSuperview().inset(CGFloat.inset16)
+            $0.top.equalToSuperview().inset(CGFloat.inset40)
             $0.width.height.equalTo(50)
         }
         
