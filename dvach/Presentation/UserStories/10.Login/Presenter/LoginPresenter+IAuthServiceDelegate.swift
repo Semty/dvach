@@ -18,7 +18,7 @@ extension LoginPresenter: IAuthServiceDelegate {
         if view?.keyboardIsShown ?? false {
             view?.forceLoginFormResignFirstResponder()
         }
-        view?.showSuccessAlertAndCloseViewController(with: "success")
+        view?.showSuccessAlertAndCloseViewController(with: "Ура!")
     }
     
     func authFailed(with error: Error) {

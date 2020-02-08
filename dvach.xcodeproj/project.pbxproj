@@ -33,6 +33,7 @@
 		414408A522A04BBC00E4E53E /* BoardsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A422A04BBC00E4E53E /* BoardsRequest.swift */; };
 		414408A722A050F600E4E53E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A622A050F600E4E53E /* Category.swift */; };
 		414408A922A052A800E4E53E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414408A822A052A800E4E53E /* Categories.swift */; };
+		415CA22F23EF07260070BCC0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 415CA22E23EF07260070BCC0 /* GoogleService-Info.plist */; };
 		41741D6022F2183F00E5C434 /* ScrollButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D5F22F2183F00E5C434 /* ScrollButton.swift */; };
 		41741D6522F5F45000E5C434 /* EULAOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41741D6422F5F45000E5C434 /* EULAOfferViewController.swift */; };
 		41741D6722F5F48400E5C434 /* EULAOfferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41741D6622F5F48400E5C434 /* EULAOfferViewController.xib */; };
@@ -52,7 +53,6 @@
 		4190800122A6E66A003309D9 /* BoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4190800022A6E66A003309D9 /* BoardView.xib */; };
 		4190800422A6EA9A003309D9 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190800322A6EA9A003309D9 /* IconView.swift */; };
 		4190800622A6EAF1003309D9 /* IconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4190800522A6EAF1003309D9 /* IconView.xib */; };
-		4190800D22A86872003309D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4190800C22A86871003309D9 /* GoogleService-Info.plist */; };
 		4190801122A86A6D003309D9 /* ConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190801022A86A6D003309D9 /* ConfigService.swift */; };
 		4190801322A86EE7003309D9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190801222A86EE7003309D9 /* Config.swift */; };
 		4190801D22A8865D003309D9 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 4190801C22A8865D003309D9 /* config.json */; };
@@ -311,6 +311,8 @@
 		414408A422A04BBC00E4E53E /* BoardsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsRequest.swift; sourceTree = "<group>"; };
 		414408A622A050F600E4E53E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		414408A822A052A800E4E53E /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		415CA22E23EF07260070BCC0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		415CA23023EF08AC0070BCC0 /* dvach.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = dvach.entitlements; sourceTree = "<group>"; };
 		41741D5F22F2183F00E5C434 /* ScrollButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollButton.swift; sourceTree = "<group>"; };
 		41741D6422F5F45000E5C434 /* EULAOfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAOfferViewController.swift; sourceTree = "<group>"; };
 		41741D6622F5F48400E5C434 /* EULAOfferViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EULAOfferViewController.xib; sourceTree = "<group>"; };
@@ -330,7 +332,6 @@
 		4190800022A6E66A003309D9 /* BoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoardView.xib; sourceTree = "<group>"; };
 		4190800322A6EA9A003309D9 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		4190800522A6EAF1003309D9 /* IconView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconView.xib; sourceTree = "<group>"; };
-		4190800C22A86871003309D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4190801022A86A6D003309D9 /* ConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigService.swift; sourceTree = "<group>"; };
 		4190801222A86EE7003309D9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4190801C22A8865D003309D9 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
@@ -1049,6 +1050,7 @@
 		41BEE6D1229EFE720028EBFB /* dvach */ = {
 			isa = PBXGroup;
 			children = (
+				415CA23023EF08AC0070BCC0 /* dvach.entitlements */,
 				41908A0222BAD0B70058907D /* monkey.json */,
 				41D38A7D22B83226000D1391 /* Assets.xcassets */,
 				41BEE6D2229EFE720028EBFB /* AppDelegate.swift */,
@@ -1059,7 +1061,7 @@
 				41BEE76A229F04C90028EBFB /* dvach-Bridging-Header.h */,
 				41BEE6E1229EFE750028EBFB /* Info.plist */,
 				41BEE6D9229EFE720028EBFB /* dvach.xcdatamodeld */,
-				4190800C22A86871003309D9 /* GoogleService-Info.plist */,
+				415CA22E23EF07260070BCC0 /* GoogleService-Info.plist */,
 				41741D7322FA0FBD00E5C434 /* badWordsConfig.json */,
 				4190801C22A8865D003309D9 /* config.json */,
 			);
@@ -1900,7 +1902,6 @@
 			files = (
 				D504B6EB22B90F36007C93B1 /* BannerView.xib in Resources */,
 				41908A1B22BE79590058907D /* SettingsSwitcherView.xib in Resources */,
-				4190800D22A86872003309D9 /* GoogleService-Info.plist in Resources */,
 				D5A69D4E22A2FD7600C46E24 /* ThreadWithImageView.xib in Resources */,
 				4193B1CC22AAA34E00EE25FD /* PostHeaderView.xib in Resources */,
 				4193B1DD22AEF96600EE25FD /* SkeletonPostView.xib in Resources */,
@@ -1914,6 +1915,7 @@
 				419089FF22BACE6A0058907D /* LaunchView.xib in Resources */,
 				41908A2422BE8F6C0058907D /* ConnectUsView.xib in Resources */,
 				4193B1B322AA4F2700EE25FD /* CategoriesSkeletonView.xib in Resources */,
+				415CA22F23EF07260070BCC0 /* GoogleService-Info.plist in Resources */,
 				419089F822BAB5BF0058907D /* ContentSettingsView.xib in Resources */,
 				D5A69D5022A2FDA800C46E24 /* ThreadWithoutImageView.xib in Resources */,
 				4190800122A6E66A003309D9 /* BoardView.xib in Resources */,
@@ -2387,6 +2389,7 @@
 			baseConfigurationReference = 4274A55E1D343EF270BE19BF /* Pods-dvach.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = dvach/dvach.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 14;
@@ -2412,6 +2415,7 @@
 			baseConfigurationReference = 969411BB3F2F8B617A813FCD /* Pods-dvach.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = dvach/dvach.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 14;
