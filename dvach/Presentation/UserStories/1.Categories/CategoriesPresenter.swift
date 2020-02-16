@@ -103,6 +103,11 @@ final class CategoriesPresenter {
         } else {
             categories.removeObject(hidden) // кроме "Скрытые"
             categories.removeObject(adults) // кроме "Взрослым"
+            categories.removeObject(japan) // кроме "Японская культура"
+            categories.removeObject(politics) // кроме "Политика"
+            categories.removeObject(other) // кроме "Разное"
+            categories.removeObject(art) // кроме "Творчество"
+            categories.removeObject(user) // кроме "Пользовательские"
             models = categories
         }
         

@@ -2392,7 +2392,7 @@
 				CODE_SIGN_ENTITLEMENTS = dvach/dvach.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = ZTRS68H53M;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = dvach/Info.plist;
@@ -2418,7 +2418,7 @@
 				CODE_SIGN_ENTITLEMENTS = dvach/dvach.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = ZTRS68H53M;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = dvach/Info.plist;
