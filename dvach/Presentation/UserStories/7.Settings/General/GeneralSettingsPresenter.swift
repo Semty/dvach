@@ -41,7 +41,6 @@ extension GeneralSettingsPresenter: IGeneralSettingsPresenter {
     
     func didChangeSafeModeSwitchValue(_ value: Bool) {
         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-        Analytics.logEvent("SafeModeSwitchDidChangeValue", parameters: [:])        
         appSettingsStorage.isSafeMode = value
     }
 }

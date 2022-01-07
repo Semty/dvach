@@ -22,8 +22,8 @@ final class BoardWithThreadsViewModelFactory {
             guard let comment = thread.shortInfo.comment,
                 let subject = thread.shortInfo.subject else { return nil }
             
-            let censorComment = profanityCensor.censor(comment, symbol: "*")
-            let censorSubject = profanityCensor.censor(subject, symbol: "*")
+            let censorComment = isSafeMode ? profanityCensor.censor(comment, symbol: "*") : comment
+            let censorSubject = isSafeMode ? profanityCensor.censor(subject, symbol: "*") : subject
             
             let postsCountTitle = "\(thread.postsCount) \(thread.postsCount.rightWordForPostsCount())"
             

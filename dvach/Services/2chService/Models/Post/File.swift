@@ -17,6 +17,30 @@ enum FileType: Int {
     case mp4 = 10
     case sticker = 100
     case unknown = -1 // мало ли что может придти
+    
+    var description: String {
+        switch self {
+        case .jpg:
+            return "jpg"
+        case .png:
+            return "png"
+        case .gif:
+            return "gif"
+        case .webm:
+            return "webm"
+        case .mp4:
+            return "mp4"
+        case .sticker:
+            return "sticker"
+        case .unknown:
+            return "unknown"
+        }
+    }
+}
+
+struct FilePathType {
+    let urlPath: String
+    let type: FileType
 }
 
 struct File {

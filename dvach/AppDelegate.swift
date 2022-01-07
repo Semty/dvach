@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GlobalUtils.setAudioInSilentModeOn()
         setupInitialViewController()
         setupNuke()
+        
+        let cookieProps = [
+            HTTPCookiePropertyKey.domain: "2ch.hk",
+            HTTPCookiePropertyKey.path: "/",
+            HTTPCookiePropertyKey.name: "usercode_auth",
+            HTTPCookiePropertyKey.value: "358fa225657f7ee4ac6b17881210cbe3"
+        ]
+        if let cookie = HTTPCookie(properties: cookieProps) {
+            AF.session.configuration.httpCookieStorage?.setCookie(cookie)
+        }
         
         return true
     }

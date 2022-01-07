@@ -21,6 +21,7 @@ final class FavouritePostsPresenter {
     weak var view: (FavouritePostsView & UIViewController)?
     
     private let dvachService = Locator.shared.dvachService()
+    private let appSettingsStorage = Locator.shared.appSettingsStorage()
     private let profanityCensor = Locator.shared.profanityCensor()
     
     // Properties
@@ -30,12 +31,17 @@ final class FavouritePostsPresenter {
     // MARK: - Private
     
     private func createViewModels(posts: [Post]) -> [FavouriteThreadView.Model] {
-        return posts.map {
-            FavouriteThreadView.Model(title: profanityCensor.censor($0.subject.parsed2chSubject,
-                                                                    symbol: "*"),
-                                      subtitle: profanityCensor.censor($0.comment.parsed2chPost,
-                                                                       symbol: "*"),
-                                      iconURL: $0.files.first?.thumbnail)
+        let isSafeMode = appSettingsStorage.isSafeMode
+        return posts.map { post in
+            let censorSubject = isSafeMode ? profanityCensor
+                .censor(post.subject.parsed2chSubject,
+                        symbol: "*") : post.subject.parsed2chSubject
+            let censorPost = isSafeMode ? profanityCensor
+                .censor(post.comment.parsed2chPost,
+                        symbol: "*") : post.comment.parsed2chPost
+            return FavouriteThreadView.Model(title: censorSubject,
+                                             subtitle: censorPost,
+                                             iconURL: post.files.first?.thumbnail)
         }
     }
 }

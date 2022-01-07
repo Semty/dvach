@@ -27,7 +27,7 @@ final class DvachService {
 
 extension DvachService: IDvachService {
     
-    func loadBoards(qos: DispatchQoS, completion: @escaping (Result<[Board]>) -> Void) {
+    func loadBoards(qos: DispatchQoS, completion: @escaping (Result<[Board], Error>) -> Void) {
         let request = BoardsRequest()
         requestManager.loadModel(request: request, qos: qos) { result in
             switch result {
@@ -42,7 +42,7 @@ extension DvachService: IDvachService {
     
     func loadBoardWithBumpSortingThreadsCatalog(_ board: String,
                                                 qos: DispatchQoS,
-                                                completion: @escaping (Result<Board>) -> Void) {
+                                                completion: @escaping (Result<Board, Error>) -> Void) {
         let request = BoardWithBumpSortingThreadsCatalogRequest(board)
         requestManager.loadModel(request: request, qos: qos) { result in
             switch result {
@@ -57,7 +57,7 @@ extension DvachService: IDvachService {
     func loadBoardWithPerPageThreadsRequest(_ board: String,
                                             _ page: Int,
                                             qos: DispatchQoS,
-                                            completion: @escaping (Result<Board>) -> Void) {
+                                            completion: @escaping (Result<Board, Error>) -> Void) {
         let request = BoardWithPerPageThreadsRequest(board, page)
         requestManager.loadModel(request: request, qos: qos) { result in
             switch result {
@@ -74,7 +74,7 @@ extension DvachService: IDvachService {
                              postNum: Int?,
                              location: PostNumberLocation?,
                              qos: DispatchQoS,
-                             completion: @escaping (Result<[Post]>) -> Void) {
+                             completion: @escaping (Result<[Post], Error>) -> Void) {
         
         let request = ThreadWithPostsRequest(board: board,
                                              thread: threadNum,
@@ -95,7 +95,7 @@ extension DvachService: IDvachService {
                     postNum: String,
                     comment: String,
                     qos: DispatchQoS,
-                    completion: @escaping (Result<ReportResponse>) -> Void) {
+                    completion: @escaping (Result<ReportResponse, Error>) -> Void) {
         
         let request = ReportRequest(board: board,
                                     threadNum: threadNum,
@@ -133,18 +133,15 @@ extension DvachService: IDvachService {
         switch item {
         case .board(let board):
             storage.save(objects: [board], completion: completion)
-            Analytics.logEvent("BoardDidAdToFavourites", parameters: [:])
         case .thread(var thread, let boardId):
             thread.boardId = boardId
             storage.save(objects: [thread], completion: completion)
-            Analytics.logEvent("ThreadDidAdToFavourites", parameters: [:])
         case .post(var post, var threadShortInfo, let boardId):
             threadShortInfo?.isFavourite = false
             threadShortInfo?.boardId = boardId
             threadShortInfo?.identifier = post.identifier // Нужно для того, чтобы тред не попал в избранное вместе с постом
             post.threadInfo = threadShortInfo
             storage.save(objects: [post], completion: completion)
-            Analytics.logEvent("PostDidAdToFavourites", parameters: [:])
         }
     }
     

@@ -183,20 +183,17 @@ open class DTPhotoCollectionViewCell: UICollectionViewCell {
     // MARK: - Configuration
     
     public func configure(_ image: UIImage?, urlPath: String?, isSafeMode: Bool) {
-        if let urlPath = urlPath, let image = image {
+        if let urlPath = urlPath {
             url = URL(string: "\(GlobalUtils.base2chPath)\(urlPath)")
-            if !image.isNFFW {
-                ImagePipeline.Configuration.isAnimatedImageDataEnabled = true
-                imageView.loadImage(url: urlPath,
-                                    defaultImage: image,
-                                    placeholder: image,
-                                    transition: false,
-                                    checkNSFW: false,
-                                    isSafeMode: isSafeMode)
-            } else {
-                imageView.image = image
-                button.isHidden = false
-            }
+            imageView.image = image
+            ImagePipeline.Configuration.isAnimatedImageDataEnabled = true
+            imageView.loadImage(url: urlPath,
+                                defaultImage: image,
+                                placeholder: image,
+                                transition: false,
+                                checkNSFW: false,
+                                isSafeMode: isSafeMode)
+            button.isHidden = false
         } else {
             imageView.image = image
         }

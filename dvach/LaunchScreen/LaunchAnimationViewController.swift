@@ -72,22 +72,22 @@ final class LaunchAnimationViewController: UIViewController {
         group.enter()
         animationView.play { _ in group.leave() }
         
-        group.enter()
-        firebaseService.updateConfig { [weak self] in
-            guard let self = self else {
-                group.leave()
-                return
-            }
-            let previousVersion = self.appSettingsStorage.previousBadWordsVersion
-            let currentVersion = Config.badWordsVersion
-            self.appSettingsStorage.previousBadWordsVersion = currentVersion
-            
-            if previousVersion != currentVersion {
-                self.firebaseService.updateBadWordsConfig { group.leave() }
-            } else {
-                group.leave()
-            }
-        }
+//        group.enter()
+//        firebaseService.updateConfig { [weak self] in
+//            guard let self = self else {
+//                group.leave()
+//                return
+//            }
+//            let previousVersion = self.appSettingsStorage.previousBadWordsVersion
+//            let currentVersion = Config.badWordsVersion
+//            self.appSettingsStorage.previousBadWordsVersion = currentVersion
+//
+//            if previousVersion != currentVersion {
+//                self.firebaseService.updateBadWordsConfig { group.leave() }
+//            } else {
+//                group.leave()
+//            }
+//        }
         
         group.notify(queue: .main) { [weak self] in
             self?.delegate?.endSplashScreen()

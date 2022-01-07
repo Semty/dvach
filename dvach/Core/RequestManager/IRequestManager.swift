@@ -16,8 +16,8 @@ protocol IRequestManager {
     func execute(_ request: BaseRequest, qos: DispatchQoS, completion: @escaping (JSON?, Error?) -> Void)
     
     /// Загрузка модели
-    func loadModel<T: IRequest>(request: T, qos: DispatchQoS, completion: @escaping (Result<T.Model>) -> Void)
+    func loadModel<T: IRequest>(request: T, qos: DispatchQoS, completion: @escaping (Result<T.Model, Error>) -> Void)
     
     /// Загрузка моделей
-    func loadModels<T: IRequest>(request: T, qos: DispatchQoS, completion: @escaping (Result<[T.Model]>) -> Void)
+    func loadModels<T: IRequest>(request: T, qos: DispatchQoS, completion: @escaping (Result<[T.Model], Error>) -> Void)
 }

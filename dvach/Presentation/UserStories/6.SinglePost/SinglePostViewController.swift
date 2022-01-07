@@ -9,7 +9,7 @@
 import Foundation
 import SafariServices
 
-protocol SinglePostView: AnyObject, SFSafariViewControllerDelegate {
+protocol SinglePostView: SFSafariViewControllerDelegate {
     func configure(model: PostCommentViewModel)
 }
 

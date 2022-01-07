@@ -65,7 +65,6 @@ final class CategoriesViewController: UIViewController {
         super.viewDidLoad()
 
         definesPresentationContext = true
-        edgesForExtendedLayout = []
         setupSearch()
         setupUI()
         presenter.viewDidLoad()
@@ -79,7 +78,7 @@ final class CategoriesViewController: UIViewController {
     // MARK: - Private
     
     private func showEULAOfferIfNeeded() {
-        guard !appSettingsStorage.isEulaCompleted else { return }
+        guard appSettingsStorage.isSafeMode, !appSettingsStorage.isEulaCompleted else { return }
         
         let vc = EULAOfferViewController()
         let attributes = vc.getAnimationAttributes()
@@ -108,7 +107,10 @@ final class CategoriesViewController: UIViewController {
         
         // skeleton
         view.addSubview(skeleton)
-        skeleton.snp.makeConstraints { $0.edges.equalToSuperview() }
+        skeleton.snp.makeConstraints {
+            $0.top.equalTo(view.safeArea.top)
+            $0.leading.bottom.trailing.equalToSuperview()
+        }
         skeleton.update(state: .active)
         
         // placeholder

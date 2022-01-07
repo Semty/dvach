@@ -98,7 +98,7 @@ extension RepliesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = presenter.dataSource[indexPath.row]
         
-        if viewModel.fileURLs.isEmpty {
+        if viewModel.files.isEmpty {
             let cell: PostCommentWithoutMediaCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.prepareForReuse()
             cell.configure(with: viewModel)

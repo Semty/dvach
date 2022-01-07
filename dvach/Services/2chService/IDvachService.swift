@@ -11,18 +11,18 @@ import Foundation
 protocol IDvachService {
     
     /// Загрузка всех досок (без тредов и дополнительной информации)
-    func loadBoards(qos: DispatchQoS, completion: @escaping (Result<[Board]>) -> Void)
+    func loadBoards(qos: DispatchQoS, completion: @escaping (Result<[Board], Error>) -> Void)
     
     /// Загрузка конкретной доски (с каталогом тредов, отсортированных по последнему сообщению)
     func loadBoardWithBumpSortingThreadsCatalog(_ board: String,
                                                 qos: DispatchQoS,
-                                                completion: @escaping (Result<Board>) -> Void)
+                                                completion: @escaping (Result<Board, Error>) -> Void)
     
     /// Загрузка конкретной доски с тредами по странице
     func loadBoardWithPerPageThreadsRequest(_ board: String,
                                             _ page: Int,
                                             qos: DispatchQoS,
-                                            completion: @escaping (Result<Board>) -> Void)
+                                            completion: @escaping (Result<Board, Error>) -> Void)
     
     /*
      Параметры:
@@ -55,7 +55,7 @@ protocol IDvachService {
                              postNum: Int?,
                              location: PostNumberLocation?,
                              qos: DispatchQoS,
-                             completion: @escaping (Result<[Post]>) -> Void)
+                             completion: @escaping (Result<[Post], Error>) -> Void)
     
     /// Репорт поста
     func reportPost(board: String,
@@ -63,7 +63,7 @@ protocol IDvachService {
                     postNum: String,
                     comment: String,
                     qos: DispatchQoS,
-                    completion: @escaping (Result<ReportResponse>) -> Void)
+                    completion: @escaping (Result<ReportResponse, Error>) -> Void)
     
     // MARK: - Shown Boards
     
@@ -94,13 +94,13 @@ protocol IDvachService {
 extension IDvachService {
     
     func loadBoards(qos: DispatchQoS = .userInitiated,
-                    completion: @escaping (Result<[Board]>) -> Void) {
+                    completion: @escaping (Result<[Board], Error>) -> Void) {
         loadBoards(qos: qos, completion: completion)
     }
     
     func loadBoardWithBumpSortingThreadsCatalog(_ board: String,
                                                 qos: DispatchQoS = .userInitiated,
-                                                completion: @escaping (Result<Board>) -> Void) {
+                                                completion: @escaping (Result<Board, Error>) -> Void) {
         loadBoardWithBumpSortingThreadsCatalog(board,
                                                qos: qos,
                                                completion: completion)
@@ -109,7 +109,7 @@ extension IDvachService {
     func loadBoardWithPerPageThreadsRequest(_ board: String,
                                             _ page: Int,
                                             qos: DispatchQoS = .userInitiated,
-                                            completion: @escaping (Result<Board>) -> Void) {
+                                            completion: @escaping (Result<Board, Error>) -> Void) {
         loadBoardWithPerPageThreadsRequest(board,
                                            page,
                                            qos: qos,
@@ -121,7 +121,7 @@ extension IDvachService {
                              postNum: Int?,
                              location: PostNumberLocation?,
                              qos: DispatchQoS = .userInitiated,
-                             completion: @escaping (Result<[Post]>) -> Void) {
+                             completion: @escaping (Result<[Post], Error>) -> Void) {
         loadThreadWithPosts(board: board,
                             threadNum: threadNum,
                             postNum: postNum,

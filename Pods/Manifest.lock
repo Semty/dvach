@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.9.1)
+  - Alamofire (5.5.0)
   - DeepDiff (2.3.1)
   - FacebookCore (0.9.0):
     - FBSDKCoreKit (~> 5.0)
@@ -7,188 +7,168 @@ PODS:
     - FacebookCore (~> 0.9.0)
     - FBSDKCoreKit (~> 5.0)
     - FBSDKLoginKit (~> 5.0)
-  - FBSDKCoreKit (5.14.0):
-    - FBSDKCoreKit/Basics (= 5.14.0)
-    - FBSDKCoreKit/Core (= 5.14.0)
-  - FBSDKCoreKit/Basics (5.14.0)
-  - FBSDKCoreKit/Core (5.14.0):
+  - FBSDKCoreKit (5.15.1):
+    - FBSDKCoreKit/Basics (= 5.15.1)
+    - FBSDKCoreKit/Core (= 5.15.1)
+  - FBSDKCoreKit/Basics (5.15.1)
+  - FBSDKCoreKit/Core (5.15.1):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.14.0):
-    - FBSDKLoginKit/Login (= 5.14.0)
-  - FBSDKLoginKit/Login (5.14.0):
+  - FBSDKLoginKit (5.15.1):
+    - FBSDKLoginKit/Login (= 5.15.1)
+  - FBSDKLoginKit/Login (5.15.1):
     - FBSDKCoreKit (~> 5.0)
-  - Firebase/Auth (6.15.0):
+  - Firebase/Auth (8.10.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 6.4.2)
-  - Firebase/Core (6.15.0):
+    - FirebaseAuth (~> 8.10.0)
+  - Firebase/Core (8.10.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.2.1)
-  - Firebase/CoreOnly (6.15.0):
-    - FirebaseCore (= 6.6.0)
-  - Firebase/Database (6.15.0):
+    - FirebaseAnalytics (~> 8.10.0)
+  - Firebase/CoreOnly (8.10.0):
+    - FirebaseCore (= 8.10.0)
+  - Firebase/Database (8.10.0):
     - Firebase/CoreOnly
-    - FirebaseDatabase (~> 6.1.4)
-  - FirebaseAnalytics (6.2.1):
-    - FirebaseCore (~> 6.6)
-    - FirebaseInstanceID (~> 4.3)
-    - GoogleAppMeasurement (= 6.2.1)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/MethodSwizzler (~> 6.0)
-    - GoogleUtilities/Network (~> 6.0)
-    - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (= 0.3.9011)
-  - FirebaseAuth (6.4.2):
-    - FirebaseAuthInterop (~> 1.0)
-    - FirebaseCore (~> 6.2)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
-    - GoogleUtilities/Environment (~> 6.2)
-    - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (6.6.0):
-    - FirebaseCoreDiagnostics (~> 1.2)
-    - FirebaseCoreDiagnosticsInterop (~> 1.2)
-    - GoogleUtilities/Environment (~> 6.5)
-    - GoogleUtilities/Logger (~> 6.5)
-  - FirebaseCoreDiagnostics (1.2.0):
-    - FirebaseCoreDiagnosticsInterop (~> 1.2)
-    - GoogleDataTransportCCTSupport (~> 1.3)
-    - GoogleUtilities/Environment (~> 6.5)
-    - GoogleUtilities/Logger (~> 6.5)
-    - nanopb (~> 0.3.901)
-  - FirebaseCoreDiagnosticsInterop (1.2.0)
-  - FirebaseDatabase (6.1.4):
-    - FirebaseAuthInterop (~> 1.0)
-    - FirebaseCore (~> 6.0)
+    - FirebaseDatabase (~> 8.10.0)
+  - FirebaseAnalytics (8.10.0):
+    - FirebaseAnalytics/AdIdSupport (= 8.10.0)
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
+    - GoogleUtilities/MethodSwizzler (~> 7.6)
+    - GoogleUtilities/Network (~> 7.6)
+    - "GoogleUtilities/NSData+zlib (~> 7.6)"
+    - nanopb (~> 2.30908.0)
+  - FirebaseAnalytics/AdIdSupport (8.10.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleAppMeasurement (= 8.10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
+    - GoogleUtilities/MethodSwizzler (~> 7.6)
+    - GoogleUtilities/Network (~> 7.6)
+    - "GoogleUtilities/NSData+zlib (~> 7.6)"
+    - nanopb (~> 2.30908.0)
+  - FirebaseAuth (8.10.0):
+    - FirebaseCore (~> 8.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
+    - GoogleUtilities/Environment (~> 7.6)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - FirebaseCore (8.10.0):
+    - FirebaseCoreDiagnostics (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.6)
+    - GoogleUtilities/Logger (~> 7.6)
+  - FirebaseCoreDiagnostics (8.10.0):
+    - GoogleDataTransport (~> 9.1)
+    - GoogleUtilities/Environment (~> 7.6)
+    - GoogleUtilities/Logger (~> 7.6)
+    - nanopb (~> 2.30908.0)
+  - FirebaseDatabase (8.10.0):
+    - FirebaseCore (~> 8.0)
     - leveldb-library (~> 1.22)
-  - FirebaseInstallations (1.1.0):
-    - FirebaseCore (~> 6.6)
-    - GoogleUtilities/UserDefaults (~> 6.5)
-    - PromisesObjC (~> 1.2)
-  - FirebaseInstanceID (4.3.0):
-    - FirebaseCore (~> 6.6)
-    - FirebaseInstallations (~> 1.0)
-    - GoogleUtilities/Environment (~> 6.5)
-    - GoogleUtilities/UserDefaults (~> 6.5)
+  - FirebaseInstallations (8.10.0):
+    - FirebaseCore (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.6)
+    - GoogleUtilities/UserDefaults (~> 7.6)
+    - PromisesObjC (< 3.0, >= 1.2)
   - FLAnimatedImage (1.0.14)
-  - GoogleAppMeasurement (6.2.1):
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/MethodSwizzler (~> 6.0)
-    - GoogleUtilities/Network (~> 6.0)
-    - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (= 0.3.9011)
-  - GoogleDataTransport (3.3.0)
-  - GoogleDataTransportCCTSupport (1.3.0):
-    - GoogleDataTransport (~> 3.3)
-    - nanopb (~> 0.3.901)
-  - GoogleUtilities/AppDelegateSwizzler (6.5.0):
+  - GoogleAppMeasurement (8.10.0):
+    - GoogleAppMeasurement/AdIdSupport (= 8.10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
+    - GoogleUtilities/MethodSwizzler (~> 7.6)
+    - GoogleUtilities/Network (~> 7.6)
+    - "GoogleUtilities/NSData+zlib (~> 7.6)"
+    - nanopb (~> 2.30908.0)
+  - GoogleAppMeasurement/AdIdSupport (8.10.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 8.10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
+    - GoogleUtilities/MethodSwizzler (~> 7.6)
+    - GoogleUtilities/Network (~> 7.6)
+    - "GoogleUtilities/NSData+zlib (~> 7.6)"
+    - nanopb (~> 2.30908.0)
+  - GoogleAppMeasurement/WithoutAdIdSupport (8.10.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
+    - GoogleUtilities/MethodSwizzler (~> 7.6)
+    - GoogleUtilities/Network (~> 7.6)
+    - "GoogleUtilities/NSData+zlib (~> 7.6)"
+    - nanopb (~> 2.30908.0)
+  - GoogleDataTransport (9.1.2):
+    - GoogleUtilities/Environment (~> 7.2)
+    - nanopb (~> 2.30908.0)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/AppDelegateSwizzler (7.6.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.5.0)
-  - GoogleUtilities/Logger (6.5.0):
+  - GoogleUtilities/Environment (7.6.0):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/Logger (7.6.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.5.0):
+  - GoogleUtilities/MethodSwizzler (7.6.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.5.0):
+  - GoogleUtilities/Network (7.6.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.5.0)"
-  - GoogleUtilities/Reachability (6.5.0):
+  - "GoogleUtilities/NSData+zlib (7.6.0)"
+  - GoogleUtilities/Reachability (7.6.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.5.0):
+  - GoogleUtilities/UserDefaults (7.6.0):
     - GoogleUtilities/Logger
-  - GTMSessionFetcher/Core (1.3.1)
+  - GTMSessionFetcher/Core (1.7.0)
   - IHProgressHUD (0.1.5)
-  - KafkaRefresh (1.4.7):
-    - KafkaRefresh/Category (= 1.4.7)
-    - KafkaRefresh/Configuration (= 1.4.7)
-    - KafkaRefresh/Core (= 1.4.7)
-    - KafkaRefresh/Default (= 1.4.7)
-    - KafkaRefresh/Style (= 1.4.7)
-    - KafkaRefresh/UIKit (= 1.4.7)
-  - KafkaRefresh/Category (1.4.7)
-  - KafkaRefresh/Configuration (1.4.7):
+  - KafkaRefresh (1.5.0):
+    - KafkaRefresh/Category (= 1.5.0)
+    - KafkaRefresh/Configuration (= 1.5.0)
+    - KafkaRefresh/Core (= 1.5.0)
+    - KafkaRefresh/Default (= 1.5.0)
+    - KafkaRefresh/Style (= 1.5.0)
+    - KafkaRefresh/UIKit (= 1.5.0)
+  - KafkaRefresh/Category (1.5.0)
+  - KafkaRefresh/Configuration (1.5.0):
     - KafkaRefresh/UIKit/FootKit
     - KafkaRefresh/UIKit/HeadKit
-  - KafkaRefresh/Core (1.4.7):
+  - KafkaRefresh/Core (1.5.0):
     - KafkaRefresh/Category
-  - KafkaRefresh/Default (1.4.7):
+  - KafkaRefresh/Default (1.5.0):
     - KafkaRefresh/Style
-  - KafkaRefresh/Style (1.4.7)
-  - KafkaRefresh/UIKit (1.4.7):
-    - KafkaRefresh/UIKit/FootKit (= 1.4.7)
-    - KafkaRefresh/UIKit/HeadKit (= 1.4.7)
-    - KafkaRefresh/UIKit/LayerKit (= 1.4.7)
-  - KafkaRefresh/UIKit/FootKit (1.4.7):
+  - KafkaRefresh/Style (1.5.0)
+  - KafkaRefresh/UIKit (1.5.0):
+    - KafkaRefresh/UIKit/FootKit (= 1.5.0)
+    - KafkaRefresh/UIKit/HeadKit (= 1.5.0)
+    - KafkaRefresh/UIKit/LayerKit (= 1.5.0)
+  - KafkaRefresh/UIKit/FootKit (1.5.0):
     - KafkaRefresh/Category
     - KafkaRefresh/Core
     - KafkaRefresh/Default
     - KafkaRefresh/Style
     - KafkaRefresh/UIKit/LayerKit
-  - KafkaRefresh/UIKit/HeadKit (1.4.7):
+  - KafkaRefresh/UIKit/HeadKit (1.5.0):
     - KafkaRefresh/Category
     - KafkaRefresh/Core
     - KafkaRefresh/Default
     - KafkaRefresh/Style
     - KafkaRefresh/UIKit/LayerKit
-  - KafkaRefresh/UIKit/LayerKit (1.4.7):
+  - KafkaRefresh/UIKit/LayerKit (1.5.0):
     - KafkaRefresh/Category
     - KafkaRefresh/Default
-  - leveldb-library (1.22)
-  - libnestegg (0.3)
-  - libogg (1.3.3)
-  - libopus (1.1):
-    - libopus/float (= 1.1)
-  - libopus/float (1.1)
-  - libvorbis (1.3.5):
-    - libogg (>= 1.0)
-  - libvpx (1.7.0)
+  - leveldb-library (1.22.1)
   - lottie-ios (3.1.0)
-  - nanopb (0.3.9011):
-    - nanopb/decode (= 0.3.9011)
-    - nanopb/encode (= 0.3.9011)
-  - nanopb/decode (0.3.9011)
-  - nanopb/encode (0.3.9011)
+  - MobileVLCKit (3.3.17)
+  - nanopb (2.30908.0):
+    - nanopb/decode (= 2.30908.0)
+    - nanopb/encode (= 2.30908.0)
+  - nanopb/decode (2.30908.0)
+  - nanopb/encode (2.30908.0)
   - Nantes (0.0.8)
   - Nuke (8.0)
   - Nuke-FLAnimatedImage-Plugin (6.2):
     - FLAnimatedImage (~> 1.0)
     - Nuke (~> 8.0)
-  - OGVKit/Core (0.5.13)
-  - OGVKit/OpusDecoder (0.5.13):
-    - libopus
-    - OGVKit/Core
-  - OGVKit/VorbisDecoder (0.5.13):
-    - libvorbis
-    - OGVKit/Core
-  - OGVKit/VP8Decoder (0.5.13):
-    - libvpx (~> 1.7.0)
-    - OGVKit/Core
-  - OGVKit/WebM (0.5.13):
-    - OGVKit/WebM/Opus (= 0.5.13)
-    - OGVKit/WebM/Vorbis (= 0.5.13)
-    - OGVKit/WebM/VP8 (= 0.5.13)
-  - OGVKit/WebM/Opus (0.5.13):
-    - OGVKit/OpusDecoder
-    - OGVKit/WebMDemuxer
-  - OGVKit/WebM/Vorbis (0.5.13):
-    - OGVKit/VorbisDecoder
-    - OGVKit/WebMDemuxer
-  - OGVKit/WebM/VP8 (0.5.13):
-    - OGVKit/VorbisDecoder
-    - OGVKit/VP8Decoder
-    - OGVKit/WebMDemuxer
-  - OGVKit/WebMDemuxer (0.5.13):
-    - libnestegg (~> 0.2)
-    - OGVKit/Core
-  - PromisesObjC (1.2.8)
-  - PureLayout (3.1.5)
+  - PromisesObjC (2.0.0)
+  - PureLayout (3.1.9)
   - QuickLayout (3.0.0)
-  - SnapKit (4.2.0)
+  - SnapKit (5.0.1)
   - SwiftEntryKit (1.0.2):
     - QuickLayout (= 3.0.0)
-  - SwiftyJSON (4.2.0)
+  - SwiftyJSON (5.0.1)
   - VersaPlayer (2.2.3)
 
 DEPENDENCIES:
@@ -202,23 +182,18 @@ DEPENDENCIES:
   - IHProgressHUD (from `https://github.com/Swiftify-Corp/IHProgressHUD.git`)
   - KafkaRefresh
   - lottie-ios (= 3.1.0)
+  - MobileVLCKit (~> 3.3.0)
   - Nantes (from `https://github.com/Semty/Nantes`, branch `dev`)
   - Nuke (from `https://github.com/Semty/Nuke`, branch `dev`)
   - Nuke-FLAnimatedImage-Plugin (from `https://github.com/Semty/Nuke-FLAnimatedImage-Plugin.git`)
-  - OGVKit/WebM (from `https://github.com/Semty/WebM`)
   - PureLayout
-  - SnapKit (= 4.2.0)
+  - SnapKit
   - SwiftEntryKit (from `https://github.com/Semty/SwiftEntryKit.git`, branch `support-of-setting-home-indicator-behaviour`)
-  - SwiftyJSON (= 4.2.0)
+  - SwiftyJSON
   - VersaPlayer (from `https://github.com/Semty/MP4`)
 
 SPEC REPOS:
-  https://github.com/brion/OGVKit-Specs.git:
-    - libnestegg
-    - libogg
-    - libvorbis
-    - libvpx
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - DeepDiff
     - FacebookCore
@@ -228,22 +203,18 @@ SPEC REPOS:
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
-    - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseCoreDiagnostics
-    - FirebaseCoreDiagnosticsInterop
     - FirebaseDatabase
     - FirebaseInstallations
-    - FirebaseInstanceID
     - GoogleAppMeasurement
     - GoogleDataTransport
-    - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - GTMSessionFetcher
     - KafkaRefresh
     - leveldb-library
-    - libopus
     - lottie-ios
+    - MobileVLCKit
     - nanopb
     - PromisesObjC
     - PureLayout
@@ -265,8 +236,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/Semty/Nuke
   Nuke-FLAnimatedImage-Plugin:
     :git: https://github.com/Semty/Nuke-FLAnimatedImage-Plugin.git
-  OGVKit:
-    :git: https://github.com/Semty/WebM
   SwiftEntryKit:
     :branch: support-of-setting-home-indicator-behaviour
     :git: https://github.com/Semty/SwiftEntryKit.git
@@ -278,7 +247,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Flipboard/FLAnimatedImage.git
     :tag: 1.0.14
   IHProgressHUD:
-    :commit: 894be798eb94e2b0b23806e50f6571407710b015
+    :commit: a3d94dfb869ff9b2f9e5a4d0359a73a625072853
     :git: https://github.com/Swiftify-Corp/IHProgressHUD.git
   Nantes:
     :commit: 201e27ebad6dbe172927861b2631db0664b4e3fa
@@ -289,9 +258,6 @@ CHECKOUT OPTIONS:
   Nuke-FLAnimatedImage-Plugin:
     :commit: 361af7947e11a8b90e3e3e758a4031275c32ec8f
     :git: https://github.com/Semty/Nuke-FLAnimatedImage-Plugin.git
-  OGVKit:
-    :commit: 10f9d3cd4f6eb96ee8a7f9a6226703ff784a94d6
-    :git: https://github.com/Semty/WebM
   SwiftEntryKit:
     :commit: 2df7ece5966b24ca24d46e9714edf7214bb02f4f
     :git: https://github.com/Semty/SwiftEntryKit.git
@@ -300,50 +266,41 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Semty/MP4
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   DeepDiff: e5ae6c50d0321568e4508cec5930b9f10bb293fc
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
   FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
-  FBSDKCoreKit: a72c8d2c42aa4c4d5eaa5f160be9580750f70d2e
-  FBSDKLoginKit: 89f3c2f8be892ec8a5359619a8ff657578d47604
-  Firebase: 5d77105d9740a07ca6b16927ca971db7e860faaf
-  FirebaseAnalytics: e83e64b1231dedcd9ddd4bdecd9bcfd6ba341679
-  FirebaseAuth: ce45d7c5d46bed90159f3a73b6efbe8976ed3573
-  FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 4aeb81ff53dcd9a3634ca725dc1fb8c2a4622046
-  FirebaseCoreDiagnostics: 5e78803ab276bc5b50340e3c539c06c3de35c649
-  FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
-  FirebaseDatabase: 0144e0706a4761f1b0e8679572eba8095ddb59be
-  FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
-  FirebaseInstanceID: 6668efc1655a4052c083f287a7141f1ead12f9c2
+  FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
+  FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
+  Firebase: 44213362f1dcc52555b935dc925ed35ac55f1b20
+  FirebaseAnalytics: 319c9b3b1bdd400d60e2f415dff0c5f6959e6760
+  FirebaseAuth: 59a2d2b933b5b79e18fb1e6ad230c6abdaa73d26
+  FirebaseCore: 04186597c095da37d90ff9fd3e53bc61a1ff2440
+  FirebaseCoreDiagnostics: 56fb7216d87e0e6ec2feddefa9d8a392fe8b2c18
+  FirebaseDatabase: 5f3e83b0a0d8759378fbd5d05661244d14dfbbb0
+  FirebaseInstallations: 830327b45345ffc859eaa9c17bcd5ae893fd5425
   FLAnimatedImage: 58084d75cec819869a5ee8c76463df798dbaa906
-  GoogleAppMeasurement: a08a43b8677b95ed51fcef880e36737334d804fd
-  GoogleDataTransport: 574a983e829327d7c18f2627f65d9e80164ea8a4
-  GoogleDataTransportCCTSupport: cad3cd6cdbdbad6b5c2c9206ec413402755faaaa
-  GoogleUtilities: f8de7ddf8c706f58e9b405d53e38bbdaa2731e5a
-  GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
-  IHProgressHUD: 55de0cd62cd65832e0d0047324ab0ca59d0bba11
-  KafkaRefresh: a7962ea8f03f384c1b545d8c27ac419aa0d5b055
-  leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
-  libnestegg: 851afa1dc38c810bb18fa6459c39aa124abd7fc0
-  libogg: 35e313159a7270931d0f0f208c2d5f60bc05399b
-  libopus: ad5f060dcb8f30f139777244d70f9111f1c80863
-  libvorbis: b2c6a2c2bb22447d80403981185b213cf688fae7
-  libvpx: 5abeaf729fa406fd65ae1c19adcf00329c40e02a
+  GoogleAppMeasurement: a3311dbcf3ea651e5a070fe8559b57c174ada081
+  GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
+  GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
+  GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
+  IHProgressHUD: 554f1e4cb088cf82c238dc1c607f5fadfd81ab89
+  KafkaRefresh: 01645b1509b8647809f6bb666629c80855bd3fdd
+  leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   lottie-ios: 9467723922dfff46f6d4e3019c32594a62440b7c
-  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  MobileVLCKit: c5dd1b0ae933dc9c2348099840e753496dcdd908
+  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   Nantes: 94a2e0c0b8207f12694f4ff6d96bf670adad3e27
   Nuke: 8d90f1dbf88d27a7ba6ff3934de01693812e5adb
   Nuke-FLAnimatedImage-Plugin: c6e8f6cffd57659953a149ff1682370b9040d09d
-  OGVKit: 46e30d4b1f06e179b1f254c92604bfd6c4b8338c
-  PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
-  PureLayout: 9b4ad47b2f0388c84ff534af23d96e720c1b875a
+  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  PureLayout: 5fb5e5429519627d60d079ccb1eaa7265ce7cf88
   QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftEntryKit: 2e20ae0608f50ad8c9cb79341e422c1c374b182f
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   VersaPlayer: 4c078dfd2c99c7c934b456cf6d47aefd747afa52
 
-PODFILE CHECKSUM: c15b472dafefc872ecc6c9bdece7cce7bd97e2f8
+PODFILE CHECKSUM: 32f3ad700385642fc835d2f849ea673d15d54a23
 
-COCOAPODS: 1.7.3
+COCOAPODS: 1.11.2

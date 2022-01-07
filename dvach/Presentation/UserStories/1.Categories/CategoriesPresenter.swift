@@ -121,7 +121,6 @@ extension CategoriesPresenter: ICategoriesPresenter {
     
     func viewDidLoad() {
         loadCategories()
-        Analytics.logEvent("CategoriesShown", parameters: [:])
     }
     
     func didSelectCell(indexPath: IndexPath, category: Category) {
@@ -147,6 +146,5 @@ extension CategoriesPresenter: ICategoriesPresenter {
     
     func didTapUpdate() {
         loadCategories()
-        Analytics.logEvent("UpdateBoardsTapped", parameters: [:])
     }
 }

@@ -105,7 +105,7 @@ final class BoardWithThreadsPresenter {
     }
     
     private var shouldPresentBannerViewWarning: Bool {
-        let shouldPresent = !dvachService.isBoardShown(identifier: boardID) && !isBannerWarningWasPresented
+        let shouldPresent = appSettingsStorage.isSafeMode && !dvachService.isBoardShown(identifier: boardID) && !isBannerWarningWasPresented
         
         // Для того, чтобы баннер не показался лишни раз при viewWillAppear
         isBannerWarningWasPresented = true
@@ -120,7 +120,6 @@ extension BoardWithThreadsPresenter: IBoardWithThreadsPresenter {
     
     func viewDidLoad() {
         loadBoardWithThreads()
-        Analytics.logEvent("BoardShown", parameters: ["boardId": boardID])
     }
     
     func viewWillAppear() {

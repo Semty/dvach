@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import OGVKit
+import AVFoundation
+import MobileVLCKit
 
 @objc public protocol VideoContainer {
     var snapshotCropNeeded: Bool { get }
@@ -19,7 +20,7 @@ import OGVKit
     @objc optional func updateLayout()
 }
 
-public protocol VideoContainerDelegate: class {
+public protocol VideoContainerDelegate: AnyObject {
     var isRotating: Bool { get }
     func handleVideoTapGesture(hideControls hide: Bool)
     func shouldOpenMediaFile(url: URL?, type: DTMediaViewerController.MediaFile.MediaType)
@@ -30,7 +31,7 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
     public var snapshotCropNeeded = true
     
     // Player View (WebM Only!)
-    public private(set) weak var playerView: OGVPlayerView?
+    public private(set) weak var playerView: UIView?
     // Private NSFW preview Image View
     private weak var imageView: UIImageView?
     
@@ -47,6 +48,9 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
         }
         return button
     }()
+    
+    // VLC Player
+    private lazy var mediaPlayer = VLCMediaPlayer()
     
     // NSFW Flag
     private var isNSFW = true
@@ -86,11 +90,13 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
     
     private func setupPlayerView() {
         if playerView == nil {
-            let playerView = OGVPlayerView(frame: bounds)
-            playerView.delegate = self
+            let playerView = UIView(frame: bounds)
             addSubview(playerView)
             playerView.snp.makeConstraints { $0.edges.equalToSuperview() }
             self.playerView = playerView
+            
+            mediaPlayer.delegate = self
+            mediaPlayer.drawable = playerView
         }
     }
     
@@ -115,7 +121,7 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
     private func resizeImageView() {
         if let image = imageView?.image {
             let rect = AVMakeRect(aspectRatio: image.size, insideRect: bounds)
-            //Then figure out offset to center vertically or horizontally
+            // Then figure out offset to center vertically or horizontally
             let x = (bounds.width - rect.width) / 2
             let y = (bounds.height - rect.height) / 2
             
@@ -129,39 +135,40 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
         if let urlPath = urlPath,
             let url = URL(string: "\(GlobalUtils.base2chPath)\(urlPath)") {
             self.url = url
-            if let image = image, !image.isNFFW {
-                if let delegate = delegate, !delegate.isRotating {
-                    isNSFW = false
-                    setupPlayerView()
-                    playerView?.sourceURL = url
-                }
-            } else {
-                isNSFW = true
-                snapshotCropNeeded = false
-                setupImageView()
-                imageView?.image = image
-                resizeImageView()
-                button.isHidden = false
+            if let delegate = delegate, !delegate.isRotating {
+                isNSFW = false
+                setupPlayerView()
+                mediaPlayer.media = VLCMedia(url: url)
             }
+//            if let image = image, !image.isNFFW {
+//
+//            } else {
+//                isNSFW = true
+//                snapshotCropNeeded = false
+//                setupImageView()
+//                imageView?.image = image
+//                resizeImageView()
+//                button.isHidden = false
+//            }
         }
     }
     
     // MARK: - VideoContainer
     
     public func pause() {
-        if let playerView = playerView, !playerView.paused {
-            playerView.pause()
+        if mediaPlayer.isPlaying {
+            mediaPlayer.pause()
         }
     }
     
     public func play() {
-        if let playerView = playerView, playerView.paused {
-            playerView.play()
+        if !mediaPlayer.isPlaying {
+            mediaPlayer.play()
         }
     }
     
     public func updateLayout() {
-        playerView?.frameView.frame = bounds
+        playerView?.frame = bounds
     }
     
     public func snapshot(pauseVideo: Bool) -> UIImage? {
@@ -169,28 +176,40 @@ open class DTWebMCollectionViewCell: UICollectionViewCell, VideoContainer {
             if pauseVideo {
                 pause()
             }
-            return playerView?.frameView.snapshot
+            guard let size = playerView?.frame.size, let rec = playerView?.frame else { return nil }
+            UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+            playerView?.drawHierarchy(in: rec, afterScreenUpdates: false)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return image
         } else {
             return imageView?.image
         }
     }
     
     public func controlsViewFrame() -> CGRect {
-        if let playerView = playerView, !playerView.controlBar.isHidden {
-            return playerView.controlBar.frame
-        } else {
+//        if let playerView = playerView, !playerView.controlBar.isHidden {
+//            return playerView.controlBar.frame
+//        } else {
             return .zero
-        }
+//        }
     }
 }
 
-extension DTWebMCollectionViewCell: OGVPlayerDelegate {
+extension DTWebMCollectionViewCell: VLCMediaPlayerDelegate {
     
-    public func ogvPlayerControlsWillHide(_ sender: OGVPlayerView!) {
-        delegate?.handleVideoTapGesture(hideControls: true)
-    }
-    
-    public func ogvPlayerControlsWillShow(_ sender: OGVPlayerView!) {
-        delegate?.handleVideoTapGesture(hideControls: false)
+    public func mediaPlayerStateChanged(_ aNotification: Notification!) {
+        //
     }
 }
+
+//extension DTWebMCollectionViewCell: OGVPlayerDelegate {
+//
+//    public func ogvPlayerControlsWillHide(_ sender: OGVPlayerView!) {
+//        delegate?.handleVideoTapGesture(hideControls: true)
+//    }
+//
+//    public func ogvPlayerControlsWillShow(_ sender: OGVPlayerView!) {
+//        delegate?.handleVideoTapGesture(hideControls: false)
+//    }
+//}

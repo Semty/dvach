@@ -26,6 +26,7 @@ final class PostParser {
     }
     
     // Dependencies
+    private let appSettingsStorage = Locator.shared.appSettingsStorage()
     private let profanityCensor = Locator.shared.profanityCensor()
     
     // MARK: - Initialization
@@ -322,6 +323,8 @@ final class PostParser {
     // MARK: - Censor Profanity
     
     private func censorProfanity() {
-        profanityCensor.censor(attributedText, symbol: "*")
+        if appSettingsStorage.isSafeMode {
+            profanityCensor.censor(attributedText, symbol: "*")
+        }
     }
 }

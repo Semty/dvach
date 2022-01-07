@@ -11,7 +11,7 @@ import SafariServices
 import DeepDiff
 
 private extension Int {
-    static let numberOfViewsForRate = 100
+    static let numberOfViewsForRate = Int.max
 }
 
 typealias Replies = [String: [String]]
@@ -165,7 +165,7 @@ final class PostPresenter {
         let headerViewModel = PostHeaderView.Model(title: post.name.finishHtmlToNormalString(),
                                                    subtitle: post.number,
                                                    number: post.rowIndex + 1)
-        let imageURLs = post.files.map { $0.thumbnail }
+        let files = post.files.map { FilePathType(urlPath: $0.thumbnail, type: $0.type) }
         let postParser = PostParser(text: post.comment)
         let repliesCount = replies[post.number]?.count ?? 0
         let id = post.identifier
@@ -174,7 +174,7 @@ final class PostPresenter {
                                     headerModel: headerViewModel,
                                     date: post.date,
                                     text: postParser.attributedText,
-                                    fileURLs: imageURLs,
+                                    files: files,
                                     numberOfReplies: repliesCount,
                                     isAnswerHidden: true,
                                     isRepliesHidden: false,
@@ -199,7 +199,6 @@ final class PostPresenter {
         appSettingsStorage.numberOfThreadViews = numberOfViews + 1
         if numberOfViews == .numberOfViewsForRate {
             view?.showRateController()
-            Analytics.logEvent("RateAppShown", parameters: [:])
         }
     }
 }
@@ -228,8 +227,6 @@ extension PostPresenter: IPostPresenter {
                 self.view?.showPlaceholder(text: error.localizedDescription)
             }
         }
-
-        Analytics.logEvent("PostsShown", parameters: [:])
     }
     
     func refresh() {

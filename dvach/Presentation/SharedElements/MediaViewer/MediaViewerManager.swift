@@ -74,14 +74,15 @@ extension MediaViewerManager: DTMediaViewerControllerDataSource {
                                configurePhotoAt index: Int,
                                withImageView imageView: FLAnimatedImageView) {
         let file = mediaFiles[index]
-        if file.type == .image, let image = file.image, !image.isNFFW {
+        let isSafeMode = appSettingsStorage.isSafeMode
+        if file.type == .image {
             ImagePipeline.Configuration.isAnimatedImageDataEnabled = true
             imageView.loadImage(url: file.urlPath ?? "",
                                 defaultImage: file.image,
                                 placeholder: file.image,
                                 transition: false,
                                 checkNSFW: false,
-                                isSafeMode: appSettingsStorage.isSafeMode)
+                                isSafeMode: isSafeMode)
         } else {
             imageView.image = file.image
         }

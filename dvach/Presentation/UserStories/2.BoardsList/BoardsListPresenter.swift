@@ -50,7 +50,6 @@ extension BoardsListPresenter: IBoardsListPresenter {
     func viewDidLoad() {
         dataSource = createViewModels(from: boards)
         view?.updateTable()
-        Analytics.logEvent("BoardsListShown", parameters: [:])
     }
     
     func update(boards: [Board]) {

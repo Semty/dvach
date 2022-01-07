@@ -47,7 +47,7 @@ final class SinglePostPresenter: NSObject {
         let headerViewModel = PostHeaderView.Model(title: post.name.finishHtmlToNormalString(),
                                                    subtitle: post.number,
                                                    number: post.rowIndex + 1)
-        let imageURLs = post.files.map { $0.thumbnail }
+        let files = post.files.map { FilePathType(urlPath: $0.thumbnail, type: $0.type) }
         let postParser = PostParser(text: post.comment)
         let id = post.identifier
         
@@ -55,7 +55,7 @@ final class SinglePostPresenter: NSObject {
                                     headerModel: headerViewModel,
                                     date: post.date,
                                     text: postParser.attributedText,
-                                    fileURLs: imageURLs,
+                                    files: files,
                                     numberOfReplies: 0,
                                     isAnswerHidden: true,
                                     isRepliesHidden: true,
@@ -74,7 +74,6 @@ extension SinglePostPresenter: ISinglePostPresenter {
     func didTapOpenThread() {
         guard let threadInfo = post.threadInfo, let boardId = threadInfo.boardId else { return }
         let vc = PostAssembly.assemble(board: boardId, thread: threadInfo, postNumber: post.number)
-        Analytics.logEvent("OpenThreadButtonTapped", parameters: [:])
         view?.present(vc.wrappedInNavigation, animated: true)
     }
     

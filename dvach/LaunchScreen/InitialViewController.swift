@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol LaunchAnimationViewControllerDelegate: class {
+public protocol LaunchAnimationViewControllerDelegate: AnyObject {
     func endSplashScreen()
 }
 
@@ -45,7 +45,7 @@ final class InitialViewController: UIViewController, LaunchAnimationViewControll
     // MARK: - LaunchAnimationViewControllerDelegate
     
     public func endSplashScreen() {
-        let rootTabBarController = userAccountService.isUserSignIn ? RootTabBarController() : LoginAssembly.assemble(self)
+        let rootTabBarController = RootTabBarController()
         
         rootTabBarController.willMove(toParent: self)
         addChild(rootTabBarController)

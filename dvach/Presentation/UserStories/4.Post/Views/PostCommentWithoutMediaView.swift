@@ -146,17 +146,14 @@ extension PostCommentWithoutMediaView: NantesLabelDelegate {
 extension PostCommentWithoutMediaView: PostCommentButtonsViewDelegate {
     
     func answerButtonDidTap() {
-        Analytics.logEvent("AnswerButtonDidTap", parameters: [:])
         delegate?.postCommentView(self, didTapAnswerButton: postNumber)
     }
     
     func answersButtonDidTap() {
-        Analytics.logEvent("AnswersButtonDidTap", parameters: [:])
         delegate?.postCommentView(self, didTapAnswersButton: postNumber)
     }
     
     func moreButtonDidTap(_ button: UIView) {
-        Analytics.logEvent("MoreButtonDidTap", parameters: [:])
         delegate?.postCommentView(self, didTapMoreButton: button, postNumber: postNumber)
     }
 }

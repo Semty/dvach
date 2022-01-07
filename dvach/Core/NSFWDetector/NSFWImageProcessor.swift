@@ -32,7 +32,7 @@ extension ImageProcessor {
         
         public func process(image: Image, context: ImageProcessingContext?) -> Image? {
             // Проверка на безопасный режим
-            guard !isSafeMode else { return bluredImage(image) }
+            guard isSafeMode else { return image }
             
             let nsfwResponse = detectNSFW(image)
             if nsfwResponse?.0 == "SFW" {

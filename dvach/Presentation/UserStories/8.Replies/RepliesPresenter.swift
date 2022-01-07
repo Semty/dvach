@@ -65,7 +65,7 @@ final class RepliesPresenter {
         let headerViewModel = PostHeaderView.Model(title: post.name.finishHtmlToNormalString(),
                                                    subtitle: post.number,
                                                    number: post.rowIndex + 1)
-        let imageURLs = post.files.map { $0.thumbnail }
+        let files = post.files.map { FilePathType(urlPath: $0.thumbnail, type: $0.type) }
         let postParser = PostParser(text: post.comment)
         let repliesCount = replies[post.number]?.count ?? 0
         let id = post.identifier
@@ -74,7 +74,7 @@ final class RepliesPresenter {
                                     headerModel: headerViewModel,
                                     date: post.date,
                                     text: postParser.attributedText,
-                                    fileURLs: imageURLs,
+                                    files: files,
                                     numberOfReplies: repliesCount,
                                     isAnswerHidden: true,
                                     isRepliesHidden: false,

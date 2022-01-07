@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 final class RequestManager: IRequestManager {
     
@@ -61,30 +62,33 @@ final class RequestManager: IRequestManager {
         }
         
         if request.httpMethod == .post && request.contentType == .multipartFormData {
-            Alamofire.upload(multipartFormData: { multipart in
+            AF.upload(multipartFormData: { multipart in
                 request.parameters.forEach { dict in
                     guard let data = dict.value.data(using: .utf8) else { return }
                     multipart.append(data, withName: dict.key)
                 }
-            }, to: url) { result in
-                switch result {
-                case .success(let upload, _, _):
-                    upload.response { response in
-                        if let data = response.data {
-                            let json = JSON(data)
-                            completion(json, nil)
-                        } else {
-                            let error = NSError.defaultError(description: "EXECUTION ERROR")
-                            completion(nil, error)
-                        }
-                    }
-                case .failure(let error):
-                   completion(nil, error)
+            }, to: url)
+            .responseJSON(queue: queue) { response in
+                if let error = response.error {
+                    completion(nil, error)
+                } else if let data = response.data {
+                    let json = JSON(data)
+                    completion(json, nil)
+                } else {
+                    let error = NSError.defaultError(description: "EXECUTION ERROR")
+                    completion(nil, error)
                 }
             }
         } else {
-            Alamofire.request(url, method: request.httpMethod, parameters: request.parameters, headers: request.headers).responseJSON(queue: queue) { response in
-                if let data = response.data {
+            AF.request(url, method: request.httpMethod,
+                       parameters: request.parameters,
+//                       encoder: .json,
+                       headers: HTTPHeaders(request.headers))
+                { $0.timeoutInterval = 60 }
+                .responseJSON(queue: queue) { response in
+                if let error = response.error {
+                    completion(nil, error)
+                } else if let data = response.data {
                     let json = JSON(data)
                     completion(json, nil)
                 } else {
@@ -96,7 +100,7 @@ final class RequestManager: IRequestManager {
     }
     
     func loadModel<T: IRequest>(request: T, qos: DispatchQoS,
-                                completion: @escaping (Result<T.Model>) -> Void) {
+                                completion: @escaping (Result<T.Model, Error>) -> Void) {
         execute(request, qos: qos) { json, _ in
             if let key = request.payloadKey,
                 let json = json?.dictionary?[key],
@@ -112,7 +116,7 @@ final class RequestManager: IRequestManager {
     }
     
     func loadModels<T: IRequest>(request: T, qos: DispatchQoS,
-                                 completion: @escaping (Result<[T.Model]>) -> Void) {
+                                 completion: @escaping (Result<[T.Model], Error>) -> Void) {
         execute(request, qos: qos) { json, _ in
             if let key = request.payloadKey, let json = json?.dictionary?[key] {
                 let models = json.arrayValue.compactMap(T.Model.from)

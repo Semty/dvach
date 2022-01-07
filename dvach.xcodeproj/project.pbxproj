@@ -2390,10 +2390,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = dvach/dvach.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
-				DEVELOPMENT_TEAM = ZTRS68H53M;
+				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = dvach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -2401,9 +2401,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruslantimchenko.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DvachRegistrationDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "dvach/dvach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2416,10 +2416,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = dvach/dvach.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
-				DEVELOPMENT_TEAM = ZTRS68H53M;
+				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = dvach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -2427,9 +2427,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = SKA.dvach;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruslantimchenko.dvach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DvachRegistrationDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "dvach/dvach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2443,7 +2443,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZTRS68H53M;
+				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				INFOPLIST_FILE = dvachTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2465,7 +2465,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZTRS68H53M;
+				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				INFOPLIST_FILE = dvachTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

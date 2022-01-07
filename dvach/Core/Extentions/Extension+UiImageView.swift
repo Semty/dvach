@@ -36,12 +36,16 @@ extension UIImageView {
         
         let request: ImageRequest
         
+        let processors: [ImageProcessing] = [ImageProcessor.NSFWImageProcessor(
+            url: url,
+            nsfwPredictionBorder: .nsfwPredictionBorder,
+            sfwPredictionBorder: .sfwPredictionBorder,
+            isSafeMode: isSafeMode)]
+        
         if checkNSFW {
             request = ImageRequest(url: url,
-                                   processors: [ImageProcessor.NSFWImageProcessor(url: url,
-                                                                                  nsfwPredictionBorder: .nsfwPredictionBorder,
-                                                                                  sfwPredictionBorder: .sfwPredictionBorder,
-                                                                                  isSafeMode: isSafeMode)])
+                                   processors: isSafeMode ? processors : []
+            )
         } else {
             request = ImageRequest(url: url)
         }

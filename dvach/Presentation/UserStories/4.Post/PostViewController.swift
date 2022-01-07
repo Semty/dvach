@@ -312,7 +312,7 @@ extension PostViewController: UITableViewDataSource {
         if let data = presenter.dataSource[indexPath.row] {
             switch data {
             case .post(let viewModel):
-                if viewModel.fileURLs.isEmpty {
+                if viewModel.files.isEmpty {
                     let cell: PostCommentWithoutMediaCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                     cell.prepareForReuse()
                     cell.configure(with: viewModel)

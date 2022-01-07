@@ -133,23 +133,24 @@ open class DTMP4CollectionViewCell: UICollectionViewCell, VideoContainer {
         if let urlPath = urlPath,
             let url = URL(string: "\(GlobalUtils.base2chPath)\(urlPath)") {
             self.url = url
-            if let image = image, !image.isNFFW {
-                if let delegate = delegate, !delegate.isRotating {
-                    isNSFW = false
-                    setupPlayerView()
-                    let item = VersaPlayerItem(url: url)
-                    playerView?.autoplay = false
-                    playerView?.set(item: item)
-                    playerItemView = item
-                }
-            } else {
-                isNSFW = true
-                snapshotCropNeeded = false
-                setupImageView()
-                imageView?.image = image
-                resizeImageView()
-                button.isHidden = false
+            if let delegate = delegate, !delegate.isRotating {
+                isNSFW = false
+                setupPlayerView()
+                let item = VersaPlayerItem(url: url)
+                playerView?.autoplay = false
+                playerView?.set(item: item)
+                playerItemView = item
             }
+//            if let image = image, !image.isNFFW {
+//
+//            } else {
+//                isNSFW = true
+//                snapshotCropNeeded = false
+//                setupImageView()
+//                imageView?.image = image
+//                resizeImageView()
+//                button.isHidden = false
+//            }
         }
     }
     

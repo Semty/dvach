@@ -16,14 +16,14 @@ struct PostCommentViewModel {
     let headerModel: PostHeaderView.Model
     let date: String
     let text: NSAttributedString
-    let fileURLs: [String]
+    let files: [FilePathType]
     let numberOfReplies: Int
     let isAnswerHidden: Bool
     let isRepliesHidden: Bool
     let id: String
     
     public var description: String {
-        return "\(id)\n\(postNumber)\n\(headerModel.description)\n\(date)\n\(text)\n\(fileURLs.count)\n\(numberOfReplies)"
+        return "\(id)\n\(postNumber)\n\(headerModel.description)\n\(date)\n\(text)\n\(files.count)\n\(numberOfReplies)"
     }
 }
 
@@ -165,9 +165,11 @@ final class PostCommentWithMediaView: UIView, ConfigurableView, ReusableView, Se
         dateLabel.text = model.date
         text.attributedText = model.text
         
-        if !model.fileURLs.isEmpty {
+        if !model.files.isEmpty {
             let isSafeMode = appSettingsStorage.isSafeMode
-            let galleryModels = model.fileURLs.map { GalleryView.Model(imageURL: $0, isSafeMode: isSafeMode) }
+            let galleryModels = model.files.map { GalleryView.Model(imageURL: $0.urlPath,
+                                                                    type: $0.type,
+                                                                    isSafeMode: isSafeMode) }
             gallery.update(dataSource: galleryModels)
         }
         
@@ -208,17 +210,14 @@ extension PostCommentWithMediaView: NantesLabelDelegate {
 extension PostCommentWithMediaView: PostCommentButtonsViewDelegate {
     
     func answerButtonDidTap() {
-        Analytics.logEvent("AnswerButtonDidTap", parameters: [:])
         delegate?.postCommentView(self, didTapAnswerButton: postNumber)
     }
     
     func answersButtonDidTap() {
-        Analytics.logEvent("AnswersButtonDidTap", parameters: [:])
         delegate?.postCommentView(self, didTapAnswersButton: postNumber)
     }
     
     func moreButtonDidTap(_ button: UIView) {
-        Analytics.logEvent("MoreButtonDidTap", parameters: [:])
         delegate?.postCommentView(self, didTapMoreButton: button, postNumber: postNumber)
     }
 }
