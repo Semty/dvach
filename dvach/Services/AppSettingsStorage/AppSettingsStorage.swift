@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol IAppSettingsStorage: class {
+protocol IAppSettingsStorage: AnyObject {
     var lastUpdatedConfigDate: TimeInterval { get set }
     var isSafeMode: Bool { get set }
     var isEulaCompleted: Bool { get set }

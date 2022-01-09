@@ -12,7 +12,8 @@ protocol IFavouriteThreadsPresenter {
     var dataSource: [FavouriteThreadView.Model] { get }
     func viewDidLoad()
     func viewWillAppear()
-    func didSelectBoard(index: Int)
+    func didSelectThread(index: Int)
+    func didRemoveThread(index: Int)
 }
 
 final class FavouriteThreadsPresenter {
@@ -44,6 +45,15 @@ final class FavouriteThreadsPresenter {
                                              iconURL: post.thumbnailURL)
         }
     }
+    
+    private func updateDataSourceIfNeeded() {
+        let newFavouriteThreads = dvachService.favourites(type: ThreadShortInfo.self).filter { $0.isFavourite }
+        if favouriteThreads.count != newFavouriteThreads.count {
+            favouriteThreads = newFavouriteThreads
+            dataSource = createViewModels(threads: favouriteThreads)
+            view?.updateTable()
+        }
+    }
 }
 
 // MARK: - IFavouriteThreadsPresenter
@@ -55,19 +65,21 @@ extension FavouriteThreadsPresenter: IFavouriteThreadsPresenter {
     }
     
     func viewWillAppear() {
-        let newFavouriteThreads = dvachService.favourites(type: ThreadShortInfo.self).filter { $0.isFavourite }
-        if favouriteThreads.count != newFavouriteThreads.count {
-            favouriteThreads = newFavouriteThreads
-            dataSource = createViewModels(threads: favouriteThreads)
-            view?.updateTable()
-        }
+        updateDataSourceIfNeeded()
     }
     
-    func didSelectBoard(index: Int) {
+    func didSelectThread(index: Int) {
         guard let thread = favouriteThreads[safeIndex: index],
             let boardId = thread.boardId else { return }
         
         let viewController = PostAssembly.assemble(board: boardId, thread: thread)
         view?.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func didRemoveThread(index: Int) {
+        guard let thread = favouriteThreads[safeIndex: index],
+            let boardId = thread.boardId else { return }
+        dvachService.removeFromFavourites(.thread(thread, boardId: boardId))
+        updateDataSourceIfNeeded()
     }
 }

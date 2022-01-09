@@ -12,7 +12,8 @@ protocol IFavouritePostsPresenter {
     var dataSource: [FavouriteThreadView.Model] { get }
     func viewDidLoad()
     func viewWillAppear()
-    func didSelectBoard(index: Int)
+    func didSelectPost(index: Int)
+    func didRemovePost(index: Int)
 }
 
 final class FavouritePostsPresenter {
@@ -44,6 +45,15 @@ final class FavouritePostsPresenter {
                                              iconURL: post.files.first?.thumbnail)
         }
     }
+    
+    private func updateDataSourceIfNeeded() {
+        let newFavouritePosts = dvachService.favourites(type: Post.self)
+        if favouritePosts.count != newFavouritePosts.count {
+            favouritePosts = dvachService.favourites(type: Post.self)
+            dataSource = createViewModels(posts: favouritePosts)
+            view?.updateTable()
+        }
+    }
 }
 
 // MARK: - IFavouriteThreadsPresenter
@@ -55,17 +65,20 @@ extension FavouritePostsPresenter: IFavouritePostsPresenter {
     }
     
     func viewWillAppear() {
-        let newFavouritePosts = dvachService.favourites(type: Post.self)
-        if favouritePosts.count != newFavouritePosts.count {
-            favouritePosts = dvachService.favourites(type: Post.self)
-            dataSource = createViewModels(posts: favouritePosts)
-            view?.updateTable()
-        }
+        updateDataSourceIfNeeded()
     }
     
-    func didSelectBoard(index: Int) {
+    func didSelectPost(index: Int) {
         guard let post = favouritePosts[safeIndex: index] else { return }
         let vc = SinglePostViewController(post: post)
         view?.present(vc, animated: true)
+    }
+    
+    func didRemovePost(index: Int) {
+        guard let post = favouritePosts[safeIndex: index] else { return }
+        dvachService.removeFromFavourites(.post(post,
+                                                threadInfo: post.threadInfo,
+                                                boardId: post.threadInfo?.boardId))
+        updateDataSourceIfNeeded()
     }
 }

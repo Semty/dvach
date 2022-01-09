@@ -60,6 +60,7 @@ final class ThreadWithImageView: UIView, ConfigurableView, ReusableView, PressSt
         
         threadImageView.layer.borderColor = UIColor.n5LightGray.cgColor
         threadImageView.layer.borderWidth = 0.5
+        threadImageView.backgroundColor = .n5LightGray
     }
     
     override func layoutSubviews() {

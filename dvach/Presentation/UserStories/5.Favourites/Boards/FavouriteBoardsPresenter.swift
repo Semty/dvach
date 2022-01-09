@@ -13,6 +13,7 @@ protocol IFavouriteBoardsPresenter {
     func viewDidLoad()
     func viewWillAppear()
     func didSelectBoard(index: Int)
+    func didRemoveBoard(index: Int)
 }
 
 final class FavouriteBoardsPresenter {
@@ -35,6 +36,12 @@ final class FavouriteBoardsPresenter {
             
         }
     }
+    
+    private func updateDataSourceIfNeeded() {
+        favouriteBoards = dvachService.favourites(type: BoardShortInfo.self)
+        dataSource = createViewModels(boards: favouriteBoards)
+        view?.updateTable()
+    }
 }
 
 // MARK: - IFavouriteBoardsPresenter
@@ -46,9 +53,7 @@ extension FavouriteBoardsPresenter: IFavouriteBoardsPresenter {
     }
     
     func viewWillAppear() {
-        favouriteBoards = dvachService.favourites(type: BoardShortInfo.self)
-        dataSource = createViewModels(boards: favouriteBoards)
-        view?.updateTable()
+        updateDataSourceIfNeeded()
     }
     
     func didSelectBoard(index: Int) {
@@ -56,5 +61,11 @@ extension FavouriteBoardsPresenter: IFavouriteBoardsPresenter {
         let viewController = BoardWithThreadsViewController(boardID: board.identifier)
         viewController.title = board.name
         view?.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func didRemoveBoard(index: Int) {
+        guard let board = favouriteBoards[safeIndex: index] else { return }
+        dvachService.removeFromFavourites(.board(board))
+        updateDataSourceIfNeeded()
     }
 }

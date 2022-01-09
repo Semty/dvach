@@ -974,8 +974,8 @@
 		4193B1F322B1A8F700EE25FD /* Posts */ = {
 			isa = PBXGroup;
 			children = (
-				4193B1F422B1A90D00EE25FD /* FavouritePostsPresenter.swift */,
 				4193B1F622B1A92000EE25FD /* FavouritePostsViewController.swift */,
+				4193B1F422B1A90D00EE25FD /* FavouritePostsPresenter.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
